@@ -7,7 +7,7 @@ Welcome to technical notes's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    aws/machinelearning/ai-services/personalize
