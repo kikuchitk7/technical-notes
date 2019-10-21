@@ -200,7 +200,7 @@ GitHub の設定
 
   - GitHub の Settings で、 Source を "master branch / docs folder" に変更する。
 
-  .. image:: ../images/GitHub_Pages_Settings_Source.png
+  .. image:: ../../images/GitHub_Pages_Settings_Source.png
 
 GitHub Pages の確認
 -----------------------

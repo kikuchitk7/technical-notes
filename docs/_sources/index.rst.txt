@@ -10,6 +10,7 @@ Welcome to technical notes's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   AWS/MachineLearning/AmazonPersonalize
    環境構築/sphinx
 
 
