@@ -205,7 +205,7 @@ GitHub の設定
 GitHub Pages の確認
 =======================
 
-#. 公開されたページ(https://kikuchitk7.github.io/mynavi-blogs/)を確認する。
+#. 公開されたページ(https://kikuchitk7.github.io/technical-notes/)を確認する。
 
 
 参考
