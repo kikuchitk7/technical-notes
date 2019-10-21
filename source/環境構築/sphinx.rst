@@ -2,14 +2,14 @@ Sphinx と GitHub Pages を使ってドキュメントを公開する
 =====================================================
 
 前提
-=====
+-------
 
 - macOS Catalina バージョン 10.15
 - Python 3.7.4
 - Public な GitHub repository を作成済
 
 環境構築 (ローカル)
-====================
+---------------------
 
 #. 公開用の repository を clone する。
 
@@ -194,7 +194,7 @@ Sphinx と GitHub Pages を使ってドキュメントを公開する
    $ git push origin master
 
 GitHub の設定
-====================
+----------------
 
 #. GitHub Pages の公開設定をする。
 
@@ -203,13 +203,13 @@ GitHub の設定
   .. image:: ../images/GitHub_Pages_Settings_Source.png
 
 GitHub Pages の確認
-=======================
+-----------------------
 
 #. 公開されたページ(https://kikuchitk7.github.io/technical-notes/)を確認する。
 
 
 参考
-=======================
+-----------
 
 - `Sphinxの導入とGitHubページの作成 <http://debugroom.github.io/doc/memo/work/sphinx/install.html#>`_
 - `4. Sphinxでの文章の書き方(reStructuredText) <https://planset-study-sphinx.readthedocs.io/ja/latest/04.html#id14>`_

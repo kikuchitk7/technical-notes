@@ -10,7 +10,7 @@ Welcome to technical notes's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   sphinx
+   環境構築/sphinx
 
 
 Indices and tables

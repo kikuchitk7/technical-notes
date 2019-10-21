@@ -17,26 +17,26 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" />
-    <link rel="prev" title="Welcome to technical notes&#39;s documentation!" href="index.html" /> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="Welcome to technical notes&#39;s documentation!" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> technical notes
+            <a href="../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -63,7 +63,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -82,12 +82,14 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">前提</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">環境構築 (ローカル)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#github">GitHub の設定</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#github-pages">GitHub Pages の確認</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id3">参考</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx と GitHub Pages を使ってドキュメントを公開する</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">環境構築 (ローカル)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github">GitHub の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-pages">GitHub Pages の確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">参考</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -102,7 +104,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">technical notes</a>
+          <a href="../index.html">technical notes</a>
         
       </nav>
 
@@ -131,7 +133,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Sphinx と GitHub Pages を使ってドキュメントを公開する</li>
     
@@ -139,7 +141,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/sphinx.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/環境構築/sphinx.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,9 +156,8 @@
             
   <div class="section" id="sphinx-github-pages">
 <h1>Sphinx と GitHub Pages を使ってドキュメントを公開する<a class="headerlink" href="#sphinx-github-pages" title="このヘッドラインへのパーマリンク">¶</a></h1>
-</div>
 <div class="section" id="id1">
-<h1>前提<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>前提<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>macOS Catalina バージョン 10.15</p></li>
 <li><p>Python 3.7.4</p></li>
@@ -164,7 +165,7 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h1>環境構築 (ローカル)<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>環境構築 (ローカル)<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ol class="arabic simple">
 <li><p>公開用の repository を clone する。</p></li>
 </ol>
@@ -349,7 +350,7 @@ $ git push origin master
 </div>
 </div>
 <div class="section" id="github">
-<h1>GitHub の設定<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>GitHub の設定<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ol class="arabic simple">
 <li><p>GitHub Pages の公開設定をする。</p></li>
 </ol>
@@ -357,17 +358,17 @@ $ git push origin master
 <div><ul class="simple">
 <li><p>GitHub の Settings で、 Source を &quot;master branch / docs folder&quot; に変更する。</p></li>
 </ul>
-<img alt="_images/GitHub_Pages_Settings_Source.png" src="_images/GitHub_Pages_Settings_Source.png" />
+<img alt="環境構築/../images/GitHub_Pages_Settings_Source.png" src="環境構築/../images/GitHub_Pages_Settings_Source.png" />
 </div></blockquote>
 </div>
 <div class="section" id="github-pages">
-<h1>GitHub Pages の確認<a class="headerlink" href="#github-pages" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>GitHub Pages の確認<a class="headerlink" href="#github-pages" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ol class="arabic simple">
 <li><p>公開されたページ(<a class="reference external" href="https://kikuchitk7.github.io/technical-notes/">https://kikuchitk7.github.io/technical-notes/</a>)を確認する。</p></li>
 </ol>
 </div>
 <div class="section" id="id3">
-<h1>参考<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>参考<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://debugroom.github.io/doc/memo/work/sphinx/install.html#">Sphinxの導入とGitHubページの作成</a></p></li>
 <li><p><a class="reference external" href="https://planset-study-sphinx.readthedocs.io/ja/latest/04.html#id14">4. Sphinxでの文章の書き方(reStructuredText)</a></p></li>
@@ -376,6 +377,7 @@ $ git push origin master
 <li><p><a class="reference external" href="http://hirohio.hatenablog.com/entry/2018/07/17/001045">GitHub PagesでSphinxにCSSが適用されない!!</a></p></li>
 <li><p><a class="reference external" href="https://sphinx-users.jp/articles/expertpython/restructuredtext.html">reStructuredText入門</a></p></li>
 </ul>
+</div>
 </div>
 
 
@@ -387,7 +389,7 @@ $ git push origin master
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to technical notes&#39;s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to technical notes&#39;s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
