@@ -10,6 +10,7 @@ Welcome to technical notes's documentation!
    :maxdepth: 1
    :caption: Contents:
 
+   aws/machinelearning/ai-services/ai-services
    aws/machinelearning/ai-services/personalize
    environment/sphinx
 
