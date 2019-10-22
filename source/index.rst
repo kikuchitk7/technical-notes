@@ -14,6 +14,7 @@ Welcome to technical notes's documentation!
    aws/machinelearning/ai-services/personalize
    environment/sphinx
    environment/sphinx-by-markdown
+   git/git-basics
 
 
 Indices and tables

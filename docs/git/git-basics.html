@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gitの基本事項 &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="Sphinx のドキュメントを Markdown で作成する" href="../environment/sphinx-by-markdown.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aws/machinelearning/ai-services/ai-services.html">AI Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/machinelearning/ai-services/personalize.html">Amazon Personalize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/sphinx.html">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gitの基本事項</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">基本動作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">ステータス確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">変更のステージ追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">変更のコミット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">変更のプッシュ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">操作履歴の確認</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">コミットログの確認</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">ブランチ操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">現在のブランチの確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">ブランチの切替</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">ブランチの作成＋切替</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">ブランチの削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Gitの基本事項</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/git/git-basics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="git">
+<h1>Gitの基本事項<a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>基本動作<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h3>ステータス確認<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>変更のステージ追加<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>カレントディレクトリ以下の全ての変更を追加する。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+</pre></div>
+</div>
+<p>全ての変更を追加する。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add -A
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>変更のコミット<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;messages&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>変更のプッシュ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>origin：リモートリポジトリの別名</p></li>
+<li><p>master：master ブランチ</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>操作履歴の確認<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h3>コミットログの確認<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>ブランチ操作<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h3>現在のブランチの確認<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch
+</pre></div>
+</div>
+<p>現在のブランチに * がつく。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">dev</span>
+<span class="n">master</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>ブランチの切替<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Switched</span> <span class="n">to</span> <span class="n">branch</span> <span class="s1">&#39;master&#39;</span>
+<span class="n">Your</span> <span class="n">branch</span> <span class="ow">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span> <span class="k">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>ブランチの作成＋切替<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout -b dev
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Switched</span> <span class="n">to</span> <span class="n">a</span> <span class="n">new</span> <span class="n">branch</span> <span class="s1">&#39;dev&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>ブランチの削除<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch -D dev
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Deleted</span> <span class="n">branch</span> <span class="n">dev</span> <span class="p">(</span><span class="n">was</span> <span class="n">cf70845</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../environment/sphinx-by-markdown.html" class="btn btn-neutral float-left" title="Sphinx のドキュメントを Markdown で作成する" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
