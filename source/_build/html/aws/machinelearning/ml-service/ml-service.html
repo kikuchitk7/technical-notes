@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ML Service &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" />
+    <link rel="next" title="Gitの基本事項" href="../../../git/git-basics.html" />
+    <link rel="prev" title="Amazon Personalize" href="../ai-services/personalize.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ai-services/ai-services.html">AI Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai-services/personalize.html">Amazon Personalize</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ML Service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ml">ML サービスとは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-sagemaker">Amazon SageMaker とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Amazon SageMaker のアーキテクチャ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">開発フロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">開発</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">学習</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">推論</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">ビルトインアルゴリズム</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">画像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">数値・系列解析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">自然言語</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">レコメンデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">回帰・分類など</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-classification">ビルトインアルゴリズムの例：Image Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">Amazon SageMaker のサンプルノートブック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">注意事項</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#marketplace">MarketPlace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../git/git-basics.html">Gitの基本事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environment/sphinx.html">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environment/sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>ML Service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/aws/machinelearning/ml-service/ml-service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ml-service">
+<h1>ML Service<a class="headerlink" href="#ml-service" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="ml">
+<h2>ML サービスとは<a class="headerlink" href="#ml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>Amazon SageMaker を指す。</p></li>
+<li><p>独自の機械学習サービスの実装をサポートする。</p></li>
+</ul>
+<img alt="../../../_images/AWSの機械学習サービススタック1.png" src="../../../_images/AWSの機械学習サービススタック1.png" />
+</div>
+<div class="section" id="amazon-sagemaker">
+<h2>Amazon SageMaker とは<a class="headerlink" href="#amazon-sagemaker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>機械学習プロジェクトの課題を解決するためのマネージドサービス。</p></li>
+<li><p>開発環境を数分で起動できる。</p></li>
+<li><p>学習、推論環境は柔軟にスケールできる。</p></li>
+<li><p>多数の API を提供しており、他サービスとの自由度の高い連携が可能。</p></li>
+<li><p>東京リージョンで利用可能。</p></li>
+<li><p>ほとんどのコンテナ、SDK はオープンソース。</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Amazon SageMaker のアーキテクチャ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>図を入れる</p>
+</div>
+<div class="section" id="id2">
+<h2>開発フロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h3>開発<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>ノートブックインスタンスを起動して学習・推論用コードの開発を行う。</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>学習<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>学習用インスタンスを起動する。</p></li>
+<li><p>Amazon ECR からコンテナイメージをロードする。</p></li>
+<li><p>Amazon S3 から学習に必要なデータをダウンロードして学習を行う。</p></li>
+<li><p>学習が完了したら、自動で学習用インスタンスを削除する。</p></li>
+<li><p>学習済モデルとコードを自動で Amazon S3 に保存する。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>推論<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>推論用インスタンスを起動する。</p></li>
+<li><p>Amazon ECR からコンテナイメージをダウンロードする。</p></li>
+<li><p>Amazon S3 から学習済モデルとコードをダウンロードし、エンドポイントを作成する。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>ビルトインアルゴリズム<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h3>画像<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Image Classification</p></li>
+<li><p>Object Detection</p></li>
+<li><p>Semantic Segmentation</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>数値・系列解析<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>DeepAR Forecasting</p></li>
+<li><p>Random Cut Forecast</p></li>
+<li><p>IP Insights</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>自然言語<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>seq2seq</p></li>
+<li><p>LDA</p></li>
+<li><p>Neural Topic Model</p></li>
+<li><p>BlazingText</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>レコメンデーション<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Object2Vec</p></li>
+<li><p>Factorization Machines</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>回帰・分類など<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Linear Learner</p></li>
+<li><p>XGBoost</p></li>
+<li><p>k-means</p></li>
+<li><p>k-NN</p></li>
+<li><p>PCA</p></li>
+</ul>
+</div>
+<div class="section" id="image-classification">
+<h3>ビルトインアルゴリズムの例：Image Classification<a class="headerlink" href="#image-classification" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>ResNet (１ILSVRC 2015 優勝モデル) による画像認識</p></li>
+<li><p>AWS が学習済モデルを提供しており、転移学習が可能</p></li>
+<li><p>入出力インターフェース</p>
+<blockquote>
+<div><ul>
+<li><p>入力</p>
+<blockquote>
+<div><ul>
+<li><p>イメージ形式 (lst ファイルと画像)</p>
+<blockquote>
+<div><ul>
+<li><p>lst ファイル</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>画像のインデックス、分類のインデックス、画像の相対パス</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>RecordIO 形式</p></li>
+<li><p>拡張マニフェストイメージ形式</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>出力インターフェース</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>JSON 形式</p></li>
+<li><p>JSON Lines 形式</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>Amazon SageMaker のサンプルノートブック<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>GitHub にて`サンプルノートブック&lt;<a class="reference external" href="https://github.com/awslabs/amazon-sagemaker-examples">https://github.com/awslabs/amazon-sagemaker-examples</a>&gt;`_が公開されている。</p></li>
+<li><p>サンプルノートブックは、Jupyter の &quot;SageMaker Examples&quot;からも選べる。</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>注意事項<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>Amazon SageMaker の課金対象リソース (利用後に削除しないと課金され続けるもの)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ノートブックインスタンス</p></li>
+<li><p>推論用インスタンス</p></li>
+<li><p>Amazon S3</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ResourceLimitExceeded というエラーが出力された場合</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>上限緩和申請をする。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="marketplace">
+<h2>MarketPlace<a class="headerlink" href="#marketplace" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>モデルの購入が可能</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>購入者は機械学習で使用するデータを秘匿したままでモデルを使用できる。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>モデルの販売も可能</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>販売者はモデルの中身を秘匿したままでモデルを販売できる。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>参考<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>「今から始める機械学習入門 Amazon SageMaker の初級活用法」</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../git/git-basics.html" class="btn btn-neutral float-right" title="Gitの基本事項" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ai-services/personalize.html" class="btn btn-neutral float-left" title="Amazon Personalize" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
