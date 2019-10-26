@@ -11,7 +11,7 @@ Welcome to technical notes's documentation!
    :caption: Contents:
 
    aws/aws
-   git/git-basics
+   git/git
    environment/environment
 
 
