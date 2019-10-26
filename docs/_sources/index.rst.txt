@@ -14,7 +14,7 @@ Welcome to technical notes's documentation!
    aws/machinelearning/ai-services/personalize
    aws/machinelearning/ml-service/ml-service
    git/git-basics
-   environment/sphinx/sphinx
+   environment/environment
 
 
 Indices and tables
