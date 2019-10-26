@@ -1,9 +1,9 @@
-AWS
-=======
+環境構築
+=============
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
-   machinelearning/machinelearning
+   sphinx/sphinx
    
