@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="機械学習サービス" href="../machinelearning/machinelearning.html" />
+    <link rel="prev" title="Compute サービス" href="compute.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,8 +82,18 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../aws.html">AWS</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../aws.html">AWS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="compute.html">Compute サービス</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Amazon ECS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">基本事項</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../machinelearning/machinelearning.html">機械学習サービス</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">マイナビ投稿記事</a></li>
@@ -130,6 +142,10 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../aws.html">AWS</a> &raquo;</li>
+        
+          <li><a href="compute.html">Compute サービス</a> &raquo;</li>
+        
       <li>Amazon ECS</li>
     
     
@@ -167,6 +183,7 @@
 </ul>
 </div></blockquote>
 </li>
+<li><p>オブジェクト指向でいうとクラスに相当する。</p></li>
 </ul>
 </div>
 <div class="section" id="task">
@@ -174,12 +191,23 @@
 <ul class="simple">
 <li><p>Task Definition に基づいて起動されるコンテナ群。</p></li>
 <li><p>Task 内コンテナは同一ホスト上で実行される。</p></li>
+<li><p>オブジェクト指向でいうとインスタンスに相当する。</p></li>
 </ul>
 </div>
 <div class="section" id="service">
 <h3>Service<a class="headerlink" href="#service" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li></li>
+<li><p>Task の実行コピー数を定義し、Task の起動後はそのコピー数を維持する。</p></li>
+<li><p>ELB と連携する。</p></li>
+<li><p>起動タイプ (EC2/Fargate) を設定する。</p></li>
+</ul>
+</div>
+<div class="section" id="cluster">
+<h3>Cluster<a class="headerlink" href="#cluster" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>実行環境の境界。</p></li>
+<li><p>IAM 権限の境界 (Cluster に対する操作)。</p></li>
+<li><p>スケジュールされた Task の実行を設定可能。</p></li>
 </ul>
 </div>
 </div>
@@ -190,6 +218,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../machinelearning/machinelearning.html" class="btn btn-neutral float-right" title="機械学習サービス" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="compute.html" class="btn btn-neutral float-left" title="Compute サービス" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
