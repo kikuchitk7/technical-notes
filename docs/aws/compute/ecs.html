@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Amazon ECS &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="機械学習サービス" href="../machinelearning/machinelearning.html" />
+    <link rel="prev" title="Compute サービス" href="compute.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../aws.html">AWS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="compute.html">Compute サービス</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Amazon ECS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">基本事項</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../machinelearning/machinelearning.html">機械学習サービス</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">マイナビ投稿記事</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../aws.html">AWS</a> &raquo;</li>
+        
+          <li><a href="compute.html">Compute サービス</a> &raquo;</li>
+        
+      <li>Amazon ECS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/aws/compute/ecs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-ecs">
+<h1>Amazon ECS<a class="headerlink" href="#amazon-ecs" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>基本事項<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="task-definition">
+<h3>Task Definition<a class="headerlink" href="#task-definition" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>Task を構成するコンテナ群の定義のこと。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>コンテナ定義</p></li>
+<li><p>CPU/MEM</p></li>
+<li><p>Task に割り当てる IAM ロール</p></li>
+<li><p>ネットワークモード</p></li>
+<li><p>etc.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="task">
+<h3>Task<a class="headerlink" href="#task" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Task Definition に基づいて起動されるコンテナ群。</p></li>
+<li><p>Task 内コンテナは同一ホスト上で実行される。</p></li>
+</ul>
+</div>
+<div class="section" id="service">
+<h3>Service<a class="headerlink" href="#service" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Task の実行コピー数を定義し、Task の起動後はそのコピー数を維持する。</p></li>
+<li><p>ELB と連携する。</p></li>
+<li><p>起動タイプ (EC2/Fargate) を設定する。</p></li>
+</ul>
+</div>
+<div class="section" id="cluster">
+<h3>Cluster<a class="headerlink" href="#cluster" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>実行環境の境界。</p></li>
+<li><p>IAM 権限の境界 (Cluster に対する操作)。</p></li>
+<li><p>スケジュールされた Task の実行を設定可能。</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../machinelearning/machinelearning.html" class="btn btn-neutral float-right" title="機械学習サービス" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="compute.html" class="btn btn-neutral float-left" title="Compute サービス" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

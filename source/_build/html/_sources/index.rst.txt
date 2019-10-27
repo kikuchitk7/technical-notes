@@ -10,12 +10,11 @@ Welcome to technical notes's documentation!
    :maxdepth: 1
    :caption: Contents:
 
-   aws/machinelearning/ai-services/ai-services
-   aws/machinelearning/ai-services/personalize
-   aws/machinelearning/ml-service/ml-service
-   git/git-basics
-   environment/sphinx
-   environment/sphinx-by-markdown
+   aws/aws
+   git/git
+   environment/environment
+   blog/blog
+
 
 Indices and tables
 ==================
