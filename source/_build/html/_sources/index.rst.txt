@@ -13,6 +13,7 @@ Welcome to technical notes's documentation!
    aws/aws
    git/git
    environment/environment
+   testing/testing
    blog/blog
 
 
