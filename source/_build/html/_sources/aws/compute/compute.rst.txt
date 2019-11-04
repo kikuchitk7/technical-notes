@@ -1,4 +1,4 @@
-Compute サービス
+Compute
 =====================
 
 .. toctree::
