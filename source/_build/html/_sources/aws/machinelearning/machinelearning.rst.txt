@@ -1,4 +1,4 @@
-機械学習サービス
+Machine Learning
 =====================
 
 .. toctree::
