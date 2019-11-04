@@ -6,5 +6,6 @@ AWS
    :caption: Contents:
 
    compute/compute
+   customerengagement/customerengagement
    machinelearning/machinelearning
    
