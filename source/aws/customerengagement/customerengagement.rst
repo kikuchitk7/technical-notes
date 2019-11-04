@@ -5,4 +5,4 @@ Customer Engagement
    :maxdepth: 1
    :caption: Contents:
 
-   Amazon SES
+   ses.rst
