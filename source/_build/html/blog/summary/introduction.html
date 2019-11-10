@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="AWS ではじめる機械学習" href="../blog.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,12 +81,26 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../blog.html">マイナビ投稿記事</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第1回] AWS ではじめる機械学習</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">前提事項について</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">想定読者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">目指す状態</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">今後の記事の投稿内容について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -131,6 +146,8 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
+        
       <li>[第1回] AWS ではじめる機械学習</li>
     
     
@@ -154,10 +171,10 @@
 <h1>[第1回] AWS ではじめる機械学習<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>昨今は、「デジタル・トランスフォーメーション (DX)」と言われ、ビジネスの様々な場面にデジタル技術が取り入れられて、ビジネスの変革が進められています。
-デジタル技術の1つに「機械学習」があります。
-2000年代以降から現在も「第3次人工知能ブーム」の真っ只中にあると言われていますが、ここ数年は「人工知能 (AI)」や「機械学習」に関連する情報を毎日のように目にするようになりました。
-ビジネスに機械学習を取り入れて、従来は人間が行っていたような作業や判断を機械に任せることで多くの企業が成功を収めています。
+<p>昨今は、「デジタル・トランスフォーメーション (DX)」と言われ、ビジネスの様々な場面にデジタル技術が取り入れられて、ビジネスの変革が進められています。</p>
+<p>デジタル技術の1つに「機械学習」があります。
+2000年代以降から現在も「第3次人工知能ブーム」の真っ只中にあると言われていますが、ここ数年は「人工知能 (AI)」や「機械学習」に関連する情報を毎日のように目にするようになりました。</p>
+<p>ビジネスに機械学習を取り入れて、従来は人間が行っていたような作業や判断を機械に任せることで多くの企業が成功を収めています。
 その一方で、例えば下記のような悩みを持っている方が多くいるのではないでしょうか？</p>
 <blockquote>
 <div><ul class="simple">
@@ -166,10 +183,10 @@
 <li><p>有償トレーニングの受講などノウハウ習得に費用をかけられない。</p></li>
 </ul>
 </div></blockquote>
-<p>そこで、この記事ではこのような悩みを持つ読者が、パブリック・クラウドとしてシェアの高い <a class="reference external" href="https://aws.amazon.com/jp/">AWS (Amazon Web Services)</a> を使って、ビジネスに機械学習を取り入れていく方法を考えていきます。
-AWS では、「Amazon で培った機械学習に関するノウハウをすべての開発者に届ける」というコンセプトのもと、多数の <a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc2=h_ql_sol_use_ml">「機械学習サービス」</a> が提供されています。
-独自の機械学習モデルを開発・学習・推論したい開発者・データサイエンティスト向けの「ML サービス」だけでなく、機械学習のスキルがなくてもデータを用意するだけで気軽に機械学習をサービスとして利用できる「AI サービス」もあります。
-機械学習の特別なノウハウは不要とはいいつつも、各サービスの概要や使い方、ユースケースなどを理解する必要があります。
+<p>そこで、この記事ではこのような悩みを持つ読者が、パブリック・クラウドとしてシェアの高い <a class="reference external" href="https://aws.amazon.com/jp/">AWS (Amazon Web Services)</a> を使って、ビジネスに機械学習を取り入れていく方法を考えていきます。</p>
+<p>AWS では、「Amazon で培った機械学習に関するノウハウをすべての開発者に届ける」というコンセプトのもと、多数の <a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc2=h_ql_sol_use_ml">「機械学習サービス」</a> が提供されています。</p>
+<p>独自の機械学習モデルを開発・学習・推論したい開発者・データサイエンティスト向けの「ML サービス」だけでなく、機械学習のスキルがなくてもデータを用意するだけで気軽に機械学習をサービスとして利用できる「AI サービス」もあります。</p>
+<p>機械学習の特別なノウハウは不要とはいいつつも、各サービスの概要や使い方、ユースケースなどを理解する必要があります。
 機械学習サービスの基本事項を整理し、ビジネスに取り込んでいく方法を考えていきます。</p>
 <img alt="../../_images/AWSの機械学習サービススタック2.png" src="../../_images/AWSの機械学習サービススタック2.png" />
 <p>(出典：<a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20190924-aws-black-belt-online-seminar-aws-ai-services">「20190924 AWS Black Belt Online Seminar AWS AI Service」</a>  P.11)</p>
@@ -252,6 +269,13 @@ AWS では、「Amazon で培った機械学習に関するノウハウをすべ
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../blog.html" class="btn btn-neutral float-left" title="AWS ではじめる機械学習" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
