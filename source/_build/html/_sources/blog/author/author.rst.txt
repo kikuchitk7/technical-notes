@@ -1,7 +1,7 @@
 著者紹介
 -------------
 
-.. image:: ./myphoto.jpg
+.. image:: ../../../images/myphoto.jpg
     :scale: 15%
     :align: right
 
