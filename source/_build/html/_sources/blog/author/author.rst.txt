@@ -1,6 +1,10 @@
 著者紹介
 -------------
 
+.. image:: ./myphoto.jpg
+    :scale: 15%
+    :align: right
+
 菊地 貴彰 (KIKUCHI Takaaki)
 
 株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center
