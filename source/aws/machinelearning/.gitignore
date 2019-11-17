@@ -1,0 +1,8 @@
+ai-services/comprehend.rst
+ai-services/lex.rst
+ai-services/polly.rst
+ai-services/rekognition.rst
+ai-services/textract.rst
+ai-services/transcribe.rst
+ai-services/translate.rst
+ml-service/sagemaker.rst
