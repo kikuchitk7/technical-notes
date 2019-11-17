@@ -3,6 +3,10 @@ Amazon Polly
 
 メモ
 ----------------
+- 東京リージョン：○
+
+    - `リージョン表 <https://aws.amazon.com/jp/about-aws/global-infrastructure/regional-product-services/>`_
+
 - 日本語対応：○
 
     - `Amazon Polly でサポートされている言語 <https://docs.aws.amazon.com/ja_jp/polly/latest/dg/SupportedLanguage.html>`_
