@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>機械学習サービスの全体像 &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="AI Services" href="ai-services/ai-services.html" />
+    <link rel="prev" title="Machine Learning" href="machinelearning.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../aws.html">AWS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../analytics/analytics.html">Analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compute/compute.html">Compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customerengagement/customerengagement.html">Customer Engagement</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="machinelearning.html">Machine Learning</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">機械学習サービスの全体像</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">機械学習サービスのコンセプト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">機械学習サービスの種類</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">その他、情報を得る方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ai-services/ai-services.html">AI Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml-service/ml-service.html">ML Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html#id1">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../aws.html">AWS</a> &raquo;</li>
+        
+          <li><a href="machinelearning.html">Machine Learning</a> &raquo;</li>
+        
+      <li>機械学習サービスの全体像</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/aws/machinelearning/overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>機械学習サービスの全体像<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>機械学習サービスのコンセプト<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「Amazon で培った機械学習に関するノウハウをすべての開発者に届ける」</p>
+</div>
+<div class="section" id="id3">
+<h2>機械学習サービスの種類<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>大きくは3つ。
+AI サービス、 ML サービス、 ML フレームワーク &amp; インフラストラクチャ。</p>
+<div class="section" id="ai">
+<h3>AI サービス<a class="headerlink" href="#ai" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>(サービスの特徴、種類、使い方、etc.)</p>
+<p>(表を使って分類し、概要をまとめる程度で良いかも。言語サービスは日本語対応状況も)</p>
+<div class="section" id="id4">
+<h4>画像認識<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id5">
+<h5>静止画・動画認識<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Rekognition Image/Video</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h5>ドキュメント分析<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Textract</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>自然言語処理<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id8">
+<h5>音声処理<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Polly</p></li>
+<li><p>Amazon Transcribe</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h5>テキスト処理<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Translate</p></li>
+<li><p>Amazon Comprehend</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h5>チャットボット<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Lex</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>時系列データ解析<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id12">
+<h5>時系列データ予測<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Forecast</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>パーソナライズ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id14">
+<h5>レコメンデーション<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul class="simple">
+<li><p>Amazon Personalize</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="ml">
+<h3>ML サービス<a class="headerlink" href="#ml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>(サービスの特徴、種類、使い方、etc.)</p>
+<ul class="simple">
+<li><p>Amazon SageMaker</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>ML フレームワーク &amp; インフラストラクチャ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>(サービスの特徴、種類、使い方、etc.)</p>
+<p>ディープラーニング用のフレームワーク</p>
+<ul class="simple">
+<li><p>TensorFlow</p></li>
+<li><p>PyTorch</p></li>
+<li><p>MXNet</p></li>
+<li><p>Chainer</p></li>
+<li><p>theano</p></li>
+<li><p>Keras</p></li>
+<li><p>Microsoft Cognitive Toolkit</p></li>
+<li><p>Gluon</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>機械学習に最適化されたインフラストラクチャ</p>
+<ul class="simple">
+<li><p>GPU</p></li>
+<li><p>Amazon Elastic Inference</p></li>
+<li><p>CPU</p></li>
+<li><p>FPGA</p></li>
+<li><p>Edge</p></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h3>その他のサービス (学習ツール)<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>(サービスの特徴、種類、使い方、etc.)</p>
+<ul class="simple">
+<li><p>AWS DeepRacer</p></li>
+<li><p>AWS DeepLens</p></li>
+</ul>
+<p>DeepRacer Summit リーグ、 Virtual Circuit</p>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>その他、情報を得る方法<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>(著者が情報を得る方法)</p>
+<ul class="simple">
+<li><p>twitter (US/Japan公式、SA)</p></li>
+<li><p>ブログ</p></li>
+<li><p>セミナー</p></li>
+<li><p>APN Partner 向けオンラインセミナー</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ai-services/ai-services.html" class="btn btn-neutral float-right" title="AI Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machinelearning.html" class="btn btn-neutral float-left" title="Machine Learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
