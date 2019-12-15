@@ -96,11 +96,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">AWS の機械学習サービスとは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">機械学習分野における AWS のミッション</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">機械学習サービスの種類</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">機械学習サービスの選択の仕方</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">機械学習サービスの選択の仕方</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -192,59 +192,88 @@
 <div class="section" id="id5">
 <h3>機械学習分野における AWS のミッション<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>AWS の機械学習サービスについて正しく知るためには、まず機械学習分野における AWS のミッションを知る必要があります。
-それは、機械学習サービスの製品紹介ページにて宣言されている通り「すべての開発者に機械学習の恩恵を」です。</p>
+それは、機械学習サービスの製品紹介ページにて宣言されている通り「すべての開発者に機械学習の恩恵を」です。
+それを踏まえて、機械学習サービスの種類を見ていきます。</p>
 <img alt="../../_images/機械学習分野におけるAWSのミッション.png" src="../../_images/機械学習分野におけるAWSのミッション.png" />
 <p>(出典：<a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc1=h_ls">機械学習サービスの製品紹介ページ</a>)</p>
 </div>
 <div class="section" id="id7">
 <h3>機械学習サービスの種類<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>機械学習サービスには大きく「AI サービス」、「ML サービス」、「ML フレームワークとインフラストラクチャ」の3種類があります。
-上記のミッションを踏まえると、それぞれのサービスの特徴を把握しやすくなります。</p>
-<table class="docutils align-default" id="id11">
-<caption><span class="caption-text">AWS の機械学習サービス</span><a class="headerlink" href="#id11" title="このテーブルへのパーマリンク">¶</a></caption>
+<p>機械学習サービスには大きく分けて下記の表に示す3種類に分けることができます。
+それぞれの機械学習サービスの特徴と利用用途を下記の表にまとめます。</p>
+<table class="colwidths-given docutils align-default" id="id12">
+<caption><span class="caption-text">AWS の機械学習サービス</span><a class="headerlink" href="#id12" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
+<col style="width: 17%" />
 <col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>機械学習サービス</p></th>
 <th class="head"><p>特徴</p></th>
-<th class="head"><p>用途</p></th>
+<th class="head"><p>対象者</p></th>
+<th class="head"><p>学習や推論用データの準備</p></th>
+<th class="head"><p>機械学習アルゴリズムの準備</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>AI サービス</p></td>
-<td><p>機械学習の深い知識なしで利用可能</p></td>
-<td><p>機械学習アルゴリズムの実装をせずに利用したい人向け</p></td>
+<td><div class="line-block">
+<div class="line">AWS が用意した機械学習モデルを使って、手軽に機械学習を導入できるサービス。</div>
+<div class="line">利用者は学習や推論のためのデータを用意するだけで良いため、解決・達成したい問題・課題と合えばすぐに試すことができる。</div>
+<div class="line">機械学習に関する深い知識なしに始められるため、エントリーポイントのような位置付けとも考えられる。</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">提供されているサービスで要件を満たせる人</div>
+<div class="line">本格的な実装を前に機械学習を試してみたい人</div>
+</div>
+</td>
+<td><p>必要</p></td>
+<td><p>不要</p></td>
 </tr>
 <tr class="row-odd"><td><p>ML サービス</p></td>
-<td><p>機械学習のプロセス全体を効率化するマネージドサービス</p></td>
-<td><p>独自に機械学習アルゴリズムを実装したい人向け</p></td>
+<td><div class="line-block">
+<div class="line">開発者やデータサイエンティスト向けのサービスである。</div>
+<div class="line">大雑把に表現をすると、 Amazon SageMaker と関連するツール群を指す。</div>
+<div class="line">機械学習モデルの構築に必要なデータの前処理(ラベリング)、開発環境の構築、学習やチューニング、</div>
+<div class="line">本番環境へのデプロイを実施するための仕組みがマネージメントサービスとして提供される。</div>
+<div class="line">AWS によって予め用意された機械学習アルゴリズム (ビルトインアルゴリズム) を利用することも独自の機械学習モデルを利用することも可能である。</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">機械学習アルゴリズムを独自に実装したい人</div>
+<div class="line">細かなチューニングなどをしたい人</div>
+</div>
+</td>
+<td><p>必要</p></td>
+<td><p>必要</p></td>
 </tr>
-<tr class="row-even"><td><p>ML フレームワークとインフラストラクチャ</p></td>
-<td><p>機械学習の環境を自在に構築して利用</p></td>
-<td><p>独自に機械学習アルゴリズムを実装したい人向け</p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ML フレームワークと</div>
+<div class="line">インフラストラクチャ</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">TensorFlow をはじめとする Deep Learning フレームワーク、それらが予めインストールされた Deep Learning AMI とコンテナ、</div>
+<div class="line">学習や推論に最適化された実行環境が提供されている。利用者の要件に従って、それぞれに合った機械学習の環境を自在に構築して利用である。</div>
+</div>
+</td>
+<td><p>機械学習の実行環境の細かなチューニングをしたい人</p></td>
+<td><p>ー</p></td>
+<td><p>ー</p></td>
 </tr>
 </tbody>
 </table>
-<p>AI サービスは AWS によって機械学習モデルが提供される。
-利用者はデータの用意だけをすれば良い。
-メリット：手軽さ、デメリット：用途が限定される
-PoC やプロトタイプ作成などの利用も可能。
-AWS re:Invent 2019 を経て、大きく分けて13種類になった。</p>
-<p>ML サービスは少し乱暴にいうと、 Amazon SageMaker とそのサブ機能の集合。
-AI サービスで要件を満たせない、独自に機械学習モデルを構築したい人向け。
-AWS re:Invent 2019 を経て、 Amazon SageMaker は機能強化された。</p>
-<p>ML フレームワークとインフラストラクチャは ML サービスとセットで考える。
-図にあるものが ML サービスの基盤として提供されている。
-Amazon 独自の機械学習の推論用チップ Inferentia を搭載した Inf1 インスタンスが発表された。</p>
+<p>更に、AI サービス、ML サービス、ML フレームワークとインフラストラクチャでは、それぞれ下記の図で示されるサービスが提供されます。
+<a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて多数の新サービスが追加されたため、内容が異なっている点に注意してください。</p>
 <img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
-<img alt="../../_images/AWSのMLスタック_2019_new.png" src="../../_images/AWSのMLスタック_2019_new.png" />
-<p>(出典：2019年12月12日開催 AWS re:Invent 2019 re:Cap | AI/ML の資料より)</p>
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
 </div>
-<div class="section" id="id8">
-<h3>機械学習サービスの選択の仕方<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id9">
+<h3>機械学習サービスの選択の仕方<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>仮説：種類がたくさんあってどれを使って良いのかわからないのでは？</p></li>
 <li><dl class="simple">
@@ -275,13 +304,13 @@ Amazon 独自の機械学習の推論用チップ Inferentia を搭載した Inf
 </ul>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>まとめ<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id10">
+<h2>まとめ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>AWS の機械学習サービスの種類、それぞれのサービスの概要や使い方を整理することができたので、次回からは各サービスの具体的な実装について見ていく。という流れで。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id10">
-<h2>著者紹介<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h2>著者紹介<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto1.jpg"><img alt="../../_images/myphoto1.jpg" class="align-right" src="../../_images/myphoto1.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
