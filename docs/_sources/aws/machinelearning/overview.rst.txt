@@ -103,9 +103,19 @@ DeepRacer Summit リーグ、 Virtual Circuit
 
 その他、情報を得る方法
 -------------------------
-(著者が情報を得る方法)
+著者が情報を得る方法、かつ、無料で得られる情報をまとめる。
 
 - twitter (US/Japan公式、SA)
+
+    - `Amazon Web Services <https://twitter.com/awscloud?s=20>`_
+    - `アマゾン ウェブ サービス ジャパン株式会社 <https://twitter.com/awscloud_jp?s=20>`_
+
 - ブログ
+
+    - `AWS Machine Learning Blog <https://aws.amazon.com/jp/blogs/machine-learning/>`_
+
 - セミナー
-- APN Partner 向けオンラインセミナー
+
+    - `国内のクラウドセミナー・イベントスケジュール <https://aws.amazon.com/jp/about-aws/events/>`_
+    - `AWS サービス別資料 (Black Belt オンラインセミナーの過去資料) <https://aws.amazon.com/jp/aws-jp-introduction/aws-jp-webinar-service-cut/>`_
+    - `AWS トレーニングと認定 <https://www.aws.training/>`_
