@@ -175,13 +175,19 @@
 <h1>[第2回] AWS の機械学習サービスとは<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> は、本連載の背景についてご説明させていただき、想定読者や目指す状態などを設定しました。
-今回から AWS の機械学習サービスの具体的な内容を見ていきたいと思います。</p>
-<p>なお、2019年12月1日〜6日にアメリカのラスベガスにて AWS の最大のイベントである <a class="reference external" href="https://reinvent.awsevents.com/">AWS re:Invent 2019</a> が開催され、全部で70を超える新サービスが発表されました。
-注目すべきなのは、機械学習サービスだけで20の新サービスが発表されており、全体の3割程度を占めている点です。
-AWS 社がサービスの開発に注力していることが伺え、今後も多数のサービスが登場することが予想されます。</p>
-<p>後続の記事では、新サービスも含めて機械学習サービス全体を扱っていきますが、AWS re:Invent 2019 の新サービスについていち早く知りたい方は、Black Belt Online Seminar 「AWS re:Invent 2019 アップデート速報」の <a class="reference external" href="https://www.youtube.com/watch?v=v9bu2LYN0PY&amp;feature=youtu.be">[動画 (YouTube)]</a> もしくは <a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20191206-aws-black-belt-online-seminar-aws-reinvent-202177403">[資料 (SlideShare)]</a> をご確認ください。</p>
-<p>さて、本題に戻り、今回の記事で扱う内容と目標を下記に示します。</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> は、本連載の背景についてご説明させていただき、想定読者や目指す状態などを設定しました。今回から AWS の機械学習サービスの具体的な内容を見ていきたいと思います。</div>
+</div>
+<div class="line-block">
+<div class="line">なお、2019年12月1日〜6日にアメリカのラスベガスにて AWS の最大のイベントである <a class="reference external" href="https://reinvent.awsevents.com/">AWS re:Invent 2019</a> が開催され、全部で70を超える新サービスが発表されました。</div>
+<div class="line">注目すべきなのは、機械学習サービスだけで20の新サービスが発表されており、全体の3割程度を占めている点です。AWS 社がサービスの開発に注力していることが伺え、今後も多数のサービスが登場することが予想されます。</div>
+</div>
+<div class="line-block">
+<div class="line">後続の記事では、新サービスも含めて機械学習サービス全体を扱っていきますが、AWS re:Invent 2019 の新サービスについていち早く知りたい方は、Black Belt Online Seminar 「AWS re:Invent 2019 アップデート速報」の <a class="reference external" href="https://www.youtube.com/watch?v=v9bu2LYN0PY&amp;feature=youtu.be">[動画 (YouTube)]</a> もしくは <a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20191206-aws-black-belt-online-seminar-aws-reinvent-202177403">[資料 (SlideShare)]</a> をご確認ください。</div>
+</div>
+<div class="line-block">
+<div class="line">さて、本題に戻り、今回の記事で扱う内容と目標を下記に示します。</div>
+</div>
 <div class="section" id="id3">
 <h3>今回の記事で扱う内容と目標<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
@@ -195,9 +201,11 @@ AWS 社がサービスの開発に注力していることが伺え、今後も�
 <p>AWS の機械学習サービスについて整理をしていきます。</p>
 <div class="section" id="id5">
 <h3>機械学習分野における AWS のミッション<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>AWS 社はどのようなミッションの元で機械学習サービスを提供しているのでしょうか？
-それは機械学習サービスの製品紹介ページにて宣言されている通り「すべての開発者に機械学習の恩恵を」です。
-すなわち、機械学習を専門に扱う研究者やエンジニアだけでなく、これから機械学習をビジネスに取り入れたいなど機械学習に関する専門的な知識を持たないエンジニアに向けたサービスも用意されています。</p>
+<div class="line-block">
+<div class="line">AWS 社はどのようなミッションの元で機械学習サービスを提供しているのでしょうか？</div>
+<div class="line">それは機械学習サービスの製品紹介ページにて宣言されている通り「すべての開発者に機械学習の恩恵を」です。</div>
+<div class="line">すなわち、機械学習を専門に扱う研究者やエンジニアだけでなく、これから機械学習をビジネスに取り入れたいなど機械学習に関する専門的な知識を持たないエンジニアに向けたサービスも用意されています。</div>
+</div>
 <img alt="../../_images/機械学習分野におけるAWSのミッション.png" src="../../_images/機械学習分野におけるAWSのミッション.png" />
 <p>(出典：<a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc1=h_ls">機械学習サービスの製品紹介ページ</a>)</p>
 </div>
