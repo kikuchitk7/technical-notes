@@ -96,11 +96,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">AWS の機械学習サービスとは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">機械学習分野における AWS のミッション</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">機械学習サービスの種類</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">機械学習サービスの選択の仕方</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">機械学習を活用する際の前提事項</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -209,82 +209,129 @@
 </div>
 <div class="section" id="id7">
 <h3>機械学習サービスの種類<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>機械学習サービスには大きく分けて下記の表に示す3種類に分けることができます。
-それぞれの機械学習サービスの特徴と利用用途を下記の表にまとめます。</p>
+<div class="line-block">
+<div class="line">AWS の機械学習サービスのラインナップ (ML スタック) を下記の図に示します。</div>
+<div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて新サービスが追加されたため、内容が異なっている点に注意してください。</div>
+</div>
+<img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<div class="line-block">
+<div class="line">機械学習サービスは、大きく「AI サービス」「ML サービス」「ML フレームワークとインフラストラクチャ」の3種類に分けることができます。</div>
+<div class="line">それぞれの機械学習サービスの特徴を下記の表に簡単にまとめます。</div>
+</div>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>サービス名</p></th>
-<th class="head"><p>S</p></th>
-<th class="head"><p>S</p></th>
+<th class="head"><p>サービスの特徴</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>AI サービス</p></td>
-<td><p>A</p></td>
-<td><p>A</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">AWS がユースケースごとに用意したサービスと自身の解決したい問題・課題とマッチする人向けのサービス。</div>
+<div class="line">(例) 機械翻訳がしたい：Amazon Translate、商品の在庫を予測したい：Amazon Forecast など</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">学習済モデル、もしくは、学習モデルを生成する仕組みが AWS から提供される。</div>
+<div class="line">利用者が考える部分が少なくて澄むため、導入の難易度は最も低い。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">上記の理由で「機械学習の深い知識なしに利用可能」である。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
 <tr class="row-odd"><td><p>ML サービス</p></td>
-<td><p>M</p></td>
-<td><p>M</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">機械学習エンジニアやデベロッパ向けのサービス。</div>
+<div class="line">Amazon SageMaker とその関連機能により、機械学習のプロセス (開発・学習・デプロイ・推論・監視など)</div>
+<div class="line">を効率良く行うための機能が提供されている。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AWS が用意したビルトインアルゴリズムを利用して機械学習モデルを開発することや</div>
+<div class="line">利用者独自のアルゴリズムを元に機械学習モデルを開発するも可能である。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AI サービスと比較すると柔軟性が増す一方で利用者が準備する部分が増えるため、導入の難易度が上がる。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
-<tr class="row-even"><td><p>ML フレームワークとインフラストラクチャ</p></td>
-<td><p>MLF</p></td>
-<td><p>MLF</p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ML フレームワークと</div>
+<div class="line">インフラストラクチャ</div>
+</div>
+</td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">Amazon SageMaker の実行環境をカスタマイズするためのサービス。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">利用者が好きな ML (機械学習) フレームワークを選択して開発することや</div>
+<div class="line">機械学習向けに最適化されたインスタンスを利用して、推論を実行することができる。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
-<p>更に、AI サービス、ML サービス、ML フレームワークとインフラストラクチャでは、それぞれ下記の図で示されるサービスが提供されます。
-<a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて多数の新サービスが追加されたため、内容が異なっている点に注意してください。</p>
-<img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
-<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
 </div>
 <div class="section" id="id9">
-<h3>機械学習サービスの選択の仕方<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>利用者の様々なニーズに合わせたたくさんのサービスが提供されていて便利である一方、初見だったり、機械学習に詳しくない利用者からは「サービスの数が多くてどれを使ったら良いかわからない」といった声も聞こえてきそうです。
-そこで、機械学習サービスの選択の仕方について下記にまとめてみます。</p>
-<img alt="../../_images/AIサービスとMLサービスの選択基準.png" src="../../_images/AIサービスとMLサービスの選択基準.png" />
-<p>AI サービスと ML サービスでそれぞれ具体的にどのサービスを選択すれば良いかは次回に考えたいと思います。</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>それぞれのサービスの内訳を見る前に選択基準を整理する。</dt><dd><ul>
-<li><p>フローチャートか何かで選択基準を提案する</p></li>
-<li><p>(※ 2回目はここで切れそう)</p></li>
+<h3>機械学習を活用する際の前提事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本連載ではビジネスに機械学習を活用することをテーマとしていますが、その前提として少なくとも下記の2点に気を付ける必要があります。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>自身のビジネスにおける問題・課題から入る</p></li>
+<li><p>機械学習を使って対処することが最善策なのかを考える</p></li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>それぞれの特徴</dt><dd><ul>
-<li><p>3つのサービスの内訳を見ていく</p></li>
-<li><p>それぞれのサービスを一言で定義する</p></li>
-<li><dl class="simple">
-<dt>詳細はサービスの紹介ページや開発者ガイドを見てもらう</dt><dd><ul>
-<li><p>サービスの紹介ページと Black Belt はリンクを紹介する</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>それぞれのユースケースを説明する。例えばこのような使い方をするなど。</p></li>
-<li><p>(オプション) 情報収集の仕方を Tips 的に紹介する</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-</div>
+</div></blockquote>
 <div class="section" id="id10">
-<h2>まとめ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>AWS の機械学習サービスの種類、それぞれのサービスの概要や使い方を整理することができたので、次回からは各サービスの具体的な実装について見ていく。という流れで。</p>
+<h4>自身のビジネスにおける問題・課題から入る<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>機械学習に限りませんが、自身の「ビジネスにおける問題・課題」から入ることが重要です。すなわち、機械学習を利用することはビジネスで価値を出すための手段であり、機械学習の導入を目的化しないということです。</p>
+<div class="line-block">
+<div class="line">例えば、「機械学習を使ってとりあえず何かをやりたい！」という思いから出発してしまうパターンです。機械学習は技術的なトレンドになっていますので、試してみたい・世の中に流れに遅れを取りたくないなどの気持ちは理解できます。</div>
+<div class="line">しかし、手段と目的が逆転した状態で開発を進めてしまうと、利用者に使われないシステムや機能が作られてしまいがちです。技術検証やPoC (Proof of Consent; 概念実証) を実施するにしても、背景にビジネス課題があって、それを確認するために実施するはずです。</div>
+</div>
+<p>まずは自身のビジネスにおける問題・課題を明確にし、機械学習を使うことで生み出されるビジネス価値をはっきりさせることが重要と考えます。</p>
+</div>
+<div class="section" id="id11">
+<h4>機械学習を使って対処することが最善策なのかを考える<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">端的にいうと、機械学習を使わずに対処可能な場合は使わないということです。</div>
+<div class="line">例えば、特定のエラーメッセージを検知した際の復旧方法が確定的なものであるならば、条件分岐で実装すれば済みます。</div>
+</div>
+<p>機械学習は過去のデータから機械学習アルゴリズムに従って何らかのパターンを見出し(学習し)、将来を予測するものです。それは文字通り「予測」であり、精度は一般的に100%にはならず、間違った判断をすることがあります。判断の間違いがあることを理解した上で利用するか、許容されない場合は適用を避けるべきです。</p>
+<div class="line-block">
+<div class="line">また、機械学習モデルの維持や運用に手間がかかることも理由の1つです。</div>
+<div class="line">例えば、本番環境にデプロイした機械学習モデルは、定常的に予測精度を監視して、自身の提供するサービスとして十分な精度を出し続けているかを監視する必要があります。</div>
+<div class="line">過去のデータからパターンを抽出するということは、予測対象がその過去のデータに即した振る舞いをするという前提を置いています。振る舞いの傾向が変わるなどした場合 (例えば、利用者の購買行動の変化など) は、新たなデータを使って機械学習モデルを再学習させる必要があります。</div>
+</div>
+<p>これらの前提を踏まえた上で、機械学習の利用を検討していただきたいと思います。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>まとめ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回の記事では、AWS の機械学習サービスの3種類のサービスとそれぞれの概要、機械学習を活用する際の前提事項についてご説明させていただきました。</p>
+<p>次回は、AI サービスとして提供されているサービスの概要やユースケースについて見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id11">
-<h2>著者紹介<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h2>著者紹介<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto1.jpg"><img alt="../../_images/myphoto1.jpg" class="align-right" src="../../_images/myphoto1.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
