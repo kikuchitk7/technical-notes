@@ -209,39 +209,86 @@
 </div>
 <div class="section" id="id7">
 <h3>機械学習サービスの種類<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>機械学習サービスには大きく分けて下記の表に示す3種類に分けることができます。
-それぞれの機械学習サービスの特徴と利用用途を下記の表にまとめます。</p>
+<div class="line-block">
+<div class="line">AWS の機械学習サービスのラインナップ (ML スタック) を下記の図に示します。</div>
+<div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて新サービスが追加されたため、内容が異なっている点に注意してください。</div>
+</div>
+<img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<div class="line-block">
+<div class="line">機械学習サービスは、大きく「AI サービス」「ML サービス」「ML フレームワークとインフラストラクチャ」の3種類に分けることができます。</div>
+<div class="line">それぞれの機械学習サービスの特徴を下記の表に簡単にまとめます。</div>
+</div>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>サービス名</p></th>
-<th class="head"><p>S</p></th>
-<th class="head"><p>S</p></th>
+<th class="head"><p>サービスの特徴</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>AI サービス</p></td>
-<td><p>A</p></td>
-<td><p>A</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">AWS がユースケースごとに用意したサービスと自身の解決したい問題・課題とマッチする人向けのサービス。</div>
+<div class="line">(例) 機械翻訳がしたい：Amazon Translate、商品の在庫を予測したい：Amazon Forecast など</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">学習済モデル、もしくは、学習モデルを生成する仕組みが AWS から提供される。</div>
+<div class="line">利用者が考える部分が少なくて澄むため、導入の難易度は最も低い。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">上記の理由で「機械学習の深い知識なしに利用可能」である。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
 <tr class="row-odd"><td><p>ML サービス</p></td>
-<td><p>M</p></td>
-<td><p>M</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">機械学習エンジニアやデベロッパ向けのサービス。</div>
+<div class="line">Amazon SageMaker とその関連機能により、機械学習のプロセス (開発・学習・デプロイ・推論・監視など)</div>
+<div class="line">を効率良く行うための機能が提供されている。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AWS が用意したビルトインアルゴリズムを利用して機械学習モデルを開発することや</div>
+<div class="line">利用者独自のアルゴリズムを元に機械学習モデルを開発するも可能である。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AI サービスと比較すると柔軟性が増す一方で利用者が準備する部分が増えるため、導入の難易度が上がる。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
-<tr class="row-even"><td><p>ML フレームワークとインフラストラクチャ</p></td>
-<td><p>MLF</p></td>
-<td><p>MLF</p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ML フレームワークと</div>
+<div class="line">インフラストラクチャ</div>
+</div>
+</td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">Amazon SageMaker の実行環境をカスタマイズするためのサービス。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">利用者が好きな ML (機械学習) フレームワークを選択して開発することや</div>
+<div class="line">機械学習向けに最適化されたインスタンスを利用して、推論を実行することができる。</div>
+</div>
+</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
-<p>更に、AI サービス、ML サービス、ML フレームワークとインフラストラクチャでは、それぞれ下記の図で示されるサービスが提供されます。
-<a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて多数の新サービスが追加されたため、内容が異なっている点に注意してください。</p>
-<img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
-<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
 </div>
 <div class="section" id="id9">
 <h3>機械学習サービスの選択の仕方<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
