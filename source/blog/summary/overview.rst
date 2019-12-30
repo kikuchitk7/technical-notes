@@ -5,7 +5,7 @@
 -----------------
 | `前回 <https://news.mynavi.jp/itsearch/article/cloud/4722>`_ は、本連載の背景についてご説明させていただき、想定読者や目指す状態などを設定しました。今回から AWS の機械学習サービスの具体的な内容を見ていきたいと思います。
 
-| なお、2019年12月1日〜6日にアメリカのラスベガスにて AWS の最大のイベントである `AWS re:Invent 2019 <https://reinvent.awsevents.com/>`_ が開催され、全部で70を超える新サービスが発表されました。
+| ところで、2019年12月1日〜6日にアメリカのラスベガスにて AWS の最大のイベントである `AWS re:Invent 2019 <https://reinvent.awsevents.com/>`_ が開催され、全部で70を超える新サービスが発表されました。
 | 注目すべきなのは、機械学習サービスだけで20の新サービスが発表されており、全体の3割程度を占めている点です。AWS 社がサービスの開発に注力していることが伺え、今後も多数のサービスが登場することが予想されます。
 
 | 後続の記事では、新サービスも含めて機械学習サービス全体を扱っていきますが、AWS re:Invent 2019 の新サービスについていち早く知りたい方は、Black Belt Online Seminar 「AWS re:Invent 2019 アップデート速報」の `[動画 (YouTube)] <https://www.youtube.com/watch?v=v9bu2LYN0PY&feature=youtu.be>`_ もしくは `[資料 (SlideShare)] <https://www.slideshare.net/AmazonWebServicesJapan/20191206-aws-black-belt-online-seminar-aws-reinvent-202177403>`_ をご確認ください。
