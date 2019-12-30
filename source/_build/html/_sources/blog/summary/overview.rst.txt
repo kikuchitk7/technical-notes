@@ -10,7 +10,7 @@
 
 | 後続の記事では、新サービスも含めて機械学習サービス全体を扱っていきますが、AWS re:Invent 2019 の新サービスについていち早く知りたい方は、Black Belt Online Seminar 「AWS re:Invent 2019 アップデート速報」の `[動画 (YouTube)] <https://www.youtube.com/watch?v=v9bu2LYN0PY&feature=youtu.be>`_ もしくは `[資料 (SlideShare)] <https://www.slideshare.net/AmazonWebServicesJapan/20191206-aws-black-belt-online-seminar-aws-reinvent-202177403>`_ をご確認ください。
 
-| さて、本題に戻り、今回の記事で扱う内容と目標を下記に示します。
+さて、本題に戻り、今回の記事で扱う内容と目標を下記に示します。
 
 今回の記事で扱う内容と目標
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
