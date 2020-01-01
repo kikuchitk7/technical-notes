@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>機械学習サービスの全体像 &mdash; technical notes  ドキュメント</title>
+  <title>機械学習における AWS のミッション &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -88,12 +88,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../compute/compute.html">Compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../customerengagement/customerengagement.html">Customer Engagement</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="machinelearning.html">Machine Learning</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">機械学習サービスの全体像</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">機械学習サービスのコンセプト</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">機械学習サービスの種類</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">その他、情報を得る方法</a></li>
-</ul>
-</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">機械学習における AWS のミッション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">機械学習サービスの種類</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">その他、情報を得る方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-services/ai-services.html">AI Services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ml-service/ml-service.html">ML Service</a></li>
 </ul>
@@ -154,7 +151,7 @@
         
           <li><a href="machinelearning.html">Machine Learning</a> &raquo;</li>
         
-      <li>機械学習サービスの全体像</li>
+      <li>機械学習における AWS のミッション</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -173,120 +170,111 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>機械学習サービスの全体像<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <blockquote>
+<div><p>Overview</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="section" id="aws">
+<h1>機械学習における AWS のミッション<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li><p>「すべての開発者に機械学習の恩恵を」。</p></li>
+<li><p>機械学習を専門に扱う研究者やエンジニアだけでなく、これから機械学習をビジネスに取り入れたいなど機械学習に関する専門的な知識を持たないエンジニアに向けたサービスも提供。</p></li>
+</ul>
+<img alt="../../_images/機械学習分野におけるAWSのミッション1.png" src="../../_images/機械学習分野におけるAWSのミッション1.png" />
+<p>(出典：<a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc1=h_ls">機械学習サービスの製品紹介ページ</a>)</p>
+</div>
 <div class="section" id="id2">
-<h2>機械学習サービスのコンセプト<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>「Amazon で培った機械学習に関するノウハウをすべての開発者に届ける」</p>
+<h1>機械学習サービスの種類<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li><p>AWS の機械学習サービスの全体像 (ML スタック) を下記に示す。</p></li>
+</ul>
+<img alt="../../_images/AWSのMLスタック_20191.png" src="../../_images/AWSのMLスタック_20191.png" />
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<ul>
+<li><p>機械学習サービスは、大きく3種類に分けることができる。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://kikuchitk7.github.io/technical-notes/aws/machinelearning/ai-services/ai-services.html">AI サービス</a></p></li>
+<li><p><a class="reference external" href="https://kikuchitk7.github.io/technical-notes/aws/machinelearning/ml-service/ml-service.html">ML サービス</a></p></li>
+<li><p>ML フレームワークとインフラストラクチャ</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>それぞれの機械学習サービスの特徴を下記の表に簡単にまとめる。</p></li>
+</ul>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>サービス名</p></th>
+<th class="head"><p>サービスの特徴</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AI サービス</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">AWS がユースケースごとに用意したサービスと自身の解決したい問題・課題とマッチする人向けのサービス。</div>
+<div class="line">(例) 機械翻訳がしたい：Amazon Translate、商品の在庫を予測したい：Amazon Forecast など</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">学習済モデル、もしくは、学習モデルを生成する仕組みが AWS から提供される。</div>
+<div class="line">利用者が考える部分が少なくて澄むため、導入の難易度は最も低い。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">上記の理由で「機械学習の深い知識なしに利用可能」である。</div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>ML サービス</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">機械学習エンジニアやデベロッパ向けのサービス。</div>
+<div class="line">Amazon SageMaker とその関連機能により、機械学習のプロセス (開発・学習・デプロイ・推論・監視など)</div>
+<div class="line">を効率良く行うための機能が提供されている。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AWS が用意したビルトインアルゴリズムを利用して機械学習モデルを開発することや</div>
+<div class="line">利用者独自のアルゴリズムを元に機械学習モデルを開発するも可能である。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AI サービスと比較すると柔軟性が増す一方で利用者が準備する部分が増えるため、導入の難易度が上がる。</div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ML フレームワークと</div>
+<div class="line">インフラストラクチャ</div>
+</div>
+</td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">Amazon SageMaker の実行環境をカスタマイズするためのサービス。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">利用者が好きな ML (機械学習) フレームワークを選択して開発することや</div>
+<div class="line">機械学習向けに最適化されたインスタンスを利用して、推論を実行することができる。</div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id3">
-<h2>機械学習サービスの種類<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>大きくは3つ。
-AI サービス、 ML サービス、 ML フレームワーク &amp; インフラストラクチャ。</p>
-<div class="section" id="ai">
-<h3>AI サービス<a class="headerlink" href="#ai" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>(サービスの特徴、種類、使い方、etc.)</p>
-<p>(表を使って分類し、概要をまとめる程度で良いかも。言語サービスは日本語対応状況も)</p>
-<div class="section" id="id4">
-<h4>画像認識<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="section" id="id5">
-<h5>静止画・動画認識<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Rekognition Image/Video</p></li>
-</ul>
-</div>
-<div class="section" id="id6">
-<h5>ドキュメント分析<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Textract</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id7">
-<h4>自然言語処理<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="section" id="id8">
-<h5>音声処理<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Polly</p></li>
-<li><p>Amazon Transcribe</p></li>
-</ul>
-</div>
-<div class="section" id="id9">
-<h5>テキスト処理<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Translate</p></li>
-<li><p>Amazon Comprehend</p></li>
-</ul>
-</div>
-<div class="section" id="id10">
-<h5>チャットボット<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Lex</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id11">
-<h4>時系列データ解析<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="section" id="id12">
-<h5>時系列データ予測<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Forecast</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id13">
-<h4>パーソナライズ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="section" id="id14">
-<h5>レコメンデーション<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<ul class="simple">
-<li><p>Amazon Personalize</p></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section" id="ml">
-<h3>ML サービス<a class="headerlink" href="#ml" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>(サービスの特徴、種類、使い方、etc.)</p>
-<ul class="simple">
-<li><p>Amazon SageMaker</p></li>
-</ul>
-</div>
-<div class="section" id="id15">
-<h3>ML フレームワーク &amp; インフラストラクチャ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>(サービスの特徴、種類、使い方、etc.)</p>
-<p>ディープラーニング用のフレームワーク</p>
-<ul class="simple">
-<li><p>TensorFlow</p></li>
-<li><p>PyTorch</p></li>
-<li><p>MXNet</p></li>
-<li><p>Chainer</p></li>
-<li><p>theano</p></li>
-<li><p>Keras</p></li>
-<li><p>Microsoft Cognitive Toolkit</p></li>
-<li><p>Gluon</p></li>
-<li><p>etc.</p></li>
-</ul>
-<p>機械学習に最適化されたインフラストラクチャ</p>
-<ul class="simple">
-<li><p>GPU</p></li>
-<li><p>Amazon Elastic Inference</p></li>
-<li><p>CPU</p></li>
-<li><p>FPGA</p></li>
-<li><p>Edge</p></li>
-</ul>
-</div>
-<div class="section" id="id16">
-<h3>その他のサービス (学習ツール)<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>(サービスの特徴、種類、使い方、etc.)</p>
-<ul class="simple">
-<li><p>AWS DeepRacer</p></li>
-<li><p>AWS DeepLens</p></li>
-</ul>
-<p>DeepRacer Summit リーグ、 Virtual Circuit</p>
-</div>
-</div>
-<div class="section" id="id17">
-<h2>その他、情報を得る方法<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h1>その他、情報を得る方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>著者が情報を得る方法、かつ、無料で得られる情報をまとめる。</p>
 <ul>
 <li><p>twitter (US/Japan公式、SA)</p>
@@ -314,7 +302,6 @@ AI サービス、 ML サービス、 ML フレームワーク &amp; インフ�
 </div></blockquote>
 </li>
 </ul>
-</div>
 </div>
 
 

@@ -21,8 +21,8 @@
 
 - 機械学習サービスは、大きく3種類に分けることができる。
 
-    - AI サービス
-    - ML サービス
+    - `AI サービス <https://kikuchitk7.github.io/technical-notes/aws/machinelearning/ai-services/ai-services.html>`_
+    - `ML サービス <https://kikuchitk7.github.io/technical-notes/aws/machinelearning/ml-service/ml-service.html>`_
     - ML フレームワークとインフラストラクチャ
 
 - それぞれの機械学習サービスの特徴を下記の表に簡単にまとめる。
