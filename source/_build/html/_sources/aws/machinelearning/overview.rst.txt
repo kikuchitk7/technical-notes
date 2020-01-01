@@ -67,6 +67,10 @@
 
     - `AWS Machine Learning Blog <https://aws.amazon.com/jp/blogs/machine-learning/>`_
 
+- 動画
+
+    - `Julien Simon の YouTube チャンネル <https://www.youtube.com/channel/UCVonoXm3SI_Q0ZNHd5JPawA>`_
+
 - セミナー
 
     - `国内のクラウドセミナー・イベントスケジュール <https://aws.amazon.com/jp/about-aws/events/>`_
