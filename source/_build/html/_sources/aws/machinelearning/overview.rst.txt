@@ -58,7 +58,7 @@
 -------------------------
 著者が情報を得る方法、かつ、無料で得られる情報をまとめる。
 
-- twitter (US/Japan公式、SA)
+- twitter
 
     - `Amazon Web Services <https://twitter.com/awscloud?s=20>`_
     - `アマゾン ウェブ サービス ジャパン株式会社 <https://twitter.com/awscloud_jp?s=20>`_
