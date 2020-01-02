@@ -79,15 +79,7 @@ tfenv のマニュアルインストール
 
     .. code-block:: bash
 
-        $ tfenv
+        $ tfenv --version
 
         # 出力例
         tfenv 2.0.0-alpha3-1-ge21f9e0
-        Usage: tfenv <command> [<options>]
-
-        Commands:
-           install       Install a specific version of Terraform
-           use           Switch a version to use
-           uninstall     Uninstall a specific version of Terraform
-           list          List all installed versions
-           list-remote   List all installable versions
