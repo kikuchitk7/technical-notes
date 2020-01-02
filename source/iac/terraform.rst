@@ -12,7 +12,8 @@ Terraform
         aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.45
 
 - IAM ユーザで Terraform を利用する。
-- `tfenv <https://github.com/tfutils/tfenv>`_ を利用する。
+- Terraform のバージョンアップに柔軟に対応するため、`tfenv <https://github.com/tfutils/tfenv>`_ を利用する。
+- Terraform は 2020年1月2日現在の最新バージョンである v0.12.18 を利用する。
 
 セットアップ
 ------------------
