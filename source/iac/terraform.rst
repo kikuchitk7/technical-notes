@@ -29,3 +29,16 @@ IAM ユーザの作成
 - (必須) Administrator Access をアタッチする。
 
     - インフラ構築は管理者権限に近い権限が必要であるため。
+
+環境変数の設定
+^^^^^^^^^^^^^^^^^^^^^^
+- クレデンシャルとデフォルトリージョンを設定する。
+
+    .. code-block:: bash
+
+    export AWS_ACCESS_KEY_ID=(Access Key ID を入力)
+    export AWS_SECRET_ACCESS_KEY=(Secret Access Key を入力)
+    export AWS_DEFAULT_REGION=ap-northeast-1
+
+    echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_DEFAULT_REGION
+
