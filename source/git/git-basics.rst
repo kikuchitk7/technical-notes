@@ -105,6 +105,11 @@ Gitの基本事項
     -test1
     +testfile
 
+.. note::
+
+    - git diff --staged コマンドは git add した後の確認コマンド。
+    - stage と local repository の差分を確認するコマンド。
+
 変更のコミット
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: bash
