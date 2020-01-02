@@ -88,7 +88,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="iac.html">Infrastructure as Code</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Terraform</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">前提</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">セットアップ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">セットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iam">IAM ユーザの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">環境変数の設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">tfenv のマニュアルインストール</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -177,14 +182,14 @@ aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.
 </div></blockquote>
 </li>
 <li><p>IAM ユーザで Terraform を利用する。</p></li>
+<li><p><a class="reference external" href="https://github.com/tfutils/tfenv">tfenv</a> を利用する。</p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2>セットアップ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="iam">
+<h3>IAM ユーザの作成<a class="headerlink" href="#iam" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul>
-<li><p>IAM ユーザを作成する。</p>
-<blockquote>
-<div><ul>
 <li><p>(必須) プログラムによるアクセス</p>
 <blockquote>
 <div><ul class="simple">
@@ -207,9 +212,74 @@ aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.
 </div></blockquote>
 </li>
 </ul>
+</div>
+<div class="section" id="id3">
+<h3>環境変数の設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>クレデンシャルとデフォルトリージョンを設定する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>export AWS_ACCESS_KEY_ID=(Access Key ID を入力)
+export AWS_SECRET_ACCESS_KEY=(Secret Access Key を入力)
+export AWS_DEFAULT_REGION=ap-northeast-1</p>
+<p>echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_DEFAULT_REGION</p>
 </div></blockquote>
 </li>
 </ul>
+</div>
+<div class="section" id="id4">
+<h3>tfenv のマニュアルインストール<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>tfenv を GitHub のリポジトリからクローンする。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+
+<span class="c1"># 出力例</span>
+Cloning into <span class="s1">&#39;/home/ec2-user/.tfenv&#39;</span>...
+remote: Enumerating objects: <span class="m">916</span>, <span class="k">done</span>.
+remote: Total <span class="m">916</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">916</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">916</span>/916<span class="o">)</span>, <span class="m">171</span>.51 KiB <span class="p">|</span> <span class="m">474</span>.00 KiB/s, <span class="k">done</span>.
+Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">573</span>/573<span class="o">)</span>, <span class="k">done</span>.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>パスを通す。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.tfenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>.bash_profile を読み込んで反映する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bash_profile
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>インストール後の正常性を確認する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv
+
+<span class="c1"># 出力例</span>
+tfenv <span class="m">2</span>.0.0-alpha3-1-ge21f9e0
+Usage: tfenv &lt;command&gt; <span class="o">[</span>&lt;options&gt;<span class="o">]</span>
+
+Commands:
+   install       Install a specific version of Terraform
+   use           Switch a version to use
+   uninstall     Uninstall a specific version of Terraform
+   list          List all installed versions
+   list-remote   List all installable versions
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
 </div>
 </div>
 

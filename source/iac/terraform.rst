@@ -7,7 +7,7 @@ Terraform
 - Cloud9 上で Terraform を利用する。
 
     .. code-block:: bash
-        
+
         $ aws --version
         aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.45
 
@@ -48,7 +48,7 @@ tfenv のマニュアルインストール
 - tfenv を GitHub のリポジトリからクローンする。
 
     .. code-block:: bash
-        
+
         $ git clone https://github.com/tfutils/tfenv.git ~/.tfenv
 
         # 出力例
@@ -61,20 +61,20 @@ tfenv のマニュアルインストール
 - パスを通す。
 
     .. code-block:: bash
-        
+
         $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
 
 - .bash_profile を読み込んで反映する。
 
     .. code-block:: bash
-        
+
         $ source ~/.bash_profile
 
 
 - インストール後の正常性を確認する。
 
     .. code-block:: bash
-        
+
         $ tfenv
 
         # 出力例
