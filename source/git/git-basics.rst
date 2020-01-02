@@ -38,8 +38,8 @@ Gitの基本事項
         $ git config --list
 
         # 出力例
-        user.name=kikuchitk7
-        user.email=kikuchitk7@gmail.com
+        user.name=(ユーザ名を入力)
+        user.email=(メールアドレスを入力)
         core.editor=code --wait
 
 基本動作
