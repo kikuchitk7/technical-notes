@@ -60,18 +60,14 @@ Gitの基本事項
     $ git diff
 
     # 出力例
-    diff --git a/source/git/git-basics.rst b/source/git/git-basics.rst
-    index 89f0109..fdceeec 100644
-    --- a/source/git/git-basics.rst
-    +++ b/source/git/git-basics.rst
-    @@ -38,7 +38,6 @@ Gitの基本事項
-         $ git config --list
- 
-            # 出力例
-    -       takaaki716:technical-notes takaaki$ git config --list
-            user.name=kikuchitk7
-            user.email=kikuchitk7@gmail.com
-            core.editor=code --wait
+    diff --git a/test.txt b/test.txt
+    index 259b241..2691857 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1,2 +1 @@
+    -test
+    -test1
+    +testfile
 
 .. note::
 
