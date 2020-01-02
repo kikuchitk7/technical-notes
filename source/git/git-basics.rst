@@ -38,7 +38,6 @@ Gitの基本事項
         $ git config --list
 
         # 出力例
-        takaaki716:technical-notes takaaki$ git config --list
         user.name=kikuchitk7
         user.email=kikuchitk7@gmail.com
         core.editor=code --wait
