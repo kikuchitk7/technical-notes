@@ -47,9 +47,33 @@ Gitの基本事項
 
 ステータス確認
 ^^^^^^^^^^^^^^^^^^
+- 変更のステータスを確認する。
+- stage に追加されていない変更がある場合と commit されていない変更がある場合とで表示が異なる。
+
 .. code-block:: bash
 
     $ git status
+
+    # 出力例 (stage に追加されていない変更がある状態)
+    On branch master
+    Your branch is up-to-date with 'origin/master'.
+
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+
+            modified:   test.txt
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+    #  出力例 (commit されていない変更がある状態)
+    On branch master
+    Your branch is up-to-date with 'origin/master'.
+
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+
+            modified:   test.txt
 
 変更内容の確認 (work tree vs. stage)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -76,13 +100,13 @@ Gitの基本事項
 
 変更のステージ追加
 ^^^^^^^^^^^^^^^^^^^^^^
-カレントディレクトリ以下の全ての変更を追加する。
+- カレントディレクトリ以下の全ての変更を追加する。
 
 .. code-block:: bash
 
     $ git add .
 
-全ての変更を追加する。
+- 全ての変更を追加する。
 
 .. code-block:: bash
 

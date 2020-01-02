@@ -236,7 +236,32 @@ core.editor<span class="o">=</span>code --wait
 <h2>基本動作<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id5">
 <h3>ステータス確認<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>変更のステータスを確認する。</p></li>
+<li><p>stage に追加されていない変更がある場合と commit されていない変更がある場合とで表示が異なる。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+
+<span class="c1"># 出力例 (stage に追加されていない変更がある状態)</span>
+On branch master
+Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
+
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+
+        modified:   test.txt
+
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+
+<span class="c1">#  出力例 (commit されていない変更がある状態)</span>
+On branch master
+Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+
+        modified:   test.txt
 </pre></div>
 </div>
 </div>
@@ -261,17 +286,22 @@ index 259b241..2691857 <span class="m">100644</span>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <ul class="simple">
-<li><p>git add する前の確認コマンド。</p></li>
+<li><p>git diff コマンドは git add する前の確認コマンド。</p></li>
+<li><p>work tree と stage の差分を確認するコマンド。</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="id6">
 <h3>変更のステージ追加<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>カレントディレクトリ以下の全ての変更を追加する。</p>
+<ul class="simple">
+<li><p>カレントディレクトリ以下の全ての変更を追加する。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
 </pre></div>
 </div>
-<p>全ての変更を追加する。</p>
+<ul class="simple">
+<li><p>全ての変更を追加する。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add -A
 </pre></div>
 </div>
@@ -293,6 +323,13 @@ index 259b241..2691857 <span class="m">100644</span>
 -test1
 +testfile
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>git diff --staged コマンドは git add した後の確認コマンド。</p></li>
+<li><p>stage と local repository の差分を確認するコマンド。</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="id7">

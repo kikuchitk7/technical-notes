@@ -93,7 +93,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">基本動作</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">ステータス確認</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#work-tree-vs-stage">変更内容の確認 (work tree vs. stage)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id6">変更のステージ追加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stage-vs-local-repository">変更内容の確認 (stage vs. local repository)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">変更のコミット</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">変更のプッシュ</a></li>
 </ul>
@@ -203,15 +205,15 @@ $ git config --global user.email <span class="o">(</span>メールアドレス�
 </div>
 <div class="section" id="id3">
 <h3>エディタの設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global core.editor <span class="s1">&#39;code --wait&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># VS Code を設定する場合</span>
+$ git config --global core.editor <span class="s1">&#39;code --wait&#39;</span>
+
+<span class="c1"># Vim を設定する場合</span>
+$ git config --global core.editor vim
+
+<span class="c1"># Vim を設定して、文字コードを UTF-8 に設定する場合</span>
+$ git config --global core.editor <span class="s1">&#39;vim -c &quot;set fenc=utf-8&quot;&#39;</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注釈</p>
-<ul class="simple">
-<li><p>エディタに Vim を設定する場合：vim</p></li>
-<li><p>エディタに Vim を設定して、文字コードを UTF-8 に設定する場合：'vim -c &quot;set fenc=utf-8&quot;'</p></li>
-</ul>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
@@ -222,9 +224,8 @@ $ git config --global user.email <span class="o">(</span>メールアドレス�
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --list
 
 <span class="c1"># 出力例</span>
-takaaki716:technical-notes takaaki$ git config --list
-user.name<span class="o">=</span>kikuchitk7
-user.email<span class="o">=</span>kikuchitk7@gmail.com
+user.name<span class="o">=(</span>ユーザ名を入力<span class="o">)</span>
+user.email<span class="o">=(</span>メールアドレスを入力<span class="o">)</span>
 core.editor<span class="o">=</span>code --wait
 </pre></div>
 </div>
@@ -236,7 +237,54 @@ core.editor<span class="o">=</span>code --wait
 <div class="section" id="id5">
 <h3>ステータス確認<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+
+<span class="c1"># 出力例 (stage に追加されていない変更がある状態)</span>
+On branch master
+Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
+
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+
+        modified:   test.txt
+
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+
+<span class="c1">#  出力例 (commit されていない変更がある状態)</span>
+On branch master
+Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+
+        modified:   test.txt
 </pre></div>
+</div>
+</div>
+<div class="section" id="work-tree-vs-stage">
+<h3>変更内容の確認 (work tree vs. stage)<a class="headerlink" href="#work-tree-vs-stage" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>work tree と stage の変更内容 (差分) を確認する。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff
+
+<span class="c1"># 出力例</span>
+diff --git a/test.txt b/test.txt
+index 259b241..2691857 <span class="m">100644</span>
+--- a/test.txt
++++ b/test.txt
+@@ -1,2 +1 @@
+-test
+-test1
++testfile
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>git diff コマンドは git add する前の確認コマンド。</p></li>
+<li><p>work tree と stage の差分を確認するコマンド。</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="id6">
@@ -248,6 +296,32 @@ core.editor<span class="o">=</span>code --wait
 <p>全ての変更を追加する。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add -A
 </pre></div>
+</div>
+</div>
+<div class="section" id="stage-vs-local-repository">
+<h3>変更内容の確認 (stage vs. local repository)<a class="headerlink" href="#stage-vs-local-repository" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>stage と local repository の変更内容 (差分) を確認する。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff --staged
+
+<span class="c1"># 出力例</span>
+diff --git a/test.txt b/test.txt
+index 259b241..2691857 <span class="m">100644</span>
+--- a/test.txt
++++ b/test.txt
+@@ -1,2 +1 @@
+-test
+-test1
++testfile
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>git diff --staged コマンドは git add した後の確認コマンド。</p></li>
+<li><p>stage と local repository の差分を確認するコマンド。</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="id7">
