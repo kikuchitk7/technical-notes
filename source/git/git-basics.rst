@@ -1,6 +1,37 @@
 Gitの基本事項
 ==================
 
+初期設定
+---------------
+
+ユーザ名、メールアドレスの設定
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: bash
+
+    $ git config --global user.name "(ユーザ名を入力)"
+    $ git config --global user.email (メールアドレスを入力)
+
+エディタの設定
+^^^^^^^^^^^^^^^^^^
+.. code-block:: bash
+
+    $ git config --global core.editor 'code --wait'
+
+.. note::
+
+    - 設定は ~/.gitconfig に書き込まれる。
+    - 設定は上記を viewer で確認するか、下記のコマンドで確認できる。
+
+    .. code-block:: bash
+
+        $ git config --list
+
+        # 出力例
+        takaaki716:technical-notes takaaki$ git config --list
+        user.name=kikuchitk7
+        user.email=kikuchitk7@gmail.com
+        core.editor=code --wait
+
 基本動作
 -----------
 
