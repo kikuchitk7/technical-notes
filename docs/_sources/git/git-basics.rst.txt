@@ -38,9 +38,8 @@ Gitの基本事項
         $ git config --list
 
         # 出力例
-        takaaki716:technical-notes takaaki$ git config --list
-        user.name=kikuchitk7
-        user.email=kikuchitk7@gmail.com
+        user.name=(ユーザ名を入力)
+        user.email=(メールアドレスを入力)
         core.editor=code --wait
 
 基本動作
@@ -51,6 +50,28 @@ Gitの基本事項
 .. code-block:: bash
 
     $ git status
+
+変更内容の確認 (work tree vs. stage)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- work tree と stage の変更内容 (差分) を確認する。
+
+.. code-block:: bash
+
+    $ git diff
+
+    # 出力例
+    diff --git a/test.txt b/test.txt
+    index 259b241..2691857 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1,2 +1 @@
+    -test
+    -test1
+    +testfile
+
+.. note::
+
+    - git add する前の確認コマンド。
 
 変更のステージ追加
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -65,6 +86,24 @@ Gitの基本事項
 .. code-block:: bash
 
     $ git add -A
+
+変更内容の確認 (stage vs. local repository)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- stage と local repository の変更内容 (差分) を確認する。
+
+.. code-block:: bash
+
+    $ git diff --staged
+
+    # 出力例
+    diff --git a/test.txt b/test.txt
+    index 259b241..2691857 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1,2 +1 @@
+    -test
+    -test1
+    +testfile
 
 変更のコミット
 ^^^^^^^^^^^^^^^^^^
