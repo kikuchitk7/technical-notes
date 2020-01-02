@@ -12,6 +12,7 @@ Welcome to technical notes's documentation!
 
    aws/aws
    git/git
+   iac/iac
    environment/environment
    testing/testing
    blog/blog
