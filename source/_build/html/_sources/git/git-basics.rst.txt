@@ -11,11 +11,21 @@ Gitの基本事項
     $ git config --global user.name "(ユーザ名を入力)"
     $ git config --global user.email (メールアドレスを入力)
 
+.. warning::
+
+    - ユーザ名には "" が必要だが、メールアドレスには不要。
+
 エディタの設定
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: bash
 
     $ git config --global core.editor 'code --wait'
+
+.. note::
+
+    - エディタに Vim を設定する場合：vim
+    - エディタに Vim を設定して、文字コードを UTF-8 に設定する場合：'vim -c "set fenc=utf-8"'
+
 
 .. note::
 

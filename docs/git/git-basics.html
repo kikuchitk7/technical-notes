@@ -194,10 +194,23 @@
 $ git config --global user.email <span class="o">(</span>メールアドレスを入力<span class="o">)</span>
 </pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>ユーザ名には &quot;&quot; が必要だが、メールアドレスには不要。</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="id3">
 <h3>エディタの設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global core.editor <span class="s1">&#39;code --wait&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># VS Code を設定する場合</span>
+$ git config --global core.editor <span class="s1">&#39;code --wait&#39;</span>
+
+<span class="c1"># Vim を設定する場合</span>
+$ git config --global core.editor vim
+
+<span class="c1"># Vim を設定して、文字コードを UTF-8 に設定する場合</span>
+$ git config --global core.editor <span class="s1">&#39;vim -c &quot;set fenc=utf-8&quot;&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
