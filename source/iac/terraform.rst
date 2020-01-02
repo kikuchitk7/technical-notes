@@ -83,3 +83,37 @@ tfenv のマニュアルインストール
 
         # 出力例
         tfenv 2.0.0-alpha3-1-ge21f9e0
+
+tfenv による Terraform のインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- 最新バージョンの Terraform をインストールする。2020年1月2日時点では v0.12.18 が最新。
+
+    .. code-block:: bash
+
+        $ tfenv install latest
+
+        # 出力例
+        Installing Terraform v0.12.18
+        Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_linux_amd64.zip
+        ################################################################################################################################## 100.0%
+        Downloading SHA hash file from https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_SHA256SUMS
+        No keybase install found, skipping OpenPGP signature verification
+        Archive:  tfenv_download.ztm7xc/terraform_0.12.18_linux_amd64.zip
+          inflating: /home/ec2-user/.tfenv/versions/0.12.18/terraform  
+        Installation of terraform v0.12.18 successful
+        Switching to v0.12.18
+        Switching completed
+
+    .. note::
+
+        - 特定バージョンをインストールしたい場合は remote-list でインストール可能なバージョンを調べてインストールする。
+
+        .. code-block:: bash
+
+            $ tfenv list-remote
+
+            # 出力例
+            0.12.18
+            0.12.17
+            0.12.16
+            (以下、省略)
