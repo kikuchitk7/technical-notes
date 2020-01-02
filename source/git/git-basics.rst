@@ -91,6 +91,28 @@ Gitの基本事項
 
     $ git add -A
 
+変更内容の確認 (stage vs. local repository)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- stage と local repository の変更内容 (差分) を確認する。
+
+.. code-block:: bash
+
+    $ git diff --staged
+
+    # 出力例
+    diff --git a/source/git/git-basics.rst b/source/git/git-basics.rst
+    index 89f0109..fdceeec 100644
+    --- a/source/git/git-basics.rst
+    +++ b/source/git/git-basics.rst
+    @@ -38,7 +38,6 @@ Gitの基本事項
+             $ git config --list
+    
+             # 出力例
+    -        takaaki716:technical-notes takaaki$ git config --list
+             user.name=kikuchitk7
+             user.email=kikuchitk7@gmail.com
+             core.editor=code --wait
+
 変更のコミット
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: bash
