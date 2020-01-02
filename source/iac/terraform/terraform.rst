@@ -5,4 +5,4 @@ Terraform
    :maxdepth: 1
    :caption: Contents:
 
-   terraform/setup
+   setup
