@@ -43,3 +43,47 @@ IAM ユーザの作成
 
     echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_DEFAULT_REGION
 
+tfenv のマニュアルインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- tfenv を GitHub のリポジトリからクローンする。
+
+    .. code-block:: bash
+        
+        $ git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+
+        # 出力例
+        Cloning into '/home/ec2-user/.tfenv'...
+        remote: Enumerating objects: 916, done.
+        remote: Total 916 (delta 0), reused 0 (delta 0), pack-reused 916
+        Receiving objects: 100% (916/916), 171.51 KiB | 474.00 KiB/s, done.
+        Resolving deltas: 100% (573/573), done.
+
+- パスを通す。
+
+    .. code-block:: bash
+        
+        $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
+
+- .bash_profile を読み込んで反映する。
+
+    .. code-block:: bash
+        
+        $ source ~/.bash_profile
+
+
+- インストール後の正常性を確認する。
+
+    .. code-block:: bash
+        
+        $ tfenv
+
+        # 出力例
+        tfenv 2.0.0-alpha3-1-ge21f9e0
+        Usage: tfenv <command> [<options>]
+
+        Commands:
+           install       Install a specific version of Terraform
+           use           Switch a version to use
+           uninstall     Uninstall a specific version of Terraform
+           list          List all installed versions
+           list-remote   List all installable versions
