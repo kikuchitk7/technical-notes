@@ -37,11 +37,15 @@ IAM ユーザの作成
 
     .. code-block:: bash
 
-    export AWS_ACCESS_KEY_ID=(Access Key ID を入力)
-    export AWS_SECRET_ACCESS_KEY=(Secret Access Key を入力)
-    export AWS_DEFAULT_REGION=ap-northeast-1
+        $ export AWS_ACCESS_KEY_ID=(Access Key ID を入力)
+        $ export AWS_SECRET_ACCESS_KEY=(Secret Access Key を入力)
+        $ export AWS_DEFAULT_REGION=ap-northeast-1
 
-    echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_DEFAULT_REGION
+- 設定の正常性を確認する。
+
+    .. code-block:: bash
+
+        $ echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_DEFAULT_REGION
 
 tfenv のマニュアルインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
