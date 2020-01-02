@@ -236,6 +236,10 @@ core.editor<span class="o">=</span>code --wait
 <h2>基本動作<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id5">
 <h3>ステータス確認<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>変更のステータスを確認する。</p></li>
+<li><p>stage に追加されていない変更がある場合と commit されていない変更がある場合とで表示が異なる。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
 
 <span class="c1"># 出力例 (stage に追加されていない変更がある状態)</span>
@@ -289,11 +293,15 @@ index 259b241..2691857 <span class="m">100644</span>
 </div>
 <div class="section" id="id6">
 <h3>変更のステージ追加<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>カレントディレクトリ以下の全ての変更を追加する。</p>
+<ul class="simple">
+<li><p>カレントディレクトリ以下の全ての変更を追加する。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
 </pre></div>
 </div>
-<p>全ての変更を追加する。</p>
+<ul class="simple">
+<li><p>全ての変更を追加する。</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add -A
 </pre></div>
 </div>
