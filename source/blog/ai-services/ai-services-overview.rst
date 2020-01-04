@@ -53,79 +53,95 @@ AI サービスの種類
 | また、言語を扱うサービスは日本語の対応状況を記載。
 
 .. list-table::
-    :widths: 5, 5, 5, 5
+    :widths: 5, 5, 5, 5, 5
     :header-rows: 1
 
     * - 分類
       - サービス名
       - 概要
+      - ユースケース
       - 東京 R での利用可否
     * - Vision
       - `Amazon Rekognition <https://aws.amazon.com/jp/rekognition/>`_
+      - 画像・動画像解析
       - X
       - ○
     * - Speech
       - `Amazon Polly <https://aws.amazon.com/jp/polly/>`_
+      - テキストの読み上げ
       - X
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
+      - 音声の文字起こし
       - X
       - | ○
         | (一部日本語未対応)
     * - 
       - `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_
+      - 医療に特化した音声の文字起こし
       - X
       - | ×
         | (日本語未対応)
     * - Text
       - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
+      - 自然言語処理・テキスト分析
       - X
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_
+      - 医療に特化した自然言語処理・テキスト分析
       - X
       - | ×
         | (日本語未対応)
     * - 
       - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
+      - テキストの翻訳
       - X
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
+      - ドキュメント分析
       - X
       - | ×
         | (日本語未対応)
     * - Search
       - `Amazon Kendra (プレビュー) <https://aws.amazon.com/jp/kendra/>`_
+      - 検索サービス
       - X
       - ×
     * - Chatbot
       - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
+      - チャットボット
       - X
       - | ×
         | (日本語未対応)
     * - Personalization
       - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
+      - レコメンド
       - X
       - ○
     * - Forecasting
       - `Amazon Forecast <https://aws.amazon.com/jp/forecast/>`_
+      - 時系列データの予測
       - X
       - ○
     * - Fraud
       - `Amazon Fraud Detection (プレビュー) <https://aws.amazon.com/jp/fraud-detector/>`_
+      - 不正検知
       - X
       - ×
     * - Development
       - `Amazon CodeGuru (プレビュー) <https://aws.amazon.com/jp/codeguru/>`_
+      - コードレビュー
       - X
       - ×
     * - Contact Center
       - `Contact Lens for Amazon Connect (プレビュー) <https://aws.amazon.com/jp/connect/contact-lens/>`_
+      - Amazon Connect のコンタクトセンター分析
       - X
       - ×
 
