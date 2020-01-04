@@ -96,9 +96,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#id2">今回の目標</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">AI サービスとは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">AI サービスとは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">AI サービスの全体像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの特徴</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">AI サービスの種類</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -173,7 +178,7 @@
 <h1>[第3回] AI サービスの全体像<a class="headerlink" href="#ai" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a href="#id6"><span class="problematic" id="id7">`前回 &lt;&gt;`_</span></a> は、AWS の機械学習サービスの3種類のサービスとそれぞれの概要、機械学習を活用する際の前提事項ついてご説明させていただきしました。</p>
+<p><a href="#id9"><span class="problematic" id="id10">`前回 &lt;&gt;`_</span></a> は、AWS の機械学習サービスの3種類のサービスとそれぞれの概要、機械学習を活用する際の前提事項ついてご説明させていただきしました。</p>
 <div class="line-block">
 <div class="line">今回からは AI サービスを見ていきたいと思います。</div>
 <div class="line">今回は AI サービスの全体像についてまとめて、次回から AI サービスの個々のサービスについて扱っていきたいと思います。</div>
@@ -187,13 +192,170 @@
 </div>
 <div class="section" id="id3">
 <h2>AI サービスとは<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-</div>
 <div class="section" id="id4">
-<h2>まとめ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>AI サービスの全体像<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">AWS の機械学習サービスのラインナップ (ML スタック) を再掲します。</div>
+<div class="line">下記の図と照らし合わせながら読むとイメージしやすいと思います。</div>
+</div>
+<img alt="../../_images/AWSのMLスタック_20192.png" src="../../_images/AWSのMLスタック_20192.png" />
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<div class="line-block">
+<div class="line">AI サービスは、AWS の機械学習の3種類の中で最上位に位置するサービス。</div>
+<div class="line">例えば、「機械翻訳」や「不正検知」といったユースケースごとにサービスが用意されている。</div>
+<div class="line">自身の抱えるビジネス上の問題・課題とサービスのユースケースが一致する場合に利用できる。</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>AI サービスの特徴<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AWS の謳い文句は「機械学習の深い知識なしに利用可能」である。これはどういうことなのかを考える。</p>
+<div class="line-block">
+<div class="line">まず、AI サービスの利用パターンは、下記のいずれかとなる。</div>
+<div class="line">- AWS により提供される学習済の機械学習モデルを利用する。それを自身のアプリに組み込む。利用者は文字通り機械学習をサービスとして利用する。</div>
+<div class="line">- AWS により提供される機械学習モデルを生成する仕組みを利用する。利用者は自分で用意したデータから機械学習モデルを生成し、それを自身のアプリに組み込む。</div>
+<div class="line">このように利用者が考える部分が少なくて済む。</div>
+<div class="line">利用者自身が準備する部分が多い ML サービス (Amazon SageMaker とその関連サービス) と比較すると導入の難易度は低くなる。</div>
+<div class="line">例えば、多くのサービスの背後でディープラーニングが利用されている。</div>
+<div class="line">利用するサービスのユースケースや使い方を理解していれば、ディープラーニングについて知らなくても利用が可能。</div>
+<div class="line">結果的に「機械学習の深い知識なしに利用可能」となる。</div>
+<div class="line">機械学習に明るいエンジニアがいる場合でも要件がマッチしていればアジリティを持って機械学習を導入することができることがメリット。</div>
+<div class="line">しかし、機械学習に関する知識がゼロで良いという訳ではない。例えば、精度が出ない場合に未学習 (under-fitting)、過学習 (over-fitting) のいずれの状態にあるのかが判断できないと正しくチューニングできない。</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>AI サービスの種類<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">AI サービスは、2020年1月X日現在で下記が提供されている。</div>
+<div class="line">分類は図に従う。日本語は AWS の過去の資料を参考に著者が和訳したもの。今後の AWS 社の発表と異なる可能性がある点に注意。</div>
+<div class="line">概要を一言でまとめる。(考え中) 利用者の準備具合 (訓練データの要否)</div>
+<div class="line">読者の多くは東京リージョン (「東京 R」と表記) での利用を想定していると考えられるため利用可否を記載。</div>
+<div class="line">また、言語を扱うサービスは日本語の対応状況を記載。</div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>分類</p></th>
+<th class="head"><p>サービス名</p></th>
+<th class="head"><p>概要</p></th>
+<th class="head"><p>東京 R での利用可否</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vision</p></td>
+<td><p>Amazon Rekognitions</p></td>
+<td><p>X</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Speech</p></td>
+<td><p>Amazon Polly</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">(日本語対応済)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Amazon Transcribe</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">(一部日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Text</p></td>
+<td><p>Amazon Comprehend</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">(日本語対応済)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Amazon Comprehend Medical (X)</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">×</div>
+<div class="line">(日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Amazon Translate</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">(日本語対応済)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Amazon Textract (X)</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">×</div>
+<div class="line">(日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Search</p></td>
+<td><p>Amazon Kendra (X)</p></td>
+<td><p>X</p></td>
+<td><p>×</p></td>
+</tr>
+<tr class="row-even"><td><p>Chatbot</p></td>
+<td><p>Amazon Lex</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">×</div>
+<div class="line">(日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Personalization</p></td>
+<td><p>Amazon Personalize</p></td>
+<td><p>X</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-even"><td><p>Forecasting</p></td>
+<td><p>Amazon Forecast</p></td>
+<td><p>X</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fraud</p></td>
+<td><p>Amazon Fraud Detection (X)</p></td>
+<td><p>X</p></td>
+<td><p>×</p></td>
+</tr>
+<tr class="row-even"><td><p>Development</p></td>
+<td><p>Amazon CodeGuru (X)</p></td>
+<td><p>X</p></td>
+<td><p>×</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contact Center</p></td>
+<td><p>Amazon Contact Lens (X)</p></td>
+<td><p>X</p></td>
+<td><p>×</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>まとめ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。</p>
+<p>次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id5">
-<h2>著者紹介<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h2>著者紹介<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
