@@ -61,66 +61,71 @@ AI サービスの種類
       - 概要
       - 東京 R での利用可否
     * - Vision
-      - Amazon Rekognitions
+      - `Amazon Rekognition <https://aws.amazon.com/jp/rekognition/>`_
       - X
       - ○
     * - Speech
-      - Amazon Polly
+      - `Amazon Polly <https://aws.amazon.com/jp/polly/>`_
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Transcribe
+      - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
       - X
       - | ○
         | (一部日本語未対応)
+    * - 
+      - `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_
+      - X
+      - | ×
+        | (日本語未対応)
     * - Text
-      - Amazon Comprehend
+      - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Comprehend Medical (X)
+      - `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_
       - X
       - | ×
         | (日本語未対応)
     * - 
-      - Amazon Translate
+      - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Textract (X)
+      - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
       - X
       - | ×
         | (日本語未対応)
     * - Search
-      - Amazon Kendra (X)
+      - `Amazon Kendra (プレビュー) <https://aws.amazon.com/jp/kendra/>`_
       - X
       - ×
     * - Chatbot
-      - Amazon Lex
+      - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
       - X
       - | ×
         | (日本語未対応)
     * - Personalization
-      - Amazon Personalize
+      - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
       - X
       - ○
     * - Forecasting
-      - Amazon Forecast
+      - `Amazon Forecast <https://aws.amazon.com/jp/forecast/>`_
       - X
       - ○
     * - Fraud
-      - Amazon Fraud Detection (X)
+      - `Amazon Fraud Detection (プレビュー) <https://aws.amazon.com/jp/fraud-detector/>`_
       - X
       - ×
     * - Development
-      - Amazon CodeGuru (X)
+      - `Amazon CodeGuru (X) <https://aws.amazon.com/jp/codeguru/>`_
       - X
       - ×
     * - Contact Center
-      - Amazon Contact Lens (X)
+      - `Contact Lens for Amazon Connect (プレビュー) <https://aws.amazon.com/jp/connect/contact-lens/>`_
       - X
       - ×
 
