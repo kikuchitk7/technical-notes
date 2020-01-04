@@ -121,7 +121,7 @@ AI サービスの種類
       - X
       - ×
     * - Development
-      - `Amazon CodeGuru (X) <https://aws.amazon.com/jp/codeguru/>`_
+      - `Amazon CodeGuru (プレビュー) <https://aws.amazon.com/jp/codeguru/>`_
       - X
       - ×
     * - Contact Center
