@@ -7,4 +7,5 @@ AWS ではじめる機械学習
 
     summary/introduction
     summary/overview
+    ai-services/ai-services-overview
     
