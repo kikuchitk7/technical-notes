@@ -14,3 +14,5 @@ AI サービスとは
    :caption: Contents:
 
    speech/transcribe.rst
+   forecasting/forecast
+   personalization/personalize
