@@ -13,6 +13,12 @@ AI サービスとは
    :maxdepth: 1
    :caption: Contents:
 
+   vision/rekognition
    speech/transcribe
+   speech/polly
+   text/comprehend
+   text/translate
+   text/textract
+   chatbots/lex
    forecasting/forecast
    personalization/personalize
