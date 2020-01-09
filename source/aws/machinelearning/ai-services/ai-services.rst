@@ -10,3 +10,8 @@ AI サービスとは
 
 AI サービスの種類
 -----------------------
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   speech/transcribe.rst
