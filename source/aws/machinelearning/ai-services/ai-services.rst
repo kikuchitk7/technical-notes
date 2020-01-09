@@ -13,6 +13,6 @@ AI サービスとは
    :maxdepth: 1
    :caption: Contents:
 
-   speech/transcribe.rst
+   speech/transcribe
    forecasting/forecast
    personalization/personalize
