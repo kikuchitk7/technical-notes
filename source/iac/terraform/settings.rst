@@ -36,7 +36,7 @@ tfstate ファイルを S3 で保管する
 
             nothing added to commit but untracked files present (use "git add" to track)
 
-定義
+設定手順
 ^^^^^^^^^^^^
 - main.tf に下記を追加する。
 
