@@ -126,6 +126,8 @@ tfenv で特定バージョンをインストールした場合の挙動
     .. code-block:: bash
 
         $ tfenv install 0.12.19
+
+        # 出力例
         Installing Terraform v0.12.19
         Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
         ############################################################################################################################################### 100.0%
@@ -144,6 +146,8 @@ tfenv でインストールされているバージョンの確認
     .. code-block:: bash
 
         $ tfenv list
+
+        # 出力例
         * 0.12.19 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
           0.12.18
 
@@ -154,6 +158,8 @@ tfenv で利用するバージョンの切替
     .. code-block:: bash
 
     $ tfenv use 0.12.18
+
+    # 出力例
     Switching to v0.12.18
     Switching completed
 
@@ -162,6 +168,8 @@ tfenv で利用するバージョンの切替
     .. code-block:: bash
 
     $ tfenv list
+
+    # 出力例
       0.12.19
     * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
 
@@ -177,6 +185,8 @@ tfenv で利用するバージョンの切替
     0.12.17
 
     $ tfenv install
+
+    # 出力例
     Installing Terraform v0.12.17
     Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
     ############################################################################################################################################### 100.0%
