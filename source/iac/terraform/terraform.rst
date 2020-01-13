@@ -6,3 +6,4 @@ Terraform
    :caption: Contents:
 
    setup
+   settings
