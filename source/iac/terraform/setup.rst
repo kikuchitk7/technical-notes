@@ -147,6 +147,24 @@ tfenv でインストールされているバージョンの確認
         * 0.12.19 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
           0.12.18
 
+tfenv で利用するバージョンの切替
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- tfenv で利用するバージョンは下記のコマンドで切り替える。
+
+    .. code-block:: bash
+
+    $ tfenv use 0.12.18
+    Switching to v0.12.18
+    Switching completed
+
+- list コマンドでも切り替わりを確認できる。
+
+    .. code-block:: bash
+
+    $ tfenv list
+      0.12.19
+    * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
+
 参考文献
 ----------------
 - `tfutils/tfenv <https://github.com/tfutils/tfenv>`_
