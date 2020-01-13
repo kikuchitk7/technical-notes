@@ -13,3 +13,28 @@ tfstate ファイルを S3 で保管する
     - バブリックアクセスブロック：有効
 
 - S3 Bucket 内に tfstate 管理用のディレクトリが作成されている。
+- .gitignore に tfstate の除外が定義されている。
+
+    .. code-block:: bash
+
+        .terraform/terraform.tfstate
+
+    .. warning::
+
+        - main.tf に tfstate を S3 Bucket で管理する定義を追加した後に terraform init を実行するとローカルに .terraform/terraform.tfstate を作成しようとしているように見えるので、これを除外しておく。
+
+        .. code-block:: bash
+
+            $ git status
+
+            # 出力例
+            # (中略)
+            Untracked files:
+              (use "git add <file>..." to include in what will be committed)
+
+                    .terraform/terraform.tfstate
+
+            nothing added to commit but untracked files present (use "git add" to track)
+
+定義
+^^^^^^^^^^^^
