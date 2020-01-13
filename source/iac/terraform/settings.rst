@@ -38,3 +38,14 @@ tfstate ファイルを S3 で保管する
 
 定義
 ^^^^^^^^^^^^
+- main.tf に下記を追加する。
+
+    .. code-block:: bash
+
+        terraform {
+            backend "s3" {
+                bucket = "takaaki-master-tfstate-elasticsearch"
+                key = "takaaki-sandbox/terraform.tfstate"
+                region = "ap-northeast-1"
+            }
+        }
