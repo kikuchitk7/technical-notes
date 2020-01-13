@@ -180,7 +180,9 @@ tfenv による Terraform のインストール
     .. code-block:: bash
 
         $ echo 0.12.17 > ./.terraform-version
-        $ cat ./.terraform-version 
+        $ cat ./.terraform-version
+
+        # 出力例
         0.12.17
 
         $ tfenv install
