@@ -119,6 +119,25 @@ tfenv による Terraform のインストール
             0.12.16
             (以下、省略)
 
+tfenv で特定バージョンをインストールした場合の挙動
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- 自動でインストールしたバージョンに切り替わるので注意する。インストールメッセージの最後にも "Switching completed" と出力されている。
+
+    .. code-block:: bash
+
+        $ tfenv install 0.12.19
+        Installing Terraform v0.12.19
+        Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
+        ############################################################################################################################################### 100.0%
+        Downloading SHA hash file from https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_SHA256SUMS
+        No keybase install found, skipping OpenPGP signature verification
+        Archive:  tfenv_download.hHWSwD/terraform_0.12.19_linux_amd64.zip
+          inflating: /home/ec2-user/.tfenv/versions/0.12.19/terraform  
+        Installation of terraform v0.12.19 successful
+        Switching to v0.12.19
+        Switching completed
+
+
 参考文献
 ----------------
 - `tfutils/tfenv <https://github.com/tfutils/tfenv>`_
