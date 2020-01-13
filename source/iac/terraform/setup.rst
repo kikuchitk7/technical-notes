@@ -150,8 +150,6 @@ tfenv による Terraform のインストール
         * 0.12.19 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
           0.12.18
 
-tfenv で利用するバージョンの切替
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - tfenv で利用するバージョンは下記のコマンドで切り替える。
 
     .. code-block:: bash
@@ -162,15 +160,17 @@ tfenv で利用するバージョンの切替
         Switching to v0.12.18
         Switching completed
 
-- list コマンドでも切り替わりを確認できる。
+    .. note::
 
-    .. code-block:: bash
+        - list コマンドでも切り替わりを確認できる。
 
-        $ tfenv list
+            .. code-block:: bash
 
-        # 出力例
-          0.12.19
-        * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
+                $ tfenv list
+
+                # 出力例
+                  0.12.19
+                * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
 
 チーム開発における Terraform のバージョンの統一
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
