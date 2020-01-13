@@ -44,8 +44,19 @@ tfstate ファイルを S3 で保管する
 
         terraform {
             backend "s3" {
-                bucket = "takaaki-master-tfstate-elasticsearch"
-                key = "takaaki-sandbox/terraform.tfstate"
+                bucket = "<bucket>"
+                key = "<directory>/terraform.tfstate"
                 region = "ap-northeast-1"
             }
         }
+
+- terraform init コマンドを実行する。
+- 格納先に指定した S3 Bucket を参照して、tfstate が作成されたことを確認する。 
+
+    .. code-block:: bash
+
+        $ aws s3 ls <bucket>/<directory>/
+        
+        # 出力例
+        2020-01-13 01:46:06          0 
+        2020-01-13 01:57:04       7240 terraform.tfstate
