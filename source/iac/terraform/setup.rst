@@ -13,7 +13,7 @@ Terraform のセットアップ
 
 - IAM ユーザで Terraform を利用する。
 - Terraform のバージョンアップに柔軟に対応するため、`tfenv <https://github.com/tfutils/tfenv>`_ を利用する。
-- Terraform は 2020年1月2日現在の最新バージョンである v0.12.18 を利用する。
+- Terraform は 2020年1月13日現在の最新バージョンである v0.12.19 を利用する。
 
 セットアップ
 ------------------
