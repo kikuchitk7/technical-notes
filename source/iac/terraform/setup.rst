@@ -137,6 +137,15 @@ tfenv で特定バージョンをインストールした場合の挙動
         Switching to v0.12.19
         Switching completed
 
+tfenv でインストールされているバージョンの確認
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- tfenv でインストールされているバージョンは下記のコマンドで確認する。
+
+    .. code-block:: bash
+
+        $ tfenv list
+        * 0.12.19 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
+          0.12.18
 
 参考文献
 ----------------
