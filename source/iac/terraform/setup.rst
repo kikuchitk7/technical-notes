@@ -157,21 +157,21 @@ tfenv で利用するバージョンの切替
 
     .. code-block:: bash
 
-    $ tfenv use 0.12.18
+        $ tfenv use 0.12.18
 
-    # 出力例
-    Switching to v0.12.18
-    Switching completed
+        # 出力例
+        Switching to v0.12.18
+        Switching completed
 
 - list コマンドでも切り替わりを確認できる。
 
     .. code-block:: bash
 
-    $ tfenv list
+        $ tfenv list
 
-    # 出力例
-      0.12.19
-    * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
+        # 出力例
+          0.12.19
+        * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
 
 チーム開発における Terraform のバージョンの統一
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -180,23 +180,23 @@ tfenv で利用するバージョンの切替
 
     .. code-block:: bash
 
-    $ echo 0.12.17 > ./.terraform-version
-    $ cat ./.terraform-version 
-    0.12.17
+        $ echo 0.12.17 > ./.terraform-version
+        $ cat ./.terraform-version 
+        0.12.17
 
-    $ tfenv install
+        $ tfenv install
 
-    # 出力例
-    Installing Terraform v0.12.17
-    Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
-    ############################################################################################################################################### 100.0%
-    Downloading SHA hash file from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_SHA256SUMS
-    No keybase install found, skipping OpenPGP signature verification
-    Archive:  tfenv_download.TzGp9C/terraform_0.12.17_linux_amd64.zip
-      inflating: /home/ec2-user/.tfenv/versions/0.12.17/terraform  
-    Installation of terraform v0.12.17 successful
-    Switching to v0.12.17
-    Switching completed
+        # 出力例
+        Installing Terraform v0.12.17
+        Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
+        ############################################################################################################################################### 100.0%
+        Downloading SHA hash file from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_SHA256SUMS
+        No keybase install found, skipping OpenPGP signature verification
+        Archive:  tfenv_download.TzGp9C/terraform_0.12.17_linux_amd64.zip
+          inflating: /home/ec2-user/.tfenv/versions/0.12.17/terraform  
+        Installation of terraform v0.12.17 successful
+        Switching to v0.12.17
+        Switching completed
 
 Terraform の利用開始
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -206,34 +206,34 @@ Terraform の利用開始
 
     .. code-block:: bash
 
-    $ terraform init
+        $ terraform init
 
-    # 出力例
-    Initializing the backend...
+        # 出力例
+        Initializing the backend...
 
-    Initializing provider plugins...
-    - Checking for available provider plugins...
-    - Downloading plugin for provider "aws" (hashicorp/aws) 2.44.0...
+        Initializing provider plugins...
+        - Checking for available provider plugins...
+        - Downloading plugin for provider "aws" (hashicorp/aws) 2.44.0...
 
-    The following providers do not have any version constraints in configuration,
-    so the latest version was installed.
+        The following providers do not have any version constraints in configuration,
+        so the latest version was installed.
 
-    To prevent automatic upgrades to new major versions that may contain breaking
-    changes, it is recommended to add version = "..." constraints to the
-    corresponding provider blocks in configuration, with the constraint strings
-    suggested below.
+        To prevent automatic upgrades to new major versions that may contain breaking
+        changes, it is recommended to add version = "..." constraints to the
+        corresponding provider blocks in configuration, with the constraint strings
+        suggested below.
 
-    * provider.aws: version = "~> 2.44"
+        * provider.aws: version = "~> 2.44"
 
-    Terraform has been successfully initialized!
+        Terraform has been successfully initialized!
 
-    You may now begin working with Terraform. Try running "terraform plan" to see
-    any changes that are required for your infrastructure. All Terraform commands
-    should now work.
+        You may now begin working with Terraform. Try running "terraform plan" to see
+        any changes that are required for your infrastructure. All Terraform commands
+        should now work.
 
-    If you ever set or change modules or backend configuration for Terraform,
-    rerun this command to reinitialize your working directory. If you forget, other
-    commands will detect it and remind you to do so if necessary.
+        If you ever set or change modules or backend configuration for Terraform,
+        rerun this command to reinitialize your working directory. If you forget, other
+        commands will detect it and remind you to do so if necessary.
 
 参考文献
 ----------------
