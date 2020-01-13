@@ -165,6 +165,29 @@ tfenv で利用するバージョンの切替
       0.12.19
     * 0.12.18 (set by /home/ec2-user/environment/terraform-learning/.terraform-version)
 
+チーム開発における Terraform のバージョンの統一
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- .terraform-vesion を作成し、利用したいバージョンを記載しておき、これを Git で管理する。
+- terraform install を実行するだけで、.terraform-vesion に記載されたバージョンがインストールされる。
+
+    .. code-block:: bash
+
+    $ echo 0.12.17 > ./.terraform-version
+    $ cat ./.terraform-version 
+    0.12.17
+
+    $ tfenv install
+    Installing Terraform v0.12.17
+    Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
+    ############################################################################################################################################### 100.0%
+    Downloading SHA hash file from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_SHA256SUMS
+    No keybase install found, skipping OpenPGP signature verification
+    Archive:  tfenv_download.TzGp9C/terraform_0.12.17_linux_amd64.zip
+      inflating: /home/ec2-user/.tfenv/versions/0.12.17/terraform  
+    Installation of terraform v0.12.17 successful
+    Switching to v0.12.17
+    Switching completed
+
 参考文献
 ----------------
 - `tfutils/tfenv <https://github.com/tfutils/tfenv>`_
