@@ -40,13 +40,7 @@ Workspaces
 
     For local state, Terraform stores the workspace states in a directory called terraform.tfstate.d.
 
-Pros and Cons
----------------------
-
-Pros
-^^^^^^^^^^^^
-- | 重複が許されないバブリックなリソースやリソースの名前などの環境差分を除いて、単一の tf ファイルで運用が可能となる。
-  | なお、環境差分は下記の方法で表現できる。
+- 環境差分は下記の方法で表現できる。
 
     - ${terraform.workspace} で Workspace の名称を参照する。
 
@@ -61,16 +55,61 @@ Pros
             }
 
     - Workspace ごとに tfvars を作成する。
+    - "count" や三項演算子を駆使する。
 
-- 本番環境への適用前に検証用の環境を作って動作確認をし、問題がないことを確かめて本番環境にデプロイするなどの運用が実現可能となる。
-- 本番環境と同一構成での再現試験なども実現可能となる。
+        .. code-block:: bash
+
+            resource "aws_instance" "example" {
+                count = "${terraform.workspace == "default" ? 5 : 1}"
+
+                # ... other arguments
+            }
+    
+        .. note::
+
+            Terraform の文法には条件分岐がないので、Workspace 名称等による条件分岐が不可能。
+
+ユースケース
+-----------------
+
+前提
+^^^^^^^^^^^
+- master ブランチと default workspace (本番環境) が対応している。
+- ブランチ戦略が GitHub Flow である。
+
+.. note::
+
+    - 必ずしも GitHub Flow である必要はないが、公式ガイドで謳われているユースケースを読むと GitHub Flow が一番馴染みそう。
+
+考えられるユースケース
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- | feature ブランチの作成 (機能追加やバグ修正) のタイミングでこれに対応する Workspace を作成する。
+  | 本番環境と同一にできないリソースは環境差分として定義する。
+- リソースの追加と動作確認を実施して問題がないことを確かめた上で、master ブランチへのマージ、本番環境へのデプロイを行う。
+- デプロイ後に Workspace を削除する。(永続させる Workspace は default のみ)
+
+    Non-default workspaces are often related to feature branches in version control.
+    The default workspace might correspond to the "master" or "trunk" branch, which describes the intended state of production infrastructure.
+    When a feature branch is created to develop a change, the developer of that feature might create a corresponding workspace and deploy into it a temporary "copy" of the main infrastructure so that changes can be tested without affecting the production infrastructure.
+    Once the change is merged and deployed to the default workspace, the test infrastructure can be destroyed and the temporary workspace deleted.
+
+Pros and Cons
+---------------------
+
+Pros
+^^^^^^^^^^^^
+- 重複が許されないバブリックなリソースやリソースの名前などの環境差分を除いて、単一の tf ファイル群での運用が可能となる。
+- 本番環境と同一構成の環境を簡単に複製できる。
 
 Cons
 ^^^^^^^^^^^^
 - | Workspace を使うと、Workspace : tf ファイルが、多 : 1 の関係になる。
   | 1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。
-- | Terraform の文法には条件分岐がないが、"count" や三項演算子を駆使すれば Workspace に固有のリソースを作成することができる。
-  | しかし、テンプレートが複雑になるので、維持運用が困難になる可能性がある。
+  | "count" や三項演算子を駆使すれば実現できるが、テンプレートが複雑になるので、維持運用が困難になる可能性がある。
+- | default 以外の Workspace を一時的な環境とする場合、環境差分を毎回定義しなければいけなくなる。
+  | 環境差分をリポジトリ内に持つとなると、本番稼働で不要なファイルが存在することになる。
+- | Workspaces の利用有無に関わらず、環境差分となり得る定義を切り出して管理する必要がある。
+  | 特定の環境に固有のリソースの作成を認めないルールとするなら利用価値があるが、そうでなければあえて利用するメリットがない。
 
 参考
 ----------
