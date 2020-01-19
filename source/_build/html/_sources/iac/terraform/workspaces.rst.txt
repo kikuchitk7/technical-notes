@@ -3,12 +3,13 @@ Workspaces
 
 概要
 ------------
-- Terraform の構成は、バックエンドと紐づけられている。
-- そのバックエンドには、操作の実行方法とTerraform状態などの永続データが保管されている場所が定義されている。
+- | Terraform の構成は、バックエンドと紐づけられている。
+  | そのバックエンドには、操作の実行方法とTerraform状態などの永続データが保管されている場所が定義されている。
 
     Each Terraform configuration has an associated backend that defines how operations are executed and where persistent data such as the Terraform state are stored.
 
-- バックエンドの永続データは何らかの Workspace に属する。初期状態では "default" という Workspace しかないので、Terraform は1つの状態しか持てない。
+- | バックエンドの永続データは何らかの Workspace に属する。
+  | 初期状態では "default" という Workspace しかないので、Terraform は1つの状態しか持てない。
 
     The persistent data stored in the backend belongs to a workspace. 
     Initially the backend has only one workspace, called "default", and thus there is only one Terraform state associated with that configuration.
@@ -36,10 +37,40 @@ Workspaces
                 }
 
 - tfstate ファイルをローカル管理している状態で Workspace を作成すると、"terraform.tfstate.d" というディレクトリに Workspace ごとに tfstate ファイルが保管されることになる。
-- Workspace : tf ファイルが、多 : 1 の関係になる。
-- ${terraform.workspace} や Workspace ごとに tfvars を作成することで環境差分を持たせられる。
-- 1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。
-- Terraform の文法には条件分岐がないが、"count" や三項演算子を駆使すると実現はできる。テンプレートが複雑になるので、維持運用が困難になる可能性がある。
+
+    For local state, Terraform stores the workspace states in a directory called terraform.tfstate.d.
+
+Pros and Cons
+---------------------
+
+Pros
+^^^^^^^^^^^^
+- | 重複が許されないバブリックなリソースやリソースの名前などの環境差分を除いて、単一の tf ファイルで運用が可能となる。
+  | なお、環境差分は下記の方法で表現できる。
+
+    - ${terraform.workspace} で Workspace の名称を参照する。
+
+        .. code-block:: bash
+
+            resource "aws_instance" "example" {
+                tags = {
+                    Name = "web - ${terraform.workspace}"
+                }
+
+                # ... other arguments
+            }
+
+    - Workspace ごとに tfvars を作成する。
+
+- 本番環境への適用前に検証用の環境を作って動作確認をし、問題がないことを確かめて本番環境にデプロイするなどの運用が実現可能となる。
+- 本番環境と同一構成での再現試験なども実現可能となる。
+
+Cons
+^^^^^^^^^^^^
+- | Workspace を使うと、Workspace : tf ファイルが、多 : 1 の関係になる。
+  | 1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。
+- | Terraform の文法には条件分岐がないが、"count" や三項演算子を駆使すれば Workspace に固有のリソースを作成することができる。
+  | しかし、テンプレートが複雑になるので、維持運用が困難になる可能性がある。
 
 参考
 ----------

@@ -40,13 +40,49 @@ Workspaces
 
     For local state, Terraform stores the workspace states in a directory called terraform.tfstate.d.
 
-- | Workspace を使うと、Workspace : tf ファイルが、多 : 1 の関係になる。
-  | 1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。
-- 環境差分を表現する方法として、下記の方法があるが、テンプレートが複雑になるので、維持運用が困難になる可能性がある。
+- 環境差分は下記の方法で表現できる。
 
     - ${terraform.workspace} で Workspace の名称を参照する。
+
+        .. code-block:: bash
+
+            resource "aws_instance" "example" {
+                tags = {
+                    Name = "web - ${terraform.workspace}"
+                }
+
+                # ... other arguments
+            }
+
     - Workspace ごとに tfvars を作成する。
-    - "count" や三項演算子を駆使する。(Terraform の文法には条件分岐がない)
+    - "count" や三項演算子を駆使する。
+
+        .. code-block:: bash
+
+            resource "aws_instance" "example" {
+                count = "${terraform.workspace == "default" ? 5 : 1}"
+
+                # ... other arguments
+            }
+    
+        .. note::
+
+            Terraform の文法には条件分岐がないので、Workspace 名称等による条件分岐が不可能。
+
+Pros and Cons
+---------------------
+
+Pros
+^^^^^^^^^^^^
+- 重複が許されないバブリックなリソースやリソースの名前などの環境差分を除いて、単一の tf ファイルで運用が可能となる。
+- 本番環境への適用前に検証用の環境を作って動作確認をし、問題がないことを確かめて本番環境にデプロイするなどの運用が実現可能となる。
+- 本番環境と同一構成での再現試験なども実現可能となる。
+
+Cons
+^^^^^^^^^^^^
+- | Workspace を使うと、Workspace : tf ファイルが、多 : 1 の関係になる。
+  | 1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。
+  | "count" や三項演算子を駆使すれば実現できるが、テンプレートが複雑になるので、維持運用が困難になる可能性がある。
 
 参考
 ----------
