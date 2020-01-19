@@ -236,6 +236,10 @@ Terraform の利用開始
         rerun this command to reinitialize your working directory. If you forget, other
         commands will detect it and remind you to do so if necessary.
 
+    .. warning::
+
+        - .gitignore に ./terraform ディレクトリ配下を指定しておくこと。サイズが大きめのファイルがダウンロードされ、GitHub への Push に失敗する。
+
 参考文献
 ----------------
 - `tfutils/tfenv <https://github.com/tfutils/tfenv>`_

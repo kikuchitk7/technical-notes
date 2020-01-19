@@ -49,83 +49,107 @@ AI サービスの種類
 | AI サービスは、2020年1月X日現在で下記が提供されている。
 | 分類は図に従う。日本語は AWS の過去の資料を参考に著者が和訳したもの。今後の AWS 社の発表と異なる可能性がある点に注意。
 | 概要を一言でまとめる。(考え中) 利用者の準備具合 (訓練データの要否)
-| 東京リージョン (「東京 R」と表記) での利用可否と言語を扱うサービスは日本語の対応状況を記載。
+| 読者の多くは東京リージョン (「東京 R」と表記) での利用を想定していると考えられるため利用可否を記載。
+| また、言語を扱うサービスは日本語の対応状況を記載。
 
 .. list-table::
-    :widths: 5, 5, 5, 5
+    :widths: 5, 5, 5, 5, 5
     :header-rows: 1
 
     * - 分類
       - サービス名
       - 概要
+      - ユースケース
       - 東京 R での利用可否
     * - Vision
-      - Amazon Rekognitions
+      - `Amazon Rekognition <https://aws.amazon.com/jp/rekognition/>`_
+      - 画像・動画像解析
       - X
       - ○
     * - Speech
-      - Amazon Polly
+      - `Amazon Polly <https://aws.amazon.com/jp/polly/>`_
+      - テキストの読み上げ
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Transcribe
+      - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
+      - 音声の文字起こし
       - X
       - | ○
         | (一部日本語未対応)
+    * - 
+      - `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_
+      - 医療に特化した音声の文字起こし
+      - X
+      - | ×
+        | (日本語未対応)
     * - Text
-      - Amazon Comprehend
+      - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
+      - 自然言語処理・テキスト分析
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Comprehend Medical (X)
+      - `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_
+      - 医療に特化した自然言語処理・テキスト分析
       - X
       - | ×
         | (日本語未対応)
     * - 
-      - Amazon Translate
+      - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
+      - テキストの翻訳
       - X
       - | ○
         | (日本語対応済)
     * - 
-      - Amazon Textract (X)
+      - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
+      - ドキュメント分析
       - X
       - | ×
         | (日本語未対応)
     * - Search
-      - Amazon Kendra (X)
+      - `Amazon Kendra (プレビュー) <https://aws.amazon.com/jp/kendra/>`_
+      - 検索サービス
       - X
       - ×
     * - Chatbot
-      - Amazon Lex
+      - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
+      - チャットボット
       - X
       - | ×
         | (日本語未対応)
     * - Personalization
-      - Amazon Personalize
+      - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
+      - レコメンド
       - X
       - ○
     * - Forecasting
-      - Amazon Forecast
+      - `Amazon Forecast <https://aws.amazon.com/jp/forecast/>`_
+      - 時系列データの予測
       - X
       - ○
     * - Fraud
-      - Amazon Fraud Detection (X)
+      - `Amazon Fraud Detection (プレビュー) <https://aws.amazon.com/jp/fraud-detector/>`_
+      - 不正検知
       - X
       - ×
     * - Development
-      - Amazon CodeGuru (X)
+      - `Amazon CodeGuru (プレビュー) <https://aws.amazon.com/jp/codeguru/>`_
+      - コードレビュー
       - X
       - ×
     * - Contact Center
-      - Amazon Contact Lens (X)
+      - `Contact Lens for Amazon Connect (プレビュー) <https://aws.amazon.com/jp/connect/contact-lens/>`_
+      - Amazon Connect のコンタクトセンター分析
       - X
       - ×
 
 まとめ
 ----------------
+今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。
 
+次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。
 
 +++++++++++
 

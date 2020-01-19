@@ -228,30 +228,35 @@
 <div class="line">AI サービスは、2020年1月X日現在で下記が提供されている。</div>
 <div class="line">分類は図に従う。日本語は AWS の過去の資料を参考に著者が和訳したもの。今後の AWS 社の発表と異なる可能性がある点に注意。</div>
 <div class="line">概要を一言でまとめる。(考え中) 利用者の準備具合 (訓練データの要否)</div>
-<div class="line">東京リージョン (「東京 R」と表記) での利用可否と言語を扱うサービスは日本語の対応状況を記載。</div>
+<div class="line">読者の多くは東京リージョン (「東京 R」と表記) での利用を想定していると考えられるため利用可否を記載。</div>
+<div class="line">また、言語を扱うサービスは日本語の対応状況を記載。</div>
 </div>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>分類</p></th>
 <th class="head"><p>サービス名</p></th>
 <th class="head"><p>概要</p></th>
+<th class="head"><p>ユースケース</p></th>
 <th class="head"><p>東京 R での利用可否</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Vision</p></td>
-<td><p>Amazon Rekognitions</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/rekognition/">Amazon Rekognition</a></p></td>
+<td><p>画像・動画像解析</p></td>
 <td><p>X</p></td>
 <td><p>○</p></td>
 </tr>
 <tr class="row-odd"><td><p>Speech</p></td>
-<td><p>Amazon Polly</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/polly/">Amazon Polly</a></p></td>
+<td><p>テキストの読み上げ</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -260,7 +265,8 @@
 </td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p>Amazon Transcribe</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/transcribe/">Amazon Transcribe</a></p></td>
+<td><p>音声の文字起こし</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -268,26 +274,39 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Text</p></td>
-<td><p>Amazon Comprehend</p></td>
-<td><p>X</p></td>
-<td><div class="line-block">
-<div class="line">○</div>
-<div class="line">(日本語対応済)</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p>Amazon Comprehend Medical (X)</p></td>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/transcribe/medical/">Amazon Transcribe Medical</a></p></td>
+<td><p>医療に特化した音声の文字起こし</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
 <div class="line">(日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Text</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/">Amazon Comprehend</a></p></td>
+<td><p>自然言語処理・テキスト分析</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">(日本語対応済)</div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p>Amazon Translate</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/medical/">Amazon Comprehend Medical</a></p></td>
+<td><p>医療に特化した自然言語処理・テキスト分析</p></td>
+<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line">×</div>
+<div class="line">(日本語未対応)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/translate/">Amazon Translate</a></p></td>
+<td><p>テキストの翻訳</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -295,8 +314,9 @@
 </div>
 </td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>Amazon Textract (X)</p></td>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/textract/">Amazon Textract</a></p></td>
+<td><p>ドキュメント分析</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
@@ -304,13 +324,15 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Search</p></td>
-<td><p>Amazon Kendra (X)</p></td>
+<tr class="row-even"><td><p>Search</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/kendra/">Amazon Kendra (プレビュー)</a></p></td>
+<td><p>検索サービス</p></td>
 <td><p>X</p></td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-even"><td><p>Chatbot</p></td>
-<td><p>Amazon Lex</p></td>
+<tr class="row-odd"><td><p>Chatbot</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/lex/">Amazon Lex</a></p></td>
+<td><p>チャットボット</p></td>
 <td><p>X</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
@@ -318,28 +340,33 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Personalization</p></td>
-<td><p>Amazon Personalize</p></td>
+<tr class="row-even"><td><p>Personalization</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/personalize/">Amazon Personalize</a></p></td>
+<td><p>レコメンド</p></td>
 <td><p>X</p></td>
 <td><p>○</p></td>
 </tr>
-<tr class="row-even"><td><p>Forecasting</p></td>
-<td><p>Amazon Forecast</p></td>
+<tr class="row-odd"><td><p>Forecasting</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/forecast/">Amazon Forecast</a></p></td>
+<td><p>時系列データの予測</p></td>
 <td><p>X</p></td>
 <td><p>○</p></td>
 </tr>
-<tr class="row-odd"><td><p>Fraud</p></td>
-<td><p>Amazon Fraud Detection (X)</p></td>
+<tr class="row-even"><td><p>Fraud</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/fraud-detector/">Amazon Fraud Detection (プレビュー)</a></p></td>
+<td><p>不正検知</p></td>
 <td><p>X</p></td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-even"><td><p>Development</p></td>
-<td><p>Amazon CodeGuru (X)</p></td>
+<tr class="row-odd"><td><p>Development</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/codeguru/">Amazon CodeGuru (プレビュー)</a></p></td>
+<td><p>コードレビュー</p></td>
 <td><p>X</p></td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-odd"><td><p>Contact Center</p></td>
-<td><p>Amazon Contact Lens (X)</p></td>
+<tr class="row-even"><td><p>Contact Center</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/connect/contact-lens/">Contact Lens for Amazon Connect (プレビュー)</a></p></td>
+<td><p>Amazon Connect のコンタクトセンター分析</p></td>
 <td><p>X</p></td>
 <td><p>×</p></td>
 </tr>
@@ -349,6 +376,8 @@
 </div>
 <div class="section" id="id7">
 <h2>まとめ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。</p>
+<p>次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="id8">
