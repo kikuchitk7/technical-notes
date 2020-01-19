@@ -8,3 +8,4 @@ Terraform
    setup
    settings
    team
+   workspaces
