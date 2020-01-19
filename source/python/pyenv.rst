@@ -64,6 +64,56 @@ pyenv に必要なパッケージのインストールを行う
     * system (set by /home/ec2-user/.pyenv/version)
 
 
+pyenv でのインストール
+-----------------------------
+
+pyenv でインストール可能なパッケージを確認する
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ pyenv install --list
+
+    # 出力例
+    Available versions:
+      2.1.3
+      2.2.3
+      2.3.7
+      (以下、省略)
+
+pyenv で特定のパッケージをインストールする
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ pyenv install 3.8.1
+    
+    # 出力例
+    pyenv: /home/ec2-user/.pyenv/versions/3.8.1 already exists
+    continue with installation? (y/N) y
+    Downloading Python-3.8.1.tar.xz...
+    -> https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tar.xz
+    Installing Python-3.8.1...
+    Installed Python-3.8.1 to /home/ec2-user/.pyenv/versions/3.8.1
+
+バージョンを切り替える
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+現在のディレクトリでのみ切り替える
++++++++++++++++++++++++++++++++++++++++++++
+
+.. code-block:: bash
+
+    $ pyenv local 3.8.1
+
+システム全体で切り替える
++++++++++++++++++++++++++++++++++++++++++++
+
+.. code-block:: bash
+
+    $ pyenv global 3.8.1
+
 参考
 -------------
-
+- `pyenv <https://github.com/pyenv/pyenv>`_
+- `pyenvのインストール、使い方、pythonのバージョン切り替えできない時の対処法 <https://qiita.com/koooooo/items/b21d87ffe2b56d0c589b>`_
