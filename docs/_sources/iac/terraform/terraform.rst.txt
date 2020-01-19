@@ -7,3 +7,4 @@ Terraform
 
    setup
    settings
+   team
