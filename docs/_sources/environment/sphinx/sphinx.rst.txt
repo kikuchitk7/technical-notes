@@ -7,3 +7,4 @@ Sphinx の環境構築
 
     sphinx-githubpages
     sphinx-by-markdown
+    sphinx-custom-css

@@ -7,3 +7,4 @@ Python
 
    python3
    pandas
+   pyenv

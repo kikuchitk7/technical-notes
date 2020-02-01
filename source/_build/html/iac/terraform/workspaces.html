@@ -32,7 +32,7 @@
     
 
   
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
@@ -187,25 +187,25 @@
 </div></blockquote>
 </li>
 <li><div class="line-block">
-<div class="line">バックエンドの永続データは何らかの Workspace に属する。</div>
-<div class="line">初期状態では &quot;default&quot; という Workspace しかないので、Terraform は1つの状態しか持てない。</div>
+<div class="line">バックエンドの永続データは何らかの workspace に属する。</div>
+<div class="line">初期状態では &quot;default&quot; という workspace しかないので、Terraform は1つの状態しか持てない。</div>
 </div>
 <blockquote>
 <div><p>The persistent data stored in the backend belongs to a workspace.
 Initially the backend has only one workspace, called &quot;default&quot;, and thus there is only one Terraform state associated with that configuration.</p>
 </div></blockquote>
 </li>
-<li><p>Workspace を意識していなくても &quot;default&quot; の Workspace が存在し、ここで作業をしている。</p>
+<li><p>workspace を意識していなくても &quot;default&quot; の workspace が存在し、ここで作業をしている。</p>
 <blockquote>
 <div><p>Terraform starts with a single workspace named &quot;default&quot;.
 This workspace is special both because it is the default and also because it cannot ever be deleted.
 If you've never explicitly used workspaces, then you've only ever worked on the &quot;default&quot; workspace.</p>
 </div></blockquote>
 </li>
-<li><p>Workspace を分けるということは、すなわち、バックエンドを分けるということ。</p>
+<li><p>workspace を分けるということは、すなわち、バックエンドを分けるということ。</p>
 <blockquote>
 <div><ul>
-<li><p>Workspaces は Terraform の機能としてバックエンドの分割を実現してくれる。</p></li>
+<li><p>workspaces は Terraform の機能としてバックエンドの分割を実現してくれる。</p></li>
 <li><div class="line-block">
 <div class="line">Git の各ブランチでバックエンドの設定を分ければ同様のことが実現できる。</div>
 <div class="line">下記は AWS でバックエンドに S3 を使う場合。環境ごとにこの定義を変えれば実現できる。</div>
@@ -225,7 +225,7 @@ If you've never explicitly used workspaces, then you've only ever worked on the 
 </ul>
 </div></blockquote>
 </li>
-<li><p>tfstate ファイルをローカル管理している状態で Workspace を作成すると、&quot;terraform.tfstate.d&quot; というディレクトリに Workspace ごとに tfstate ファイルが保管されることになる。</p>
+<li><p>tfstate ファイルをローカル管理している状態で workspace を作成すると、&quot;terraform.tfstate.d&quot; というディレクトリに workspace ごとに tfstate ファイルが保管されることになる。</p>
 <blockquote>
 <div><p>For local state, Terraform stores the workspace states in a directory called terraform.tfstate.d.</p>
 </div></blockquote>
@@ -233,7 +233,7 @@ If you've never explicitly used workspaces, then you've only ever worked on the 
 <li><p>環境差分は下記の方法で表現できる。</p>
 <blockquote>
 <div><ul>
-<li><p>${terraform.workspace} で Workspace の名称を参照する。</p>
+<li><p>${terraform.workspace} で workspace の名称を参照する。</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>resource <span class="s2">&quot;aws_instance&quot;</span> <span class="s2">&quot;example&quot;</span> <span class="o">{</span>
     <span class="nv">tags</span> <span class="o">=</span> <span class="o">{</span>
@@ -246,7 +246,7 @@ If you've never explicitly used workspaces, then you've only ever worked on the 
 </div>
 </div></blockquote>
 </li>
-<li><p>Workspace ごとに tfvars を作成する。</p></li>
+<li><p>workspace ごとに tfvars を作成する。</p></li>
 <li><p>&quot;count&quot; や三項演算子を駆使する。</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>resource <span class="s2">&quot;aws_instance&quot;</span> <span class="s2">&quot;example&quot;</span> <span class="o">{</span>
@@ -258,7 +258,7 @@ If you've never explicitly used workspaces, then you've only ever worked on the 
 </div>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>Terraform の文法には条件分岐がないので、Workspace 名称等による条件分岐が不可能。</p>
+<p>Terraform の文法には条件分岐がないので、workspace 名称等による条件分岐が不可能。</p>
 </div>
 </div></blockquote>
 </li>
@@ -271,27 +271,25 @@ If you've never explicitly used workspaces, then you've only ever worked on the 
 <h2>ユースケース<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id3">
 <h3>前提<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
+<ul>
 <li><p>master ブランチと default workspace (本番環境) が対応している。</p></li>
-<li><p>ブランチ戦略が GitHub Flow である。</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">注釈</p>
-<ul class="simple">
-<li><p>必ずしも GitHub Flow である必要はないが、公式ガイドで謳われているユースケースを読むと GitHub Flow が一番馴染みそう。</p></li>
-</ul>
+<li><div class="line-block">
+<div class="line">パブリックリソースの設定などを除いて default workspace と他の workspace にリソースに差分がない。</div>
+<div class="line">すなわち、特定の workspace にしか存在しないリソースの作成は認めない運用になっている。</div>
 </div>
+</li>
+</ul>
 </div>
 <div class="section" id="id4">
 <h3>考えられるユースケース<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul>
 <li><div class="line-block">
-<div class="line">feature ブランチの作成 (機能追加やバグ修正) のタイミングでこれに対応する Workspace を作成する。</div>
+<div class="line">feature ブランチの作成 (機能追加やバグ修正) のタイミングでこれに対応する workspace を作成する。</div>
 <div class="line">本番環境と同一にできないリソースは環境差分として定義する。</div>
 </div>
 </li>
 <li><p>リソースの追加と動作確認を実施して問題がないことを確かめた上で、master ブランチへのマージ、本番環境へのデプロイを行う。</p></li>
-<li><p>デプロイ後に Workspace を削除する。(永続させる Workspace は default のみ)</p>
+<li><p>デプロイ後に workspace を削除する。(永続させる workspace は default のみ)</p>
 <blockquote>
 <div><p>Non-default workspaces are often related to feature branches in version control.
 The default workspace might correspond to the &quot;master&quot; or &quot;trunk&quot; branch, which describes the intended state of production infrastructure.
@@ -300,6 +298,12 @@ Once the change is merged and deployed to the default workspace, the test infras
 </div></blockquote>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>公式ガイドで謳われているユースケースを読むと GitHub Flow での運用が一番馴染みそう。</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="pros-and-cons">
@@ -315,19 +319,19 @@ Once the change is merged and deployed to the default workspace, the test infras
 <h3>Cons<a class="headerlink" href="#cons" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul>
 <li><div class="line-block">
-<div class="line">Workspace を使うと、Workspace : tf ファイルが、多 : 1 の関係になる。</div>
-<div class="line">1つの tf ファイルを共有することになるので、特定の Workspace のみに存在するリソースの定義が難しい。</div>
+<div class="line">Workspaces を使うと、workspace : tf ファイルが、多 : 1 の関係になる。</div>
+<div class="line">1つの tf ファイルを共有することになるので、特定の workspace のみに存在するリソースの定義が難しい。</div>
 <div class="line">&quot;count&quot; や三項演算子を駆使すれば実現できるが、テンプレートが複雑になるので、維持運用が困難になる可能性がある。</div>
 </div>
 </li>
 <li><div class="line-block">
-<div class="line">default 以外の Workspace を一時的な環境とする場合、環境差分を毎回定義しなければいけなくなる。</div>
+<div class="line">default 以外の workspace を一時的な環境とする場合、環境差分を毎回定義しなければいけなくなる。</div>
 <div class="line">環境差分をリポジトリ内に持つとなると、本番稼働で不要なファイルが存在することになる。</div>
 </div>
 </li>
 <li><div class="line-block">
 <div class="line">Workspaces の利用有無に関わらず、環境差分となり得る定義を切り出して管理する必要がある。</div>
-<div class="line">特定の環境に固有のリソースの作成を認めないルールとするなら利用価値があるが、そうでなければあえて利用するメリットがない。</div>
+<div class="line">特定の環境に固有のリソースの作成を認めないルールとするなら利用価値があるが、そうでなければ制約が強くなるだけなのであえて利用するメリットがない。</div>
 </div>
 </li>
 </ul>
