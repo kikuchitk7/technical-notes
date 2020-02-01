@@ -70,3 +70,6 @@ html_static_path = ['_static']
 html_sidebars = {
     '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'],
 }
+
+# My Style
+html_style = "css/my_theme.css"
