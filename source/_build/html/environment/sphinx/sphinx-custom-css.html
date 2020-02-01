@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="テスト" href="../../testing/testing.html" />
+    <link rel="prev" title="Sphinx のドキュメントを Markdown で作成する" href="sphinx-by-markdown.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,12 +82,25 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../iac/iac.html">Infrastructure as Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../environment.html">環境構築</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../environment.html">環境構築</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sphinx.html">Sphinx の環境構築</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sphinx-githubpages.html">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sphinx でカスタム CSS を適用する</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">参考</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">AWS ではじめる機械学習</a></li>
 </ul>
@@ -133,6 +148,10 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../environment.html">環境構築</a> &raquo;</li>
+        
+          <li><a href="sphinx.html">Sphinx の環境構築</a> &raquo;</li>
+        
       <li>Sphinx でカスタム CSS を適用する</li>
     
     
@@ -169,9 +188,10 @@
 </div>
 <div class="section" id="id2">
 <h2>設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="static-css-css">
-<h3>_static/css/ にカスタム CSS を作成する。<a class="headerlink" href="#static-css-css" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;theme.css&quot;</span><span class="o">)</span><span class="p">;</span>
+<ul>
+<li><p>_static/css/ にカスタム CSS を作成する。</p>
+<blockquote>
+<div><div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;theme.css&quot;</span><span class="o">)</span><span class="p">;</span>
 
 <span class="p">.</span><span class="nc">wy-nav-content</span> <span class="p">{</span>
     <span class="k">max-width</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
@@ -190,11 +210,16 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>copy.py に下記を追記する。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_style</span> <span class="o">=</span> <span class="s2">&quot;css/my_theme.css&quot;</span>
+</div></blockquote>
+</li>
+<li><p>copy.py に下記を追記する。</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_style</span> <span class="o">=</span> <span class="s2">&quot;css/my_theme.css&quot;</span>
 </pre></div>
 </div>
-</div>
+</div></blockquote>
+</li>
+</ul>
 </div>
 <div class="section" id="id3">
 <h2>参考<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -209,6 +234,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../testing/testing.html" class="btn btn-neutral float-right" title="テスト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sphinx-by-markdown.html" class="btn btn-neutral float-left" title="Sphinx のドキュメントを Markdown で作成する" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
