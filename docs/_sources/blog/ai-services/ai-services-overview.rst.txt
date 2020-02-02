@@ -107,11 +107,19 @@ AWS によって機械学習モデルを生成する仕組みが提供される�
 AI サービスの概要
 ^^^^^^^^^^^^^^^^^^^^^
 | AI サービスの概要について下記の表にまとめます。
-| 分類は「AWS の ML スタック」に従います。
-| 各サービスの概要を一言でまとめ、代表的なユースケースを記載する。
-| 上記で説明した使い方のパターンをまとめる。
-| 読者の多くは東京リージョン (「東京 R」と表記) での利用を想定していると考えられるため利用可否を記載する。
-| また、言語を扱うサービスは日本語の対応状況を記載。
+| ここでは簡単な説明に留め、次回以降に詳細な説明を行うこととします。
+
+注意事項
+++++++++++++++
+- 2020年2月3日時点の公開情報に基づいて作成する。
+- 分類は「AWS の ML スタック」に従う。
+- 「利用パターン」は、上記で説明した使い方のパターンであり、表では番号のみを示す。
+
+  - パターン①：AWS が生成した学習済の機械学習モデルを使う。
+  - パターン②：利用者独自の学習データから機械学習モデルを生成して使う。
+
+- | 読者の多くは東京リージョンでの利用を想定していると考えられるため、東京リージョンでの利用可否を記載する。
+  | また、言語を扱うサービスはカッコ内に日本語の対応状況を記載する。
 
 
 .. list-table::
@@ -120,63 +128,71 @@ AI サービスの概要
 
     * - 分類
       - サービス名
-      - 概要
-      - ユースケース
-      - 利用パターン
+      - サービスの一言説明
+      - 代表的なユースケース
+      - 使い方のパターン
       - 東京での利用可否
     * - Vision
       - `Amazon Rekognition <https://aws.amazon.com/jp/rekognition/>`_
       - 画像・動画像解析
-      - X
-      - Y
+      - | - ラベル：画像・動画像内の物体 (自動車、人間…) とシーン () を特定する。
+        | - カスタムラベル：
+        | - コンテンツのモデレーション：
+        | - テキスト検出：
+        | - 顔検出と分析：
+        | - 顔検索と検証：
+        | - 有名人の認識：
+        | - 動線の分析：
+      - | ① (Custom Label 以外)
+        | ② (Custom Label)
       - ○
     * - Speech
       - `Amazon Polly <https://aws.amazon.com/jp/polly/>`_
       - テキストの読み上げ
       - X
-      - Y
+      - ①
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
-      - 音声の文字起こし
+      -  | 音声の文字起こし
       - X
-      - Y
+      - ①
       - | ○
         | (一部日本語未対応)
     * - 
       - `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_
       - 医療に特化した音声の文字起こし
       - X
-      - Y
+      - ①
       - | ×
         | (日本語未対応)
     * - Text
       - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
       - 自然言語処理・テキスト分析
       - X
-      - Y
+      - ①
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_
       - 医療に特化した自然言語処理・テキスト分析
       - X
-      - Y
+      - ①
       - | ×
         | (日本語未対応)
     * - 
       - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
       - テキストの翻訳
       - X
-      - Y
+      - ①
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
       - ドキュメント分析
       - X
-      - Y
+      - ①
       - | ×
         | (日本語未対応)
     * - Search
@@ -189,38 +205,38 @@ AI サービスの概要
       - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
       - チャットボット
       - X
-      - Y
+      - ①
       - | ×
         | (日本語未対応)
     * - Personalization
       - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
       - レコメンド
       - X
-      - Y
+      - ②
       - ○
     * - Forecasting
       - `Amazon Forecast <https://aws.amazon.com/jp/forecast/>`_
       - 時系列データの予測
-      - X
-      - Y
+      - 商品、
+      - ②
       - ○
     * - Fraud
       - `Amazon Fraud Detection (プレビュー) <https://aws.amazon.com/jp/fraud-detector/>`_
       - 不正検知
       - X
-      - Y
+      - ②
       - ×
     * - Development
       - `Amazon CodeGuru (プレビュー) <https://aws.amazon.com/jp/codeguru/>`_
       - コードレビュー
       - X
-      - Y
+      - ①
       - ×
     * - Contact Center
       - `Contact Lens for Amazon Connect (プレビュー) <https://aws.amazon.com/jp/connect/contact-lens/>`_
       - Amazon Connect のコンタクトセンター分析
       - X
-      - Y
+      - ①？
       - ×
 
 まとめ
