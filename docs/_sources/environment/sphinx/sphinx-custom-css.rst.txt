@@ -14,34 +14,33 @@ Sphinx でカスタム CSS を適用する
 設定
 ------------
 
-_static/css/ にカスタム CSS を作成する。
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- _static/css/ にカスタム CSS を作成する。
 
-.. code-block:: css
+    .. code-block:: css
 
-    @import url("theme.css");
-    
-    .wy-nav-content {
-        max-width: none;
-    }
+        @import url("theme.css");
+        
+        .wy-nav-content {
+            max-width: none;
+        }
 
-    h1,h2,h3,h4,h5,h6 {
-        border-bottom: 1px solid #ccc;
-    }
+        h1,h2,h3,h4,h5,h6 {
+            border-bottom: 1px solid #ccc;
+        }
 
-    .wy-table-responsive table td, .wy-table-responsive table th {
-        white-space: normal;
-    }
+        .wy-table-responsive table td, .wy-table-responsive table th {
+            white-space: normal;
+        }
 
-    colgroup {
-        display: none;
-    }
+        colgroup {
+            display: none;
+        }
 
-copy.py に下記を追記する。
+- copy.py に下記を追記する。
 
-.. code-block:: python
+    .. code-block:: python
 
-    html_style = "css/my_theme.css"
+        html_style = "css/my_theme.css"
 
 
 参考
