@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sphinx と GitHub Pages を使ってドキュメントを公開する &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Sphinx のドキュメントを Markdown で作成する" href="sphinx-by-markdown.html" />
+    <link rel="prev" title="Sphinx の環境構築" href="sphinx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iac/iac.html">Infrastructure as Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../environment.html">環境構築</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sphinx.html">Sphinx の環境構築</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sphinx と GitHub Pages を使ってドキュメントを公開する</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">前提</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">環境構築 (ローカル)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#github">GitHub の設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#github-pages">GitHub Pages の確認</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx-custom-css.html">Sphinx でカスタム CSS を適用する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../environment.html">環境構築</a> &raquo;</li>
+        
+          <li><a href="sphinx.html">Sphinx の環境構築</a> &raquo;</li>
+        
+      <li>Sphinx と GitHub Pages を使ってドキュメントを公開する</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/environment/sphinx/sphinx-githubpages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sphinx-github-pages">
+<h1>Sphinx と GitHub Pages を使ってドキュメントを公開する<a class="headerlink" href="#sphinx-github-pages" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>前提<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>macOS Catalina バージョン 10.15</p></li>
+<li><p>Python 3.7.4</p></li>
+<li><p>Public な GitHub repository を作成済</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>環境構築 (ローカル)<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li><p>公開用の repository を clone する。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone git clone https://github.com/kikuchitk7/technical-notes.git
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>clone したディレクトリに移動する。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ./technical-notes
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Sphinx を pip でインストールする。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install -U sphinx
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Collecting</span> <span class="n">sphinx</span>
+<span class="p">(</span><span class="n">中略</span><span class="p">)</span>
+<span class="n">Installing</span> <span class="n">collected</span> <span class="n">packages</span><span class="p">:</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">devhelp</span><span class="p">,</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">applehelp</span><span class="p">,</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">htmlhelp</span><span class="p">,</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">jsmath</span><span class="p">,</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">qthelp</span><span class="p">,</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">serializinghtml</span><span class="p">,</span> <span class="n">sphinx</span>
+<span class="n">Successfully</span> <span class="n">installed</span> <span class="n">sphinx</span><span class="o">-</span><span class="mf">2.2</span><span class="o">.</span><span class="mi">0</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">applehelp</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">devhelp</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">htmlhelp</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">2</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">jsmath</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">qthelp</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">2</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">serializinghtml</span><span class="o">-</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>拡張テーマ (sphinx_rtd_theme) をインストールする。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install sphinx_rtd_theme
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Collecting</span> <span class="n">sphinx_rtd_theme</span>
+<span class="p">(</span><span class="n">中略</span><span class="p">)</span>
+<span class="n">Installing</span> <span class="n">collected</span> <span class="n">packages</span><span class="p">:</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">rtd</span><span class="o">-</span><span class="n">theme</span>
+<span class="n">Successfully</span> <span class="n">installed</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">rtd</span><span class="o">-</span><span class="n">theme</span><span class="o">-</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">3</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>sphinx-quickstart でプロジェクトを作成する。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sphinx-quickstart
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Sphinx 2.2.0 クイックスタートユーティリティへようこそ。
+
+以下の設定値を入力してください（Enter キーのみ押した場合、
+かっこで囲まれた値をデフォルト値として受け入れます）。
+
+選択されたルートパス: .
+
+Sphinx 出力用のビルドディレクトリを配置する方法は2つあります。
+ルートパス内にある &quot;_build&quot; ディレクトリを使うか、
+ルートパス内に &quot;source&quot; と &quot;build&quot; ディレクトリを分ける方法です。
+&gt; ソースディレクトリとビルドディレクトリを分ける（y / n） [n]: y
+
+プロジェクト名は、ビルドされたドキュメントのいくつかの場所にあります。
+&gt; プロジェクト名: docs
+&gt; 著者名（複数可）: kikuchitk7
+&gt; プロジェクトのリリース []:
+
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
+
+For a list of supported codes, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+&gt; プロジェクトの言語 [en]: ja
+
+ファイル ./source/conf.py を作成しています。
+ファイル ./source/index.rst を作成しています。
+ファイル ./Makefile を作成しています。
+ファイル ./make.bat を作成しています。
+
+終了：初期ディレクトリ構造が作成されました。
+
+マスターファイル ./source/index.rst を作成して
+他のドキュメントソースファイルを作成します。次のように Makefile を使ってドキュメントを作成します。
+ make builder
+ &quot;builder&quot; はサポートされているビルダーの 1 つです。 例: html, latex, または linkcheck。
+</pre></div>
+</div>
+<p>下記がインストールされる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tree .
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── Makefile
+├── README.md
+├── build
+├── make.bat
+└── source
+    ├── _static
+    ├── _templates
+    ├── conf.py
+    └── index.rst
+
+4 directories, 5 files
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Makefile を修正する。</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>BUILDDIR を &quot;docs&quot; に変更する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILDDIR</span>      <span class="o">=</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>GitHub Pages でこの&quot;docs&quot; ディレクトリを公開する。</p>
+</div>
+<ul class="simple">
+<li><p>build のコマンドを変更する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#%: Makefile
+#  @$(SPHINXBUILD) -M $@ &quot;$(SOURCEDIR)&quot; &quot;$(BUILDDIR)&quot; $(SPHINXOPTS) $(O)
+
+html:
+  @$(SPHINXBUILD) -b html &quot;$(SOURCEDIR)&quot; &quot;$(BUILDDIR)&quot; $(SPHINXOPTS) $(O)
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>-M オプションでは出力フォルダの指定ができそうになかった。
+スマートな方法ではないが元々の記載をコメントアウトして、 -b オプション版を追記した。</p>
+</div>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>conf.py を修正する。</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>ファイルの頭の方に import 文を追記する。</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+</pre></div>
+</div>
+<ul>
+<li><p>&quot;extentions&quot; に拡張モジュールを追加して下記とする。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx_rtd_theme&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.todo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.githubpages&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>&quot;html_theme&quot; を 'alabaster' から 'sphinx_rtd_theme' に修正する。</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>上記の付近に &quot;html_theme_path&quot; を追加する。</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>ビルドする。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make html
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>docs ディレクトリに .nojekyll を作成する。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir ./docs
+$ touch ./docs/.nojekyll
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>変更内容をステージ、コミット、プッシュする。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add -a
+$ git commit -m <span class="s1">&#39;Initial commit&#39;</span>
+$ git push origin master
+</pre></div>
+</div>
+</div>
+<div class="section" id="github">
+<h2>GitHub の設定<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li><p>GitHub Pages の公開設定をする。</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>GitHub の Settings で、 Source を &quot;master branch / docs folder&quot; に変更する。</p></li>
+</ul>
+<img alt="../../_images/GitHub_Pages_Settings_Source.png" src="../../_images/GitHub_Pages_Settings_Source.png" />
+</div></blockquote>
+</div>
+<div class="section" id="github-pages">
+<h2>GitHub Pages の確認<a class="headerlink" href="#github-pages" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li><p>公開されたページ(<a class="reference external" href="https://kikuchitk7.github.io/technical-notes/">https://kikuchitk7.github.io/technical-notes/</a>)を確認する。</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>参考<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://debugroom.github.io/doc/memo/work/sphinx/install.html#">Sphinxの導入とGitHubページの作成</a></p></li>
+<li><p><a class="reference external" href="https://planset-study-sphinx.readthedocs.io/ja/latest/04.html#id14">4. Sphinxでの文章の書き方(reStructuredText)</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/Sphinx/">Sphinx 2.2.0</a></p></li>
+<li><p><a class="reference external" href="https://qiita.com/tutuz/items/88a32d94d700b33dc3ea">SphinxとGitHub Pagesで技術ノートを公開しよう！</a></p></li>
+<li><p><a class="reference external" href="http://hirohio.hatenablog.com/entry/2018/07/17/001045">GitHub PagesでSphinxにCSSが適用されない!!</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-users.jp/articles/expertpython/restructuredtext.html">reStructuredText入門</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sphinx-by-markdown.html" class="btn btn-neutral float-right" title="Sphinx のドキュメントを Markdown で作成する" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sphinx.html" class="btn btn-neutral float-left" title="Sphinx の環境構築" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
