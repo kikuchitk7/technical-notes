@@ -123,119 +123,99 @@ AI サービスの概要
 
 
 .. list-table::
-    :widths: 5, 5, 5, 5, 5, 5
+    :widths: 5, 5, 5, 5, 5
     :header-rows: 1
 
     * - 分類
       - サービス名
-      - サービスの一言説明
-      - 代表的なユースケース
+      - サービスの説明とユースケース
       - 使い方のパターン
       - 東京での利用可否
     * - Vision
       - `Amazon Rekognition <https://aws.amazon.com/jp/rekognition/>`_
-      - 画像・動画像解析
-      - | - ラベル：画像・動画像内の物体 (自動車、人間…) とシーン () を特定する。
-        | - カスタムラベル：
-        | - コンテンツのモデレーション：
-        | - テキスト検出：
-        | - 顔検出と分析：
-        | - 顔検索と検証：
-        | - 有名人の認識：
-        | - 動線の分析：
-      - | ① (Custom Label 以外)
-        | ② (Custom Label)
+      - | **画像・動画像解析**
+        | - 画像・動画像内の物体やシーンを説明するラベルの特定
+        | - X
+        | - 画像・動画像の有害コンテンツの特定
+      - | ① (カスタムラベル 以外)
+        | ② (カスタムラベル)
       - ○
     * - Speech
       - `Amazon Polly <https://aws.amazon.com/jp/polly/>`_
-      - テキストの読み上げ
-      - X
+      - | **テキストの読み上げ**
+        | - コールセンター業務の定型文章の読み上げ
       - ①
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
-      -  | 音声の文字起こし
-      - X
+      - | **音声の文字起こし**
+        | - コールセンターでの顧客とのやり取りの文書化
       - ①
       - | ○
         | (一部日本語未対応)
-    * - 
-      - `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_
-      - 医療に特化した音声の文字起こし
-      - X
-      - ①
-      - | ×
-        | (日本語未対応)
     * - Text
       - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
-      - 自然言語処理・テキスト分析
-      - X
+      - | **自然言語処理・テキスト分析**
+        | - 顧客満足度調査結果 (アンケート) の感情分析やトピック抽出
       - ①
       - | ○
         | (日本語対応済)
     * - 
-      - `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_
-      - 医療に特化した自然言語処理・テキスト分析
-      - X
-      - ①
-      - | ×
-        | (日本語未対応)
-    * - 
       - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
-      - テキストの翻訳
-      - X
+      - | **テキストの翻訳**
+        | - ユーザーマニュアルの他言語への自動翻訳 (多言語対応)
       - ①
       - | ○
         | (日本語対応済)
     * - 
       - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
-      - ドキュメント分析
-      - X
+      - | **ドキュメント分析**
+        | - X
       - ①
       - | ×
         | (日本語未対応)
     * - Search
       - `Amazon Kendra (プレビュー) <https://aws.amazon.com/jp/kendra/>`_
-      - 検索サービス
-      - X
-      - Y
+      - | **検索サービス**
+        | - X
+      - ①
       - ×
     * - Chatbot
       - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
-      - チャットボット
-      - X
+      - | **チャットボット**
+        | - X
       - ①
       - | ×
         | (日本語未対応)
     * - Personalization
       - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
-      - レコメンド
-      - X
+      - | **レコメンド**
+        | - X
       - ②
       - ○
     * - Forecasting
       - `Amazon Forecast <https://aws.amazon.com/jp/forecast/>`_
-      - 時系列データの予測
-      - 商品、
+      - | **時系列データの予測**
+        | - 商品、
       - ②
       - ○
     * - Fraud
       - `Amazon Fraud Detection (プレビュー) <https://aws.amazon.com/jp/fraud-detector/>`_
-      - 不正検知
-      - X
+      - | **不正検知**
+        | - X
       - ②
       - ×
     * - Development
       - `Amazon CodeGuru (プレビュー) <https://aws.amazon.com/jp/codeguru/>`_
-      - コードレビュー
-      - X
+      - | **コードレビューの自動化**
+        | - X
       - ①
       - ×
     * - Contact Center
       - `Contact Lens for Amazon Connect (プレビュー) <https://aws.amazon.com/jp/connect/contact-lens/>`_
-      - Amazon Connect のコンタクトセンター分析
-      - X
+      - | **Amazon Connect のコンタクトセンター分析**
+        | - X
       - ①？
       - ×
 

@@ -286,18 +286,16 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </ul>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>分類</p></th>
 <th class="head"><p>サービス名</p></th>
-<th class="head"><p>サービスの一言説明</p></th>
-<th class="head"><p>代表的なユースケース</p></th>
+<th class="head"><p>サービスの説明とユースケース</p></th>
 <th class="head"><p>使い方のパターン</p></th>
 <th class="head"><p>東京での利用可否</p></th>
 </tr>
@@ -305,26 +303,24 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 <tbody>
 <tr class="row-even"><td><p>Vision</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/rekognition/">Amazon Rekognition</a></p></td>
-<td><p>画像・動画像解析</p></td>
 <td><div class="line-block">
-<div class="line">- ラベル：画像・動画像内の物体 (自動車、人間…) とシーン () を特定する。</div>
-<div class="line">- カスタムラベル：</div>
-<div class="line">- コンテンツのモデレーション：</div>
-<div class="line">- テキスト検出：</div>
-<div class="line">- 顔検出と分析：</div>
-<div class="line">- 顔検索と検証：</div>
-<div class="line">- 有名人の認識：</div>
-<div class="line">- 動線の分析：</div>
+<div class="line"><strong>画像・動画像解析</strong></div>
+<div class="line">- 画像・動画像内の物体やシーンを説明するラベルの特定</div>
+<div class="line">- X</div>
+<div class="line">- 画像・動画像の有害コンテンツの特定</div>
 </div>
 </td>
-<td><p>| ① (Custom Label 以外)
-| ② (Custom Label)</p></td>
+<td><p>| ① (カスタムラベル 以外)
+| ② (カスタムラベル)</p></td>
 <td><p>○</p></td>
 </tr>
 <tr class="row-odd"><td><p>Speech</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/polly/">Amazon Polly</a></p></td>
-<td><p>テキストの読み上げ</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>テキストの読み上げ</strong></div>
+<div class="line">- コールセンター業務の定型文章の読み上げ</div>
+</div>
+</td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -335,10 +331,10 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/transcribe/">Amazon Transcribe</a></p></td>
 <td><div class="line-block">
-<div class="line">音声の文字起こし</div>
+<div class="line"><strong>音声の文字起こし</strong></div>
+<div class="line">- コールセンターでの顧客とのやり取りの文書化</div>
 </div>
 </td>
-<td><p>X</p></td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -346,21 +342,13 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/transcribe/medical/">Amazon Transcribe Medical</a></p></td>
-<td><p>医療に特化した音声の文字起こし</p></td>
-<td><p>X</p></td>
-<td><p>①</p></td>
+<tr class="row-odd"><td><p>Text</p></td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/">Amazon Comprehend</a></p></td>
 <td><div class="line-block">
-<div class="line">×</div>
-<div class="line">(日本語未対応)</div>
+<div class="line"><strong>自然言語処理・テキスト分析</strong></div>
+<div class="line">- 顧客満足度調査結果 (アンケート) の感情分析やトピック抽出</div>
 </div>
 </td>
-</tr>
-<tr class="row-even"><td><p>Text</p></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/">Amazon Comprehend</a></p></td>
-<td><p>自然言語処理・テキスト分析</p></td>
-<td><p>X</p></td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -368,21 +356,13 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/medical/">Amazon Comprehend Medical</a></p></td>
-<td><p>医療に特化した自然言語処理・テキスト分析</p></td>
-<td><p>X</p></td>
-<td><p>①</p></td>
-<td><div class="line-block">
-<div class="line">×</div>
-<div class="line">(日本語未対応)</div>
-</div>
-</td>
-</tr>
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/translate/">Amazon Translate</a></p></td>
-<td><p>テキストの翻訳</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>テキストの翻訳</strong></div>
+<div class="line">- ユーザーマニュアルの他言語への自動翻訳 (多言語対応)</div>
+</div>
+</td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
@@ -392,8 +372,11 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/textract/">Amazon Textract</a></p></td>
-<td><p>ドキュメント分析</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>ドキュメント分析</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
@@ -403,15 +386,21 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </tr>
 <tr class="row-even"><td><p>Search</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/kendra/">Amazon Kendra (プレビュー)</a></p></td>
-<td><p>検索サービス</p></td>
-<td><p>X</p></td>
-<td><p>Y</p></td>
+<td><div class="line-block">
+<div class="line"><strong>検索サービス</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
+<td><p>①</p></td>
 <td><p>×</p></td>
 </tr>
 <tr class="row-odd"><td><p>Chatbot</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/lex/">Amazon Lex</a></p></td>
-<td><p>チャットボット</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>チャットボット</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>①</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
@@ -421,36 +410,51 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </tr>
 <tr class="row-even"><td><p>Personalization</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/personalize/">Amazon Personalize</a></p></td>
-<td><p>レコメンド</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>レコメンド</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>②</p></td>
 <td><p>○</p></td>
 </tr>
 <tr class="row-odd"><td><p>Forecasting</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/forecast/">Amazon Forecast</a></p></td>
-<td><p>時系列データの予測</p></td>
-<td><p>商品、</p></td>
+<td><div class="line-block">
+<div class="line"><strong>時系列データの予測</strong></div>
+<div class="line">- 商品、</div>
+</div>
+</td>
 <td><p>②</p></td>
 <td><p>○</p></td>
 </tr>
 <tr class="row-even"><td><p>Fraud</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/fraud-detector/">Amazon Fraud Detection (プレビュー)</a></p></td>
-<td><p>不正検知</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>不正検知</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>②</p></td>
 <td><p>×</p></td>
 </tr>
 <tr class="row-odd"><td><p>Development</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/codeguru/">Amazon CodeGuru (プレビュー)</a></p></td>
-<td><p>コードレビュー</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>コードレビューの自動化</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>①</p></td>
 <td><p>×</p></td>
 </tr>
 <tr class="row-even"><td><p>Contact Center</p></td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/connect/contact-lens/">Contact Lens for Amazon Connect (プレビュー)</a></p></td>
-<td><p>Amazon Connect のコンタクトセンター分析</p></td>
-<td><p>X</p></td>
+<td><div class="line-block">
+<div class="line"><strong>Amazon Connect のコンタクトセンター分析</strong></div>
+<div class="line">- X</div>
+</div>
+</td>
 <td><p>①？</p></td>
 <td><p>×</p></td>
 </tr>
