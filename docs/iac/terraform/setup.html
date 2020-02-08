@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Terraform のセットアップ &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Terraform の 設定" href="settings.html" />
+    <link rel="prev" title="Terraform" href="terraform.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/git.html">Git</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../iac.html">Infrastructure as Code</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="terraform.html">Terraform</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Terraform のセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">前提</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">セットアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">参考文献</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Terraform の 設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="team.html">チーム開発における注意事項</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workspaces.html">Workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../iac.html">Infrastructure as Code</a> &raquo;</li>
+        
+          <li><a href="terraform.html">Terraform</a> &raquo;</li>
+        
+      <li>Terraform のセットアップ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/iac/terraform/setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="terraform">
+<h1>Terraform のセットアップ<a class="headerlink" href="#terraform" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>前提<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>「実践 Terraform」に従って初期設定を行う。</p></li>
+<li><p>Cloud9 上で Terraform を利用する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ aws --version
+aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.45
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>IAM ユーザで Terraform を利用する。</p></li>
+<li><p>Terraform のバージョンアップに柔軟に対応するため、<a class="reference external" href="https://github.com/tfutils/tfenv">tfenv</a> を利用する。</p></li>
+<li><p>Terraform は 2020年1月13日現在の最新バージョンである v0.12.19 を利用する。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>セットアップ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="iam">
+<h3>IAM ユーザの作成<a class="headerlink" href="#iam" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>(必須) プログラムによるアクセス</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Terraform からの環境構築に必須であるため。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>(任意) マネジメントコンソールへのログイン</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ログインしない場合は不要であるため。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>(必須) Administrator Access をアタッチする。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>インフラ構築は管理者権限に近い権限が必要であるため。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>環境変数の設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>クレデンシャルとデフォルトリージョンを設定する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=(</span>Access Key ID を入力<span class="o">)</span>
+$ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=(</span>Secret Access Key を入力<span class="o">)</span>
+$ <span class="nb">export</span> <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>ap-northeast-1
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>設定の正常性を確認する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="nv">$AWS_ACCESS_KEY_ID</span> <span class="nv">$AWS_SECRET_ACCESS_KEY</span> <span class="nv">$AWS_DEFAULT_REGION</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>tfenv のマニュアルインストール<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>tfenv を GitHub のリポジトリからクローンする。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+
+<span class="c1"># 出力例</span>
+Cloning into <span class="s1">&#39;/home/ec2-user/.tfenv&#39;</span>...
+remote: Enumerating objects: <span class="m">916</span>, <span class="k">done</span>.
+remote: Total <span class="m">916</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">916</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">916</span>/916<span class="o">)</span>, <span class="m">171</span>.51 KiB <span class="p">|</span> <span class="m">474</span>.00 KiB/s, <span class="k">done</span>.
+Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">573</span>/573<span class="o">)</span>, <span class="k">done</span>.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>パスを通す。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.tfenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>.bash_profile を読み込んで反映する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bash_profile
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>インストール後の正常性を確認する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv --version
+
+<span class="c1"># 出力例</span>
+tfenv <span class="m">2</span>.0.0-alpha3-1-ge21f9e0
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="tfenv-terraform">
+<h3>tfenv による Terraform のインストール<a class="headerlink" href="#tfenv-terraform" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>最新バージョンの Terraform をインストールする。この項目の執筆時点では、2020年1月2日時点では v0.12.18 が最新だった。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv install latest
+
+<span class="c1"># 出力例</span>
+Installing Terraform v0.12.18
+Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_linux_amd64.zip
+<span class="c1">################################################################################################################################## 100.0%</span>
+Downloading SHA <span class="nb">hash</span> file from https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_SHA256SUMS
+No keybase install found, skipping OpenPGP signature verification
+Archive:  tfenv_download.ztm7xc/terraform_0.12.18_linux_amd64.zip
+  inflating: /home/ec2-user/.tfenv/versions/0.12.18/terraform
+Installation of terraform v0.12.18 successful
+Switching to v0.12.18
+Switching completed
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>特定バージョンをインストールしたい場合は remote-list でインストール可能なバージョンを調べてインストールする。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv list-remote
+
+<span class="c1"># 出力例</span>
+<span class="m">0</span>.12.18
+<span class="m">0</span>.12.17
+<span class="m">0</span>.12.16
+<span class="o">(</span>以下、省略<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>自動でインストールしたバージョンに切り替わるので注意する。</p></li>
+<li><p>インストールメッセージの最後にも &quot;Switching completed&quot; と出力されている。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv install <span class="m">0</span>.12.19
+
+<span class="c1"># 出力例</span>
+Installing Terraform v0.12.19
+Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
+<span class="c1">############################################################################################################################################### 100.0%</span>
+Downloading SHA <span class="nb">hash</span> file from https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_SHA256SUMS
+No keybase install found, skipping OpenPGP signature verification
+Archive:  tfenv_download.hHWSwD/terraform_0.12.19_linux_amd64.zip
+  inflating: /home/ec2-user/.tfenv/versions/0.12.19/terraform
+Installation of terraform v0.12.19 successful
+Switching to v0.12.19
+Switching completed
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>tfenv でインストールされているバージョンは下記のコマンドで確認する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv list
+
+<span class="c1"># 出力例</span>
+* <span class="m">0</span>.12.19 <span class="o">(</span><span class="nb">set</span> by /home/ec2-user/environment/terraform-learning/.terraform-version<span class="o">)</span>
+  <span class="m">0</span>.12.18
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>tfenv で利用するバージョンは下記のコマンドで切り替える。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv use <span class="m">0</span>.12.18
+
+<span class="c1"># 出力例</span>
+Switching to v0.12.18
+Switching completed
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul>
+<li><p>list コマンドでも切り替わりを確認できる。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tfenv list
+
+<span class="c1"># 出力例</span>
+  <span class="m">0</span>.12.19
+* <span class="m">0</span>.12.18 <span class="o">(</span><span class="nb">set</span> by /home/ec2-user/environment/terraform-learning/.terraform-version<span class="o">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>チーム開発における Terraform のバージョンの統一<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>.terraform-vesion を作成し、利用したいバージョンを記載しておき、これを Git で管理する。</p></li>
+<li><p>terraform install を実行するだけで、.terraform-vesion に記載されたバージョンがインストールされる。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="m">0</span>.12.17 &gt; ./.terraform-version
+$ cat ./.terraform-version
+
+<span class="c1"># 出力例</span>
+<span class="m">0</span>.12.17
+
+$ tfenv install
+
+<span class="c1"># 出力例</span>
+Installing Terraform v0.12.17
+Downloading release tarball from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
+<span class="c1">############################################################################################################################################### 100.0%</span>
+Downloading SHA <span class="nb">hash</span> file from https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_SHA256SUMS
+No keybase install found, skipping OpenPGP signature verification
+Archive:  tfenv_download.TzGp9C/terraform_0.12.17_linux_amd64.zip
+  inflating: /home/ec2-user/.tfenv/versions/0.12.17/terraform
+Installation of terraform v0.12.17 successful
+Switching to v0.12.17
+Switching completed
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Terraform の利用開始<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>Terraform の利用を開始するために terraform init コマンドを実行する。</p></li>
+<li><p>Terraform のルートディレクトリに移動して下記のコマンドを実行する。</p></li>
+<li><p>ルートディレクトリ配下に ./terraform ディレクトリが作成されて、必要なバイナリがダウンロードされる。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ terraform init
+
+<span class="c1"># 出力例</span>
+Initializing the backend...
+
+Initializing provider plugins...
+- Checking <span class="k">for</span> available provider plugins...
+- Downloading plugin <span class="k">for</span> provider <span class="s2">&quot;aws&quot;</span> <span class="o">(</span>hashicorp/aws<span class="o">)</span> <span class="m">2</span>.44.0...
+
+The following providers <span class="k">do</span> not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add <span class="nv">version</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span> constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: <span class="nv">version</span> <span class="o">=</span> <span class="s2">&quot;~&gt; 2.44&quot;</span>
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running <span class="s2">&quot;terraform plan&quot;</span> to see
+any changes that are required <span class="k">for</span> your infrastructure. All Terraform commands
+should now work.
+
+If you ever <span class="nb">set</span> or change modules or backend configuration <span class="k">for</span> Terraform,
+rerun this <span class="nb">command</span> to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to <span class="k">do</span> so <span class="k">if</span> necessary.
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>.gitignore に ./terraform ディレクトリ配下を指定しておくこと。サイズが大きめのファイルがダウンロードされ、GitHub への Push に失敗する。</p></li>
+</ul>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>参考文献<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tfutils/tfenv">tfutils/tfenv</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="settings.html" class="btn btn-neutral float-right" title="Terraform の 設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="terraform.html" class="btn btn-neutral float-left" title="Terraform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
