@@ -23,7 +23,7 @@ AI サービスの全体像
 
 
 .. image:: ../../../images/AWSのMLスタック_2019_AIサービス.png
-.. image:: ../../../images/AWSのMLスタック_2019_new.png
+.. .. image:: ../../../images/AWSのMLスタック_2019_new.png
 
 (出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)
 
