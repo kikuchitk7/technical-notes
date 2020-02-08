@@ -72,4 +72,4 @@ html_sidebars = {
 }
 
 # My Style
-html_style = "css/my_theme.css"
+#html_style = "css/my_theme.css"
