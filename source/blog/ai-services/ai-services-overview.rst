@@ -3,15 +3,9 @@
 
 はじめに
 ----------------
-`前回 <https://news.mynavi.jp/itsearch/article/cloud/4799>`_ は、
+| `前回 <https://news.mynavi.jp/itsearch/article/cloud/4799>`_ は、
 AWS の機械学習サービスの全体像と機械学習を活用する際の前提事項ついてご説明しました。
-
 | 今回からは `AI サービス <https://aws.amazon.com/jp/machine-learning/ai-services/>`_ を見ていきたいと思います。
-| 下図の赤枠内が AI サービスであり、今回の記事の説明範囲です。
-
-.. image:: ../../../images/AWSのMLスタック_2019_AIサービス.png
-
-(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)
 
 | まずは AI サービスの全体像についてまとめます。
 | 次回から何回かに渡って、個々の AI サービスの詳細や具体的な使い方について扱っていきます。
@@ -26,6 +20,13 @@ AI サービスとは
 AI サービスの全体像
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 | AI サービスは、3つのレイヤーで提供される機械学習サービスで最上位に位置するサービスです。
+| 下図の赤枠内が AI サービスであり、今回の記事の説明範囲です。
+
+.. image:: ../../../images/AWSのMLスタック_2019_AIサービス.png
+
+(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)
+
+
 | `前回 <https://news.mynavi.jp/itsearch/article/cloud/4799>`_ の記事では、下記のように説明しました。
 
 .. list-table::
