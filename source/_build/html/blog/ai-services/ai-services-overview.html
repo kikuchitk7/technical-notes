@@ -93,14 +93,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">[第3回] AI サービスの全体像</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">AI サービスとは</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">AI サービスの全体像</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの特徴</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">AI サービスの概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">AI サービスとは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの全体像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">AI サービスの特徴</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">AI サービスの概要</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -176,9 +176,9 @@
 <div class="section" id="id1">
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4799">前回</a> は、
-AWS の機械学習サービスの全体像と機械学習を活用する際の前提事項ついてご説明させていただきしました。</p>
+AWS の機械学習サービスの全体像と機械学習を活用する際の前提事項ついてご説明しました。</p>
 <div class="line-block">
-<div class="line">今回からは AI サービスを見ていきたいと思います。</div>
+<div class="line">今回からは <a class="reference external" href="https://aws.amazon.com/jp/machine-learning/ai-services/">AI サービス</a> を見ていきたいと思います。</div>
 <div class="line">下図の赤枠内が AI サービスであり、今回の記事の説明範囲です。</div>
 </div>
 <img alt="../../_images/AWSのMLスタック_2019_AIサービス.png" src="../../_images/AWSのMLスタック_2019_AIサービス.png" />
@@ -190,11 +190,50 @@ AWS の機械学習サービスの全体像と機械学習を活用する際の�
 <p>今回の記事では、下記を理解していただくことを目標に解説をしていきます。
 - AI サービスのラインナップとそれぞれの概要がわかる。</p>
 </div>
-<div class="section" id="id3">
-<h2>AI サービスとは<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
-<h3>AI サービスの全体像<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>AI サービスは、3つのレイヤーで提供される機械学習サービスで最上位に位置するサービスです。</p>
+<h2>AI サービスとは<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h3>AI サービスの全体像<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">AI サービスは、3つのレイヤーで提供される機械学習サービスで最上位に位置するサービスです。</div>
+<div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4799">前回</a> の記事では、下記のように説明しました。</div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>サービス名</p></th>
+<th class="head"><p>サービスの特徴</p></th>
+<th class="head"><p>導入の難易度</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AI サービス</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">AWS がユースケースごとに用意したサービスと自身の解決したい問題・課題とマッチする人向けのサービス。</div>
+<div class="line">(例) 機械翻訳がしたい → Amazon Translate、商品の在庫を予測したい → Amazon Forecast など</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">学習済の機械学習モデル、もしくは、機械学習モデルを生成する仕組みが AWS から提供される。</div>
+</div>
+</li>
+</ul>
+</td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">利用者が考える部分が少なくて済むため、「機械学習の深い知識なしに利用可能」であり、導入の難易度は最も低い</div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="line-block">
 <div class="line">「画像・動画像認識」や「機械翻訳」、「不正検知」といったユースケースごとにサービスが用意されている。</div>
 <div class="line">自身の抱えるビジネス上の問題・課題とユースケースが一致する場合に利用できる。</div>
@@ -219,16 +258,16 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 <img alt="../../_images/AWSのMLスタック_2019_new.png" src="../../_images/AWSのMLスタック_2019_new.png" />
 <p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
 </div>
-<div class="section" id="id5">
-<h3>AI サービスの特徴<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3>AI サービスの特徴<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>特徴は主に下記の2つ。</p>
 <ul class="simple">
 <li><p>各サービスのユースケースと使い方がわかれば導入できる。</p></li>
 <li><p>推論エンドポイントを使って、簡単にアプリに組み込める。</p></li>
 </ul>
 <p>それぞれ詳しく見ていきます。</p>
-<div class="section" id="id6">
-<h4>各サービスのユースケースと使い方がわかれば導入できる。<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id8">
+<h4>各サービスのユースケースと使い方がわかれば導入できる。<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">「AWS の ML スタック」の図に記載されているように、AI サービスの謳い文句は「機械学習の深い知識なしに利用可能」です。</div>
 <div class="line">これは、各サービスのユースケースと使い方がわかれば、機械学習アルゴリズムがわからなくても機械学習を導入することができることを意味する。</div>
@@ -245,8 +284,8 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 <p>例えば、パターン①には Amazon Translate (テキストの翻訳サービス) がある。
 利用者独自の語彙を定めるなど程度のカスタマイズは可能。</p>
 </div>
-<div class="section" id="id7">
-<h5>パターン②：利用者独自の学習データから機械学習モデルを生成して使う。<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="section" id="id9">
+<h5>パターン②：利用者独自の学習データから機械学習モデルを生成して使う。<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <p>AWS によって機械学習モデルを生成する仕組みが提供される。
 利用者が準備した学習データを使い、利用者独自の機械学習アルゴリズムを生成する。</p>
 <p>例えば、パターン②には Amazon Forecast (時系列データの予測サービス) があり、商品の需要予測に応用できる。
@@ -254,8 +293,8 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 利用者のデータに基づいた機械学習モデルを生成できるので、より確からしい需要予測ができる。</p>
 </div>
 </div>
-<div class="section" id="id8">
-<h4>推論エンドポイントを使って、簡単にアプリに組み込める。<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id10">
+<h4>推論エンドポイントを使って、簡単にアプリに組み込める。<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>他の AWS サービスと同様にエンドポイントが提供される。
 機械学習モデルを生成すると、推論エンドポイントが作成される。
 利用者のアプリから推論エンドポイントにアクセスすることで機械学習を取り入れることができる。</p>
@@ -269,14 +308,14 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 しかし、機械学習に関する知識がゼロで良いという訳ではない。例えば、精度が出ない場合に未学習 (under-fitting)、過学習 (over-fitting) のいずれの状態にあるのかが判断できないと正しくチューニングできない。</p>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>AI サービスの概要<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id11">
+<h3>AI サービスの概要<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">AI サービスの概要について下記の表にまとめます。</div>
 <div class="line">ここでは簡単な説明に留め、次回以降に詳細な説明を行うこととします。</div>
 </div>
-<div class="section" id="id10">
-<h4>注意事項<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id12">
+<h4>注意事項<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ul>
 <li><p>2020年2月3日時点の公開情報に基づいて作成する。</p></li>
 <li><p>分類は「AWS の ML スタック」に従う。</p></li>
@@ -478,14 +517,14 @@ AI サービスのラインナップ (アイコンの数) が13個になった�
 </div>
 </div>
 </div>
-<div class="section" id="id11">
-<h2>まとめ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h2>まとめ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。</p>
 <p>次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id12">
-<h2>著者紹介<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h2>著者紹介<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
