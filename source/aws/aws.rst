@@ -6,6 +6,7 @@ AWS
    :caption: Contents:
 
    analytics/analytics
+   cli/cli
    compute/compute
    customerengagement/customerengagement
    machinelearning/machinelearning
