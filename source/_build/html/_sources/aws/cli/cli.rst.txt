@@ -8,8 +8,11 @@ AWS CLI
 ^^^^^^^^^^^^^^^^^^^^^^
 - Cloud9 の Amazon Linux におけるデフォルトバージョンを利用。
 
+.. code-block:: bash
+
     $ aws --version
     aws-cli/1.16.309 Python/2.7.16 Linux/4.14.154-99.181.amzn1.x86_64 botocore/1.13.45
+
 
 S3
 -----------
