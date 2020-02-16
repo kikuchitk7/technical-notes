@@ -17,8 +17,8 @@ AWS CLI
 S3
 -----------
 
-ls
-^^^^^^^^^^
+情報のリスト表示 (ls)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 S3 Bucket の一覧表示
 +++++++++++++++++++++++++++++
@@ -39,3 +39,16 @@ S3 Bucket 内のオブジェクトの一覧表示
 
     # 出力例
     2020-02-16 04:35:31       8528 terraform.tfstate
+
+
+Bucket ポリシーの表示
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ aws s3api get-bucket-policy --bucket <bucket-name>
+
+    # 出力例
+    {
+        "Policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::<aws-account-id>:root\"},\"Action\":\"s3:PutObject\",\"Resource\":\"arn:aws:s3:::<bucket-name>>/*\"}]}"
+    }
