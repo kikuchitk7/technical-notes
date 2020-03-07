@@ -91,6 +91,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id3">オプション</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-container-exec">docker container exec</a></li>
 </ul>
 </li>
 </ul>
@@ -217,6 +218,24 @@ $
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="docker-container-exec">
+<h3>docker container exec<a class="headerlink" href="#docker-container-exec" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>実行中のコンテナで任意のコマンドを実行できる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># testcontainer (CentOS) を起動</span>
+$ docker container run -t -d --rm --name testcontainer centos:latest
+0f49d3097f5dfb365f55d8d88b32e0284bee588edd14394a2b4dbb93d5c35420
+
+<span class="c1"># 起動確認</span>
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+0f49d3097f5d        centos:latest       <span class="s2">&quot;/bin/bash&quot;</span>         <span class="m">7</span> seconds ago       Up <span class="m">6</span> seconds                            testcontainer
+
+<span class="c1"># date コマンドを実行させる</span>
+$ docker container <span class="nb">exec</span> testcontainer date
+Sat Mar  <span class="m">7</span> <span class="m">02</span>:02:05 UTC <span class="m">2020</span>
+</pre></div>
 </div>
 </div>
 </div>

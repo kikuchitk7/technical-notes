@@ -61,3 +61,23 @@ docker container run
         [root@e65c61a608e5 /]# exit
         exit
         $ 
+
+
+docker container exec
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+実行中のコンテナで任意のコマンドを実行できる。
+
+.. code-block:: bash
+
+    # testcontainer (CentOS) を起動
+    $ docker container run -t -d --rm --name testcontainer centos:latest
+    0f49d3097f5dfb365f55d8d88b32e0284bee588edd14394a2b4dbb93d5c35420
+
+    # 起動確認
+    $ docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    0f49d3097f5d        centos:latest       "/bin/bash"         7 seconds ago       Up 6 seconds                            testcontainer
+
+    # date コマンドを実行させる
+    $ docker container exec testcontainer date
+    Sat Mar  7 02:02:05 UTC 2020
