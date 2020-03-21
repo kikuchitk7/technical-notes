@@ -37,3 +37,4 @@ Web API
 ^^^^^^^^^^^^^^^^^
 - `今さら聞けないIT用語：やたらと耳にするけど「API」って何？ <https://data.wingarc.com/what-is-api-16084>`_
 - `API  【 Application Programming Interface 】  <http://e-words.jp/w/API.html>`_
+- `APIファーストで開発する7つのメリット <https://developer.ntt.com/ja/blog/API%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B9%E3%83%88%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B7%E3%81%A4%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88>`_
