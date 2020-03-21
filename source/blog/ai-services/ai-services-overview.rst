@@ -4,7 +4,7 @@
 はじめに
 ----------------
 | `前回 <https://news.mynavi.jp/itsearch/article/cloud/4799>`_ は、AWS の機械学習サービスの全体像と機械学習を活用する際の前提事項ついてご説明しました。
-| 今回は `AI サービス <https://aws.amazon.com/jp/machine-learning/ai-services/>`_ を見ていきたいと思います。
+| 今回は `AI サービス <https://aws.amazon.com/jp/machine-learning/ai-services/>`_ の全体像を見ていきたいと思います。
 
 | まずは AI サービスの全体像についてまとめます。
 | 次回から何回かに渡って、個々の AI サービスの詳細や具体的な使い方について扱っていきます。
