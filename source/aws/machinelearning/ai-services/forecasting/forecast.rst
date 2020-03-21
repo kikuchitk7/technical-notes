@@ -66,7 +66,12 @@ Forecast における AutoML 機能
 
 固有事項
 ---------------
-- 学習データは **CSV 形式** で準備する。
+- データの準備
+
+    - 学習データは **CSV 形式** で準備する。
+    - 学習データは「 `Forecast のデータセットのガイドライン <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/dataset-import-guidelines-troubleshooting.html>`_ 」に従って準備する必要がある。
+    - 学習データは S3 に格納する。
+
 - データセットタイプとスキーマ
 
     - 下記の3種類のデータセットタイプをインポート可能
