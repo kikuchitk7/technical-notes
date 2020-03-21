@@ -91,7 +91,9 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../machinelearning.html">Machine Learning</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../ai-services.html">AI Services</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../ai-services.html#ai">AI サービスとは</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-services.html#ai">AI サービスとは</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-services.html#automl">AutoML 機能があるサービス (カスタムモデルが構築可能なサービス)</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../ai-services.html#id1">AutoML 機能がないサービス (上記以外すべて)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../ml-service/ml-service.html">ML Service</a></li>
@@ -180,8 +182,22 @@
 <h1>Amazon Forecast<a class="headerlink" href="#amazon-forecast" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
+<ul>
 <li><p>過去の履歴から将来を予測する時系列データ予測サービス</p></li>
+<li><p>Forecast の提供範囲 (「 <a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20200128-aws-black-belt-online-seminar-amazon-forecast">Black Belt 資料</a> の P.13 より)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>データの読み込み</p></li>
+<li><p>データの解析</p></li>
+<li><p>特徴判定</p></li>
+<li><p>アルゴリズム選択</p></li>
+<li><p>ハイパーパラメータの選択</p></li>
+<li><p>モデル学習</p></li>
+<li><p>モデル最適化</p></li>
+<li><p>モデルのホスト</p></li>
+</ul>
+</div></blockquote>
+</li>
 <li><p>Amazon.com と同様の技術で、様々なドメインに対応可能で、長期的な予測を行うことができる</p></li>
 <li><p>機械学習モデルの構築を大幅に簡素化するために、一連の事前定義済アルゴリズムに加えて、モデルをトレーニングするための AutoML オプションを提供</p></li>
 </ul>
@@ -189,7 +205,7 @@
 <div class="section" id="id2">
 <h2>ユースケース<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li></li>
+<li><p>Forecast の「 <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html">開発者ガイド 「Amazon Forecast とは」</a> 」より。</p></li>
 </ul>
 <blockquote>
 <div><ul class="simple">
@@ -200,64 +216,108 @@
 <li><p>ビジネス上のメトリクス (地域ごとまたはサービスごとのキャッシュフロー、売上、利益、および経費など)</p></li>
 </ul>
 </div></blockquote>
+<ul class="simple">
+<li><p>ユースケースはデータセットドメインと同義。</p></li>
+<li><p>Forecast のデータセットドメイン。 ( <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-domains-ds-types.html">開発者ガイド 「事前定義済みのデータセットドメインとデータセットタイプ」</a> より)</p></li>
+</ul>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>RETAIL ドメイン</p></th>
+<th class="head"><p>小売の需要予測</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>INVENTORY_PLANNNING ドメイン</p></td>
+<td><p>サプライチェーンとインベントリの計画</p></td>
+</tr>
+<tr class="row-odd"><td><p>EC2 CAPACITY ドメイン</p></td>
+<td><p>Amazon Elastic Compute Cloud (Amazon EC2) キャパシティの予測</p></td>
+</tr>
+<tr class="row-even"><td><p>WORK_FORCE ドメイン</p></td>
+<td><p>従業員の計画</p></td>
+</tr>
+<tr class="row-odd"><td><p>WEB_TRAFFIC ドメイン</p></td>
+<td><p>今後のウェブトラフィックの見積もり</p></td>
+</tr>
+<tr class="row-even"><td><p>METRICS ドメイン</p></td>
+<td><p>収益およびキャッシュフローなどの予測メトリクス</p></td>
+</tr>
+<tr class="row-odd"><td><p>CUSTOM ドメイン</p></td>
+<td><p>その他すべての時系列予測のタイプ</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section" id="id3">
-<h2>固有事項<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="forecast-automl">
+<h2>Forecast における AutoML 機能<a class="headerlink" href="#forecast-automl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>Forecast の「 <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html">開発者ガイド 「Amazon Forecast とは」</a> 」より。</p></li>
+</ul>
+<blockquote>
+<div><p>Amazon Forecast は、機械学習モデルの構築を大幅に簡素化します。
+Forecast には、一連の事前定義済みアルゴリズムに加えて、モデルをトレーニングするための AutoML オプションが用意されています。
+AutoML は、アルゴリズムの選択、ハイパーパラメータの調整、反復モデリング、モデル評価などの複雑な機械学習タスクを自動化します。
+開発者に機械学習の専門知識がない場合でも、Amazon Forecast API、AWS Command Line Interface (AWS CLI)、または Amazon Forecast コンソールを使用して、
+トレーニングデータを 1 つ以上の Amazon Forecast データセットにインポートして、予測子をトレーニングし、予測を生成することができます。</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Predictor (予測子) の作成時に時系列予測アルゴリズムの選択を行う。ここで AutoML 機能の利用を選択できる。</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>利用の流れ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul>
-<li><p>Personalize と同様の流れ</p></li>
-<li><p>学習データは CSV 形式で準備</p></li>
-<li><p>データセットとスキーマ</p>
-<blockquote>
-<div><ul>
-<li><p>下記の3種類のデータセットをインポート可能</p>
-<blockquote>
-<div><ul>
-<li><p>Target time series (必須)</p>
-<blockquote>
-<div><ul>
-<li><p>予測したいデータに関する過去のデータ (時系列データ)</p>
+<li><p>データの準備</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>売り上げデータなど</p></li>
+<li><p>学習データは <strong>CSV 形式</strong> で準備する。</p></li>
+<li><p>学習データは「 <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/dataset-import-guidelines-troubleshooting.html">Forecast のデータセットのガイドライン</a> 」に従って準備する必要がある。</p></li>
+<li><p>学習データは S3 に格納する。</p></li>
 </ul>
 </div></blockquote>
 </li>
-</ul>
-</div></blockquote>
-</li>
-<li><p>Related time series</p>
+<li><p>データセットタイプとスキーマ</p>
 <blockquote>
 <div><ul>
-<li><p>予測したいデータに関連する時系列データ</p>
+<li><p>下記の3種類のデータセットタイプをインポート可能</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>キャンペーンデータ</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p>Item meta data</p>
-<blockquote>
-<div><ul>
-<li><p>予測したいデータに関連する静的なデータ</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>商品カテゴリ</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
+<div><table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>データセットタイプ</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Target time series (必須)</p></td>
+<td><p>予測したいデータに関する過去のデータ (時系列データ)</p></td>
+<td><p>売り上げデータなど</p></td>
+</tr>
+<tr class="row-odd"><td><p>Related time series</p></td>
+<td><p>予測したいデータに関連する時系列データ</p></td>
+<td><p>キャンペーンデータ</p></td>
+</tr>
+<tr class="row-even"><td><p>Item meta data</p></td>
+<td><p>予測したいデータに関連する静的なデータ</p></td>
+<td><p>商品カテゴリ</p></td>
+</tr>
+</tbody>
+</table>
 </div></blockquote>
 </li>
 <li><p>スキーマ</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>データセットをインポート するには、データセットのスキーマ (JSON形式) を用意する。</p></li>
+<li><p>データセットの構造をスキーマ (JSON形式) で定義する必要がある。</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -266,18 +326,52 @@
 </li>
 <li><p>前処理</p>
 <blockquote>
+<div><ul>
+<li><p><strong>Target time series のみ、学習の前に前処理をすることができる。</strong></p>
+<blockquote>
+<div><ul>
+<li><p>下記を実行可能。</p>
+<blockquote>
 <div><ul class="simple">
-<li><p>Target time series のみ、学習の前に前処理をすることができる。</p></li>
-<li><p>Forecast が実行してくれる。</p></li>
+<li><p>時間間隔の調整</p></li>
+<li><p>欠損値の補完</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>Predictor の作成</p>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Predictor (予測子) の作成</p>
+<blockquote>
+<div><ul>
+<li><p>Predictor は学習モデルのことであり、Predictor の作成は学習を指す。</p></li>
+<li><p>アルゴリズムは下記の5種類から選択可能。</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>学習モデルのこと。</p></li>
-<li><p>アルゴリズムは5種類から選択可能</p></li>
-<li><p>DeepAR+ のみハイパーパラメータ最適化 (HPO) が可能。</p></li>
+<li><p>ARIMA (事故回帰和分移動平均)</p></li>
+<li><p>ETS (指数平滑法)</p></li>
+<li><p>NPTS (ノンパラメトリック時系列)</p></li>
+<li><p>Prophet (局所的なベイズ構造時系列モデル)</p></li>
+<li><p>DeepAR+ (RNN)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>アルゴリズムによって必要となるデータセットタイプが異なる。</p></li>
+<li><p>DeepAR+ のみハイパーパラメータ最適化 (HPO) をサポートしている。</p></li>
+<li><p>AutoML 機能はここで設定する。(<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-predictor.html#howitworks-predictor-intro">開発者ガイド 「予測子の作成」</a> より)</p></li>
+</ul>
+<blockquote>
+<div><p>AutoML の実行 – Amazon Forecast には、事前に定義されたアルゴリズムが用意されています。
+どのアルゴリズムを選ぶべきかわからない場合は、PerformAutoML オプションを使用してください。
+このオプションでは、すべてのアルゴリズムを評価し、データセットに基づいて最適なアルゴリズムを選択するよう Amazon Forecast に指示します。
+このオプションを使用すると、モデルのトレーニングに時間がかかることがありますが、正しいアルゴリズムおよびパラメータの選択を懸念する必要がありません。
+AutoML は、重み付けされた P10、P50、および P90 分位損失の平均を最適化し、最小値のアルゴリズムを返します。</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>AutoML は5つすべてのアルゴリズムを評価し、すべてのアルゴリズムの精度を確認できる。基本的には使用して最も精度の良いアルゴリズムを予測 (Forecast) としてデプロイするのが良い。</p></li>
 <li><p>学習データを分割して、評価データにすることができる。</p></li>
 </ul>
 </div></blockquote>
@@ -291,15 +385,18 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2>料金体系と提供リージョン<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h2>料金体系と提供リージョン<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>TBW</p></li>
 <li><p>東京リージョンで利用可能</p></li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>参考<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h2>参考<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>「 <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html">Amazon Forecast 開発者ガイド</a></p></li>
+</ul>
 </div>
 </div>
 
