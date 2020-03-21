@@ -14,8 +14,6 @@ AutoML 機能があるサービス (カスタムモデルが構築可能なサ�
 
    - `Custom Labels <https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html>`_
 
-   .. 
-
       No machine learning expertise is required to build your custom model. 
       Amazon Rekognition Custom Labels includes automated machine learning (AutoML) capabilities that take care of the machine learning for you. 
       When the training images are provided, Amazon Rekognition Custom Labels can automatically load and inspect the data, 
@@ -24,8 +22,6 @@ AutoML 機能があるサービス (カスタムモデルが構築可能なサ�
 - Amazon Comprehend
 
    - `Comprehend Custom <https://docs.aws.amazon.com/ja_jp/comprehend/latest/dg/auto-ml.html>`_
-
-   .. 
 
       Comprehend custom helps you meet your specific needs even if you don't have the skillset to build machine learning-based NLP solutions. 
       Using automatic machine learning, or AutoML, Comprehend Custom builds customized NLP models on your behalf, using data you already have. 
@@ -36,33 +32,27 @@ AutoML 機能があるサービス (カスタムモデルが構築可能なサ�
 
 - `Amazon Forecast <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-predictor.html#howitworks-predictor-intro>`_
 
-   ..
-
-      AutoML の実行 – Amazon Forecast には、事前に定義されたアルゴリズムが用意されています。
-      どのアルゴリズムを選ぶべきかわからない場合は、PerformAutoML オプションを使用してください。
-      このオプションでは、すべてのアルゴリズムを評価し、データセットに基づいて最適なアルゴリズムを選択するよう Amazon Forecast に指示します。
-      このオプションを使用すると、モデルのトレーニングに時間がかかることがありますが、正しいアルゴリズムおよびパラメータの選択を懸念する必要がありません。
-      AutoML は、重み付けされた P10、P50、および P90 分位損失の平均を最適化し、最小値のアルゴリズムを返します。
+   AutoML の実行 – Amazon Forecast には、事前に定義されたアルゴリズムが用意されています。
+   どのアルゴリズムを選ぶべきかわからない場合は、PerformAutoML オプションを使用してください。
+   このオプションでは、すべてのアルゴリズムを評価し、データセットに基づいて最適なアルゴリズムを選択するよう Amazon Forecast に指示します。
+   このオプションを使用すると、モデルのトレーニングに時間がかかることがありますが、正しいアルゴリズムおよびパラメータの選択を懸念する必要がありません。
+   AutoML は、重み付けされた P10、P50、および P90 分位損失の平均を最適化し、最小値のアルゴリズムを返します。
 
 - `Amazon Personalize <https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/working-with-predefined-recipes.html>`_
 
-   ..
-
-      Amazon Personalize では、入力データの分析に基づいて、最適な階層的再帰型ニューラルネットワーク (HRNN) レシピが自動的に選択されるようにすることが可能です。
-      このオプションは AutoML と呼ばれます。AutoML を実行するには、CreateSolution API を呼び出すときに performAutoML パラメータを true に設定します。
-      または、達成する目標とレシピの習熟度に基づいて、特定のレシピを選択できます。各レシピはそれぞれ特定のユースケース向けに設計されています。
-      ソリューションを作成するときに、ニーズに最適なレシピを選択します。
+   Amazon Personalize では、入力データの分析に基づいて、最適な階層的再帰型ニューラルネットワーク (HRNN) レシピが自動的に選択されるようにすることが可能です。
+   このオプションは AutoML と呼ばれます。AutoML を実行するには、CreateSolution API を呼び出すときに performAutoML パラメータを true に設定します。
+   または、達成する目標とレシピの習熟度に基づいて、特定のレシピを選択できます。各レシピはそれぞれ特定のユースケース向けに設計されています。
+   ソリューションを作成するときに、ニーズに最適なレシピを選択します。
 
 - Amazon Fraud Detector
 
    - プレビューなので正確にはわからないが、過去の不正データを S3 にアップロードしてカスタムモデルを作成する仕組みなので、AutoML 機能ありと判断。
    - `FAQ <https://aws.amazon.com/jp/fraud-detector/faqs/>`_ に下記の記載がある。
 
-   .. 
-
-      まず、機械学習モデルテンプレートを選択します。
-      これは、特定のオンライン不正を検出するために最適化された機能とアルゴリズムの組み合わせを指定します。
-      次に、過去の不正データをアップロードして、独自の情報に基づいてカスタマイズされた不正検出モデルを自動的にトレーニング、テスト、デプロイします。
+   まず、機械学習モデルテンプレートを選択します。
+   これは、特定のオンライン不正を検出するために最適化された機能とアルゴリズムの組み合わせを指定します。
+   次に、過去の不正データをアップロードして、独自の情報に基づいてカスタマイズされた不正検出モデルを自動的にトレーニング、テスト、デプロイします。
 
 AutoML 機能がないサービス (上記以外すべて)
 -----------------------------------------------
