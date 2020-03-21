@@ -31,7 +31,7 @@ Amazon Forecast
 
 - ユースケースはデータセットドメインと同義。
 - Forecast のデータセットドメイン。 ( `開発者ガイド 「事前定義済みのデータセットドメインとデータセットタイプ」 <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-domains-ds-types.html>`_ より)
-.. list-table::
+.. list-table:: 
     :widths: 5, 5
     :header-rows: 1
 
