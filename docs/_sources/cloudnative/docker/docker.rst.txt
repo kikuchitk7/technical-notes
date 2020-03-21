@@ -23,6 +23,7 @@ docker container run
     - "-t" のみ : 入力を一切受け付けない
 
     .. code-block:: bash
+    
         $ docker container run -t centos:latest
 
         # 擬似ターミナルが表示されるが、操作ができない。

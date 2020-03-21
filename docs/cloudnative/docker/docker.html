@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Docker &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Git" href="../git/git.html" />
+    <link rel="prev" title="Cloud Native" href="../cloudnative.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cloudnative.html">Cloud Native</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">イメージに関する操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">コンテナに関する操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-container-run">docker container run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-container-exec">docker container exec</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../git/git.html">Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iac/iac.html">Infrastructure as Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../cloudnative.html">Cloud Native</a> &raquo;</li>
+        
+      <li>Docker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/cloudnative/docker/docker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>イメージに関する操作<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>コンテナに関する操作<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="docker-container-run">
+<h3>docker container run<a class="headerlink" href="#docker-container-run" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id3">
+<h4>オプション<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
+<li><p>-t : 擬似ターミナル生成</p></li>
+<li><p>-i : 標準入力を有効</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>オプションの違いによる挙動の違いを示す。</p>
+<ul class="simple">
+<li><p>&quot;-t&quot; のみ : 入力を一切受け付けない</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker container run -t centos:latest
+
+<span class="c1"># 擬似ターミナルが表示されるが、操作ができない。</span>
+<span class="c1"># exit も Command + c も効かないので、kill して終了した。</span>
+<span class="o">[</span>root@2386f050d3f8 /<span class="o">]</span><span class="c1">#</span>
+
+<span class="nb">exit</span>
+
+^C^C
+<span class="o">[</span>root@2386f050d3f8 /<span class="o">]</span><span class="c1">#</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>&quot;-i&quot; のみ : 擬似ターミナルなしで入力が可能</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker container run -i centos:latest
+
+<span class="c1"># 擬似ターミナルは表示されていないが、操作は可能</span>
+date
+Sat Mar  <span class="m">7</span> <span class="m">01</span>:17:31 UTC <span class="m">2020</span>
+
+<span class="nb">exit</span>
+$
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>&quot;-it&quot; : 擬似ターミナルありで入力が可能 (通常はこのパターンで利用)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker container run -it centos:latest
+
+<span class="c1"># 通常のサーバ操作のように操作が可能</span>
+<span class="o">[</span>root@e65c61a608e5 /<span class="o">]</span><span class="c1">#</span>
+<span class="o">[</span>root@e65c61a608e5 /<span class="o">]</span><span class="c1"># date</span>
+Sat Mar  <span class="m">7</span> <span class="m">01</span>:17:10 UTC <span class="m">2020</span>
+<span class="o">[</span>root@e65c61a608e5 /<span class="o">]</span><span class="c1">#</span>
+<span class="o">[</span>root@e65c61a608e5 /<span class="o">]</span><span class="c1"># exit</span>
+<span class="nb">exit</span>
+$
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="docker-container-exec">
+<h3>docker container exec<a class="headerlink" href="#docker-container-exec" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>実行中のコンテナで任意のコマンドを実行できる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># testcontainer (CentOS) を起動</span>
+$ docker container run -t -d --rm --name testcontainer centos:latest
+0f49d3097f5dfb365f55d8d88b32e0284bee588edd14394a2b4dbb93d5c35420
+
+<span class="c1"># 起動確認</span>
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+0f49d3097f5d        centos:latest       <span class="s2">&quot;/bin/bash&quot;</span>         <span class="m">7</span> seconds ago       Up <span class="m">6</span> seconds                            testcontainer
+
+<span class="c1"># date コマンドを実行させる</span>
+$ docker container <span class="nb">exec</span> testcontainer date
+Sat Mar  <span class="m">7</span> <span class="m">02</span>:02:05 UTC <span class="m">2020</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../git/git.html" class="btn btn-neutral float-right" title="Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../cloudnative.html" class="btn btn-neutral float-left" title="Cloud Native" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
