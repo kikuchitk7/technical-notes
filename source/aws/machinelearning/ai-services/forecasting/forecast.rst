@@ -18,6 +18,17 @@ Amazon Forecast
     - 運用上のメトリクス (サーバーへのウェブトラフィック、AWS の使用状況、IoT センサーの使用状況など)
     - ビジネス上のメトリクス (地域ごとまたはサービスごとのキャッシュフロー、売上、利益、および経費など)
 
+Forecast における AutoML 機能
+-------------------------------------
+- Amazon Forecast の「 `開発者ガイド <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
+.. 
+
+    Amazon Forecast は、機械学習モデルの構築を大幅に簡素化します。
+    Forecast には、一連の事前定義済みアルゴリズムに加えて、モデルをトレーニングするための AutoML オプションが用意されています。
+    AutoML は、アルゴリズムの選択、ハイパーパラメータの調整、反復モデリング、モデル評価などの複雑な機械学習タスクを自動化します。
+    開発者に機械学習の専門知識がない場合でも、Amazon Forecast API、AWS Command Line Interface (AWS CLI)、または Amazon Forecast コンソールを使用して、
+    トレーニングデータを 1 つ以上の Amazon Forecast データセットにインポートして、予測子をトレーニングし、予測を生成することができます。
+
 固有事項
 ---------------
 - Personalize と同様の流れ
