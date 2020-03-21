@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; technical notes  ドキュメント</title>
+  <title>基礎事項 &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -82,9 +82,24 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cloudnative.html">Cloud Native</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">基礎事項</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-application-programming-interface">API (Application Programming Interface) とは</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">API のメリット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web-api">Web API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">参考文献</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/git.html">Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iac/iac.html">Infrastructure as Code</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
@@ -136,7 +151,7 @@
         
           <li><a href="../cloudnative.html">Cloud Native</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>基礎事項</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,7 +170,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="id1">
+<h1>基礎事項<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="api-application-programming-interface">
+<h3>API (Application Programming Interface) とは<a class="headerlink" href="#api-application-programming-interface" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>API とは、あるコンピュータプログラム（ソフトウェア）の機能や管理するデータなどを、外部の他のプログラムから呼び出して利用するための手順やデータ形式などを定めた規約のこと。</p></li>
+<li><p>API を公開するとは、アプリやソフトウェアに API という外部とやりとりする窓口を作り、外部アプリとコミュニケーションや連携ができる状態にすること。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>インターフェイスとは、「何か」と「何か」をつなぐものという意味。</p></li>
+<li><p>API では、この「何か」と「何か」が「アプリやソフトウェア」と「自分の開発するプラグラム」であり、これらをつなぐものという意味。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>API のメリット<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>ソフトウェア開発の効率化</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>API で組み込むことができる信頼できるプログラムが世の中にすでに存在する場合、そのプログラムと連携することで、自分で1からプログラムを組む必要がなくなり、ソフトウェア開発の効率化が図れる。</p></li>
+<li><p>開発者は API に従って機能を呼び出す短いコードを記述するだけで、自分で一から処理内容を記述しなくてもその機能を利用したソフトウェアを作成することができる。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="web-api">
+<h3>Web API<a class="headerlink" href="#web-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>Web 上に公開されていて、外部から呼び出して利用が可能な API のこと。</p></li>
+<li><p>インターネット上での API 呼び出しの場合は、通信に HTTP を、データ形式に XML や JSON を利用する Web API が主流となっている。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>API キー (アクセスキー)： ID に相当</p></li>
+<li><p>API シークレットキー：パスワードに相当</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>参考文献<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://data.wingarc.com/what-is-api-16084">今さら聞けないIT用語：やたらと耳にするけど「API」って何？</a></p></li>
+<li><p><a class="reference external" href="http://e-words.jp/w/API.html">API  【 Application Programming Interface 】</a></p></li>
+<li><p><a class="reference external" href="https://developer.ntt.com/ja/blog/API%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B9%E3%83%88%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B7%E3%81%A4%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88">APIファーストで開発する7つのメリット</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
 
            </div>
            
