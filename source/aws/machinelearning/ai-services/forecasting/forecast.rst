@@ -36,18 +36,18 @@ Amazon Forecast
     :header-rows: 1
 
     * - RETAIL ドメイン
-      - INVENTORY_PLANNNING ドメイン
-      - EC2 CAPACITY ドメイン
-      - WORK_FORCE ドメイン
-      - WEB_TRAFFIC ドメイン
-      - METRICS ドメイン
-      - CUSTOM ドメイン
-    * - 小売の需要予測
+      - 小売の需要予測
+    * - INVENTORY_PLANNNING ドメイン
       - サプライチェーンとインベントリの計画
+    * - EC2 CAPACITY ドメイン
       - Amazon Elastic Compute Cloud (Amazon EC2) キャパシティの予測
+    * - WORK_FORCE ドメイン
       - 従業員の計画
+    * - WEB_TRAFFIC ドメイン
       - 今後のウェブトラフィックの見積もり
+    * - METRICS ドメイン
       - 収益およびキャッシュフローなどの予測メトリクス
+    * - CUSTOM ドメイン
       - その他すべての時系列予測のタイプ
 
 Forecast における AutoML 機能
