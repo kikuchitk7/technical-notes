@@ -73,7 +73,7 @@ Forecast における AutoML 機能
     - 下記の3種類のデータセットタイプをインポート可能
 
         .. list-table:: 
-            :widths: 5, 5
+            :widths: 5, 5, 5
             :header-rows: 1
 
             * - Target time series (必須)
