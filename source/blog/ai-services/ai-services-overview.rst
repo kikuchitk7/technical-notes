@@ -142,6 +142,8 @@ AWS によって機械学習モデルを生成する仕組みが提供される�
 
 .. image:: ../../../images/ml_workflow.tiff
 
+.. image:: ../../../images/ml_workflow.png
+
 
 AI サービスの概要
 ^^^^^^^^^^^^^^^^^^^^^
