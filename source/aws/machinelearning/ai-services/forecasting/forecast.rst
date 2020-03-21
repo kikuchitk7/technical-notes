@@ -4,6 +4,17 @@ Amazon Forecast
 概要
 ---------
 - 過去の履歴から将来を予測する時系列データ予測サービス
+- Forecast の提供範囲 (「 `Black Belt 資料 <https://www.slideshare.net/AmazonWebServicesJapan/20200128-aws-black-belt-online-seminar-amazon-forecast>`_ の P.13 より)
+
+    - データの読み込み
+    - データの解析
+    - 特徴判定
+    - アルゴリズム選択
+    - ハイパーパラメータの選択
+    - モデル学習
+    - モデル最適化
+    - モデルのホスト
+
 - Amazon.com と同様の技術で、様々なドメインに対応可能で、長期的な予測を行うことができる
 - 機械学習モデルの構築を大幅に簡素化するために、一連の事前定義済アルゴリズムに加えて、モデルをトレーニングするための AutoML オプションを提供
 
@@ -18,6 +29,27 @@ Amazon Forecast
     - 運用上のメトリクス (サーバーへのウェブトラフィック、AWS の使用状況、IoT センサーの使用状況など)
     - ビジネス上のメトリクス (地域ごとまたはサービスごとのキャッシュフロー、売上、利益、および経費など)
 
+- ユースケースはデータセットドメインと同義。
+- Forecast のデータセットドメイン。 ( `開発者ガイド 「事前定義済みのデータセットドメインとデータセットタイプ」 <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-domains-ds-types.html>`_ より)
+.. list-table::
+    :widths: 5, 5
+    :header-rows: 1
+
+    * - RETAIL ドメイン
+      - INVENTORY_PLANNNING ドメイン
+      - EC2 CAPACITY ドメイン
+      - WORK_FORCE ドメイン
+      - WEB_TRAFFIC ドメイン
+      - METRICS ドメイン
+      - CUSTOM ドメイン
+    * - 小売の需要予測
+      - サプライチェーンとインベントリの計画
+      - Amazon Elastic Compute Cloud (Amazon EC2) キャパシティの予測
+      - 従業員の計画
+      - 今後のウェブトラフィックの見積もり
+      - 収益およびキャッシュフローなどの予測メトリクス
+      - その他すべての時系列予測のタイプ
+
 Forecast における AutoML 機能
 -------------------------------------
 - Forecast の「 `開発者ガイド <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
@@ -28,6 +60,8 @@ Forecast における AutoML 機能
     AutoML は、アルゴリズムの選択、ハイパーパラメータの調整、反復モデリング、モデル評価などの複雑な機械学習タスクを自動化します。
     開発者に機械学習の専門知識がない場合でも、Amazon Forecast API、AWS Command Line Interface (AWS CLI)、または Amazon Forecast コンソールを使用して、
     トレーニングデータを 1 つ以上の Amazon Forecast データセットにインポートして、予測子をトレーニングし、予測を生成することができます。
+
+- Predictor (予測子) の作成時に時系列予測アルゴリズムの選択を行う。ここで AutoML 機能の利用を選択できる。
 
 固有事項
 ---------------
