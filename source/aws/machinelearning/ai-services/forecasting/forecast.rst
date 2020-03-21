@@ -20,7 +20,7 @@ Amazon Forecast
 
 ユースケース
 ------------------
-- Forecast の「 `開発者ガイド <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
+- Forecast の「 `開発者ガイド 「Amazon Forecast とは」 <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
 .. 
 
     - 小売製品の需要 (ウェブサイト上または特定の店舗やロケーションで販売されている製品に対する需要など)
@@ -52,7 +52,7 @@ Amazon Forecast
 
 Forecast における AutoML 機能
 -------------------------------------
-- Forecast の「 `開発者ガイド <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
+- Forecast の「 `開発者ガイド 「Amazon Forecast とは」 <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html>`_ 」より。
 .. 
 
     Amazon Forecast は、機械学習モデルの構築を大幅に簡素化します。
