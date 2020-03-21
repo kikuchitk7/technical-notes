@@ -11,9 +11,7 @@ Welcome to technical notes's documentation!
    :caption: Contents:
 
    aws/aws
-   docker/docker
-   git/git
-   iac/iac
+   cloudnative/cloudnative
    python/python
    environment/environment
    testing/testing
