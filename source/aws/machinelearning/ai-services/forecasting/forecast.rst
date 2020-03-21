@@ -76,6 +76,9 @@ Forecast における AutoML 機能
             :widths: 5, 5, 5
             :header-rows: 1
 
+            * - データセットタイプ
+              - 説明
+              - 例
             * - Target time series (必須)
               - 予測したいデータに関する過去のデータ (時系列データ)
               - 売り上げデータなど
