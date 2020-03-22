@@ -214,7 +214,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | - ストリーミング音声のリアルタイム文字起こし ※ 日本語未対応
         | - 医療に特化した文字起こし (`Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_) ※ 日本語未対応
       - ×
-      - | ○
+      - | △
         | (日本語未対応機能あり)
     * - | Text
         | 自然言語処理
@@ -227,7 +227,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
       - | ○
         | - カスタムエンティティ
         | - カスタム分類子
-      - | ○
+      - | △
         | (日本語未対応機能あり)
     * - 
       - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
