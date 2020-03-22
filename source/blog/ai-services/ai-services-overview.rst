@@ -21,7 +21,7 @@ AI サービスの全体像
 | 下図の赤枠内が AI サービスであり、今回の記事の説明範囲です。
 
 
-.. image:: ../../../images/AWSのMLスタック_2019_AIサービス.png
+.. image:: ../../../images/aws_ml_stack_2019_ai.png
 
 (出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)
 
