@@ -30,9 +30,6 @@ AI サービスの全体像
 
 (出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)
 
-.. | 「画像・動画像認識」や「機械翻訳」、「不正検知」といったユースケースごとにサービスが用意されている。
-.. | 自身の抱えるビジネス上の問題・課題とユースケースが一致する場合に利用できる。
-
 
 AI サービスの特徴
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -114,9 +111,47 @@ AWS から学習済の機械学習モデル、もしくは、機械学習モデ�
 | パターン①と違って、ユーザのデータに即した機械学習モデルを構築することができて、かつ、自動で実行できる点がメリットです。
 | 単純に利用すれば良いパターン①と比べると導入までにかかる時間はかかるものの、多くの処理が自動化されているため、簡便かつ迅速に機械学習を導入することができます。
 
-例えば、パターン②には Amazon Forecast (時系列データの予測サービス) があり、商品の需要予測に応用できる。
-学習データには自社商品の過去データとすることができる。
-利用者のデータに基づいた機械学習モデルを生成できるので、より確からしい需要予測ができる。
+| 例えば、Amazon Forecast における AutoML 機能ををみてみましょう。
+| Amazon Forecast では、下記の5つの時系列予測アルゴリズムを利用することができます。
+
+- `ARIMA (自己回帰和分移動平均) <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-arima.html>`_
+- `DeepAR+ <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-deeparplus.html>`_
+- `ETS (指数平滑法) <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-ets.html>`_
+- `NPTS (ノンパラメトリック時系列) <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-npts.html>`_
+- `Prophet <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-prophet.html>`_
+
+| 取り扱うデータやそれぞれのアルゴリズムの特徴を考慮して使用するアルゴリズムを選択すべきですが、それには機械学習に関する専門的な知識が必要となります。
+| Amazon Forecast の AutoML 機能を利用すると、上記の5つのアルゴリズムから最適なアルゴリズムを自動で選択することができます。
+| Amazon Forecast の AutoML 機能は、下記を自動で行います。
+
+- 上記の5つのアルゴリズムを使ってそれぞれ学習を行い、時系列予測の機械学習モデルを構築する。
+- 時系列予測の機械学習モデルの精度の評価を行う。
+- 最も精度の高い機械学習モデルを選択し、提示する。
+
+Amazon Forecast のコンソールで AutoML 機能を利用する場合についてみてみます。
+
+.. image:: ../../../images/amazon_forecast_algorithm_selection.png
+
+| AutoML 機能は、予測子 (Predictor) の設定の「Algorithm selection (アルゴリズムの選択)」で "Automatic (AutoML)" を選択するだけ利用できます。
+| 「予測子の作成」とは、すなわち、「時系列予測の機械学習モデルの構築」です。作成ボタン押下後、しばらく待つと予測子が作成されます。
+
+.. image:: ../../../images/amazon_forecast_predictor_overview.png
+
+| 上記が最も精度が高かった時系列予測の機械学習モデルの提示画面です。
+| この場合は、DeepAR+ という再帰型ニューラルネットワーク (Recurent Neural Network) を用いたアルゴリズムが選択されました。
+| これを本番環境にデプロイして、予測を行います。
+
+.. image:: ../../../images/amazon_forecast_algorithm_metrics_arima.png
+
+Amazon Forecast のコンソールでは、その他の4つの機械学習モデルの情報を確認することもできます。(上記は ARIMA を使った機械学習モデルの情報)
+
+| このように AI サービスの提供形態について確認できました。
+| このパートのまとめとして、パターン①とパターン②の機械学習のワークフローにおけるカバー範囲を下記に示します。
+| 参考情報として、ML サービス (Amazon SageMaker) にて独自モデルを構築する場合についても示します。
+
+.. image:: ../../../images/ml_workflow.png
+
+(※ 機械学習のワークフローは、`「機械学習のワークフローってどうなっているの ? AWS の機械学習サービスをグラレコで解説 (builders.flash)」 <https://aws.amazon.com/jp/builders-flash/202003/awsgeek-sagemaker/>`_」を参考に作成)
 
 
 
