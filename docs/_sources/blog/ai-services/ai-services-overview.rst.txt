@@ -23,10 +23,8 @@ AI サービスの全体像
 
 - Amazon Kendra (ドキュメント検索サービス)
 - Amazon CodeGuru (コードレビューの自動化サービス)
-- | Amazon Faud Detector (不正検知サービス)
-  | ※ プレビューへの参加申し込みが必要
-- | Contact Lens for Amazon Connect (Amazon Connect によるコンタクトセンターの分析サービス)
-  | ※ プレビューへの参加申し込みが必要
+- Amazon Faud Detector (不正検知サービス) ※ 要プレビュー参加申し込み
+- Contact Lens for Amazon Connect (Amazon Connect によるコンタクトセンターの分析サービス) ※ 要プレビュー参加申し込み
 
 .. image:: ../../../images/aws_ml_stack_2019_ai.png
 
