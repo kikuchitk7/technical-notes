@@ -283,7 +283,7 @@
 </tr>
 <tr class="row-even"><td></td>
 <td><p>カスタム分類子</p></td>
-<td><p>ユーザ独自のテキスト分類モデルを作成できる。</p></td>
+<td><p>ユーザ独自のラベルにテキストを分類するモデルを作成できる。</p></td>
 </tr>
 <tr class="row-odd"><td><p>Amazon Personalize</p></td>
 <td><p>レコメンドモデルの自動構築</p></td>
@@ -460,7 +460,10 @@
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/">Amazon Comprehend</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>自然言語処理・テキスト分析</strong></div>
-<div class="line">- メール、SNS、顧客アンケート結果などの感情分析やキーフレーズ抽出</div>
+<div class="line">- テキスト (メール、SNS、顧客アンケート結果など) からのキーフレーズ抽出、感情分析、構文解析、エンティティ認識、言語検出、トピック分類</div>
+<div class="line">- カスタムエンティティによるユーザ独自のエンティティ (人、組織、場所など) の分類</div>
+<div class="line">- カスタム分類子によるユーザ独自のラベルの定義とテキストの分類</div>
+<div class="line">- 医療に特化したテキスト分析 (<cite>Amazon Comprehend Medical &lt;https://aws.amazon.com/jp/comprehend/medical/&gt;</cite>) ※ 日本語未対応</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -470,8 +473,8 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">○ *2</div>
-<div class="line">(日本語対応済)</div>
+<div class="line">○</div>
+<div class="line">(日本語未対応機能あり)</div>
 </div>
 </td>
 </tr>
@@ -621,7 +624,6 @@
 </table>
 <ul class="simple">
 <li><p>*1: 2020年3月24日時点でプレビューでの提供。</p></li>
-<li><p>*2: 医療現場での利用に特化した  と <a class="reference external" href="https://aws.amazon.com/jp/comprehend/medical/">Amazon Comprehend Medical</a> は、東京リージョン、日本語ともに非対応。</p></li>
 </ul>
 </div>
 </div>
