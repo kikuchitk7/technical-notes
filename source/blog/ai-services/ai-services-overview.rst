@@ -240,7 +240,8 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
     * - 
       - `Amazon Textract <https://aws.amazon.com/jp/textract/>`_
       - | **ドキュメント分析**
-        | - X
+        | - 画像データからのテキスト、フォーム (Key-Value ペア)、表の抽出
+        | - 抽出したデータの Amazon S3、Amazon DynamoDB、Amazon Elasticsearch Service、Amazon Comprehend への格納
       - ×
       - | ×
         | (日本語未対応)
