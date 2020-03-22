@@ -292,7 +292,8 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | 開発ツール
       - `Amazon CodeGuru <https://aws.amazon.com/jp/codeguru/>`_ \*1
       - | **コードレビューの自動化**
-        | - X
+        | - ソースコードのレビュー (問題の検出と修正方法の提示) の自動化 (Reviewer)
+        | - アプリのパフォーマンスの分析とパフォーマンス最適化方法の提示 (Profiler)
       - ×
       - ×
     * - | Contact Center
