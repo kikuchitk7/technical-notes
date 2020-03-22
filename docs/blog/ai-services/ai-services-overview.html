@@ -94,7 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">AI サービスとは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの全体像</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">AI サービスの特徴</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">AI サービスの特徴</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id11">AI サービスの概要</a></li>
 </ul>
 </li>
@@ -189,12 +189,30 @@
 <div class="section" id="id5">
 <h3>AI サービスの全体像<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
-<div class="line">AI サービスは、3つのレイヤーで提供される機械学習サービスで最上位に位置するサービスです。</div>
-<div class="line">下図の赤枠内が AI サービスであり、今回の記事の説明範囲です。</div>
+<div class="line">AI サービスは、3つのレイヤーで提供される機械学習サービスで最上位に位置するサービスであり、下図の赤枠内のサービスです。</div>
+<div class="line">AWS re:Invent 2019 で下記の4つのサービスが新たに追加され、AI サービスは 10 カテゴリ、13 サービスとなりました。</div>
+<div class="line">ただし、これらは2020年3月24日時点で「プレビュー」での提供であり、東京リージョンでは提供されていません。一般公開までに仕様が変更される可能性がありますので、本番環境でご利用される場合はご注意ください。</div>
 </div>
+<ul>
+<li><p>Amazon Kendra (ドキュメント検索サービス)</p></li>
+<li><p>Amazon CodeGuru (コードレビューの自動化サービス)</p></li>
+<li><div class="line-block">
+<div class="line">Amazon Faud Detector (不正検知サービス)</div>
+<div class="line">※ プレビューへの参加申し込みが必要</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Contact Lens for Amazon Connect (Amazon Connect によるコンタクトセンターの分析サービス)</div>
+<div class="line">※ プレビューへの参加申し込みが必要</div>
+</div>
+</li>
+</ul>
 <img alt="../../_images/aws_ml_stack_2019_ai.png" src="../../_images/aws_ml_stack_2019_ai.png" />
 <p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
-<p>AI サービスは <a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4799">前回</a> の記事で、下記のように説明しました。</p>
+</div>
+<div class="section" id="id6">
+<h3>AI サービスの特徴<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4799">前回</a> の記事で、AI サービスは下記のように説明しました。</p>
 <blockquote>
 <div><table class="docutils align-default">
 <colgroup>
@@ -240,32 +258,6 @@
 </tbody>
 </table>
 </div></blockquote>
-<div class="line-block">
-<div class="line">「画像・動画像認識」や「機械翻訳」、「不正検知」といったユースケースごとにサービスが用意されている。</div>
-<div class="line">自身の抱えるビジネス上の問題・課題とユースケースが一致する場合に利用できる。</div>
-</div>
-<p>AWS re:Invent 2019 で下記が新サービスとして追加された。
-AI サービスのラインナップ (アイコンの数) が13個になった。</p>
-<ul class="simple">
-<li><p>Amazon Kendra</p></li>
-<li><p>Amazon Faud Detector</p></li>
-<li><p>Amazon CodeGuru</p></li>
-<li><p>Contact Lens for Amazon Connect</p></li>
-</ul>
-<p>ただし、これらはプレビュー版での公開となる点に注意する。
-仕様が変わる。ドキュメントの公開も限定的。
-魅力的な機能が多いが、本番 (商用) 環境での利用は一般公開 (GA) を待つ、仕様変更の可能性を理解した上で使ってほしい。</p>
-<p>既存サービスの機能強化も発表された。</p>
-<ul class="simple">
-<li><p>Amazon Rekognition</p></li>
-<li><p>Amazon Transcribe</p></li>
-</ul>
-<p>参考情報として、アップデートを強調した図を下記に示します。</p>
-<img alt="../../_images/AWSのMLスタック_2019_new.png" src="../../_images/AWSのMLスタック_2019_new.png" />
-<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
-</div>
-<div class="section" id="id7">
-<h3>AI サービスの特徴<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>特徴は主に下記の2つ。</p>
 <ul class="simple">
 <li><p>各サービスのユースケースと使い方がわかれば導入できる。</p></li>
