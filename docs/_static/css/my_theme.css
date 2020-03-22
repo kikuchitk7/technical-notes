@@ -11,8 +11,11 @@ h1,h2,h3,h4,h5,h6 {
 .wy-table-responsive table {
     border-collapse: collapse;
     border: 1px solid #ccc;
-    /*width: 100%;
-    table-layout: fixed;*/
+}
+
+.wy-table-responsive table thead tr th {
+	color: #fff;
+	background: #41a2e6;
 }
 
 .wy-table-responsive table th, .wy-table-responsive table td {
