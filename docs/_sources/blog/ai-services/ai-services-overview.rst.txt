@@ -279,7 +279,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | 不正検知
       - `Amazon Fraud Detection <https://aws.amazon.com/jp/fraud-detector/>`_ \*1
       - | **不正検知**
-        | - X
+        | - 過去の不正データを基にしたユーザ独自の不正検知モデルの自動構築
       - | ○
         | - 不正検知モデルの自動構築
       - ×
