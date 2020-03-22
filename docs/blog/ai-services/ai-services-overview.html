@@ -95,11 +95,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">AI サービスとは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの全体像</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id6">AI サービスの特徴</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">AI サービスの概要</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +198,7 @@
 <li><p>Amazon Faud Detector (不正検知サービス) ※ 要プレビュー参加申し込み</p></li>
 <li><p>Contact Lens for Amazon Connect (Amazon Connect によるコンタクトセンターの分析サービス) ※ 要プレビュー参加申し込み</p></li>
 </ul>
-<img alt="../../_images/aws_ml_stack_2019_ai.png" src="../../_images/aws_ml_stack_2019_ai.png" />
+<a class="reference internal image-reference" href="../../_images/aws_ml_stack_2019_ai.png"><img alt="../../_images/aws_ml_stack_2019_ai.png" src="../../_images/aws_ml_stack_2019_ai.png" style="width: 900px;" /></a>
 <p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
 </div>
 <div class="section" id="id6">
@@ -232,10 +231,10 @@
 <div class="line">下記の図は Amazon Translate のコンソールで英語のテキストの日本語訳を行ったものです。</div>
 <div class="line">この時にユーザがやるべきことは、「翻訳したいテキストの準備」と「Amazon Translate での翻訳」だけです。</div>
 <div class="line">学習データとなる英語や日本語のテキストの準備や機械学習アルゴリズムの選定、構築などは不要です。</div>
-<div class="line">下記は Amazon Translate のコンソールで翻訳を行いましたが、Amazon Translate の SDK を利用してユーザのアプリに翻訳機能を組み込むことも可能です。</div>
+<div class="line">下記は Amazon Translate のコンソールにて「<a class="reference external" href="https://docs.aws.amazon.com/translate/latest/dg/what-is.html">Amazon Translate の開発者ガイド</a> 」の冒頭のテキストを日本語訳させたものです。</div>
+<div class="line">Amazon Translate の SDK を利用してユーザのアプリに翻訳機能を組み込むことも可能です。</div>
 </div>
-<img alt="../../_images/amazon_translate_example.png" src="../../_images/amazon_translate_example.png" />
-<p>(Amazon Translate のコンソールにて、<a class="reference external" href="https://docs.aws.amazon.com/translate/latest/dg/what-is.html">開発者ガイド</a> の冒頭のテキストを日本語訳させた様子)</p>
+<a class="reference internal image-reference" href="../../_images/amazon_translate_example.png"><img alt="../../_images/amazon_translate_example.png" src="../../_images/amazon_translate_example.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">AI サービスの謳い文句となっている「機械学習の深い知識なしに利用可能」や「素早くビジネスへの取り込みが可能」というメリットがある反面、機械学習モデルに関してチューニングできる範囲が限定されるというデメリットがあります。</div>
 <div class="line">例えば、Amazon Translate では「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/translate/latest/dg/how-custom-terminology.html">カスタム用語</a>」が提供されています。</div>
@@ -243,15 +242,15 @@
 <div class="line">このようなチューニングを行ってもビジネス要件 (精度等) を満たせない、もっときめ細やかなチューニングを行いたいという場合は、Amazon SageMaker を利用するなど独自の機械学習モデルを構築する必要があります。</div>
 </div>
 </div>
-<div class="section" id="id9">
-<h5>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="section" id="id8">
+<h5>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="line-block">
 <div class="line">このパターンでポイントとなるのが、機械学習モデルを自動生成する仕組みである「AutoML 機能」です。</div>
 <div class="line">AutoML 機能を利用すると、ユーザが準備した学習データからユーザ独自の機械学習モデルを構築することができます。</div>
 </div>
 <div class="line-block">
 <div class="line">下記のサービスで AutoML 機能が提供されています。</div>
-<div class="line">なお、Amazon Fraud Detector はユーザの過去の不正データから不正検知モデルを自動生成するサービスです。<a class="reference external" href="https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html">開発者ガイド</a> に &quot;AutoML&quot; という単語が登場しないものの、AutoML と同等の機能を提供するため、パターン②に分類しています。</div>
+<div class="line">なお、Amazon Fraud Detector はユーザの過去の不正データから不正検知モデルを自動生成するサービスです。<a class="reference external" href="https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html">Amazon Fraud Detector の開発者ガイド</a> に &quot;AutoML&quot; という単語が登場しないものの、AutoML と同等の機能を提供するため、パターン②に分類しています。</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -286,18 +285,18 @@
 <td><p>カスタム分類子</p></td>
 <td><p>ユーザ独自のテキスト分類モデルを作成できる。</p></td>
 </tr>
-<tr class="row-odd"><td><p>Amazon Forecast</p></td>
-<td><p>時系列データ予測モデルの自動構築</p></td>
+<tr class="row-odd"><td><p>Amazon Personalize</p></td>
+<td><p>レコメンドモデルの自動構築</p></td>
 <td><div class="line-block">
-<div class="line">最適な時系列予測アルゴリズムを自動選択して、</div>
+<div class="line">最適なレコメンドアルゴリズムを自動選択して、</div>
 <div class="line">ユーザ独自のモデルを構築できる。</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>Amazon Personalize</p></td>
-<td><p>レコメンドモデルの自動構築</p></td>
+<tr class="row-even"><td><p>Amazon Forecast</p></td>
+<td><p>時系列データ予測モデルの自動構築</p></td>
 <td><div class="line-block">
-<div class="line">最適なレコメンドアルゴリズムを自動選択して、</div>
+<div class="line">最適な時系列予測アルゴリズムを自動選択して、</div>
 <div class="line">ユーザ独自のモデルを構築できる。</div>
 </div>
 </td>
@@ -343,70 +342,37 @@
 <div class="line">AutoML 機能は、予測子 (Predictor) の設定の「Algorithm selection (アルゴリズムの選択)」で &quot;Automatic (AutoML)&quot; を選択するだけ利用できます。</div>
 <div class="line">「予測子の作成」とは、すなわち、「時系列予測の機械学習モデルの構築」です。作成ボタン押下後、しばらく待つと予測子が作成されます。</div>
 </div>
-<img alt="../../_images/amazon_forecast_predictor_overview.png" src="../../_images/amazon_forecast_predictor_overview.png" />
+<a class="reference internal image-reference" href="../../_images/amazon_forecast_predictor_overview.png"><img alt="../../_images/amazon_forecast_predictor_overview.png" src="../../_images/amazon_forecast_predictor_overview.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">上記が最も精度が高かった時系列予測の機械学習モデルの提示画面です。</div>
 <div class="line">この場合は、DeepAR+ という再帰型ニューラルネットワーク (Recurent Neural Network) を用いたアルゴリズムが選択されました。</div>
 <div class="line">これを本番環境にデプロイして、予測を行います。</div>
 </div>
-<img alt="../../_images/amazon_forecast_algorithm_metrics_arima.png" src="../../_images/amazon_forecast_algorithm_metrics_arima.png" />
+<a class="reference internal image-reference" href="../../_images/amazon_forecast_algorithm_metrics_arima.png"><img alt="../../_images/amazon_forecast_algorithm_metrics_arima.png" src="../../_images/amazon_forecast_algorithm_metrics_arima.png" style="width: 900px;" /></a>
 <p>Amazon Forecast のコンソールでは、その他の4つの機械学習モデルの情報を確認することもできます。(上記は ARIMA を使った機械学習モデルの情報)</p>
 <div class="line-block">
-<div class="line">このように AI サービスの提供形態について確認できました。</div>
+<div class="line">AI サービスの提供形態を整理しつつ、AI サービスが簡単に利用できることをみてきました。</div>
 <div class="line">このパートのまとめとして、パターン①とパターン②の機械学習のワークフローにおけるカバー範囲を下記に示します。</div>
 <div class="line">参考情報として、ML サービス (Amazon SageMaker) にて独自モデルを構築する場合についても示します。</div>
 </div>
-<img alt="../../_images/ml_workflow.png" src="../../_images/ml_workflow.png" />
+<a class="reference internal image-reference" href="../../_images/ml_workflow.png"><img alt="../../_images/ml_workflow.png" src="../../_images/ml_workflow.png" style="width: 900px;" /></a>
 <p>(※ 機械学習のワークフローは、<a class="reference external" href="https://aws.amazon.com/jp/builders-flash/202003/awsgeek-sagemaker/">「機械学習のワークフローってどうなっているの ? AWS の機械学習サービスをグラレコで解説 (builders.flash)」</a>」を参考に作成)</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h4>ユースケースごとにサービスが用意されている。<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>まずは、AI サービスのカテゴリーを見る。前述の通り、10 カテゴリーが提供されている。
-それぞれのカテゴリーでどんなことができるか概要を見る。</p>
-<p>各サービスで提供されている機能を把握することが重要。
-Amazon Translate のように単一機能 (テキストの翻訳) のみが提供されているものもあるし、Amazon Comprehend のようにたくさんの機能が提供されているものもある。
-これらで提供されている機能を試しにまとめてみる。</p>
-</div>
-<div class="section" id="id12">
-<h4>推論エンドポイントを使って、簡単にアプリに組み込める。<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>他の AWS サービスと同様にエンドポイントが提供される。
-機械学習モデルを生成すると、推論エンドポイントが作成される。
-利用者のアプリから推論エンドポイントにアクセスすることで機械学習を取り入れることができる。</p>
-<p>下記も組み込みたい文章</p>
-<p>利用者が考える部分が少なくて済む。
-利用者自身が準備する部分が多い ML サービス (Amazon SageMaker とその関連サービス) と比較すると導入の難易度は低くなる。
-例えば、多くのサービスの背後でディープラーニングが利用されている。
-利用するサービスのユースケースや使い方を理解していれば、ディープラーニングについて知らなくても利用が可能。
-結果的に「機械学習の深い知識なしに利用可能」となる。
-機械学習に明るいエンジニアがいる場合でも要件がマッチしていればアジリティを持って機械学習を導入することができることがメリット。
-しかし、機械学習に関する知識がゼロで良いという訳ではない。例えば、精度が出ない場合に未学習 (under-fitting)、過学習 (over-fitting) のいずれの状態にあるのかが判断できないと正しくチューニングできない。</p>
-</div>
-</div>
-<div class="section" id="id13">
-<h3>AI サービスの概要<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id9">
+<h4>ユースケースごとにサービスが用意されている。<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ここからは、それぞれの AI サービスのユースケースについて整理します。</p>
 <div class="line-block">
-<div class="line">AI サービスの概要について下記の表にまとめます。</div>
-<div class="line">ここでは簡単な説明に留め、次回以降に詳細な説明を行うこととします。</div>
+<div class="line">Amazon Translate のように単一の機能 (テキストの翻訳) が提供されているものがある一方で、Amazon Rekognition のようにたくさんの機能が提供されているものもあります。</div>
+<div class="line">ここでは表形式での簡単なサービスの説明や代表的なユースケースを紹介するに留め、次回以降の記事で詳細な説明を行うこととします。</div>
 </div>
-<div class="section" id="id14">
-<h4>注意事項<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<ul>
-<li><p>2020年2月3日時点の公開情報に基づいて作成する。</p></li>
-<li><p>分類は「AWS の ML スタック」に従う。</p></li>
-<li><p>「利用パターン」は、上記で説明した使い方のパターンであり、表では番号のみを示す。</p>
-<ul class="simple">
-<li><p>パターン①：AWS が生成した学習済の機械学習モデルを使う。</p></li>
-<li><p>パターン②：利用者独自の学習データから機械学習モデルを生成して使う。</p></li>
-</ul>
-</li>
-<li><div class="line-block">
-<div class="line">読者の多くは東京リージョンでの利用を想定していると考えられるため、東京リージョンでの利用可否を記載する。</div>
-<div class="line">また、言語を扱うサービスはカッコ内に日本語の対応状況を記載する。</div>
+<div class="line-block">
+<div class="line">下記にまとめる情報は、2020年3月24日時点の公開情報に基づいて作成します。</div>
+<div class="line">「カテゴリー」や「サービス」の記載は文献によって多少の違いがありますが、ここでは上記で示した「AWS の ML スタック」に従って記載することとします。</div>
+<div class="line">また、読者の多くは東京リージョンでの利用を想定していると考えられるため、東京リージョンでの利用可否についても記載します。</div>
+<div class="line">言語を扱うサービスでは日本語の対応状況がポイントとなると考えられるため、カッコ内に日本語の対応状況を記載します。</div>
 </div>
-</li>
-</ul>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />
@@ -415,35 +381,52 @@ Amazon Translate のように単一機能 (テキストの翻訳) のみが提�
 <col style="width: 20%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>分類</p></th>
+<tr class="row-odd"><th class="head"><p>カテゴリー</p></th>
 <th class="head"><p>サービス名</p></th>
-<th class="head"><p>サービスの説明とユースケース</p></th>
-<th class="head"><p>使い方のパターン</p></th>
+<th class="head"><p>サービスの説明と代表的なユースケース</p></th>
+<th class="head"><p>AutoML 機能の有無</p></th>
 <th class="head"><p>東京での利用可否</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Vision</p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Vision</div>
+<div class="line">画像・動画像処理</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/rekognition/">Amazon Rekognition</a></p></td>
 <td><div class="line-block">
-<div class="line"><strong>画像・動画像解析</strong></div>
+<div class="line"><strong>画像・動画像処理</strong></div>
+<div class="line">- 事前定義のラベルによる人物や物体の特定</div>
+<div class="line">- カスタムラベルによる人物や物体の特定</div>
+<div class="line">- 有害コンテンツの特定</div>
+<div class="line">- テキストの検出</div>
+<div class="line">- 顔の検出と性別や年齢、感情の分析</div>
+<div class="line">- 顔の検索と人物特定</div>
 <div class="line">- 画像・動画像内の物体やシーンの特定</div>
-<div class="line">- 利用者独自の画像とラベルによる任意の物体や人物の特定 (カスタムラベル機能)</div>
 <div class="line">- 画像・動画像内の人物の表情や感情の分析</div>
 </div>
 </td>
-<td><p>| ① (カスタムラベル 以外)
-| ② (カスタムラベル)</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">- カスタムラベル</div>
+</div>
+</td>
 <td><p>○</p></td>
 </tr>
-<tr class="row-odd"><td><p>Speech</p></td>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Speech</div>
+<div class="line">音声認識</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/polly/">Amazon Polly</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>テキストの読み上げ</strong></div>
-<div class="line">- コールセンター業務の定型文章の読み上げ</div>
+<div class="line">- Web サイトなどの文書コンテンツの読み上げ</div>
+<div class="line">- コンタクトセンター業務の定型文章の読み上げ</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
 <div class="line">(日本語対応済)</div>
@@ -457,14 +440,18 @@ Amazon Translate のように単一機能 (テキストの翻訳) のみが提�
 <div class="line">- コールセンターでの顧客の問合せ内容 (音声データ) の文書化</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><div class="line-block">
-<div class="line">○ ¥*1</div>
-<div class="line">(日本語未対応機能あり) ¥*2</div>
+<div class="line">○ *2</div>
+<div class="line">(日本語未対応機能あり) *3</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Text</p></td>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Text</div>
+<div class="line">自然言語処理</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/comprehend/">Amazon Comprehend</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>自然言語処理・テキスト分析</strong></div>
@@ -472,12 +459,13 @@ Amazon Translate のように単一機能 (テキストの翻訳) のみが提�
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">① (Custom Comprehend 以外)</div>
-<div class="line">② (Custom Comprehend)</div>
+<div class="line">○</div>
+<div class="line">- カスタムエンティティ</div>
+<div class="line">- カスタム分類子</div>
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">○ ¥*1</div>
+<div class="line">○ *2</div>
 <div class="line">(日本語対応済)</div>
 </div>
 </td>
@@ -489,7 +477,7 @@ Amazon Translate のように単一機能 (テキストの翻訳) のみが提�
 <div class="line">- ユーザーマニュアルの他言語への自動翻訳 (多言語対応)</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><div class="line-block">
 <div class="line">○</div>
 <div class="line">(日本語対応済)</div>
@@ -503,103 +491,145 @@ Amazon Translate のように単一機能 (テキストの翻訳) のみが提�
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
 <div class="line">(日本語未対応)</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>Search</p></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/kendra/">Amazon Kendra (プレビュー)</a></p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Search</div>
+<div class="line">ドキュメント検索</div>
+</div>
+</td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/kendra/">Amazon Kendra</a> *1</p></td>
 <td><div class="line-block">
 <div class="line"><strong>検索サービス</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-odd"><td><p>Chatbot</p></td>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Chatbot</div>
+<div class="line">チャットボット</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/lex/">Amazon Lex</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>チャットボット</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><div class="line-block">
 <div class="line">×</div>
 <div class="line">(日本語未対応)</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>Personalization</p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Personalization</div>
+<div class="line">レコメンド</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/personalize/">Amazon Personalize</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>レコメンド</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>②</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">- レコメンドモデルの自動構築</div>
+</div>
+</td>
 <td><p>○</p></td>
 </tr>
-<tr class="row-odd"><td><p>Forecasting</p></td>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Forecasting</div>
+<div class="line">予測</div>
+</div>
+</td>
 <td><p><a class="reference external" href="https://aws.amazon.com/jp/forecast/">Amazon Forecast</a></p></td>
 <td><div class="line-block">
 <div class="line"><strong>時系列データの予測</strong></div>
 <div class="line">- 商品、</div>
 </div>
 </td>
-<td><p>②</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">- 時系列データ予測モデルの自動構築</div>
+</div>
+</td>
 <td><p>○</p></td>
 </tr>
-<tr class="row-even"><td><p>Fraud</p></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/fraud-detector/">Amazon Fraud Detection (プレビュー)</a></p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Fraud</div>
+<div class="line">不正検知</div>
+</div>
+</td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/fraud-detector/">Amazon Fraud Detection</a> *1</p></td>
 <td><div class="line-block">
 <div class="line"><strong>不正検知</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>②</p></td>
+<td><div class="line-block">
+<div class="line">○</div>
+<div class="line">- 不正検知モデルの自動構築</div>
+</div>
+</td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-odd"><td><p>Development</p></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/codeguru/">Amazon CodeGuru (プレビュー)</a></p></td>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Development</div>
+<div class="line">開発ツール</div>
+</div>
+</td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/codeguru/">Amazon CodeGuru</a> *1</p></td>
 <td><div class="line-block">
 <div class="line"><strong>コードレビューの自動化</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>①</p></td>
+<td><p>×</p></td>
 <td><p>×</p></td>
 </tr>
-<tr class="row-even"><td><p>Contact Center</p></td>
-<td><p><a class="reference external" href="https://aws.amazon.com/jp/connect/contact-lens/">Contact Lens for Amazon Connect (プレビュー)</a></p></td>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Contact Center</div>
+<div class="line">コンタクトセンター</div>
+</div>
+</td>
+<td><p><a class="reference external" href="https://aws.amazon.com/jp/connect/contact-lens/">Contact Lens for Amazon Connect</a> *1</p></td>
 <td><div class="line-block">
 <div class="line"><strong>Amazon Connect のコンタクトセンター分析</strong></div>
 <div class="line">- X</div>
 </div>
 </td>
-<td><p>①？</p></td>
+<td><p>×</p></td>
 <td><p>×</p></td>
 </tr>
 </tbody>
 </table>
-<p>¥*1：医療現場での利用に特化した <a class="reference external" href="https://aws.amazon.com/jp/transcribe/medical/">Amazon Transcribe Medical</a> と
-<a class="reference external" href="https://aws.amazon.com/jp/comprehend/medical/">Amazon Comprehend Medical</a> は、東京リージョン、日本語ともに非対応。
-¥*2：Amazon Transcribe の文字起こしストリーミング (リアルタイムでの文字起こし) は日本語非対応。</p>
+<ul class="simple">
+<li><p>*1: 2020年3月24日時点でプレビューでの提供。</p></li>
+<li><p>*2: 医療現場での利用に特化した <a class="reference external" href="https://aws.amazon.com/jp/transcribe/medical/">Amazon Transcribe Medical</a> と <a class="reference external" href="https://aws.amazon.com/jp/comprehend/medical/">Amazon Comprehend Medical</a> は、東京リージョン、日本語ともに非対応。</p></li>
+<li><p>*3: Amazon Transcribe の文字起こしストリーミング (リアルタイムでの文字起こし) は日本語非対応。</p></li>
+</ul>
 </div>
 </div>
 </div>
-<div class="section" id="id15">
-<h2>まとめ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h2>まとめ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。</p>
 <p>次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id16">
-<h2>著者紹介<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id12">
+<h2>著者紹介<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto.jpg"><img alt="../../_images/myphoto.jpg" class="align-right" src="../../_images/myphoto.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
