@@ -207,10 +207,15 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
     * - 
       - `Amazon Transcribe <https://aws.amazon.com/jp/transcribe/>`_
       - | **音声の文字起こし**
-        | - コールセンターでの顧客の問合せ内容 (音声データ) の文書化
+        | - 音声ファイルの文字起こし
+        | - 複数の話者 (2~10人) が存在する会議等の音声ファイルの文字起こし
+        | - チャネル (話者) ごとの文字起こし
+        | - 個人情報等の自動マスキング
+        | - ストリーミング音声のリアルタイム文字起こし ※ 日本語未対応
+        | - 医療に特化した文字起こし (`Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_) ※ 日本語未対応
       - ×
-      - | ○ \*2
-        | (日本語未対応機能あり) \*3
+      - | ○
+        | (日本語未対応機能あり)
     * - | Text
         | 自然言語処理
       - `Amazon Comprehend <https://aws.amazon.com/jp/comprehend/>`_
@@ -290,8 +295,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
       - ×
 
 - \*1: 2020年3月24日時点でプレビューでの提供。
-- \*2: 医療現場での利用に特化した `Amazon Transcribe Medical <https://aws.amazon.com/jp/transcribe/medical/>`_ と `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_ は、東京リージョン、日本語ともに非対応。
-- \*3: Amazon Transcribe の文字起こしストリーミング (リアルタイムでの文字起こし) は日本語非対応。
+- \*2: 医療現場での利用に特化した  と `Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_ は、東京リージョン、日本語ともに非対応。
 
 
 まとめ
