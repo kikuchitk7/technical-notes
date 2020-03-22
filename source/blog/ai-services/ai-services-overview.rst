@@ -248,9 +248,10 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | ドキュメント検索
       - `Amazon Kendra <https://aws.amazon.com/jp/kendra/>`_ \*1
       - | **検索サービス**
-        | - X
+        | - 様々なデータソース (ファイルシステム、RDB、S3 など) に対する検索機能
       - ×
-      - ×
+      - | ×
+        | (日本語未対応)
     * - | Chatbot
         | チャットボット
       - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
