@@ -28,10 +28,9 @@ AI サービスの全体像
 | `前回 <https://news.mynavi.jp/itsearch/article/cloud/4799>`_ の記事では、下記のように説明しました。
 
 .. list-table::
-    :widths: 7, 3, 3
     :header-rows: 1
 
-    * - サービス名
+    * - サービス名          
       - サービスの特徴
       - 導入の難易度
     * - AI サービス
