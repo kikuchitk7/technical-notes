@@ -255,7 +255,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | チャットボット
       - `Amazon Lex <https://aws.amazon.com/jp/lex/>`_
       - | **チャットボット**
-        | - X
+        | - 顧客の問合せや FAQ のチャットボット化
       - ×
       - | ×
         | (日本語未対応)
