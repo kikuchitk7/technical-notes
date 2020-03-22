@@ -300,7 +300,10 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | コンタクトセンター
       - `Contact Lens for Amazon Connect <https://aws.amazon.com/jp/connect/contact-lens/>`_ \*1
       - | **Amazon Connect のコンタクトセンター分析**
-        | - X
+        | - 顧客の連絡先ページでの全文検索
+        | - 顧客とのやり取りの文字起こしデータを基にした感情分析
+        | - 顧客の感情の推移などの詳細情報の提示
+        | - 顧客の連絡先の自動分類
       - ×
       - ×
 
