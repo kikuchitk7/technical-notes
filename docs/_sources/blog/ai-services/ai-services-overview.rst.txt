@@ -263,7 +263,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | レコメンド
       - `Amazon Personalize <https://aws.amazon.com/jp/personalize/>`_
       - | **レコメンド**
-        | - X
+        | - 顧客の購買履歴や購買行動に基づいた商品、類似商品、ランキングのレコメンド
       - | ○
         | - レコメンドモデルの自動構築
       - ○
