@@ -95,11 +95,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">AI サービスとは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの全体像</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id6">AI サービスの特徴</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">AI サービスの概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">AI サービスの概要</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -204,75 +204,44 @@
 </div>
 <div class="section" id="id6">
 <h3>AI サービスの特徴<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4799">前回</a> の記事で、AI サービスは下記のように説明しました。</p>
-<blockquote>
-<div><table class="docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>サービス名</p></th>
-<th class="head"><p>サービスの特徴</p></th>
-<th class="head"><p>導入の難易度</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>AI サービス</p></td>
-<td><ul>
-<li><div class="line-block">
-<div class="line">AWS がユースケースごとに用意したサービス</div>
-<div class="line">と自身の解決したい問題・課題とマッチする人</div>
-<div class="line">向けのサービス。</div>
-<div class="line">(例) 機械翻訳がしたい → Amazon Translate、</div>
-<div class="line">商品の在庫を予測したい → Amazon Forecast など</div>
-</div>
-</li>
-<li><div class="line-block">
-<div class="line">学習済の機械学習モデル、もしくは、</div>
-<div class="line">機械学習モデルを生成する仕組みが AWS から</div>
-<div class="line">提供される。</div>
-</div>
-</li>
-</ul>
-</td>
-<td><ul>
-<li><div class="line-block">
-<div class="line">利用者が考える部分が少なくて済むため、</div>
-<div class="line">「機械学習の深い知識なしに利用可能」</div>
-<div class="line">であり、導入の難易度は最も低い。</div>
-</div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-<p>特徴は主に下記の2つ。</p>
-<ul class="simple">
-<li><p>各サービスのユースケースと使い方がわかれば導入できる。</p></li>
-<li><p>推論エンドポイントを使って、簡単にアプリに組み込める。</p></li>
-</ul>
-<p>それぞれ詳しく見ていきます。</p>
-<div class="section" id="id8">
-<h4>各サービスのユースケースと使い方がわかれば導入できる。<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="line-block">
-<div class="line">「AWS の ML スタック」の図に記載されているように、AI サービスの謳い文句は「機械学習の深い知識なしに利用可能」です。</div>
-<div class="line">これは、各サービスのユースケースと使い方がわかれば、機械学習アルゴリズムがわからなくても機械学習を導入することができることを意味する。</div>
-</div>
-<p>AI サービスの使い方にはパターンが2つある。</p>
-<p>パターン①：AWS が生成した学習済の機械学習モデルを使う。
-パターン②：利用者独自の学習データから機械学習モデルを生成して使う。</p>
-<img alt="blog/ai-services/../../../images/AIサービスのパターン.png" src="blog/ai-services/../../../images/AIサービスのパターン.png" />
+<p>AI サービスの主な特徴は、下記の2点です。</p>
+<ol class="arabic simple">
+<li><p>AWS から学習済の機械学習モデル、もしくは、機械学習モデルを生成する仕組みが提供される。</p></li>
+<li><p>ユースケースごとにサービスが用意されている。</p></li>
+</ol>
+<p>それぞれの特徴について、詳しく見ていきます。</p>
 <div class="section" id="aws">
-<h5>パターン①：AWS が生成した学習済の機械学習モデルを使う。<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>AWS が準備した学習データから生成された機械学習モデルを利用する。
-全利用者が共通の機械学習モデルを利用する。
-多少のチューニングは可能。</p>
-<p>例えば、パターン①には Amazon Translate (テキストの翻訳サービス) がある。
-利用者独自の語彙を定めるなど程度のカスタマイズは可能。</p>
+<h4>AWS から学習済の機械学習モデル、もしくは、機械学習モデルを生成する仕組みが提供される。<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">AI サービスでは、AWS から下記のいずれかが提供されます。それぞれを「パターン①」「パターン②」とします。</div>
+<div class="line">このパターン分けは、後述の AutoML (Automated Machine Learning) 機能の有無とも捉えることができます。</div>
+</div>
+<ul class="simple">
+<li><p>パターン①：学習済の機械学習モデル (AutoML なし)</p></li>
+<li><p>パターン②：機械学習モデルを生成する仕組み (AutoML あり)</p></li>
+</ul>
+<div class="section" id="automl">
+<h5>パターン①：学習済の機械学習モデル (AutoML なし)<a class="headerlink" href="#automl" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="line-block">
+<div class="line">このパターンでは、AWS が準備した学習データと機械学習アルゴリズムを基に生成された機械学習モデルを利用します。</div>
+<div class="line">すなわち、全ユーザが共通の機械学習モデルを利用ということであり、AI サービスの多くのサービス・機能がこのパターンとなります。</div>
+</div>
+<div class="line-block">
+<div class="line">例えば、Amazon Translate を考えてみましょう。</div>
+<div class="line">Amazon Translate を使うと、「テキストの翻訳」を行うことができます。英語のテキストから日本語のテキストへの翻訳やその逆も行うことができます。</div>
+<div class="line">下記の図は Amazon Translate のコンソールで英語のテキストの日本語訳を行ったものです。</div>
+<div class="line">この時にユーザがやるべきことは、「翻訳したいテキストの準備」と「Amazon Translate での翻訳」だけです。</div>
+<div class="line">学習データとなる英語や日本語のテキストの準備や機械学習アルゴリズムの選定、構築などは不要です。</div>
+<div class="line">下記は Amazon Translate のコンソールで翻訳を行いましたが、Amazon Translate の SDK を利用してユーザのアプリに翻訳機能を組み込むことも可能です。</div>
+</div>
+<img alt="../../_images/amazon_translate_example.png" src="../../_images/amazon_translate_example.png" />
+<p>(Amazon Translate のコンソールにて、<a class="reference external" href="https://docs.aws.amazon.com/translate/latest/dg/what-is.html">開発者ガイド</a> の冒頭のテキストを日本語訳させた様子)</p>
+<div class="line-block">
+<div class="line">AI サービスの謳い文句となっている「機械学習の深い知識なしに利用可能」、「素早くビジネスへの取り込みが可能」というメリットがある反面、機械学習モデルに関してチューニングできる範囲が限定されるというデメリットがあります。</div>
+<div class="line">例えば、Amazon Translate では「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/translate/latest/dg/how-custom-terminology.html">カスタム用語</a>」が提供されています。</div>
+<div class="line">テキスト中にユーザの組織に固有の単語が存在する場合は翻訳に失敗することが想定されますが、カスタム用語として単語を登録することで正しく翻訳させることができます。</div>
+<div class="line">このようなチューニングを行ってもビジネス要件 (精度等) を満たせない、もっときめ細やかなチューニングを行いたいという場合は、Amazon SageMaker を利用するなど独自の機械学習モデルを構築する必要があります。</div>
+</div>
 </div>
 <div class="section" id="id9">
 <h5>パターン②：利用者独自の学習データから機械学習モデルを生成して使う。<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h5>
@@ -284,7 +253,15 @@
 </div>
 </div>
 <div class="section" id="id10">
-<h4>推論エンドポイントを使って、簡単にアプリに組み込める。<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>ユースケースごとにサービスが用意されている。<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>まずは、AI サービスのカテゴリーを見る。前述の通り、10 カテゴリーが提供されている。
+それぞれのカテゴリーでどんなことができるか概要を見る。</p>
+<p>各サービスで提供されている機能を把握することが重要。
+Amazon Translate のように単一機能 (テキストの翻訳) のみが提供されているものもあるし、Amazon Comprehend のようにたくさんの機能が提供されているものもある。
+これらで提供されている機能を試しにまとめてみる。</p>
+</div>
+<div class="section" id="id11">
+<h4>推論エンドポイントを使って、簡単にアプリに組み込める。<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>他の AWS サービスと同様にエンドポイントが提供される。
 機械学習モデルを生成すると、推論エンドポイントが作成される。
 利用者のアプリから推論エンドポイントにアクセスすることで機械学習を取り入れることができる。</p>
@@ -298,14 +275,14 @@
 しかし、機械学習に関する知識がゼロで良いという訳ではない。例えば、精度が出ない場合に未学習 (under-fitting)、過学習 (over-fitting) のいずれの状態にあるのかが判断できないと正しくチューニングできない。</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h3>AI サービスの概要<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id12">
+<h3>AI サービスの概要<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">AI サービスの概要について下記の表にまとめます。</div>
 <div class="line">ここでは簡単な説明に留め、次回以降に詳細な説明を行うこととします。</div>
 </div>
-<div class="section" id="id12">
-<h4>注意事項<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id13">
+<h4>注意事項<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ul>
 <li><p>2020年2月3日時点の公開情報に基づいて作成する。</p></li>
 <li><p>分類は「AWS の ML スタック」に従う。</p></li>
@@ -507,14 +484,14 @@
 </div>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>まとめ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h2>まとめ<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回の記事では、AI サービスの種類とそれぞれのサービスの概要についてご説明させていただきました。</p>
 <p>次回からは、AI サービスの個々のサービスについて概要と使い方について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id14">
-<h2>著者紹介<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id15">
+<h2>著者紹介<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto.jpg"><img alt="../../_images/myphoto.jpg" class="align-right" src="../../_images/myphoto.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
