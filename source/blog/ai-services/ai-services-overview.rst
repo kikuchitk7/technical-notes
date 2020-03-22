@@ -223,7 +223,7 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
         | - テキスト (メール、SNS、顧客アンケート結果など) からのキーフレーズ抽出、感情分析、構文解析、エンティティ認識、言語検出、トピック分類
         | - カスタムエンティティによるユーザ独自のエンティティ (人、組織、場所など) の分類
         | - カスタム分類子によるユーザ独自のラベルの定義とテキストの分類
-        | - 医療に特化したテキスト分析 (`Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`) ※ 日本語未対応
+        | - 医療に特化したテキスト分析 (`Amazon Comprehend Medical <https://aws.amazon.com/jp/comprehend/medical/>`_) ※ 日本語未対応
       - | ○
         | - カスタムエンティティ
         | - カスタム分類子
@@ -232,7 +232,8 @@ Amazon Forecast のコンソールでは、その他の4つの機械学習モデ
     * - 
       - `Amazon Translate <https://aws.amazon.com/jp/translate/>`_
       - | **テキストの翻訳**
-        | - ユーザーマニュアルの他言語への自動翻訳 (多言語対応)
+        | - 大量テキストのバッチ翻訳 (一括翻訳)
+        | - テキストのリアルタイム翻訳
       - ×
       - | ○
         | (日本語対応済)
