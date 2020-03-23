@@ -245,10 +245,10 @@
 <h5>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="line-block">
 <div class="line">このパターンでポイントとなるのが、機械学習モデルを自動生成する仕組みである「AutoML 機能」です。</div>
-<div class="line">AutoML 機能を利用すると、ユーザが準備した学習データからユーザ独自の機械学習モデルを構築することができます。</div>
+<div class="line">AutoML 機能を利用すると、ユーザが準備した学習データからユーザ独自の機械学習モデルを自動で構築することができます。</div>
 </div>
 <div class="line-block">
-<div class="line">下記のサービスで AutoML 機能が提供されています。</div>
+<div class="line">下記の AI サービスでは AutoML 機能が提供されています。</div>
 <div class="line">なお、Amazon Fraud Detector はユーザの過去の不正データから不正検知モデルを自動生成するサービスです。<a class="reference external" href="https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html">Amazon Fraud Detector の開発者ガイド</a> に &quot;AutoML&quot; という単語が登場しないものの、AutoML と同等の機能を提供するため、パターン②に分類しています。</div>
 </div>
 <table class="docutils align-default">
@@ -267,22 +267,27 @@
 <tr class="row-even"><td><p>Amazon Rekognition</p></td>
 <td><p>カスタムラベル</p></td>
 <td><div class="line-block">
-<div class="line">ユーザ独自のラベルを定義して検出できる。</div>
-<div class="line">例：ペットの犬をラベルに定義して検出する。</div>
+<div class="line">ユーザ独自のラベルを定義して画像から検出できる。</div>
+<div class="line">例：ペットの犬のラベルに定義して、画像から検出する。</div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>Amazon Comprehend</p></td>
 <td><p>カスタムエンティティ</p></td>
 <td><div class="line-block">
-<div class="line">ユーザ独自のエンティティ (人、組織、場所など) を</div>
-<div class="line">分類するモデルを作成できる。</div>
+<div class="line">ユーザ独自のエンティティ (人、組織、場所など) を定義し、</div>
+<div class="line">テキストから抽出することができる。</div>
+<div class="line">例：組織に固有なポリシー番号などを定義してテキストから抽出する。</div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>カスタム分類子</p></td>
-<td><p>ユーザ独自のラベルにテキストを分類するモデルを作成できる。</p></td>
+<td><div class="line-block">
+<div class="line">ユーザ独自のラベルを定義し、テキストを分類するモデルを作成できる。</div>
+<div class="line">例：顧客からのメール問合せの内容から担当部署に振り分ける。</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td><p>Amazon Personalize</p></td>
 <td><p>レコメンドモデルの自動構築</p></td>
