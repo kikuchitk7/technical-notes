@@ -317,7 +317,7 @@
 </table>
 <div class="line-block">
 <div class="line">パターン①と違って、ユーザのデータに即した機械学習モデルを構築することができて、かつ、自動で実行できる点がメリットです。</div>
-<div class="line">単純に利用すれば良いパターン①と比べると導入までにかかる時間はかかるものの、多くの処理が自動化されているため、簡便かつ迅速に機械学習を導入することができます。</div>
+<div class="line">単純に利用するだけのパターン①と比べると導入までにかかる時間はかかるものの、多くの処理が自動化されているため、簡便かつ迅速に機械学習を導入することができます。</div>
 </div>
 <div class="line-block">
 <div class="line">例えば、Amazon Forecast における AutoML 機能ををみてみましょう。</div>
@@ -331,33 +331,37 @@
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-prophet.html">Prophet</a></p></li>
 </ul>
 <div class="line-block">
-<div class="line">取り扱うデータやそれぞれのアルゴリズムの特徴を考慮して使用するアルゴリズムを選択すべきですが、それには機械学習に関する専門的な知識が必要となります。</div>
+<div class="line">取り扱うデータやそれぞれのアルゴリズムの特徴を考慮した上でアルゴリズムを選択すべきですが、それには機械学習に関する専門的な知識が必要となります。</div>
 <div class="line">Amazon Forecast の AutoML 機能を利用すると、上記の5つのアルゴリズムから最適なアルゴリズムを自動で選択することができます。</div>
 <div class="line">Amazon Forecast の AutoML 機能は、下記を自動で行います。</div>
 </div>
 <ul class="simple">
 <li><p>上記の5つのアルゴリズムを使ってそれぞれ学習を行い、時系列予測の機械学習モデルを構築する。</p></li>
 <li><p>時系列予測の機械学習モデルの精度の評価を行う。</p></li>
-<li><p>最も精度の高い機械学習モデルを選択し、提示する。</p></li>
+<li><p>最も精度の高い機械学習モデルを選択し、ユーザに提示する。</p></li>
 </ul>
-<p>Amazon Forecast のコンソールで AutoML 機能を利用する場合についてみてみます。</p>
+<p>Amazon Forecast のコンソールで AutoML 機能を利用する場合についてみてみましょう。</p>
 <img alt="../../_images/amazon_forecast_algorithm_selection.png" src="../../_images/amazon_forecast_algorithm_selection.png" />
 <div class="line-block">
-<div class="line">AutoML 機能は、予測子 (Predictor) の設定の「Algorithm selection (アルゴリズムの選択)」で &quot;Automatic (AutoML)&quot; を選択するだけ利用できます。</div>
-<div class="line">「予測子の作成」とは、すなわち、「時系列予測の機械学習モデルの構築」です。作成ボタン押下後、しばらく待つと予測子が作成されます。</div>
+<div class="line">AutoML 機能は、予測子 (Predictor) の設定の際に、「Algorithm selection (アルゴリズムの選択)」で &quot;Automatic (AutoML)&quot; を選択するだけで利用できます。</div>
+<div class="line">「予測子」とは、「時系列予測の機械学習モデル」のことであり、「予測子の作成」は「機械学習モデルの構築」を意味します。です。作成ボタン押下後、しばらく待つと予測子が作成されます。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/amazon_forecast_predictor_overview.png"><img alt="../../_images/amazon_forecast_predictor_overview.png" src="../../_images/amazon_forecast_predictor_overview.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">上記が最も精度が高かった時系列予測の機械学習モデルの提示画面です。</div>
-<div class="line">この場合は、DeepAR+ という再帰型ニューラルネットワーク (Recurent Neural Network) を用いたアルゴリズムが選択されました。</div>
-<div class="line">これを本番環境にデプロイして、予測を行います。</div>
+<div class="line">この場合は、DeepAR+ という再帰型ニューラルネットワーク (Recurrent Neural Network) を用いたアルゴリズムが選択されました。</div>
+<div class="line">これを本番環境にデプロイして、将来の時系列データに対する予測を行うことができます。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/amazon_forecast_algorithm_metrics_arima.png"><img alt="../../_images/amazon_forecast_algorithm_metrics_arima.png" src="../../_images/amazon_forecast_algorithm_metrics_arima.png" style="width: 900px;" /></a>
-<p>Amazon Forecast のコンソールでは、その他の4つの機械学習モデルの情報を確認することもできます。(上記は ARIMA を使った機械学習モデルの情報)</p>
+<div class="line-block">
+<div class="line">Amazon Forecast のコンソールでは、その他の4つの機械学習モデルの情報を確認することもできます。</div>
+<div class="line">上記は ARIMA を使った機械学習モデルの情報であり、赤枠のプルダウンから選択することで他の機械学習モデルの情報を確認することができます。</div>
+</div>
 <div class="line-block">
 <div class="line">AI サービスの提供形態を整理しつつ、AI サービスが簡単に利用できることをみてきました。</div>
 <div class="line">このパートのまとめとして、パターン①とパターン②の機械学習のワークフローにおけるカバー範囲を下記に示します。</div>
 <div class="line">参考情報として、ML サービス (Amazon SageMaker) にて独自モデルを構築する場合についても示します。</div>
+<div class="line">利用するサービスや機能によって多少の違いがある点に注意してください。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/ml_workflow.png"><img alt="../../_images/ml_workflow.png" src="../../_images/ml_workflow.png" style="width: 900px;" /></a>
 <p>(※ 機械学習のワークフローは、<a class="reference external" href="https://aws.amazon.com/jp/builders-flash/202003/awsgeek-sagemaker/">「機械学習のワークフローってどうなっているの ? AWS の機械学習サービスをグラレコで解説 (builders.flash)」</a>」を参考に作成)</p>
