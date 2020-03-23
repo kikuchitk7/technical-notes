@@ -103,12 +103,12 @@ AWS から学習済の機械学習モデル、もしくは、機械学習モデ�
     - `レコメンドモデルの自動構築 <https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/working-with-predefined-recipes.html>`_
     - | 最適なレコメンドアルゴリズムを自動選択して、
       | ユーザ独自のモデルを構築できる。
-  * - `Amazon Forecast <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-predictor.html#howitworks-predictor-intro>`_
-    - 時系列データ予測モデルの自動構築
+  * - Amazon Forecast
+    - `時系列データ予測モデルの自動構築 <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-predictor.html#howitworks-predictor-intro>`_
     - | 最適な時系列予測アルゴリズムを自動選択して、
       | ユーザ独自のモデルを構築できる。
-  * - `Amazon Fraud Detector <https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html>`_
-    - 不正検知モデルの自動構築
+  * - Amazon Fraud Detector
+    - `不正検知モデルの自動構築 <https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html>`_
     - | 過去の不正データからユーザ独自の不正検知モデルを
       | 自動構築できる。
 
