@@ -87,27 +87,27 @@ AWS から学習済の機械学習モデル、もしくは、機械学習モデ�
     - 機能名
     - 機能の説明
   * - Amazon Rekognition
-    - カスタムラベル
+    - `カスタムラベル <https://docs.aws.amazon.com/ja_jp/rekognition/latest/customlabels-dg/what-is.html>`_
     - | ユーザ独自のラベルを定義して画像から検出できる。
       | 例：ペットの犬のラベルに定義して、画像から検出する。
   * - Amazon Comprehend
-    - カスタムエンティティ
+    - `カスタムエンティティ <https://docs.aws.amazon.com/ja_jp/comprehend/latest/dg/custom-entity-recognition.html>`_
     - | ユーザ独自のエンティティ (人、組織、場所など) を定義し、
       | テキストから抽出することができる。
       | 例：組織に固有なポリシー番号などを定義してテキストから抽出する。
   * -
-    - カスタム分類子
+    - `カスタム分類子 <https://docs.aws.amazon.com/ja_jp/comprehend/latest/dg/how-document-classification.html>`_
     - | ユーザ独自のラベルを定義し、テキストを分類するモデルを作成できる。
       | 例：顧客からのメール問合せの内容から担当部署に振り分ける。
   * - Amazon Personalize
-    - レコメンドモデルの自動構築
+    - `レコメンドモデルの自動構築 <https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/working-with-predefined-recipes.html>`_
     - | 最適なレコメンドアルゴリズムを自動選択して、
       | ユーザ独自のモデルを構築できる。
-  * - Amazon Forecast
+  * - `Amazon Forecast <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/howitworks-predictor.html#howitworks-predictor-intro>`_
     - 時系列データ予測モデルの自動構築
     - | 最適な時系列予測アルゴリズムを自動選択して、
       | ユーザ独自のモデルを構築できる。
-  * - Amazon Fraud Detector
+  * - `Amazon Fraud Detector <https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html>`_
     - 不正検知モデルの自動構築
     - | 過去の不正データからユーザ独自の不正検知モデルを
       | 自動構築できる。
