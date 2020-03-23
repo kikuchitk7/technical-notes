@@ -58,11 +58,10 @@ AWS から学習済の機械学習モデル、もしくは、機械学習モデ�
 
 | 例えば、Amazon Translate を考えてみましょう。
 | Amazon Translate を使うと、「テキストの翻訳」を行うことができます。英語のテキストから日本語のテキストへの翻訳やその逆も行うことができます。
-| 下記の図は Amazon Translate のコンソールで英語のテキストの日本語訳を行ったものです。
+| 下記の図は Amazon Translate のコンソールで「`Amazon Translate の開発者ガイド <https://docs.aws.amazon.com/translate/latest/dg/what-is.html>`_ 」の冒頭のテキスト (英語) の日本語訳を行ったものです。
 | この時にユーザがやるべきことは、「翻訳したいテキストの準備」と「Amazon Translate での翻訳」だけです。
-| 学習データとなる英語や日本語のテキストの準備や機械学習アルゴリズムの選定、構築などは不要です。
-| 下記は Amazon Translate のコンソールにて「`Amazon Translate の開発者ガイド <https://docs.aws.amazon.com/translate/latest/dg/what-is.html>`_ 」の冒頭のテキストを日本語訳させたものです。
-| Amazon Translate の SDK を利用してユーザのアプリに翻訳機能を組み込むことも可能です。
+| 学習データとなる英語や日本語のテキストの準備や機械学習アルゴリズムの選定、機械学習モデルの構築・デプロイは不要です。
+| 今回はコンソールで翻訳しましたが、Amazon Translate の SDK を利用してユーザのアプリに翻訳機能を組み込むことも可能です。
 
 .. image:: ../../../images/amazon_translate_example.png
   :width: 900px
