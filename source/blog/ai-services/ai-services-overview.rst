@@ -59,7 +59,7 @@ Amazon Translate のようにパターン①しかないサービスもあれば
 
 | 例えば、Amazon Translate を考えてみましょう。
 | Amazon Translate を使うと、「テキストの翻訳」を行うことができます。英語のテキストから日本語のテキストへの翻訳やその逆も行うことができます。
-| 下記の図は Amazon Translate のコンソールで「`Amazon Translate の開発者ガイド <https://docs.aws.amazon.com/translate/latest/dg/what-is.html>`_ 」の冒頭のテキスト (英語) の日本語訳を行ったものです。
+| 下図は Amazon Translate のコンソールで「`Amazon Translate の開発者ガイド <https://docs.aws.amazon.com/translate/latest/dg/what-is.html>`_ 」の冒頭のテキスト (英語) の日本語訳を行ったものです。
 
 .. image:: ../../../images/amazon_translate_example.png
   :width: 900px
