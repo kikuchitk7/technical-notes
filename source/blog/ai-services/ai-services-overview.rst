@@ -295,7 +295,7 @@ Amazon Forecast のコンソールで AutoML 機能を利用する場合につ�
       - ○
     * - | Fraud
         | 不正検知
-      - `Amazon Fraud Detection <https://aws.amazon.com/jp/fraud-detector/>`_ \*1
+      - `Amazon Fraud Detector <https://aws.amazon.com/jp/fraud-detector/>`_ \*1
       - | **不正検知**
         | - 過去の不正データを基にしたユーザ独自の不正検知モデルの自動構築
       - | ○
