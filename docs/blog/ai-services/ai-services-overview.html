@@ -211,17 +211,20 @@
 <p>それぞれの特徴について、詳しく見ていきます。</p>
 <div class="section" id="aws">
 <h4>AWS から学習済の機械学習モデル、もしくは、機械学習モデルを生成する仕組みが提供される。<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="line-block">
-<div class="line">AI サービスでは、AWS から下記のいずれかが提供されます。それぞれを「パターン①」「パターン②」とします。</div>
-<div class="line">このパターン分けは、後述の AutoML (Automated Machine Learning) 機能の有無と捉えることもできます。</div>
-</div>
+<p>AI サービスでは、AWS から下記のいずれかが提供されます。それぞれを「パターン①」「パターン②」とします。</p>
 <ul class="simple">
-<li><p>パターン①：学習済の機械学習モデル (AutoML なし)</p></li>
-<li><p>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)</p></li>
+<li><p>パターン①：学習済の機械学習モデル</p></li>
+<li><p>パターン②：機械学習モデルを自動で生成する仕組み (AutoML 機能)</p></li>
 </ul>
-<p>Amazon Translate のようにパターン①しかないサービスもあれば、Amazon Rekognition のように機能によってパターン①とパターン②の両方の機能を備えるサービスもあります。</p>
-<div class="section" id="automl">
-<h5>パターン①：学習済の機械学習モデル (AutoML なし)<a class="headerlink" href="#automl" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>Amazon Translate のようにパターン①しかないサービスもあれば、Amazon Rekognition のように機能によってパターン①とパターン②の両方の機能を備えるサービスもある点に注意してください。</p>
+<div class="line-block">
+<div class="line">このパターン分けは、AutoML 機能の有無と捉えることもできます。</div>
+<div class="line">AutoML とは、&quot;Automated Machine Learning&quot; の略であり、ユーザが準備した学習データからユーザ独自の機械学習モデルを自動で構築することができます。</div>
+<div class="line">サービスによって自動化範囲が多少異なりますが、多くが機械学習のワークフローのうちの「モデルの構築 (機械学習アルゴリズムの選定を含む)」「モデルの学習」「モデルの評価」のプロセスを自動化します。</div>
+<div class="line">この記事では、各 AI サービスの開発者ガイドで &quot;AutoML&quot; と記載があるか、同等の機能を有するものを「AutoML 機能あり」と考えます。</div>
+</div>
+<div class="section" id="id7">
+<h5>パターン①：学習済の機械学習モデル<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="line-block">
 <div class="line">このパターンでは、AWS が準備した機械学習モデルを利用します。すなわち、学習データの準備や機械学習アルゴリズムの選定は AWS が行い、それらを基にして構築された機械学習モデルをユーザが利用する形になります。</div>
 <div class="line">AWS の AI サービスの多くのサービス・機能がこのパターンとなります。</div>
@@ -244,8 +247,8 @@
 <div class="line">このようなチューニングを行ってもビジネス要件 (精度等) を満たせない、もっときめ細やかなチューニングを行いたいという場合は、Amazon SageMaker を利用するなど独自の機械学習モデルを構築する必要があります。</div>
 </div>
 </div>
-<div class="section" id="id8">
-<h5>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="section" id="automl">
+<h5>パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)<a class="headerlink" href="#automl" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="line-block">
 <div class="line">このパターンでポイントとなるのが、機械学習モデルを自動生成する仕組みである「AutoML 機能」です。</div>
 <div class="line">AutoML 機能を利用すると、ユーザが準備した学習データからユーザ独自の機械学習モデルを自動で構築することができます。</div>
