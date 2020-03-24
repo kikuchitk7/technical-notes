@@ -123,7 +123,7 @@ Amazon Translate のようにパターン①しかないサービスもあれば
 | 例えば、Amazon Forecast では、後述の通り5つの時系列予測アルゴリズムを使って機械学習モデルを構築することができますが、これ以外のアルゴリズムを使いたい場合は、Amazon SageMaker を利用するなど独自に実装する必要があります。
 | 柔軟性のなさについてはパターン①も同様であり、AI サービスが便利であるが故に生じるデメリットと考えられます。
 
-| ここでは、Amazon Forecast における AutoML 機能ををみてみましょう。
+| ここでは、Amazon Forecast における AutoML 機能をみてみましょう。
 | Amazon Forecast では、下記の5つの時系列予測アルゴリズムを利用することができます。
 
 - `ARIMA (自己回帰和分移動平均) <https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/aws-forecast-recipe-arima.html>`_
