@@ -78,13 +78,11 @@ Amazon Translate のようにパターン①しかないサービスもあれば
 | このようなチューニングを行ってもビジネス要件 (精度等) を満たせない、もっときめ細やかなチューニングを行いたいという場合は、Amazon SageMaker を利用するなど独自の機械学習モデルを構築する必要があります。
 
 
-パターン②：機械学習モデルを自動で生成する仕組み (AutoML あり)
+パターン②：機械学習モデルを自動で生成する仕組み (AutoML 機能)
 ******************************************************************
 | このパターンでポイントとなるのが、機械学習モデルを自動生成する仕組みである「AutoML 機能」です。
-| AutoML 機能を利用すると、ユーザが準備した学習データからユーザ独自の機械学習モデルを自動で構築することができます。
-
 | 下記の AI サービスでは AutoML 機能が提供されています。
-| なお、Amazon Fraud Detector はユーザの過去の不正データから不正検知モデルを自動生成するサービスです。`Amazon Fraud Detector の開発者ガイド <https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html>`_ に "AutoML" という単語が登場しないものの、AutoML と同等の機能を提供するため、パターン②に分類しています。
+| なお、Amazon Fraud Detector はユーザの過去の不正データから不正検知モデルを自動生成するサービスです。`Amazon Fraud Detector の開発者ガイド <https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html>`_ に "AutoML" という単語が登場しないものの、同等の機能を持つため「AutoML 機能あり」と考えてパターン②に分類しています。
 
 .. list-table::
   :header-rows: 1
