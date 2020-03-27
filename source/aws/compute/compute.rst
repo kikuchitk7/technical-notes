@@ -5,4 +5,5 @@ Compute
    :maxdepth: 1
    :caption: Contents:
 
-   ecs.rst
+   ecs
+   lambda
