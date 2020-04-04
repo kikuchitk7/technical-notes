@@ -9,3 +9,9 @@ Cloud Native
    docker/docker
    git/git
    iac/iac
+
+
+Cloud Native Trail Map
+------------------------------------
+.. image:: ../../images/CNCF_TrailMap_latest.png
+   :target: https://github.com/cncf/trailmap
