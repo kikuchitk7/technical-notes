@@ -1,2 +1,10 @@
 CI/CD
 ==================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   git/git
+   iac/iac
+   

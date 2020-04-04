@@ -1,10 +1,11 @@
-CI/CD
+Terraform
 ==================
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
-   git/git
-   iac/iac
-   
+   setup
+   settings
+   team
+   workspaces

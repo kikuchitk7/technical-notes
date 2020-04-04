@@ -7,8 +7,7 @@ Cloud Native
 
    basics/basics
    containerization/containerization
-   git/git
-   iac/iac
+   cicd/cicd
 
 
 Cloud Native Trail Map
