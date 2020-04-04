@@ -6,7 +6,7 @@ Cloud Native
    :caption: Contents:
 
    basics/basics
-   docker/docker
+   containerization/containerization
    git/git
    iac/iac
 
