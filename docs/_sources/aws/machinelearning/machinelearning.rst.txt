@@ -7,7 +7,7 @@ Machine Learning
 
    overview
    ai-services/ai-services
-   ml-service/ml-service
+   ml-services/ml-services
    learning-tool/learning-tool
    
 参考

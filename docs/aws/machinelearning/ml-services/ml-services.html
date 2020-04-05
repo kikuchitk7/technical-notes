@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AI サービス &mdash; technical notes  ドキュメント</title>
+  <title>ML サービス &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
     <link rel="search" title="検索" href="../../../search.html" />
-    <link rel="next" title="AI サービスの概要" href="ai-services-overview.html" />
-    <link rel="prev" title="Overview" href="../overview.html" /> 
+    <link rel="next" title="ML サービスの概要" href="ml-services-overview.html" />
+    <link rel="prev" title="Amazon Forecast" href="../ai-services/forecasting/forecast.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,20 +91,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../../databases/databases.html">Databases</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../machinelearning.html">Machine Learning</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview.html">Overview</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">AI サービス</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ai-services-overview.html">AI サービスの概要</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vision/rekognition.html">Amazon Rekognition</a></li>
-<li class="toctree-l4"><a class="reference internal" href="speech/polly.html">Amazon Polly</a></li>
-<li class="toctree-l4"><a class="reference internal" href="speech/transcribe.html">Amazon Transcribe</a></li>
-<li class="toctree-l4"><a class="reference internal" href="text/comprehend.html">Amazon Comprehend</a></li>
-<li class="toctree-l4"><a class="reference internal" href="text/translate.html">Amazon Translate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="text/textract.html">Amazon Textract</a></li>
-<li class="toctree-l4"><a class="reference internal" href="chatbots/lex.html">Amazon Lex</a></li>
-<li class="toctree-l4"><a class="reference internal" href="personalization/personalize.html">Amazon Personalize</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forecasting/forecast.html">Amazon Forecast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-services/ai-services.html">AI サービス</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ML サービス</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html">ML サービスの概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#amazon-sagemaker">Amazon SageMaker とは</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id1">Amazon SageMaker のアーキテクチャ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id2">開発フロー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id6">ビルトインアルゴリズム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id12">Amazon SageMaker のサンプルノートブック</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id13">注意事項</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#marketplace">MarketPlace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml-services-overview.html#id14">参考</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sagemaker/sagemaker.html">Amazon SageMaker</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../ml-services/ml-services.html">ML サービス</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../learning-tool/learning-tool.html">学習ツール</a></li>
 </ul>
 </li>
@@ -166,13 +166,13 @@
         
           <li><a href="../machinelearning.html">Machine Learning</a> &raquo;</li>
         
-      <li>AI サービス</li>
+      <li>ML サービス</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/aws/machinelearning/ai-services/ai-services.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/aws/machinelearning/ml-services/ml-services.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -185,21 +185,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ai">
-<h1>AI サービス<a class="headerlink" href="#ai" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="ml">
+<h1>ML サービス<a class="headerlink" href="#ml" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ai-services-overview.html">AI サービスの概要</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vision/rekognition.html">Amazon Rekognition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="speech/polly.html">Amazon Polly</a></li>
-<li class="toctree-l1"><a class="reference internal" href="speech/transcribe.html">Amazon Transcribe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text/comprehend.html">Amazon Comprehend</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text/translate.html">Amazon Translate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text/textract.html">Amazon Textract</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chatbots/lex.html">Amazon Lex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="personalization/personalize.html">Amazon Personalize</a></li>
-<li class="toctree-l1"><a class="reference internal" href="forecasting/forecast.html">Amazon Forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html">ML サービスの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#amazon-sagemaker">Amazon SageMaker とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id1">Amazon SageMaker のアーキテクチャ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id2">開発フロー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id6">ビルトインアルゴリズム</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id12">Amazon SageMaker のサンプルノートブック</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id13">注意事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#marketplace">MarketPlace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-services-overview.html#id14">参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sagemaker/sagemaker.html">Amazon SageMaker</a></li>
 </ul>
 </div>
 </div>
@@ -212,10 +212,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ai-services-overview.html" class="btn btn-neutral float-right" title="AI サービスの概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ml-services-overview.html" class="btn btn-neutral float-right" title="ML サービスの概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ai-services/forecasting/forecast.html" class="btn btn-neutral float-left" title="Amazon Forecast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
