@@ -9,3 +9,4 @@ Terraform
    settings
    team
    workspaces
+   continuous_apply
