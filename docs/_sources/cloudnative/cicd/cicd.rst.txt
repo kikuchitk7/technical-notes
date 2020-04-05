@@ -5,6 +5,6 @@ CI/CD
    :maxdepth: 1
    :caption: Contents:
 
-   cicd_overview
+   cicd-overview
    git/git
    iac/iac
