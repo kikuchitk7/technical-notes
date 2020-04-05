@@ -1,6 +1,13 @@
 ML Service
 ==================
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   sagemaker
+   sagemaker-autopilot
+
 ML サービスとは
 --------------------
 - Amazon SageMaker を指す。
