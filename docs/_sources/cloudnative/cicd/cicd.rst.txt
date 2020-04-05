@@ -70,3 +70,4 @@ CD のメリット
 --------------
 - `AWS における継続的インテグレーションと継続的デリバリーの実践 DevOps によるソフトウェアデリバリーの迅速化 <https://d1.awsstatic.com/International/ja_JP/Whitepapers/practicing-continuous-integration-continuous-delivery-on-AWS_JA_final.pdf>`_
 - `AWSマネージドサービスで実現する CI/CD パイプライン <https://d1.awsstatic.com/events/jp/2017/summit/slide/D4T2-6.pdf>`_
+- `エンジニアのためのCI/CD再入門　第1回 CI/CDのエキスパートが解説：CI/CDとは何か？ なぜ今、必要とされるのか？ <https://codezine.jp/article/detail/11083>`_
