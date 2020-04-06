@@ -187,10 +187,16 @@
 <div class="section" id="id1">
 <h2>Amazon SageMaker とは<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/">サービスの紹介ページ</a> より。</p>
+<blockquote>
+<div><p><em>Amazon SageMaker は、すべての開発者やデータサイエンティストが機械学習 (ML) モデルを迅速に構築、トレーニング、デプロイできるようにする完全マネージド型サービスです。
+SageMaker は高品質モデルの開発を容易にするため、機械学習の各プロセスから負荷の大きな部分を取り除きます。</em></p>
+</div></blockquote>
+</li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">開発者ガイド</a> より。</p>
 <blockquote>
 <div><p><em>Amazon SageMaker は、完全マネージド型の機械学習サービスです。
-Amazon SageMaker では、データサイエンティストと開発者が素早く簡単に機械学習モデルの構築と研修を行うことができ、稼働準備が整ったホスト型環境に直接デプロイできます。
+Amazon SageMaker では、データサイエンティストと開発者が素早く簡単に機械学習モデルの構築と学習を行うことができ、稼働準備が整ったホスト型環境に直接デプロイできます。
 統合された Jupyter オーサリングノートブックインスタンスから、調査および分析用のデータソースに簡単にアクセスできるため、サーバーを管理する必要がありません。
 また、一般的な機械学習アルゴリズムも使用できます。
 そうしたアルゴリズムは、分散環境できわめて大容量のデータに対しても効率良く実行できるよう最適化されています。
@@ -200,24 +206,25 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 最低料金や前払いの義務はありません。</em></p>
 </div></blockquote>
 </li>
-<li><p>機械学習プロジェクトの課題を解決するためのマネージドサービス。</p></li>
-<li><p>開発環境を数分で起動できる。</p></li>
-<li><p>学習、推論環境は柔軟にスケールできる。</p></li>
-<li><p>多数の API を提供しており、他サービスとの自由度の高い連携が可能。</p></li>
-<li><p>東京リージョンで利用可能。</p></li>
-<li><p>ほとんどのコンテナ、SDK はオープンソース。</p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>開発フロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
-<h3>開発<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2>提供サービス<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/">サービスの紹介ページ</a> より。</p></li>
+</ul>
+<img alt="../../../../_images/amazon_sagemaker_services.png" src="../../../../_images/amazon_sagemaker_services.png" />
+</div>
+<div class="section" id="id6">
+<h2>開発フロー<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h3>開発<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>ノートブックインスタンスを起動して学習・推論用コードの開発を行う。</p></li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h3>学習<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id8">
+<h3>学習<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>学習用インスタンスを起動する。</p></li>
 <li><p>Amazon ECR からコンテナイメージをロードする。</p></li>
@@ -226,8 +233,8 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 <li><p>学習済モデルとコードを自動で Amazon S3 に保存する。</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h3>推論<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id9">
+<h3>推論<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>推論用インスタンスを起動する。</p></li>
 <li><p>Amazon ECR からコンテナイメージをダウンロードする。</p></li>
@@ -235,26 +242,26 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 </ul>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>ビルトインアルゴリズム<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id8">
-<h3>画像<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h2>ビルトインアルゴリズム<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h3>画像<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>Image Classification</p></li>
 <li><p>Object Detection</p></li>
 <li><p>Semantic Segmentation</p></li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h3>数値・系列解析<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id12">
+<h3>数値・系列解析<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>DeepAR Forecasting</p></li>
 <li><p>Random Cut Forecast</p></li>
 <li><p>IP Insights</p></li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h3>自然言語<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id13">
+<h3>自然言語<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>seq2seq</p></li>
 <li><p>LDA</p></li>
@@ -262,15 +269,15 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 <li><p>BlazingText</p></li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h3>レコメンデーション<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id14">
+<h3>レコメンデーション<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>Object2Vec</p></li>
 <li><p>Factorization Machines</p></li>
 </ul>
 </div>
-<div class="section" id="id12">
-<h3>回帰・分類など<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id15">
+<h3>回帰・分類など<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>Linear Learner</p></li>
 <li><p>XGBoost</p></li>
@@ -322,15 +329,15 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 </ul>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>Amazon SageMaker のサンプルノートブック<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id16">
+<h2>Amazon SageMaker のサンプルノートブック<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>GitHub にて`サンプルノートブック&lt;<a class="reference external" href="https://github.com/awslabs/amazon-sagemaker-examples">https://github.com/awslabs/amazon-sagemaker-examples</a>&gt;`_が公開されている。</p></li>
 <li><p>サンプルノートブックは、Jupyter の &quot;SageMaker Examples&quot;からも選べる。</p></li>
 </ul>
 </div>
-<div class="section" id="id14">
-<h2>注意事項<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id17">
+<h2>注意事項<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul>
 <li><p>Amazon SageMaker の課金対象リソース (利用後に削除しないと課金され続けるもの)</p>
 <blockquote>
@@ -369,8 +376,8 @@ Amazon SageMaker コンソールからクリック 1 つで起動して、安全
 </li>
 </ul>
 </div>
-<div class="section" id="id15">
-<h2>参考<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h2>参考<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>「今から始める機械学習入門 Amazon SageMaker の初級活用法」</p></li>
 </ul>
