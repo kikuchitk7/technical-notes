@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Terraform の 設定 &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../../search.html" />
+    <link rel="next" title="チーム開発における注意事項" href="team.html" />
+    <link rel="prev" title="Terraform のセットアップ" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cloudnative.html">Cloud Native</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/basics.html">基礎事項</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../containerization/containerization.html">Containerization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../cicd.html">CI/CD</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../cicd-overview.html">CI/CD の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/git.html">Git</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../iac.html">Infrastructure as Code</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="terraform.html">Terraform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cloudnative.html#cloud-native-trail-map">Cloud Native Trail Map</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cloudnative.html">Cloud Native</a> &raquo;</li>
+        
+          <li><a href="../../cicd.html">CI/CD</a> &raquo;</li>
+        
+          <li><a href="../iac.html">Infrastructure as Code</a> &raquo;</li>
+        
+          <li><a href="terraform.html">Terraform</a> &raquo;</li>
+        
+      <li>Terraform の 設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/cloudnative/cicd/iac/terraform/settings.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="terraform">
+<h1>Terraform の 設定<a class="headerlink" href="#terraform" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="tfstate-s3">
+<h2>tfstate ファイルを S3 で保管する<a class="headerlink" href="#tfstate-s3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id1">
+<h3>前提<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>下記の設定で tfstate 管理用の S3 Bucket が作成されている。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>バージョニング：有効</p></li>
+<li><p>デフォルト暗号化：有効 (AES-256)</p></li>
+<li><p>バブリックアクセスブロック：有効</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>S3 Bucket 内に tfstate 管理用のディレクトリが作成されている。</p></li>
+<li><p>.gitignore に tfstate の除外が定義されている。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.terraform/terraform.tfstate
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>main.tf に tfstate を S3 Bucket で管理する定義を追加した後に terraform init を実行するとローカルに .terraform/terraform.tfstate を作成しようとしているように見えるので、これを除外しておく。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+
+<span class="c1"># 出力例</span>
+<span class="c1"># (中略)</span>
+Untracked files:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
+
+        .terraform/terraform.tfstate
+
+nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>設定手順<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>main.tf に下記を追加する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>terraform <span class="o">{</span>
+    backend <span class="s2">&quot;s3&quot;</span> <span class="o">{</span>
+        <span class="nv">bucket</span> <span class="o">=</span> <span class="s2">&quot;&lt;bucket&gt;&quot;</span>
+        <span class="nv">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;directory&gt;/terraform.tfstate&quot;</span>
+        <span class="nv">region</span> <span class="o">=</span> <span class="s2">&quot;ap-northeast-1&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>terraform init コマンドを実行する。</p></li>
+<li><p>格納先に指定した S3 Bucket を参照して、tfstate が作成されたことを確認する。</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls &lt;bucket&gt;/&lt;directory&gt;/
+
+<span class="c1"># 出力例</span>
+<span class="m">2020</span>-01-13 <span class="m">01</span>:46:06          <span class="m">0</span>
+<span class="m">2020</span>-01-13 <span class="m">01</span>:57:04       <span class="m">7240</span> terraform.tfstate
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="team.html" class="btn btn-neutral float-right" title="チーム開発における注意事項" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral float-left" title="Terraform のセットアップ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

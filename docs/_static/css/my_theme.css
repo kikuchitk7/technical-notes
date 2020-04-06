@@ -1,0 +1,28 @@
+@import url("theme.css");
+ 
+.wy-nav-content {
+    max-width: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    border-bottom: 1px solid #ccc;
+}
+
+.wy-table-responsive table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.wy-table-responsive table thead tr th {
+	color: #fff;
+	background: #41a2e6;
+}
+
+.wy-table-responsive table th, .wy-table-responsive table td {
+    white-space: normal;
+    border: 1px solid #ccc;
+}
+
+colgroup {
+    display: none;
+}
