@@ -82,3 +82,4 @@ E-mail での通知 (情報の整形)
 -------------
 - 「`AWS CloudWatch Events + Amazon SNSで、AWS管理コンソールのサインインを検知しメールで通知する <https://dev.classmethod.jp/articles/check-amc-signin-using-cloudwatch-events/>`_」
 - 「`Lambdaを使ってAmazon SNSからメールを飛ばしてみた <https://qiita.com/tsumita7/items/bbafba094db5794d0374>`_」
+- 「`AWS】CloudWatchアラーム通知をLambdaでSlack投稿する <https://www.geekfeed.co.jp/geekblog/aws_cloudwatch_to_slack/>`_」
