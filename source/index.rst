@@ -15,6 +15,7 @@ Welcome to technical notes's documentation!
    python/python
    environment/environment
    testing/testing
+   case/case
    blog/blog
 
 
