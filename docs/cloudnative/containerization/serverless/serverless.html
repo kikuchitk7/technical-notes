@@ -88,7 +88,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../basics/basics.html">基礎事項</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../containerization.html">Containerization</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../docker/docker.html">Docker</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Serverless</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Serverless</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Serverless とは</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">参考文献</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../cicd/cicd.html">CI/CD</a></li>
@@ -98,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../case/case.html">事例</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../blog/blog.html">AWS ではじめる機械学習</a></li>
 </ul>
 
@@ -169,6 +174,23 @@
             
   <div class="section" id="serverless">
 <h1>Serverless<a class="headerlink" href="#serverless" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>Serverless とは<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><strong>サーバの存在を意識しなくて良いアーキテクチャ</strong> である。</p></li>
+<li><p><strong>利用者はアプリのコードの開発に注力</strong> できる。</p></li>
+<li><p>インフラ (サーバなどの物理機器、OS や MW の保守など) の管理が不要になる。</p></li>
+<li><p>アプリ以外の管理工数を省略できる分、制限や制約が多くなる。</p></li>
+<li><p>負荷に応じて自動でインフラがスケール (拡張・縮退) する。(アイドル時のリソース確保が不要)</p></li>
+<li><p>従量課金なので使った分だけを支払う。(アイドル時のリソース確保・課金が不要)</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>参考文献<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>「` &lt;<a class="reference external" href="https://d1.awsstatic.com/serverless-jp/contents/20200213_serverless_basic.pdf">https://d1.awsstatic.com/serverless-jp/contents/20200213_serverless_basic.pdf</a>&gt;`_」</p></li>
+</ul>
+</div>
 </div>
 
 

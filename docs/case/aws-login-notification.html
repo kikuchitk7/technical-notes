@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AWS Management Console へのログイン通知 &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="AWS ではじめる機械学習" href="../blog/blog.html" />
+    <link rel="prev" title="事例" href="case.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/testing.html">テスト</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="case.html">事例</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AWS Management Console へのログイン通知</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#e-mail">E-mail での通知</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">手順</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">E-mail での通知 (情報の整形)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">手順</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">補足</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">参考</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blog/blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="case.html">事例</a> &raquo;</li>
+        
+      <li>AWS Management Console へのログイン通知</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/case/aws-login-notification.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="aws-management-console">
+<h1>AWS Management Console へのログイン通知<a class="headerlink" href="#aws-management-console" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="e-mail">
+<h2>E-mail での通知<a class="headerlink" href="#e-mail" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id1">
+<h3>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>CloudWatch Events でのログインイベントの検知をトリガに E-mail 通知する。</p></li>
+<li><p>CloudWatch Events から SNS に連携する。</p></li>
+<li><p>SNS から E-mail に連携する。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>手順<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>SNS でトピックを作成する。</p></li>
+<li><p>SNS でサブスクリプション (Email) を作成する。</p></li>
+<li><p>CloudWatch Events のルールを作成する。</p></li>
+<li><p>サインアウト・再ログインする。</p></li>
+<li><p>E-mail が届いたことを確認する。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>E-mail での通知 (情報の整形)<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>概要<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>CloudWatch Events + SNS での通知はメッセージが JSON 形式なので可読性が低い。</p></li>
+<li><p>CloudWatch Events から Lambda に連携してメッセージの整形を行う。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>手順<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>IAM ロールを作成する。</p></li>
+<li><p>Lambda で関数を作成する。</p></li>
+<li><p>CloudWatch Events のルールを作成する (修正する)。</p></li>
+<li><p>サインアウト・再ログインする。</p></li>
+<li><p>E-mail が届いたことを確認する。</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>補足<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>ログイン時に下記の JSON が連携される。</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;6f87d04b-9f74-4f04-a780-7acf4b0a9b38&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;detail-type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS Console Sign In via CloudTrail&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;aws.signin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-01-05T18:21:27Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;detail&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;eventVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;1.02&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;userIdentity&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Root&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;principalId&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::123456789012:root&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;accountId&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789012&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;eventTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-01-05T18:21:27Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;eventSource&quot;</span><span class="p">:</span> <span class="s2">&quot;signin.amazonaws.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;eventName&quot;</span><span class="p">:</span> <span class="s2">&quot;ConsoleLogin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;awsRegion&quot;</span><span class="p">:</span> <span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sourceIPAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;userAgent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;requestParameters&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;responseElements&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ConsoleLogin&quot;</span><span class="p">:</span> <span class="s2">&quot;Success&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;additionalEventData&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;LoginTo&quot;</span><span class="p">:</span> <span class="s2">&quot;https://console.aws.amazon.com/console/home?state=hashArgs%23&amp;isauthcode=true&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MobileVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MFAUsed&quot;</span><span class="p">:</span> <span class="s2">&quot;No&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;eventID&quot;</span><span class="p">:</span> <span class="s2">&quot;324731c0-64b3-4421-b552-dfc3c27df4f6&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;eventType&quot;</span><span class="p">:</span> <span class="s2">&quot;AwsConsoleSignIn&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>参考<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>「<a class="reference external" href="https://dev.classmethod.jp/articles/check-amc-signin-using-cloudwatch-events/">AWS CloudWatch Events + Amazon SNSで、AWS管理コンソールのサインインを検知しメールで通知する</a>」</p></li>
+<li><p>「<a class="reference external" href="https://qiita.com/tsumita7/items/bbafba094db5794d0374">Lambdaを使ってAmazon SNSからメールを飛ばしてみた</a>」</p></li>
+<li><p>「<a class="reference external" href="https://www.geekfeed.co.jp/geekblog/aws_cloudwatch_to_slack/">AWS】CloudWatchアラーム通知をLambdaでSlack投稿する</a>」</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../blog/blog.html" class="btn btn-neutral float-right" title="AWS ではじめる機械学習" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="case.html" class="btn btn-neutral float-left" title="事例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
