@@ -94,11 +94,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">[第4回] ML サービスの全体像を把握する</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">ML サービスとは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">ML サービスの全体像</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">ML サービスの概要</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ML サービスとは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">ML サービスの全体像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ML サービスの特徴</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ML サービスで提供される機能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amazon-sagemaker">Amazon SageMaker の使い方</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Amazon SageMaker の機能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Amazon SageMaker でのモデルの構築方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Amazon SageMaker の利用例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">チュートリアルの内容</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -185,19 +195,324 @@
 </div>
 <div class="section" id="id3">
 <h2>ML サービスとは<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-</div>
 <div class="section" id="id4">
-<h2>ML サービスの全体像<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>ML サービスの全体像<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ML サービスは、3つのレイヤーで提供される機械学習サービスで中位に位置するサービスであり、下図の赤枠内のサービスです。</div>
+<div class="line">ML サービスは [Amazon SageMaker](<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/">https://aws.amazon.com/jp/sagemaker/</a>) からなる複数の機能群を指します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/aws_ml_stack_2019_ml.png"><img alt="../../_images/aws_ml_stack_2019_ml.png" src="../../_images/aws_ml_stack_2019_ml.png" style="width: 900px;" /></a>
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<p>AWS re:Invent 2019 で下記のサービスが新たに追加されました。</p>
+<ul class="simple">
+<li><p>Amazon SageMaker Studio</p></li>
+<li><p>Amazon SageMaker Notebooks</p></li>
+<li><p>Amazon SageMaker Experiments</p></li>
+<li><p>Amazon SageMaker Debugger</p></li>
+<li><p>Amazon SageMaker Autopilot</p></li>
+<li><p>Amazon SageMaker Model Monitor</p></li>
+<li><p>Amazon Augmented AI (A2I)</p></li>
+</ul>
+<p>Amazon SageMaker は AWS re:Invent 2017 での登場時から機械学習モデルの開発・構築・推論を行うための機能を提供してきました。
+その後も機能が次々と追加されてきましたが、AWS re:Invent 2019 のアップデートでは、より一層機能が強化されて、更に便利に使うことができるようになりました。</p>
 </div>
 <div class="section" id="id5">
-<h2>ML サービスの概要<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>ML サービスの特徴<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ML サービスは図中に示されている通り「機械学習のプロセス全体を効率化するマネージドサービス」です。</div>
+<div class="line">開発者やデータサイエンティストが迅速に機械学習を開発できるように機械学習のワークフローの全体に渡って様々な機能を提供されています。</div>
+<div class="line">表</div>
+<div class="line">マネージドサービスとして提供されており、利用者は開発など価値の生成に集中でき、差別化につながらない作業は AWS に任せることができます。</div>
+<div class="line">API を使って他のサービスと連携することも、他のサービスから利用することも容易にできます。</div>
+</div>
+<div class="line-block">
+<div class="line">前回説明した AI サービスは ユースケース (翻訳や音声の文字起こし) ごとにサービスが用意されており、AWS が用意した機械学習モデルを利用するか、機械学習モデルを生成する仕組み (AutoML) を使って機械学習モデルを生成して利用しました。</div>
+<div class="line">迅速かつ簡便に導入できる反面、柔軟性がありませんでした。</div>
+<div class="line">ML サービスは利用者が選定した機械学習アルゴリズムを採用して独自のモデルを構築できるなど自由に機械学習モデルを構築できます。</div>
+<div class="line">その分専門知識が必要となりますが、初心者でも簡単に扱えるように SDK や API を使って利用できる様々な機能が用意されており、サンプルの Jupyter notebook も多数提供されています。</div>
+<div class="line">熟練者にとってはこれらを利用することで、アジリティを持って開発することできます。</div>
+</div>
+<p>(サンプルの画像をいれる)</p>
 </div>
 <div class="section" id="id6">
-<h2>まとめ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>ML サービスで提供される機能<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">下記の表に ML サービスで提供される機能についてまとめます。</div>
+<div class="line">機能の簡単な説明に加えて、その機能の利用タイミングと東京リージョンでの利用可否についても記載します。</div>
+<div class="line">ここでまとめる情報は、2020年5月10日時点の公開情報に基づいています。今後のアップデートにより変わる可能性がありますので、ご注意ください。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>サービス名</p></th>
+<th class="head"><p>利用タイミング</p></th>
+<th class="head"><p>機能の説明</p></th>
+<th class="head"><p>東京での利用可否</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Amazon SageMaker</p></td>
+<td><p>全体</p></td>
+<td><p>機械学習モデルの開発・構築・推論を行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amazon SageMaker Studio</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">機械学習モデルを効率的に構築するための統合開発環境 (IDE) を提供する。</div>
+<div class="line">下記に示す Amazon SageMaker の各機能と統合されており、シームレスに利用することができる。</div>
+</div>
+</td>
+<td><p>× (US の4つのリージョンのみ)</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon SageMaker Ground Truth</p></td>
+<td><p>データの前処理</p></td>
+<td><p>学習データのラベル付け、Amazon Mechanical Turk を使ってラベル付け作業のアウトソーシングも可能</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amazon SageMaker Processing</p></td>
+<td></td>
+<td><p>欠損値の補完、標準化、正規化等の前処理を行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon SageMaker Notebooks</p></td>
+<td><p>モデルの構築</p></td>
+<td><div class="line-block">
+<div class="line">機械学習のアルゴリズム選定、実装を行う環境を提供する</div>
+<div class="line">完全マネージドな Jupyter notebook の実行環境が提供される。</div>
+<div class="line">Amazon SageMaker のノートブックインスタンスとは異なる。(利用者側でインスタンスタイプの設定、起動・停止などを意識する必要がない)</div>
+<div class="line">Amazon SageMaker Studio に統合されており、個別の利用は不可。</div>
+</div>
+</td>
+<td><p>×</p></td>
+</tr>
+<tr class="row-odd"><td><p>AWS Marketplace</p></td>
+<td></td>
+<td><p>サードパーティ製の機械学習モデルの購入ができる</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon SageMaker Experiments</p></td>
+<td><p>モデルの学習、評価</p></td>
+<td><p>機械学習モデルの学習を行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amazon SageMaker Debugger</p></td>
+<td></td>
+<td><p>機械学習モデルの学習時のデバッグを行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon SageMaker Model Tuning</p></td>
+<td></td>
+<td><p>機械学習モデルのハイパーパラメータのチューニングを行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amazon SageMaker Model Monitor</p></td>
+<td><p>モデルのデプロイ・監視</p></td>
+<td><p>機械学習モデルの学習時のデバッグを行う</p></td>
+<td><p>○</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon Augmented AI (A2I)</p></td>
+<td></td>
+<td><p>人間が機械学習モデルの推論の性能評価を行う</p></td>
+<td><p>× (バージニアのみ)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amazon SageMaker Neo</p></td>
+<td><p>−</p></td>
+<td><p>IoT などのエッジデバイスでの機械学習モデルのデプロイ、推論</p></td>
+<td><p>○</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="amazon-sagemaker">
+<h3>Amazon SageMaker の使い方<a class="headerlink" href="#amazon-sagemaker" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">Amazon SageMaker の使い方を機械学習の開発の流れ (ワークフロー) に沿って見ていきたいと思います。</div>
+<div class="line">機械学習モデルを開発する流れは「事前準備」「開発」「学習」「推論」の4ステップとなります。</div>
+</div>
+<div class="section" id="id7">
+<h4>事前準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul>
+<li><div class="line-block">
+<div class="line">学習データ (機械学習モデルの学習に用いるデータ) を収集し、Amazon S3 に格納する。</div>
+<div class="line">Amazon SageMaker では収集の仕組みは提供されていないので、例えば、Amazon Kinesis など他のサービス・手段を使って収集する。</div>
+</div>
+</li>
+<li><p>機械学習モデルの開発環境となるノートブックインスタンス (Jupyter Notebook の実行環境) を構築する。</p></li>
+<li><p>学習データに対して前処理 (欠損値の処理、変換など) をする。</p></li>
+</ul>
+<p>(図をいれる 21)</p>
+</div>
+<div class="section" id="id8">
+<h4>開発<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul class="simple">
+<li><p>機械学習モデルの構築 (Python によるコーディング) をする。</p></li>
+</ul>
+<p>(図をいれる 22+23)</p>
+</div>
+<div class="section" id="id9">
+<h4>学習<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul>
+<li><p>Amazon ECR から学習用の Docker コンテナイメージをダウンロードして、学習用インスタンスとしてコンテナを起動する。</p></li>
+<li><p>Amazon S3 から学習用インスタンスに学習データをダウンロードして、機械学習モデルの学習を行う。</p></li>
+<li><p>学習した結果得られた機械学習モデルを Amazon S3 に格納する。</p></li>
+<li><p>学習用インスタンスは自動的に停止・削除される。</p></li>
+<li><p>混同行列などの何らかの評価手法を使って、機械学習モデルの精度の評価を行う。</p></li>
+<li><div class="line-block">
+<div class="line">精度がビジネスの要件を満たせない場合は、原因の分析を行って前のステップに戻ってやり直す。</div>
+<div class="line">必要に応じて、学習データの再収集や機械学習モデルの再構築をして精度の改善を図る。</div>
+</div>
+</li>
+</ul>
+<p>(図をいれる 24+25)</p>
+</div>
+<div class="section" id="id10">
+<h4>推論<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul>
+<li><div class="line-block">
+<div class="line">Amazon ECR から推論用の Docker コンテナイメージをダウンロードして推論用インスタンスを起動する。</div>
+<div class="line">Amazon S3 から機械学習モデルをダウンロードし、推論インスタンスにデプロイする。</div>
+<div class="line">他のアプリからの接続ポイントとなる推論エンドポイントを作成する。</div>
+</div>
+</li>
+<li><p>機械学習モデルの監視</p></li>
+</ul>
+<p>(図をいれる 26+27)</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>Amazon SageMaker の機能<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">Amazon SageMaker では、機械学習のワークフロー全体に渡って様々な機能が提供されています。(サービス名は省略表記で記載)</div>
+<div class="line">必ずしも全ての機能を利用する必要はなく、必要に応じて個別に利用することが可能です。</div>
+<div class="line">例えば、機械学習モデルの開発環境としてノートブックインスタンスだけを利用するといったことが可能です。</div>
+</div>
+<p>下記を図で示す。</p>
+<p>事前準備
+- データの収集　別の仕組みを利用して収集し、Amazon S3 に保管
+- データの前処理　Ground Truth, Processing</p>
+<p>開発
+- モデルの構築　ビルトインアルゴリズム/Marketplace/独自アルゴリズム、Jupyter notebook/Jupyter Lab/Notebooks</p>
+<p>学習
+- モデルの学習　Experiments,Debugger
+- モデルの評価　同上</p>
+<p>推論
+- モデルのデプロイ　Model hosting
+- モデルの監視　Model Monitor, A2I</p>
+<p>(開発〜学習) Autopilot
+(全体) Studio</p>
+</div>
+<div class="section" id="id12">
+<h3>Amazon SageMaker でのモデルの構築方法<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">Amazon SageMaker を使って機械学習モデルを構築する方法についてもう少し詳細に説明します。</div>
+<div class="line">Amazon SageMaker では、下記のいずれかのパターンで構築します。それぞれのパターンの説明と導入の難易度についてまとめます。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>構築パターン</p></th>
+<th class="head"><p>構築パターンの説明</p></th>
+<th class="head"><p>導入の難易度</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ビルトインアルゴリズムを利用する</p></td>
+<td><div class="line-block">
+<div class="line">AWS が用意した (Amazon SageMaker に組み込んだ) 学習アルゴリズムを使ってモデルを構築する。</div>
+<div class="line">XGBoost</div>
+<div class="line">Amazon SageMaker に最適化されており、最も簡便に利用することができる。</div>
+<div class="line">例えば、設定 (パラメータ) を変えるだけで、コードを追加せずに分散学習を行うことができる。</div>
+</div>
+</td>
+<td><p>低</p></td>
+</tr>
+<tr class="row-odd"><td><p>AWS Marketplace で購入したを利用する</p></td>
+<td><div class="line-block">
+<div class="line">サードパーティが AWS Marketplace に出品した機械学習アルゴリズムを使ってモデルを構築する。</div>
+<div class="line">購入処理が必要となるが、導入の難易度はビルトインアルゴリズムと同程度である。</div>
+</div>
+</td>
+<td><p>低</p></td>
+</tr>
+<tr class="row-even"><td><p>独自にアルゴリズムを実装する</p></td>
+<td><div class="line-block">
+<div class="line">機械学習アルゴリズムの選定や実装を利用者自身で行う。</div>
+<div class="line">SageMaker SDK を使って</div>
+</div>
+</td>
+<td><p>高</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">ビルトインアルゴリズムには、昨今注目を集めている深層学習 (ディープラーニング) を使うアルゴリズムから、XGBoost などの深層学習を使わないアルゴリズムまで多数用意されています。</div>
+<div class="line">導入の難易度やビジネスへの導入スピードを考えて、まずはビルトインアルゴリズムの中に自身のビジネス課題に対応できるものがないかを確認します。</div>
+<div class="line">対応するものがない場合は AWS Marketplace で探し、それでも対応するものがない場合は独自にアルゴリズムを実装することを考えることが望ましいでしょう。</div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>Amazon SageMaker の利用例<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">ここでは、Amazon SageMaker の利用イメージをつかんでいただくために、ビルトインアルゴリズムを使って機械学習モデルを開発・学習・推論を行ってみます。</div>
+<div class="line">「[Build, Train, and Deploy a Machine Learning Model with Amazon SageMaker](<a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/</a>)」というチュートリアルがありますので、これを利用します。</div>
+<div class="line">30分程度で実施できるので、是非ご自身でも試してみてください。</div>
+</div>
+<div class="section" id="id14">
+<h3>チュートリアルの内容<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>問題の概要：銀行の見込み顧客の予測</p></li>
+<li><p>問題の詳細：銀行の過去の顧客のデータを基にして、見込み顧客の予測モデルを構築し、新規に口座を開設してくれるか判別したい。</p></li>
+<li><p>機械学習のタイプ：分類問題 (顧客に口座開設の見込みがあるか、ないかの分類)</p></li>
+<li><p>利用するデータ：UCI (カリフォルニア大学アーバイン校) が提供する Machine Learning Repository の &quot;[Bank Marketing Data Set](<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/bank+marketing">https://archive.ics.uci.edu/ml/datasets/bank+marketing</a>)&quot; を利用する。</p></li>
+<li><p>データの概要：ポルトガルの金融機関が過去に行ったダイレクトマーケティングキャンペーンのデータ。年齢、職業、婚姻歴、ローンの有無など口座開設の判断材料になりそうなデータ (特徴量、説明変数) と実際に口座開設したかのデータ (目的変数) が含まれる。</p></li>
+<li></li>
+</ul>
+<div class="section" id="id15">
+<h4>1. データの収集<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id16">
+<h4>2. データの前処理<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id17">
+<h4>3. モデルの構築<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id18">
+<h4>4. モデルの学習<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id19">
+<h4>5. モデルの評価<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id20">
+<h4>6. モデルのデプロイ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="id21">
+<h4>7.モデルの監視<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">今回は Amazon SageMaker の基本的な使い方の紹介であるため、割愛させていただきます。</div>
+<div class="line">Amazon SageMaker Model Monitor や Amazon A2I を利用して精度の監視を行います。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>まとめ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回の記事では、ML サービスの全体像についてご説明させていただきました。
+次回は、今回あまり触れられなかった Amazon SageMaker の新機能について見ていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id7">
-<h2>著者紹介<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>著者紹介<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional Center</p>
