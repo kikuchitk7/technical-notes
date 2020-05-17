@@ -55,6 +55,10 @@ ML サービスの特徴
 | その分専門知識が必要となりますが、初心者でも簡単に扱えるように SDK や API を使って利用できる様々な機能が用意されており、サンプルの Jupyter notebook も多数提供されています。
 | 熟練者にとってはこれらを利用することで、アジリティを持って開発することできます。
 
+Blazing text -> Comrehend
+Image Classification -> Rekognition
+LDA -> Comprehend
+
 (サンプルの画像をいれる)
 
 
@@ -82,7 +86,7 @@ ML サービスで提供される機能
       - × (US の4つのリージョンのみ)
     * - Amazon SageMaker Ground Truth
       - データの前処理
-      - 学習データのラベル付け、Amazon Mechanical Turk を使ってラベル付け作業のアウトソーシングも可能
+      - 学習データにラベル付けがされていない場合に利用する、自組織のメンバ、Amazon Mechanical Turk を使ってラベル付け作業のアウトソーシングも可能
       - ○
     * - Amazon SageMaker Processing
       - 
@@ -125,6 +129,22 @@ ML サービスで提供される機能
       - ○
 
 
+Amazon SageMaker とは
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+これが必要
+上の機能群よりも上にあった方がいい？要検討
+SageMaker での開発は Python で。
+機械学習のフレームワークの多くが Python ベース
+scikit-learn XGBoost TensorFlow
+
+アーキテクチャ図のようなもので SageMaker の全体像を定義する
+
+インフラを管理するサービス LA: architecture 3
+ノートブックインスタンス
+学習用インスタンス
+推論用インスタンス
+Docker コンテナ
+
 Amazon SageMaker の使い方
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | Amazon SageMaker の使い方を機械学習の開発の流れ (ワークフロー) に沿って見ていきたいと思います。
@@ -137,6 +157,13 @@ Amazon SageMaker の使い方
 - 機械学習モデルの開発環境となるノートブックインスタンス (Jupyter Notebook の実行環境) を構築する。
 - 学習データに対して前処理 (欠損値の処理、変換など) をする。
 
+データ可視化についても入れる
+データの分析
+エンジニアリング pandas numpy EMR one-hot-encoding
+synthesize データの水増し　図の向きを帰るとか
+conversion csv to numpy
+split train test
+from other service like EMR to another setvice like S3
 (図をいれる 21)
 
 開発
@@ -219,6 +246,8 @@ Amazon SageMaker でのモデルの構築方法
       - | 機械学習アルゴリズムの選定や実装を利用者自身で行う。
         | SageMaker SDK を使って
       - 高
+
+(Marketplace の図をいれる)
 
 | ビルトインアルゴリズムには、昨今注目を集めている深層学習 (ディープラーニング) を使うアルゴリズムから、XGBoost などの深層学習を使わないアルゴリズムまで多数用意されています。
 | 導入の難易度やビジネスへの導入スピードを考えて、まずはビルトインアルゴリズムの中に自身のビジネス課題に対応できるものがないかを確認します。
