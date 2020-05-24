@@ -36,6 +36,15 @@ scikit-learn XGBoost TensorFlow
 推論用インスタンス
 Docker コンテナ
 
+| Amazon SageMaker の利用方法は「開発環境」を軸に整理すると、下記の2パターンに分けられます。
+
+- ノートブックインスタンスを利用するパターン (従来からの利用パターン)
+- Amazon SageMaker Studio を利用するパターン
+
+| 前者が従来からの Amazon SageMaker の利用方法で、後者は「AWS re:Invent 2019」での Amazon SageMaker Studio が登場したことにより発生したパターンです。
+| 前者が Amazon SageMaker の基本的な使い方となるため、これをベースにして用語や使い方を説明していきたいと思います。
+| 今回はイメージの構築を優先するため、多少の正確さに欠ける点はご了承ください。
+
 Amazon SageMaker の使い方
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | Amazon SageMaker の使い方を機械学習の開発の流れ (ワークフロー) に沿って見ていきたいと思います。
