@@ -234,6 +234,14 @@ Amazon SageMaker の基本的な使い方
 | 次回は、実際に Amazon SageMaker を使って機械学習モデルを構築してみたいと思います。
 
 
+商標、登録商標について
+------------------------------
+| 本文中に記載されている会社名、商品名、又はサービス名は、各社の登録商標又は商標です。
+| 本文中では、TM、®︎、©︎ は明記しておりません。
+| 図中に使用している AWS のアイコンは、Amazon Web Services 社が下記で提供しているものを使用しております。
+| https://aws.amazon.com/jp/architecture/icons/
+
+
 +++++++++++
 
 .. include:: ../author/author.rst
