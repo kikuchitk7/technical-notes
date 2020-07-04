@@ -1,4 +1,4 @@
-[第5回] Amazon SageMaker の基本的な使い方を理解する
+[第5回] Amazon SageMaker の基本的な使い方を理解する (1)
 ========================================================
 
 はじめに
@@ -13,20 +13,43 @@
 
 実際に Amazon SageMaker を使う
 ---------------------------------------
-- [機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker](https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) という簡単なチュートリアルをベースに進める。
+- `「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」 <https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/>`_ という簡単なチュートリアルをベースに進める。
 - 背後でどのような処理が行われているか図を交えながら解説していく。
 
 
 今回の記事で実施すること
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - (メモ) 表で整理した方が良いかもしれない。
-- (開発)
+- (メモ) 前回に示した図解の流れと同一だが、前回より細かく提示している点を言及しておく。
 
-  - AWS マネジメントコンソールにログインする
-  - ノートブックインスタンスを作成する
 
-- (学習)
-- (推論)
+.. list-table::
+    :header-rows: 1
+
+    * - 工程
+      - 実施内容
+      - 連載回
+    * - 開発
+      - AWS マネジメントコンソールにログインする
+      - 第5回
+    * - 
+      - ノートブックインスタンスを作成する
+      - 第5回
+    * - 
+      - 学習・推論に利用するデータを格納するための S3 バケットを作成する
+      - 第5回
+    * - 
+      - 学習・推論に利用するデータを準備する
+      - 第5回
+    * - 
+      - 学習用のコードを開発する
+      - 第5回
+    * - 学習
+      - 
+      - 第6回
+    * - 推論
+      - 
+      - 第7回
 
 
 前提
@@ -35,41 +58,67 @@
 
 - 本番環境 (商用サービスが稼働する AWS アカウント) ではなく、開発環境や検証環境で実施する。
 - 「AWS アカウントの取得」と「IAM ユーザの作成」を未実施の場合は、下記の Amazon SageMaker の開発者ガイドを参照して実施する。
-  IAM ユーザに管理者権限を付与する手順となっているが、実際の業務では必要最小限の権限に制限してほしい。
+  IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順となっているが、実際の業務では必要最小限の権限に制限してほしい。
 
   - `「AWS アカウントを作成する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account.html>`_
   - `「IAM 管理者ユーザーおよびグループの作成」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account-user.html>`_
 
 - この記事の内容を実施すると数百円程度の課金が発生する可能性がある。課金が気になる場合は必ず削除。
+- 画面や手順は2020年7月4日時点のもの。仕様変更などにより表示内容や設定値に変更が入る可能性がある。
 
 
 (開発) AWS マネジメントコンソールにログインする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- (メモ) 前回提示した図をベースに何をやっているかを示す。
+
+  - (メモ) ここではマネジメントコンソールのところまでの図をいれる。
+  - (メモ) ノートブックインスタンスに IAM ロールの絵を入れた方が良いかも。
+
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
+
 - (メモ) Amazon SageMaker と S3 のコンソール画面への行き方くらいは示す。
+- (画像) マネジメントコンソールログイン後の画面
+
+  - (備忘) 「東京」リージョンの確認
+
+- (画像) 「Sage」くらいを入力した検索画面
+- (画像) SageMaker のコンソール画面のヘッダ部分
+- (画像) SageMaker のコンソール画面構成
 
 
 (開発) ノートブックインスタンスを作成する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- (メモ) 前回提示した図をベースに何をやっているかを示す。
+
+  - (メモ) ここではマネジメントコンソールのところまでの図をいれる。
+
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
+
 - (メモ) Jupyter Notebook と JupyterLab の違い、利用できる言語なども言及する。
 - 今回は全てデフォルト値を設定する。
+- (画像) 「ノートブックインス > ノートブックインスタンス」の画面
+- (画像) 「ノートブックインスタンスの作成」のヘッダ部分
+  - (備忘) この画面はヘッダ部分のみ提示。設定値は下記の表で提示。
+
 
 .. list-table::
     :header-rows: 1
 
-    * - カテゴリ
-      - サブカテゴリ
-      - 設定値の名前
+    * - 大分類
+      - 小分類
+      - 設定値名
       - 説明
       - デフォルト値
-      - 必須/オプション
     * - ノートブックインスタンス設定
       - 
       - ノートブックインスタンス名
       - | ノートブックインスタンスの名前を設定する。
         | 最大 63 文字まで設定可能。英数字もしくはハイフン (-) の利用が可能。
         | 1つのAWS リージョンのアカウント内で一意である必要がある。
-      - (空白)
-      - 必須
+      - | (空白)
+        | 今回は「mynotebook」と設定
     * - 
       - 
       - ノートブックインスタンスのタイプ
@@ -80,51 +129,44 @@
         | `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
         | `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
       - ml.t2.medium
-      - 必須
     * - 
       - 
       - Elastic Inference
       - | GPU リソースをアタッチする。ディープラーニングフレームワーク TensorFlow、 Apache MXNet、PyTorch でサポートされている。 
         | `「Amazon SageMaker Elastic Inference (EI) を使用する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ei.html>`_
       - なし
-      - オプション
     * - 
       - 追加設定
       - ライフサイクル設定
       - ノートブックインスタンスの作成時にスクリプトを実行して、ノートブックインスタンスをカスタマイズする。
       - 設定値なし
-      - オプション
     * - 
       - 
       - ボリュームサイズ (GB 単位)
       - | ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) のサイズ。
         | ボリュームサイズは 5 GB - 16 TB の範囲で設定可能。 
       - 5
-      - オプション
     * - アクセス許可と暗号化
       - 
       - IAM ロール
-      - 
+      - | ノートブックインスタンスに付与する AWS リソースの操作権限を IAM ロールとして設定する。
+        | AmazonSageMakerFullAccess を付与する場合、`「AmazonSageMakerFullAccess ポリシー」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-amazonsagemakerfullaccess-policy>`_ に記載されている操作権限が付与される。
       - 新しい IAM ロールの作成
-      - 必須
     * - 
       - 
       - ルートアクセス - オプション
       - 
       - 有効化 - ノートブックへのルートアクセス権をユーザーに付与する
-      - オプション
     * - 
       - 
       - 暗号化キー - オプション
-      - 
+      - ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) の Amazon KMS の暗号鍵を設定する。
       - カスタム暗号化なし
-      - オプション
     * - ネットワーク - オプション
       - 
       - VPC - オプション
       - 
       - 非 VPC
-      - オプション
     * - Git リポジトリ - オプション
       - デフォルトのリポジトリ
       - リポジトリ
@@ -132,13 +174,43 @@
         | 例えば、学習・推論用コードが格納された Git リポジトリやアプリのコードが格納されたリポジトリを自動でクローンし、その分の手間が省ける。
         | デフォルトのリポジトリを1つ、追加のリポジトリを最大3つ設定可能。
       - なし
-      - オプション
     * - タグ - オプション
       - 
-      - 
-      - 
+      - キー、値
+      - | キーバリュー形式で値を設定する。
+        | (例) Name タグ (Name: *<notebook_instance_name>*)、環境タグ (Environment: Production)
       - (空白)
-      - オプション
+
+
+IAM ロールに関して詳しく説明する。
+IAM ロールは AWS のリソースに操作権限を与えるもの。
+認証情報のハードコーディングはアンチパターン。IAM ロールの形式で権限を付与する。
+ノートブックインスタンスに AWS リソースの操作権限を与える必要がある。
+ノートブックインスタンスにアタッチする IAM ロールを作成し、「AmazonSageMakerFullAccess ポリシー」をポリシーとして付与した場合はリンクに示した操作権限が与えられる。
+特に、Amazon S3 について、下記の条件に当てはまるバケットとオブジェクトの操作権限が与えられる。
+
+
+.. list-table::
+  :header-rows: 1
+
+  * - 条件
+    - 説明
+  * - 名前に「sagemaker」が含まれる任意の S3 バケット
+    - | 下記のように S3 バケット名に「sagemaker」を含む。
+      | (例) **○** my-sagemaker-s3-bucket、**×** my-s3-bucket
+  * - 名前に「sagemaker」が含まれる任意の S3 オブジェクト
+    - | 下記のように S3 バケットに格納されているオブジェクト (ファイル) 名に 「sagemaker」を含む。
+      | (例) **○** my-sagemaker-object.csv、**×** my-object.csv
+  * - タグ「sagemaker」と値「true」が含まれる任意の S3 オブジェクト
+    - | 下記のようにキーが「sagemaker」、値が「true」と設定されたオブジェクト
+      | (例) sagemaker: true
+  * - SageMaker へのアクセスを許可するバケットポリシーを持つ S3 バケット
+    - 
+  * - 指定する S3 バケット - オプション
+    - | **任意の S3 バケット**
+      | (例) my-s3-bucket
+      | **特定の S3 バケット**
+      | (例) my-s3-bucket-1, my-s3-bucket-2
 
 
 (開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する
@@ -153,7 +225,7 @@
 (開発) 学習用のコードを開発する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - (メモ) ECR の言及
-
+- 長くなりそうなので、(開発) で一度話を切った方が良いかも。
 
 (学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -192,6 +264,14 @@
 --------------------
 | 今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。
 | 次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。
+
+
+参考文献
+-----------------
+- `「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」 <https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/>`_
+- `「Amazon SageMaker 開発者ガイド」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html>`_
+- `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
+- `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
 
 
 +++++++++++
