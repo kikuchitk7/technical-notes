@@ -19,6 +19,21 @@
 前回の記事で示した「開発」「学習」「推論」に沿った流れとなりますが、より細かい手順を示す点に注意してください。
 
 
+チュートリアルの概要
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Amazon SageMaker を使って、「開発」「学習」「推論」の一連の流れを体験できる。
+- XGBoost と呼ばれる機械学習アルゴリズムを利用して、二値分類を行う。
+- 学習・推論に利用するデータは、カリフォルニア大学アーバイン校が公開しているオープンデータを利用する。
+- 利用するデータは「Bank Marketing Data Set」と呼ばれる「ポルトガルの銀行マーケティングキャンペーン」のデータである。
+- データには大きく2種類の情報が記録されている。
+
+  - データ 1：「年齢」や「職業」といった銀行の顧客の属性情報など
+  - データ 2：マーケティングを行った結果、その顧客が実際に「預金証書 (CD)」を申し込んだか否かのフラグ
+
+- 「データ 1」から機械学習アルゴリズムによって何らかのパターンを見出して、これから営業をかける顧客 (「データ 2」が未知の顧客) が「預金証書 (CD)」を申し込んでくれそうかどうかを分類する機械学習モデルを構築する。
+- 「預金証書 (CD) を申し込んでくれそうな顧客」を重点的に営業をかけることによって営業活動を効率化することができる。顧客名簿の上から順に営業をかけるよりも顧客を獲得できる可能性が高まる。
+
+
 今回の記事で実施すること
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -223,11 +238,46 @@ IAM ロールは AWS のリソースに操作権限を与えるもの。
 AWS マネジメントコンソールを利用しても同等の作業ができますが、後々の開発効率を考えると手作業でこれらを実施するよりもノートブックから自動作業を実施した方が好ましいと考えられます。
 作業の慣れの問題でもあるので、これを機にしてノートブックで作成する方法を習得した方が良いと思います。
 
-- (メモ) チュートリアルに従って作成する。
+
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
+
+これを Boto3 を利用して作成します。
+S3 バケット名は世界で唯一の値にする必要があります。
+`bucket_name` の `your-s3-bucket-name` の箇所を変更してください。
+「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。
+検証であれば「日付」を入れても良いと思います。
+
+.. code-block:: python
+
+  bucket_name = 'your-s3-bucket-name' # <--- CHANGE THIS VARIABLE TO A UNIQUE NAME FOR YOUR BUCKET
+  s3 = boto3.resource('s3')
+  try:
+      if  my_region == 'us-east-1':
+        s3.create_bucket(Bucket=bucket_name)
+      else: 
+        s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={ 'LocationConstraint': my_region })
+      print('S3 bucket created successfully')
+  except Exception as e:
+      print('S3 error: ',e)
 
 
 (開発) 学習・推論に利用するデータを準備する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+  try:
+    urllib.request.urlretrieve ("https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv", "bank_clean.csv")
+    print('Success: downloaded bank_clean.csv.')
+  except Exception as e:
+    print('Data load error: ',e)
+
+  try:
+    model_data = pd.read_csv('./bank_clean.csv',index_col=0)
+    print('Success: Data loaded into dataframe.')
+  except Exception as e:
+      print('Data load error: ',e)
 
 
 (開発) 学習用のコードを開発する
