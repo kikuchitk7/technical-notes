@@ -231,6 +231,58 @@ IAM ロールは AWS のリソースに操作権限を与えるもの。
       | (例) my-s3-bucket-1, my-s3-bucket-2
 
 
+- (メモ) ノートブック作成後の画面キャプチャをいれる。
+
+
+設定値に問題がなければ、「成功! ノートブックインスタンスが作成されています。」と表示されます。
+「ステータス」が「**Pending**」から「**InService**」となったら、ノートブックインスタンスの作成が完了です。
+
+
+(開発) ノートブックを起動する
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+「アクション」が「Jupyter を開く」「JupyterLab を開く」のいずれかをクリックします。
+前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。
+JupyterLab は Jupyter notebook の後継と入れているノートブックです。
+このチュートリアルを実施範囲ではどちらを選んでも問題ありません。
+チュートリアルは Jupyter notebook を利用していますので、こちらの記事では JupyterLab を利用して進めます。
+
+
+- (メモ) Jupyter notebook の画面キャプチャを入れる
+- (メモ) JupyterLab の画面キャプチャを入れる
+
+
+Jupyter notebook のセル (グレーの部分) に下記のコードをコピー＆ペーストして、「Run」を押下して実行します。
+ショートカットが用意されており、Windows では「Ctrl」+「Enter」、Mac では「command」+「Enter」で実行できます。
+
+.. code-block:: python
+
+  # import libraries
+  import boto3, re, sys, math, json, os, sagemaker, urllib.request
+  from sagemaker import get_execution_role
+  import numpy as np
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  from IPython.display import Image
+  from IPython.display import display
+  from time import gmtime, strftime
+  from sagemaker.predictor import csv_serializer
+
+  # Define IAM role
+  role = get_execution_role()
+  prefix = 'sagemaker/DEMO-xgboost-dm'
+  containers = {'us-west-2': '433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest',
+                'us-east-1': '811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest',
+                'us-east-2': '825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest',
+                'eu-west-1': '685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest'} # each region has its XGBoost container
+  my_region = boto3.session.Session().region_name # set the region of the instance
+  print("Success - the MySageMakerInstance is in the " + my_region + " region. You will use the " + containers[my_region] + " container for your SageMaker endpoint.")
+
+
+セルの下側に「Success - (以下、省略)」と表示されれば成功です。
+
+- (メモ) Jupyter の画面キャプチャを入れる
+
+
 (開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ここから Amazon S3 に関連する作業が続きます。
@@ -279,6 +331,11 @@ S3 バケット名は世界で唯一の値にする必要があります。
   except Exception as e:
       print('Data load error: ',e)
 
+
+.. code-block:: python
+
+  train_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data))])
+  print(train_data.shape, test_data.shape)
 
 (開発) 学習用のコードを開発する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
