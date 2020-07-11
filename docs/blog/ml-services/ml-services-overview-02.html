@@ -257,10 +257,21 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="id6">
 <h3>(開発) AWS マネジメントコンソールにログインする<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
 <p>まずは AWS マネジメントコンソールに自身の IAM ユーザでログインします。</p>
 <a class="reference internal image-reference" href="../../_images/aws-management-console.png"><img alt="../../_images/aws-management-console.png" src="../../_images/aws-management-console.png" style="width: 900px;" /></a>
 <p>リージョンは「バージニア北部」を利用しますので、その他のリージョンにいる場合は AWS マネジメントコンソールの右上のプルダウンメニューから移動してください。</p>
 <a class="reference internal image-reference" href="../../_images/region-check.png"><img alt="../../_images/region-check.png" src="../../_images/region-check.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="id7">
+<h3>(開発) ノートブックインスタンスを作成する<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">それでは、Amazon SageMaker に移動します。</div>
 <div class="line">「サービスを検索する」の箇所にある検索バーに「sage」程度を入れると、「Amazon SageMaker」が登場しますので、これをクリックして移動します。</div>
@@ -269,27 +280,24 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <p>下記のいずれかの画面に移動しますが、どちらでも問題ありません。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-initial.png"><img alt="../../_images/sagemaker-initial.png" src="../../_images/sagemaker-initial.png" style="width: 900px;" /></a>
 <a class="reference internal image-reference" href="../../_images/sagemaker-dashboard.png"><img alt="../../_images/sagemaker-dashboard.png" src="../../_images/sagemaker-dashboard.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">学習・推論用のコードの開発環境となる「ノートブックインスタンス」を作成していきます。</div>
+<div class="line">左側の折りたたみメニューの「ノートブック」をクリックして開き、「ノートブックインスタンス」をクリックします。</div>
+<div class="line">ダッシュボードにいる場合は、画面中央の「概要」の中にある「ノートブックインスタンス」をクリックしても構いません。</div>
 </div>
-<div class="section" id="id7">
-<h3>(開発) ノートブックインスタンスを作成する<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>(メモ) 前回提示した図をベースに何をやっているかを示す。</p>
-<ul>
-<li><p>(メモ) ここではマネジメントコンソールのところまでの図をいれる。</p></li>
-</ul>
-</li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<ul class="simple">
-<li><p>(メモ) Jupyter Notebook と JupyterLab の違い、利用できる言語なども言及する。</p></li>
-<li><p>今回は全てデフォルト値を設定する。</p></li>
-<li><p>(画像) 「ノートブックインス &gt; ノートブックインスタンス」の画面</p></li>
-<li><p>(画像) 「ノートブックインスタンスの作成」のヘッダ部分</p>
-<ul>
-<li><p>(備忘) この画面はヘッダ部分のみ提示。設定値は下記の表で提示。</p></li>
-</ul>
-</li>
-</ul>
+<a class="reference internal image-reference" href="../../_images/sagemaker-dashboard-notebook.png"><img alt="../../_images/sagemaker-dashboard-notebook.png" src="../../_images/sagemaker-dashboard-notebook.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">ノートブックインスタンスの画面に移動します。</div>
+<div class="line">現在はノートブックインスタンスが存在しませんが、ここにそのリージョンに存在するノートブックインスタンスの一覧が表示されます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-initial.png"><img alt="../../_images/sagemaker-notebook-instance-initial.png" src="../../_images/sagemaker-notebook-instance-initial.png" style="width: 900px;" /></a>
+<p>ノートブックインスタンスの作成画面に移動します。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create.png"><img alt="../../_images/sagemaker-notebook-instance-create.png" src="../../_images/sagemaker-notebook-instance-create.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">ノートブックインスタンス作成時の設定項目を下記の表に示します。</div>
+<div class="line">今回は簡単なチュートリアルですので、原則としてデフォルト値を設定します。各設定値の説明を記しますので、実際の業務で利用する際は要件に従って適切に設定してください。</div>
+<div class="line">設定が完了したら、画面の最下部にある「ノートブックインスタンスの作成」をクリックします。</div>
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20%" />
@@ -413,12 +421,20 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </tr>
 </tbody>
 </table>
-<p>IAM ロールに関して詳しく説明する。
-IAM ロールは AWS のリソースに操作権限を与えるもの。
-認証情報のハードコーディングはアンチパターン。IAM ロールの形式で権限を付与する。
-ノートブックインスタンスに AWS リソースの操作権限を与える必要がある。
-ノートブックインスタンスにアタッチする IAM ロールを作成し、「AmazonSageMakerFullAccess ポリシー」をポリシーとして付与した場合はリンクに示した操作権限が与えられる。
-特に、Amazon S3 について、下記の条件に当てはまるバケットとオブジェクトの操作権限が与えられる。</p>
+<div class="line-block">
+<div class="line">ノートブックインスタンスに付与する IAM ロールに関して補足します。</div>
+<div class="line">IAM ロールは AWS のリソースに操作権限を与えるために利用します。</div>
+<div class="line">例えば、学習用データの取得のためにノートブックインスタンスから Amazon S3 のバケットにアクセスが必要となります。</div>
+<div class="line">IAM ユーザに紐づく認証情報として「アクセスキー ID」と「シークレットキー」がありますが、これをコードにハードコーディングすることはアンチパターンとなります。</div>
+<div class="line">IAM ロールに操作権限を定義してノートブックインスタンスに付与することで、具体的な認証情報を記述せずに操作権限を付与することができます。</div>
+</div>
+<ul class="simple">
+<li><p>(備忘) 図を入れる。</p></li>
+</ul>
+<div class="line-block">
+<div class="line">今回新規作成した IAM ロールは「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。</div>
+<div class="line">特に、下記の条件に当てはまる Amazon S3 のバケットとオブジェクトの操作権限が与えられる点に注意してください。</div>
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -430,49 +446,54 @@ IAM ロールは AWS のリソースに操作権限を与えるもの。
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>名前に「sagemaker」が含まれる任意の S3 バケット</p></td>
-<td><div class="line-block">
-<div class="line">下記のように S3 バケット名に「sagemaker」を含む。</div>
-<div class="line">(例) <strong>○</strong> my-sagemaker-s3-bucket、<strong>×</strong> my-s3-bucket</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>名前に「sagemaker」が含まれる任意の S3 オブジェクト</p></td>
-<td><div class="line-block">
-<div class="line">下記のように S3 バケットに格納されているオブジェクト (ファイル) 名に 「sagemaker」を含む。</div>
-<div class="line">(例) <strong>○</strong> my-sagemaker-object.csv、<strong>×</strong> my-object.csv</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>タグ「sagemaker」と値「true」が含まれる任意の S3 オブジェクト</p></td>
-<td><div class="line-block">
-<div class="line">下記のようにキーが「sagemaker」、値が「true」と設定されたオブジェクト</div>
-<div class="line">(例) sagemaker: true</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>SageMaker へのアクセスを許可するバケットポリシーを持つ S3 バケット</p></td>
-<td></td>
-</tr>
 <tr class="row-even"><td><p>指定する S3 バケット - オプション</p></td>
 <td><div class="line-block">
-<div class="line"><strong>任意の S3 バケット</strong></div>
+<div class="line">本項目以外の条件に当てはまらない S3 バケットに対するアクセスを許可する。オプション項目であり、これを設定しないことも可能。</div>
+<div class="line">- <strong>任意の S3 バケット</strong></div>
 <div class="line">(例) my-s3-bucket</div>
-<div class="line"><strong>特定の S3 バケット</strong></div>
+<div class="line">- <strong>特定の S3 バケット</strong></div>
 <div class="line">(例) my-s3-bucket-1, my-s3-bucket-2</div>
+<div class="line">- <strong>なし</strong></div>
 </div>
 </td>
+</tr>
+<tr class="row-odd"><td><p>名前に「sagemaker」が含まれる任意の S3 バケット</p></td>
+<td><div class="line-block">
+<div class="line">下記のように S3 バケット名に「sagemaker」を含む S3 バケットにはアクセスが可能。</div>
+<div class="line">(例) <strong>アクセス可能</strong> : my-sagemaker-s3-bucket、<strong>アクセス不可能</strong> : my-s3-bucket</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>名前に「sagemaker」が含まれる任意の S3 オブジェクト</p></td>
+<td><div class="line-block">
+<div class="line">下記のように S3 バケットに格納されているオブジェクト (ファイル) 名に 「sagemaker」を含むオブジェクトにはアクセスが可能。</div>
+<div class="line">(例) <strong>アクセス可能</strong> : my-sagemaker-object.csv、<strong>アクセス不可能</strong> : my-object.csv</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>タグ「sagemaker」と値「true」が含まれる任意の S3 オブジェクトにはアクセスが可能。</p></td>
+<td><div class="line-block">
+<div class="line">キーが「sagemaker」、値が「true」と設定されたオブジェクトにはアクセスが可能。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>SageMaker へのアクセスを許可するバケットポリシーを持つ S3 バケット</p></td>
+<td><p>条件に記載されている通り、バケットポリシーにて Amazon SageMaker のアクセスが許可された S3 バケットにはアクセスが可能。</p></td>
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li><p>(メモ) ノートブック作成後の画面キャプチャをいれる。</p></li>
-</ul>
-<p>設定値に問題がなければ、「成功! ノートブックインスタンスが作成されています。」と表示されます。
-「ステータス」が「<strong>Pending</strong>」から「<strong>InService</strong>」となったら、ノートブックインスタンスの作成が完了です。</p>
+<div class="line-block">
+<div class="line">設定値に問題がなければ画面が切り替わり、「成功! ノートブックインスタンスが作成されています。」と表示されます。</div>
+<div class="line">数分間待って、「ステータス」が「<strong>Pending</strong>」から「<strong>InService</strong>」に変わると、ノートブックインスタンスの作成が完了です。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-pending.png"><img alt="../../_images/sagemaker-notebook-instance-create-pending.png" src="../../_images/sagemaker-notebook-instance-create-pending.png" style="width: 900px;" /></a>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-inservice.png"><img alt="../../_images/sagemaker-notebook-instance-create-inservice.png" src="../../_images/sagemaker-notebook-instance-create-inservice.png" style="width: 900px;" /></a>
 </div>
 <div class="section" id="id9">
 <h3>(開発) ノートブックを起動する<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>(メモ) Jupyter Notebook と JupyterLab の違い、利用できる言語なども言及する。</p></li>
+</ul>
 <p>「アクション」が「Jupyter を開く」「JupyterLab を開く」のいずれかをクリックします。
 前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。
 JupyterLab は Jupyter notebook の後継と入れているノートブックです。
