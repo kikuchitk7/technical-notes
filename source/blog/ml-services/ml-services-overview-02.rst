@@ -282,16 +282,33 @@
 
 (開発) ノートブックを起動する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- (メモ) Jupyter Notebook と JupyterLab の違い、利用できる言語なども言及する。
-「アクション」が「Jupyter を開く」「JupyterLab を開く」のいずれかをクリックします。
-前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。
-JupyterLab は Jupyter notebook の後継と入れているノートブックです。
-このチュートリアルを実施範囲ではどちらを選んでも問題ありません。
-チュートリアルは Jupyter notebook を利用していますので、こちらの記事では JupyterLab を利用して進めます。
+- このセクションでの該当箇所は下記の赤枠です。
 
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
 
-- (メモ) Jupyter notebook の画面キャプチャを入れる
-- (メモ) JupyterLab の画面キャプチャを入れる
+| ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。
+
+| Amazon SageMaker のノートブックインスタンスでは、Jupyter Notebook もしくは JupyterLab が利用できます。
+| これらがプリインストールされた状態でノートブックインスタンスが作成されており、利用者側でインストールは必要ありません。
+
+| Jupyter Notebook、JupyterLab は `Project Jupyter <https://jupyter.org/index.html>`_ と呼ばれる非営利の OSS プロジェクトにより管理されているプログラミングのツールです。
+| Python をはじめとして、R や Spark など様々な言語で利用することができます。
+| コードを「セル」と呼ばれるブロックに記載して、少しずつ確認しながら実行することができます。
+| また、マークダウンでテキストや画像、数式なども記載することもできますので、従来のテキストベースのソースコードと比較すると背景や設計根拠などを詳細に残すことができます。
+
+- (備忘) サンプルか何かのノートブックの画像を入れる。
+
+| JupyterLab は Jupyter Notebook の後継となるノートブックです。
+| このチュートリアルを実施範囲ではどちらを選んでも問題ありません。
+| AWS のチュートリアルは Jupyter Notebook を利用していますので、こちらの記事では「JupyterLab」を利用して進めたいと思います。
+
+| 「アクション」の「JupyterLab を開く」をクリックします。
+| なお、前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。
+
+.. image:: ../../../images/blog/5th/sagemaker-notebook-launch.png
+  :width: 900px
+
 
 
 Jupyter notebook のセル (グレーの部分) に下記のコードをコピー＆ペーストして、「Run」を押下して実行します。
@@ -385,13 +402,45 @@ S3 バケット名は世界で唯一の値にする必要があります。
 - (メモ) ECR の言及
 - 長くなりそうなので、(開発) で一度話を切った方が良いかも。
 
+.. code-block:: python
+
+  pd.concat([train_data['y_yes'], train_data.drop(['y_no', 'y_yes'], axis=1)], axis=1).to_csv('train.csv', index=False, header=False)
+  boto3.Session().resource('s3').Bucket(bucket_name).Object(os.path.join(prefix, 'train/train.csv')).upload_file('train.csv')
+  s3_input_train = sagemaker.s3_input(s3_data='s3://{}/{}/train'.format(bucket_name, prefix), content_type='csv')
+
+
+.. code-block:: python
+
+  sess = sagemaker.Session()
+  xgb = sagemaker.estimator.Estimator(containers[my_region],role, train_instance_count=1, train_instance_type='ml.m4.xlarge',output_path='s3://{}/{}/output'.format(bucket_name, prefix),sagemaker_session=sess)
+  xgb.set_hyperparameters(max_depth=5,eta=0.2,gamma=4,min_child_weight=6,subsample=0.8,silent=0,objective='binary:logistic',num_round=100)
+
+
 (学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - (メモ) ビルトインアルゴリズムを利用することでコーディング量が減る。
 
+.. code-block:: python
+
+  xgb.fit({'train': s3_input_train})
+
 
 (推論) 学習済モデルを推論用インスタンスにデプロイする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+  xgb_predictor = xgb.deploy(initial_instance_count=1,instance_type='ml.m4.xlarge')
+
+
+.. code-block:: python
+
+  test_data_array = test_data.drop(['y_no', 'y_yes'], axis=1).values #load the data into an array
+  xgb_predictor.content_type = 'text/csv' # set the data type for an inference
+  xgb_predictor.serializer = csv_serializer # set the serializer type
+  predictions = xgb_predictor.predict(test_data_array).decode('utf-8') # predict!
+  predictions_array = np.fromstring(predictions[1:], sep=',') # and turn the prediction into an array
+  print(predictions_array.shape)
 
 
 (推論) 精度の評価を行う
@@ -400,11 +449,27 @@ S3 バケット名は世界で唯一の値にする必要があります。
 - (メモ) ROC 曲線、AUC を利用しても良いかも。
 - (メモ) アプリからの接続方法についても言及する。
 
+.. code-block:: python
+
+  cm = pd.crosstab(index=test_data['y_yes'], columns=np.round(predictions_array), rownames=['Observed'], colnames=['Predicted'])
+  tn = cm.iloc[0,0]; fn = cm.iloc[1,0]; tp = cm.iloc[1,1]; fp = cm.iloc[0,1]; p = (tp+tn)/(tp+tn+fp+fn)*100
+  print("\n{0:<20}{1:<4.1f}%\n".format("Overall Classification Rate: ", p))
+  print("{0:<15}{1:<15}{2:>8}".format("Predicted", "No Purchase", "Purchase"))
+  print("Observed")
+  print("{0:<15}{1:<2.0f}% ({2:<}){3:>6.0f}% ({4:<})".format("No Purchase", tn/(tn+fn)*100,tn, fp/(tp+fp)*100, fp))
+  print("{0:<16}{1:<1.0f}% ({2:<}){3:>7.0f}% ({4:<}) \n".format("Purchase", fn/(tn+fn)*100,fn, tp/(tp+fp)*100, tp))
+
 
 (後片付け) 作成したリソースを削除する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - (メモ) 任意で実施。課金が気になる場合は必ず実施する。
 - (メモ) 課金されるリソース・課金されないリソースを書いておく。
+
+.. code-block:: python
+
+  sagemaker.Session().delete_endpoint(xgb_predictor.endpoint)
+  bucket_to_delete = boto3.resource('s3').Bucket(bucket_name)
+  bucket_to_delete.objects.all().delete()
 
 
 考察
