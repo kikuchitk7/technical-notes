@@ -152,10 +152,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="line-block">
-<div class="line">下記に示すサービスは、昨年末に米国のラスベガスで開催された「AWS re:Invent 2019」で新たに発表された機能です。</div>
-<div class="line">機能の専用のページが存在するものはリンクを付与しますが、それ以外は <a class="reference external" href="https://aws.amazon.com/jp/sagemaker/">Amazon SageMaker</a> のページを参照してください。</div>
-</div>
+  <p>開発・学習・推論に関する悩み
+環境構築が大変
+複数の学習ジョブを並列で行う　条件が違うものなど
+学習ジョブを分散学習で　時短
+学習結果の管理　→ Search 機能
+など</p>
+<p>環境構築が大変　→　ノートブックインスタンスは数クリックでできる</p>
+<p>ウォークスルー
+最低限 SM を使うためのコード</p>
+<p>メモ
+機械学習モデルを開発する際の悩み
+→ SM を使うとこれだけ簡単にできる
+という流れの方が初学者にはわかりやすいかも</p>
+<p>いきなり新機能の表を説明すると混乱する
+たくさんの機能が用意されている
+基本的な使い方をまずは抑えるという流れ</p>
+<p>バッチ推論も紹介したい</p>
+<p>sample も紹介したい</p>
+<p>ML フレームワーク
+インフラ
+も触れてしまって終わらせるか
+この順番に枠で囲んで例を示す</p>
+<p>機械学習アルゴリズムが予め実装されてイメージ化されている
+学習データ　→　ビルトインアルゴリズム　→　機械学習モデル (推論結果)
+ビルトインアルゴリズム
+container id が決まっている
+entry_point も不要
+estimator を宣言　特定のフレームワーク用でない</p>
+<p>AWS SageMaker Algorithms and Frameworks.pdf</p>
 <ul class="simple">
 <li><p>Amazon SageMaker Studio (Web ブラウザベースの統合開発環境 (IDE))</p></li>
 <li><p>Amazon SageMaker Notebooks (Amazon SageMaker Studio に統合された完全マネージドなノートブック)</p></li>
@@ -188,8 +213,8 @@
 </div>
 <div class="section" id="id3">
 <h1>ML サービスで提供される機能<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="section" id="id4">
-<h2>Amazon SageMaker の利用方法<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="amazon-sagemaker">
+<h2>Amazon SageMaker の利用方法<a class="headerlink" href="#amazon-sagemaker" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -204,8 +229,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id5">
-<h1>ノートブックインスタンスを利用して開発する (従来からの方法)<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id4">
+<h1>ノートブックインスタンスを利用して開発する (従来からの方法)<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="line-block">
 <div class="line">Amazon SageMaker では、機械学習モデルの開発環境として「ノートブックインスタンス」を構築し、Jupyter Notebook もしくは JupyterLab を使って開発してきました。</div>
 </div>
