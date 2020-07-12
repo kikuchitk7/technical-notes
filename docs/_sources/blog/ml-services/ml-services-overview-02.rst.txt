@@ -350,7 +350,7 @@
   print("Success - the MySageMakerInstance is in the " + my_region + " region. You will use the " + containers[my_region] + " container for your SageMaker endpoint.")
 
 
-| セルの下側に下記のメッセージが出力されれば成功です。
+| セルの下側に下記のメッセージが出力されれば成功であり、一旦ノートブックインスタンスとノートブックが正常に作成できたと考えて良いと思います。
 | *Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.*
 
 
