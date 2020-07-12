@@ -309,10 +309,22 @@
 .. image:: ../../../images/blog/5th/sagemaker-notebook-launch.png
   :width: 900px
 
+| JupyterLab を起動すると、下記のような「Launcher」タブが表示されます。
+| Python を中心に様々な実行環境が用意されています。
+| このチュートリアルでは、Python 3 の実行環境があれば良いので、「Notebook」の配下にある「conda_python3」をダブルクリックします。
 
+.. image:: ../../../images/blog/5th/sagemaker-jupyterlab-launcher.png
+  :width: 900px
 
-Jupyter notebook のセル (グレーの部分) に下記のコードをコピー＆ペーストして、「Run」を押下して実行します。
-ショートカットが用意されており、Windows では「Ctrl」+「Enter」、Mac では「command」+「Enter」で実行できます。
+| すると、「Untitled.ipynb」というタブに切り替わり、左側のメニューに同名のファイルが表示されます。
+| 今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。
+
+.. image:: ../../../images/blog/5th/sagemaker-jupyterlab-python3-notebook.png
+  :width: 900px
+
+| グレーの部分を「セル」と呼び、ここにコードを記述していきます。
+| 下記のコードをコピー＆ペーストして、「Run」を押下するか、「Shift」+「Enter」で実行できます。
+| この後もいくつかコードを示しますが、同様の方法で実行してください。
 
 .. code-block:: python
 
@@ -338,9 +350,68 @@ Jupyter notebook のセル (グレーの部分) に下記のコードをコピ�
   print("Success - the MySageMakerInstance is in the " + my_region + " region. You will use the " + containers[my_region] + " container for your SageMaker endpoint.")
 
 
-セルの下側に「Success - (以下、省略)」と表示されれば成功です。
+| セルの下側に下記のメッセージが出力されれば成功です。
+| *Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.*
 
-- (メモ) Jupyter の画面キャプチャを入れる
+
+コードの解説
+********************
+ここでは「`# import libraries`」と「`# Define IAM role`」から始まる大きく2つの処理に分けられます。
+
+.. code-block:: python
+
+  # import libraries
+  import boto3, re, sys, math, json, os, sagemaker, urllib.request
+  from sagemaker import get_execution_role
+  import numpy as np
+  import pandas as pd
+  # (以下、省略)
+
+| 「`# import libraries`」から始まる処理では、チュートリアルの実行に必要なライブラリ (モジュール) の読み込み (インポート) を行っています。
+| Python でよく利用される「Numpy」や「Pandas」に加えて、「Boto3」と呼ばれる 「`AWS SDK for Python <https://aws.amazon.com/jp/sdk-for-python/>`_」、その名の通りで Amazon SageMaker の Python 向け SDK である「`Amazon SageMaker SDK for Python <https://sagemaker.readthedocs.io/en/stable/>`_」を読み込んでいます。
+| Matplotlib など利用しないものも一部含まれますが、ここでは一旦無視しましょう。
+
+「`# Define IAM role`」から始まる処理では、主に下記を実行しています。
+
+| 1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得
+| 2. S3 バケットのプレフィックスの設定
+| 3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定
+| 4. リージョンの設定
+
+特に、1 と 3 の処理について見ていきます。
+
+1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+  role = get_execution_role()
+
+| ノートブックインスタンスの実行ロールの ARN を取得して、その実行ロールを使用して操作を行います。
+| ここでいう「実行ロール」とは、ノートブックインスタンス作成時に新規作成した IAM ロールであり、「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。
+| 詳細に知りたい方は、「`Amazon SageMaker の実行ロールを取得する <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning-ex-role.html>`_」「`sagemaker.session.get_execution_role(sagemaker_session=None) <https://sagemaker.readthedocs.io/en/stable/api/utility/session.html#sagemaker.session.get_execution_role>`_」を参照してください。
+
+
+3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+  containers = {'us-west-2': '433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest',
+                'us-east-1': '811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest',
+                'us-east-2': '825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest',
+                'eu-west-1': '685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest'} # each region has its XGBoost container
+
+| 前回説明したように、Amazon SageMaker では Amazon ECR から学習用コンテナイメージをダウンロードし、学習用インスタンス上でコンテナを起動して学習を行います。
+| 「組み込みアルゴリズムによる学習を行う」とは、すなわち、「AWS が管理する学習用コンテナイメージを利用して学習を行う」ということです。
+
+| 上記のコードは AWS が管理する Amazon ECR のレジストリから「XGBoost リリース 0.72 のコンテナイメージで最新 (latest) 」取得するための設定です。
+| AWS が管理する Amazon ECR のレジストリはリージョンごとに用意されており、今回は「バージニア北部 (us-east-1)」ですので、「`811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest`」からコンテナイメージを取得します。
+| 「東京 (ap-northeast-1)」で利用する場合は、「`'ap-northeast-1': '501404015308.dkr.ecr.ap-northeast-1.amazonaws.com'`」を追加するなどコードの改変が必要です。
+
+| また、今回は「XGBoost リリース 0.72」を利用していますが、より新しい「XGBoost リリース 0.90」もリリースされています。
+| リリース 0.72 と 0.90 とではレジストリのパスが異なりますので、ご注意ください。
+| 詳細に知りたい方は、「`組み込みアルゴリズムの共通パラメータ <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html>`_」を参照してください。
 
 
 (開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する

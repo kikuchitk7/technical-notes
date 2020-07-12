@@ -521,8 +521,22 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line">なお、前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-launch.png"><img alt="../../_images/sagemaker-notebook-launch.png" src="../../_images/sagemaker-notebook-launch.png" style="width: 900px;" /></a>
-<p>Jupyter notebook のセル (グレーの部分) に下記のコードをコピー＆ペーストして、「Run」を押下して実行します。
-ショートカットが用意されており、Windows では「Ctrl」+「Enter」、Mac では「command」+「Enter」で実行できます。</p>
+<div class="line-block">
+<div class="line">JupyterLab を起動すると、下記のような「Launcher」タブが表示されます。</div>
+<div class="line">Python を中心に様々な実行環境が用意されています。</div>
+<div class="line">このチュートリアルでは、Python 3 の実行環境があれば良いので、「Notebook」の配下にある「conda_python3」をダブルクリックします。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-launcher.png"><img alt="../../_images/sagemaker-jupyterlab-launcher.png" src="../../_images/sagemaker-jupyterlab-launcher.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">すると、「Untitled.ipynb」というタブに切り替わり、左側のメニューに同名のファイルが表示されます。</div>
+<div class="line">今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-python3-notebook.png"><img alt="../../_images/sagemaker-jupyterlab-python3-notebook.png" src="../../_images/sagemaker-jupyterlab-python3-notebook.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">グレーの部分を「セル」と呼び、ここにコードを記述していきます。</div>
+<div class="line">下記のコードをコピー＆ペーストして、「Run」を押下するか、「Shift」+「Enter」で実行できます。</div>
+<div class="line">この後もいくつかコードを示しますが、同様の方法で実行してください。</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
@@ -545,10 +559,69 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Success - the MySageMakerInstance is in the &quot;</span> <span class="o">+</span> <span class="n">my_region</span> <span class="o">+</span> <span class="s2">&quot; region. You will use the &quot;</span> <span class="o">+</span> <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; container for your SageMaker endpoint.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>セルの下側に「Success - (以下、省略)」と表示されれば成功です。</p>
-<ul class="simple">
-<li><p>(メモ) Jupyter の画面キャプチャを入れる</p></li>
-</ul>
+<div class="line-block">
+<div class="line">セルの下側に下記のメッセージが出力されれば成功です。</div>
+<div class="line"><em>Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.</em></div>
+</div>
+<div class="section" id="id10">
+<h4>コードの解説<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ここでは「<cite># import libraries</cite>」と「<cite># Define IAM role</cite>」から始まる大きく2つの処理に分けられます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="c1"># (以下、省略)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">「<cite># import libraries</cite>」から始まる処理では、チュートリアルの実行に必要なライブラリ (モジュール) の読み込み (インポート) を行っています。</div>
+<div class="line">Python でよく利用される「Numpy」や「Pandas」に加えて、「Boto3」と呼ばれる 「<a class="reference external" href="https://aws.amazon.com/jp/sdk-for-python/">AWS SDK for Python</a>」、その名の通りで Amazon SageMaker の Python 向け SDK である「<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/">Amazon SageMaker SDK for Python</a>」を読み込んでいます。</div>
+<div class="line">Matplotlib など利用しないものも一部含まれますが、ここでは一旦無視しましょう。</div>
+</div>
+<p>「<cite># Define IAM role</cite>」から始まる処理では、主に下記を実行しています。</p>
+<div class="line-block">
+<div class="line">1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得</div>
+<div class="line">2. S3 バケットのプレフィックスの設定</div>
+<div class="line">3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定</div>
+<div class="line">4. リージョンの設定</div>
+</div>
+<p>特に、1 と 3 の処理について見ていきます。</p>
+<div class="section" id="id11">
+<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">ノートブックインスタンスの実行ロールの ARN を取得して、その実行ロールを使用して操作を行います。</div>
+<div class="line">ここでいう「実行ロール」とは、ノートブックインスタンス作成時に新規作成した IAM ロールであり、「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。</div>
+<div class="line">詳細に知りたい方は、「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning-ex-role.html">Amazon SageMaker の実行ロールを取得する</a>」「<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/utility/session.html#sagemaker.session.get_execution_role">sagemaker.session.get_execution_role(sagemaker_session=None)</a>」を参照してください。</div>
+</div>
+</div>
+<div class="section" id="xgboost-ecr">
+<h5>3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定<a class="headerlink" href="#xgboost-ecr" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">containers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;us-west-2&#39;</span><span class="p">:</span> <span class="s1">&#39;433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span> <span class="s1">&#39;811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">前回説明したように、Amazon SageMaker では Amazon ECR から学習用コンテナイメージをダウンロードし、学習用インスタンス上でコンテナを起動して学習を行います。</div>
+<div class="line">「組み込みアルゴリズムによる学習を行う」とは、すなわち、「AWS が管理する学習用コンテナイメージを利用して学習を行う」ということです。</div>
+</div>
+<div class="line-block">
+<div class="line">上記のコードは AWS が管理する Amazon ECR のレジストリから「XGBoost リリース 0.72 のコンテナイメージで最新 (latest) 」取得するための設定です。</div>
+<div class="line">AWS が管理する Amazon ECR のレジストリはリージョンごとに用意されており、今回は「バージニア北部 (us-east-1)」ですので、「<cite>811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest</cite>」からコンテナイメージを取得します。</div>
+<div class="line">「東京 (ap-northeast-1)」で利用する場合は、「<cite>'ap-northeast-1': '501404015308.dkr.ecr.ap-northeast-1.amazonaws.com'</cite>」を追加するなどコードの改変が必要です。</div>
+</div>
+<div class="line-block">
+<div class="line">また、今回は「XGBoost リリース 0.72」を利用していますが、より新しい「XGBoost リリース 0.90」もリリースされています。</div>
+<div class="line">リリース 0.72 と 0.90 とではレジストリのパスが異なりますので、ご注意ください。</div>
+<div class="line">詳細に知りたい方は、「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html">組み込みアルゴリズムの共通パラメータ</a>」を参照してください。</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="s3">
 <h3>(開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する<a class="headerlink" href="#s3" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -575,8 +648,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id14">
+<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
@@ -595,8 +668,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id11">
-<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id15">
+<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) ECR の言及</p></li>
 <li><p>長くなりそうなので、(開発) で一度話を切った方が良いかも。</p></li>
@@ -621,8 +694,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id16">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -635,8 +708,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id13">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id17">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) デプロイ前におきたいな。</p></li>
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
@@ -652,8 +725,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -665,8 +738,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </div>
 </div>
 </div>
-<div class="section" id="id15">
-<h2>考察<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id19">
+<h2>考察<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -679,15 +752,15 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </li>
 </ul>
 </div>
-<div class="section" id="id16">
-<h2>まとめ<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h2>まとめ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>参考文献<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id21">
+<h2>参考文献<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -696,8 +769,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id22">
-<h2>著者紹介<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id26">
+<h2>著者紹介<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
