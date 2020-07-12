@@ -491,13 +491,13 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="id9">
 <h3>(開発) ノートブックを起動する<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。</div>
 </div>
+<ul class="simple">
+<li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">Amazon SageMaker のノートブックインスタンスでは、Jupyter Notebook もしくは JupyterLab が利用できます。</div>
 <div class="line">これらがプリインストールされた状態でノートブックインスタンスが作成されており、利用者側でインストールは必要ありません。</div>
@@ -529,6 +529,7 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-launcher.png"><img alt="../../_images/sagemaker-jupyterlab-launcher.png" src="../../_images/sagemaker-jupyterlab-launcher.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">すると、「Untitled.ipynb」というタブに切り替わり、左側のメニューに同名のファイルが表示されます。</div>
+<div class="line">これは Jupyter Notebook のファイルとなります。</div>
 <div class="line">今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-python3-notebook.png"><img alt="../../_images/sagemaker-jupyterlab-python3-notebook.png" src="../../_images/sagemaker-jupyterlab-python3-notebook.png" style="width: 900px;" /></a>
@@ -626,16 +627,20 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="s3">
 <h3>(開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する<a class="headerlink" href="#s3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ここから Amazon S3 に関連する作業が続きます。
-チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックで S3 バケットを作成する方法が示されています。
-AWS マネジメントコンソールを利用しても同等の作業ができますが、後々の開発効率を考えると手作業でこれらを実施するよりもノートブックから自動作業を実施した方が好ましいと考えられます。
-作業の慣れの問題でもあるので、これを機にしてノートブックで作成する方法を習得した方が良いと思います。</p>
+<div class="line-block">
+<div class="line">前のセクションで開発環境であるノートブックインスタンスの作成が完了しました。</div>
+<div class="line">ここでは、学習・推論に利用するデータを格納するための S3 バケットを作成します。</div>
+<div class="line">作業は引き続き、JupyterLab で行います。</div>
+</div>
+<ul class="simple">
+<li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
+</ul>
 <a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<p>これを Boto3 を利用して作成します。
-S3 バケット名は世界で唯一の値にする必要があります。
-<cite>bucket_name</cite> の <cite>your-s3-bucket-name</cite> の箇所を変更してください。
-「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。
-検証であれば「日付」を入れても良いと思います。</p>
+<div class="line-block">
+<div class="line">下記のコードをセルにコピー＆ペーストした後に、必ず ** <cite>bucket_name</cite> の <cite>your-s3-bucket-name</cite> の箇所を変更してから** 実行してください。</div>
+<div class="line">S3 バケット名は世界で唯一の値にする必要がありますので、名前が重複するとエラーとなります。</div>
+<div class="line">S3 バケット名には、「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。検証目的であれば「日付」を入れても良いと思います。</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="s1">&#39;your-s3-bucket-name&#39;</span> <span class="c1"># &lt;--- CHANGE THIS VARIABLE TO A UNIQUE NAME FOR YOUR BUCKET</span>
 <span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
@@ -648,9 +653,38 @@ S3 バケット名は世界で唯一の値にする必要があります。
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;S3 error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
 <div class="section" id="id14">
-<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>コードの解説<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックから S3 バケットを作成する方法が示されています。</div>
+<div class="line">AWS マネジメントコンソールを利用しても同等の作業ができますが、ノートブックで作成した方が後々の開発効率を考えても好ましいと考えられます。</div>
+<div class="line">作業の慣れの問題でもあると考えられるので、これを機に習得した方が良いと思います。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">AWS SDK for Python (Boto3) では、 AWS のリソースを操作する方法に「Resources」と「Clients」の2種類があります。</div>
+<div class="line">このチュートリアルでは、抽象度の高い「Resources」の方の API を使って S3 バケットを作成しています。</div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html">Resources</a> : 高レベルのオブジェクト指向インターフェース。Clients と比べて抽象度が高い。</p></li>
+<li><p><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html">Clients</a>: 低レベルのサービス接続。メソッドはサービス API とほぼ1：1で対応し、すべてのサービスの操作がサポートされる。</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span>  <span class="n">my_region</span> <span class="o">==</span> <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span>
+  <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">CreateBucketConfiguration</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">:</span> <span class="n">my_region</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.create_bucket">create_bucket</a> メソッドの <cite>CreateBucketConfiguration</cite> という引数では S3 バケットを作成するリージョンを指定します。</div>
+<div class="line">これが省略された場合、作成するリージョンが「バージニア北部 (us-east-1)」となるため、<cite>my_region</cite> の値によって条件分岐をしています。</div>
+</div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
@@ -669,8 +703,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id16">
+<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) ECR の言及</p></li>
 <li><p>長くなりそうなので、(開発) で一度話を切った方が良いかも。</p></li>
@@ -695,8 +729,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id17">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -709,8 +743,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) デプロイ前におきたいな。</p></li>
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
@@ -726,8 +760,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id19">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -739,8 +773,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </div>
 </div>
 </div>
-<div class="section" id="id19">
-<h2>考察<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h2>考察<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -753,15 +787,15 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </li>
 </ul>
 </div>
-<div class="section" id="id20">
-<h2>まとめ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id21">
+<h2>まとめ<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id21">
-<h2>参考文献<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id22">
+<h2>参考文献<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -770,8 +804,8 @@ S3 バケット名は世界で唯一の値にする必要があります。
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id26">
-<h2>著者紹介<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id27">
+<h2>著者紹介<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>

@@ -282,12 +282,12 @@
 
 (開発) ノートブックを起動する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- このセクションでの該当箇所は下記の赤枠です。
+| ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。
+
+- (備忘) このセクションでの該当箇所は下記の赤枠です。
 
 .. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
   :width: 900px
-
-| ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。
 
 | Amazon SageMaker のノートブックインスタンスでは、Jupyter Notebook もしくは JupyterLab が利用できます。
 | これらがプリインストールされた状態でノートブックインスタンスが作成されており、利用者側でインストールは必要ありません。
@@ -317,6 +317,7 @@
   :width: 900px
 
 | すると、「Untitled.ipynb」というタブに切り替わり、左側のメニューに同名のファイルが表示されます。
+| これは Jupyter Notebook のファイルとなります。
 | 今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。
 
 .. image:: ../../../images/blog/5th/sagemaker-jupyterlab-python3-notebook.png
@@ -417,20 +418,18 @@
 
 (開発) 学習・推論に利用するデータを格納するための S3 バケットを作成する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ここから Amazon S3 に関連する作業が続きます。
-チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックで S3 バケットを作成する方法が示されています。
-AWS マネジメントコンソールを利用しても同等の作業ができますが、後々の開発効率を考えると手作業でこれらを実施するよりもノートブックから自動作業を実施した方が好ましいと考えられます。
-作業の慣れの問題でもあるので、これを機にしてノートブックで作成する方法を習得した方が良いと思います。
+| 前のセクションで開発環境であるノートブックインスタンスの作成が完了しました。
+| ここでは、学習・推論に利用するデータを格納するための S3 バケットを作成します。
+| 作業は引き続き、JupyterLab で行います。
 
+- (備忘) このセクションでの該当箇所は下記の赤枠です。
 
 .. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
   :width: 900px
 
-これを Boto3 を利用して作成します。
-S3 バケット名は世界で唯一の値にする必要があります。
-`bucket_name` の `your-s3-bucket-name` の箇所を変更してください。
-「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。
-検証であれば「日付」を入れても良いと思います。
+| 下記のコードをセルにコピー＆ペーストした後に、必ず ** `bucket_name` の `your-s3-bucket-name` の箇所を変更してから** 実行してください。
+| S3 バケット名は世界で唯一の値にする必要がありますので、名前が重複するとエラーとなります。
+| S3 バケット名には、「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。検証目的であれば「日付」を入れても良いと思います。
 
 .. code-block:: python
 
@@ -444,6 +443,33 @@ S3 バケット名は世界で唯一の値にする必要があります。
       print('S3 bucket created successfully')
   except Exception as e:
       print('S3 error: ',e)
+
+
+コードの解説
+********************
+| チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックから S3 バケットを作成する方法が示されています。
+| AWS マネジメントコンソールを利用しても同等の作業ができますが、ノートブックで作成した方が後々の開発効率を考えても好ましいと考えられます。
+| 作業の慣れの問題でもあると考えられるので、これを機に習得した方が良いと思います。
+
+.. code-block:: python
+
+  s3 = boto3.resource('s3')
+
+| AWS SDK for Python (Boto3) では、 AWS のリソースを操作する方法に「Resources」と「Clients」の2種類があります。
+| このチュートリアルでは、抽象度の高い「Resources」の方の API を使って S3 バケットを作成しています。
+
+- `Resources <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html>`_ : 高レベルのオブジェクト指向インターフェース。Clients と比べて抽象度が高い。
+- `Clients <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html>`_: 低レベルのサービス接続。メソッドはサービス API とほぼ1：1で対応し、すべてのサービスの操作がサポートされる。
+
+.. code-block:: python
+
+  if  my_region == 'us-east-1':
+    s3.create_bucket(Bucket=bucket_name)
+  else: 
+    s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={ 'LocationConstraint': my_region })
+
+| `create_bucket <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.create_bucket>`_ メソッドの `CreateBucketConfiguration` という引数では S3 バケットを作成するリージョンを指定します。
+| これが省略された場合、作成するリージョンが「バージニア北部 (us-east-1)」となるため、`my_region` の値によって条件分岐をしています。
 
 
 (開発) 学習・推論に利用するデータを準備する
