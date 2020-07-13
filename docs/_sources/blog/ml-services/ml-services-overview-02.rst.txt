@@ -23,7 +23,7 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - Amazon SageMaker を使って、「開発」「学習」「推論」の一連の流れを体験できる。
 - XGBoost と呼ばれる機械学習アルゴリズムを利用して、二値分類を行う。
-- 学習・推論に利用するデータは、カリフォルニア大学アーバイン校が公開しているオープンデータを利用する。
+- 学習・推論に利用するデータは、カリフォルニア大学アーバイン校 (UCI) が公開しているオープンデータを利用する。
 - 利用するデータは「Bank Marketing Data Set」と呼ばれる「ポルトガルの銀行マーケティングキャンペーン」のデータである。
 - データには大きく2種類の情報が記録されている。
 
@@ -474,6 +474,16 @@
 
 (開発) 学習・推論に利用するデータを準備する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| 前のセクションで学習・推論用のデータを格納するための S3 バケットの作成が完了しました。
+| ここでは、インターネット上で公開されているデータをノートブックインスタンスのローカルディスク上にダウンロードして簡単な前処理を行います。
+| 作業は引き続き、JupyterLab で行います。
+
+- (備忘) このセクションでの該当箇所は下記の赤枠です。
+
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
+
+下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
@@ -490,10 +500,38 @@
       print('Data load error: ',e)
 
 
+上記の実行後に、下記のコードもセルにコピー＆ペーストして実行してください。
+
 .. code-block:: python
 
   train_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data))])
   print(train_data.shape, test_data.shape)
+
+
+コードの解説
+********************
+
+.. code-block:: python
+
+  urllib.request.urlretrieve ("https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv", "bank_clean.csv")
+
+| `urllib.request.urlretrieve <https://docs.python.org/ja/3.6/library/urllib.request.html#urllib.request.urlretrieve>`_ メソッドは、引数に指定した URL からファイルをローカルにダウンロードします。
+| 引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである CloudFront もしくは S3 と思われます。
+| ここからノートブックインスタンスのローカルディスク上に、学習や推論に利用するデータである「Bank Marketing Data Set」をダウンロードしています。
+
+| AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータとなります。
+| UCI の Machine Learning Repository で公開されているデータをダウンロードして利用する場合は、そのままの状態では利用できず、機械学習で利用できるようにデータの前処理が必要となりますのでご注意ください。
+
+
+.. code-block:: python
+
+  model_data = pd.read_csv('./bank_clean.csv',index_col=0)
+
+
+.. code-block:: python
+
+  train_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data))])
+
 
 (開発) 学習用のコードを開発する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

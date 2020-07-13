@@ -176,7 +176,7 @@
 <ul class="simple">
 <li><p>Amazon SageMaker を使って、「開発」「学習」「推論」の一連の流れを体験できる。</p></li>
 <li><p>XGBoost と呼ばれる機械学習アルゴリズムを利用して、二値分類を行う。</p></li>
-<li><p>学習・推論に利用するデータは、カリフォルニア大学アーバイン校が公開しているオープンデータを利用する。</p></li>
+<li><p>学習・推論に利用するデータは、カリフォルニア大学アーバイン校 (UCI) が公開しているオープンデータを利用する。</p></li>
 <li><p>利用するデータは「Bank Marketing Data Set」と呼ばれる「ポルトガルの銀行マーケティングキャンペーン」のデータである。</p></li>
 <li><p>データには大きく2種類の情報が記録されている。</p>
 <ul>
@@ -685,6 +685,16 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="id15">
 <h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">前のセクションで学習・推論用のデータを格納するための S3 バケットの作成が完了しました。</div>
+<div class="line">ここでは、インターネット上で公開されているデータをノートブックインスタンスのローカルディスク上にダウンロードして簡単な前処理を行います。</div>
+<div class="line">作業は引き続き、JupyterLab で行います。</div>
+</div>
+<ul class="simple">
+<li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
@@ -698,13 +708,35 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>上記の実行後に、下記のコードもセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
 <div class="section" id="id16">
-<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>コードの解説<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://docs.python.org/ja/3.6/library/urllib.request.html#urllib.request.urlretrieve">urllib.request.urlretrieve</a> メソッドは、引数に指定した URL からファイルをローカルにダウンロードします。</div>
+<div class="line">引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである CloudFront もしくは S3 と思われます。</div>
+<div class="line">ここからノートブックインスタンスのローカルディスク上に、学習や推論に利用するデータである「Bank Marketing Data Set」をダウンロードしています。</div>
+</div>
+<div class="line-block">
+<div class="line">AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータとなります。</div>
+<div class="line">UCI の Machine Learning Repository で公開されているデータをダウンロードして利用する場合は、そのままの状態では利用できず、機械学習で利用できるようにデータの前処理が必要となりますのでご注意ください。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank_clean.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) ECR の言及</p></li>
 <li><p>長くなりそうなので、(開発) で一度話を切った方が良いかも。</p></li>
@@ -729,8 +761,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -743,8 +775,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id19">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) デプロイ前におきたいな。</p></li>
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
@@ -760,8 +792,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id20">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -773,8 +805,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id20">
-<h2>考察<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id21">
+<h2>考察<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -787,15 +819,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id21">
-<h2>まとめ<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id22">
+<h2>まとめ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id22">
-<h2>参考文献<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>参考文献<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -804,8 +836,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id27">
-<h2>著者紹介<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id28">
+<h2>著者紹介<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
