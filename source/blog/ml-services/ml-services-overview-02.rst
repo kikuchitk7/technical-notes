@@ -83,6 +83,26 @@
 
   - チュートリアルのソースコードには「バージニア北部」リージョンを想定するコードがあるので、これを「東京」リージョン向けに改変すれば実行は可能。
 
+- ノートブックインスタンスの Python と主要なパッケージのバージョン
+
+.. list-table::
+    :header-rows: 1
+
+    * - 名前
+      - バージョン
+    * - Python
+      - 3.6.10
+    * - Numpy
+      - 1.18.1
+    * - Pandas
+      - 1.0.3
+    * - boto3
+      - 1.14.16
+    * - sagemaker
+      - 1.67.1.post0
+
+- XGBoost はビルトインアルゴリズムとして提供されている リリース 0.72 を利用する。
+
 
 (開発) AWS マネジメントコンソールにログインする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -372,6 +392,19 @@
 | Python でよく利用される「Numpy」や「Pandas」に加えて、「Boto3」と呼ばれる 「`AWS SDK for Python <https://aws.amazon.com/jp/sdk-for-python/>`_」、その名の通りで Amazon SageMaker の Python 向け SDK である「`Amazon SageMaker SDK for Python <https://sagemaker.readthedocs.io/en/stable/>`_」を読み込んでいます。
 | Matplotlib など利用しないものも一部含まれますが、ここでは一旦無視しましょう。
 
+
+.. code-block:: python
+
+  # Define IAM role
+  role = get_execution_role()
+  prefix = 'sagemaker/DEMO-xgboost-dm'
+  containers = {'us-west-2': '433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest',
+                'us-east-1': '811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest',
+                'us-east-2': '825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest',
+                'eu-west-1': '685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest'} # each region has its XGBoost container
+  my_region = boto3.session.Session().region_name # set the region of the instance
+
+
 「`# Define IAM role`」から始まる処理では、主に下記を実行しています。
 
 | 1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得
@@ -516,10 +549,10 @@
   urllib.request.urlretrieve ("https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv", "bank_clean.csv")
 
 | `urllib.request.urlretrieve <https://docs.python.org/ja/3.6/library/urllib.request.html#urllib.request.urlretrieve>`_ メソッドは、引数に指定した URL からファイルをローカルにダウンロードします。
-| 引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである CloudFront もしくは S3 と思われます。
+| 引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである Amazon CloudFront もしくは Amazon S3 と思われます。
 | ここからノートブックインスタンスのローカルディスク上に、学習や推論に利用するデータである「Bank Marketing Data Set」をダウンロードしています。
 
-| AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータとなります。
+| AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータです。
 | UCI の Machine Learning Repository で公開されているデータをダウンロードして利用する場合は、そのままの状態では利用できず、機械学習で利用できるようにデータの前処理が必要となりますのでご注意ください。
 
 
@@ -527,14 +560,30 @@
 
   model_data = pd.read_csv('./bank_clean.csv',index_col=0)
 
+Pandas の `read_csv <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html>`_ メソッドを使って、CSV 形式の「Bank Marketing Data Set」を DataFrame に読み込んでいます。
+
 
 .. code-block:: python
 
   train_data, test_data = np.split(model_data.sample(frac=1, random_state=1729), [int(0.7 * len(model_data))])
 
+| Numpy の split メソッドを使って、DataFrame として読み込んだデータ (model_data) を学習データ (train_data) とテストデータ (test_data) を 7:3 の割合で分割しています。
+| 更に、Pandas の `sample <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html>`_ メソッドを使ってランダムにデータを選択することでデータの順序性を排除しています。
+
 
 (開発) 学習用のコードを開発する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。
+
+- (備忘) このセクションでの該当箇所は下記の赤枠です。
+
+.. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
+  :width: 900px
+
+| 今回は Amazon SageMaker にビルトインアルゴリズムとして組み込まれている XGBoost を利用します。
+| コンテナイメージとして Amazon ECR のレジストリにて準備されているため、XGBoost 自体の実装は不要です。
+| XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。
+
 - (メモ) ECR の言及
 - 長くなりそうなので、(開発) で一度話を切った方が良いかも。
 
