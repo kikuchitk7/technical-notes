@@ -96,9 +96,9 @@
       - 1.18.1
     * - Pandas
       - 1.0.3
-    * - boto3
+    * - AWS SDK for Python (Boto3)
       - 1.14.16
-    * - sagemaker
+    * - Amazon SageMaker SDK for Python
       - 1.67.1.post0
 
 - XGBoost はビルトインアルゴリズムとして提供されている リリース 0.72 を利用する。
@@ -573,19 +573,20 @@ Pandas の `read_csv <https://pandas.pydata.org/pandas-docs/stable/reference/api
 
 (開発) 学習用のコードを開発する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。
+| データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。
+| 今回は Amazon SageMaker に`組み込みアルゴリズム <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html>`_ として用意されている「`XGBoost <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost.html>`_」と呼ばれる機械学習アルゴリズムを利用します。
+
+| 組み込みアルゴリズムとして提供されている機械学習アルゴリズムは、コンテナイメージとして予め Amazon ECR のレジストリに準備されています。
+| 利用者は機械学習アルゴリズムを実装する必要はありません。
+| 利用したい機械学習アルゴリズムのコンテナイメージをダウンロードしてコンテナを起動し、学習データを渡すだけで利用することができます。
 
 - (備忘) このセクションでの該当箇所は下記の赤枠です。
 
 .. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
   :width: 900px
 
-| 今回は Amazon SageMaker にビルトインアルゴリズムとして組み込まれている XGBoost を利用します。
-| コンテナイメージとして Amazon ECR のレジストリにて準備されているため、XGBoost 自体の実装は不要です。
 | XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。
-
-- (メモ) ECR の言及
-- 長くなりそうなので、(開発) で一度話を切った方が良いかも。
+| 下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
@@ -594,11 +595,31 @@ Pandas の `read_csv <https://pandas.pydata.org/pandas-docs/stable/reference/api
   s3_input_train = sagemaker.s3_input(s3_data='s3://{}/{}/train'.format(bucket_name, prefix), content_type='csv')
 
 
+上記の実行後に、下記のコードもセルにコピー＆ペーストして実行してください。
+
 .. code-block:: python
 
   sess = sagemaker.Session()
   xgb = sagemaker.estimator.Estimator(containers[my_region],role, train_instance_count=1, train_instance_type='ml.m4.xlarge',output_path='s3://{}/{}/output'.format(bucket_name, prefix),sagemaker_session=sess)
   xgb.set_hyperparameters(max_depth=5,eta=0.2,gamma=4,min_child_weight=6,subsample=0.8,silent=0,objective='binary:logistic',num_round=100)
+
+
+コードの解説
+********************
+
+.. code-block:: python
+
+  pd.concat([train_data['y_yes'], train_data.drop(['y_no', 'y_yes'], axis=1)], axis=1).to_csv('train.csv', index=False, header=False)
+
+| 組み込みアルゴリズムの XGBoost は、学習データを表形式でデータを与える必要があります。
+| 学習データの1列目を目的変数に、2列目以降を説明変数 (特徴量) とする必要があります。
+| 今回の場合、目的変数は「キャンペーンの結果、顧客が預金証書 (CD) を申し込んだか否か」、説明変数は年齢や職業などの「顧客の属性情報」となります。
+
+| 加工前の状態では、目的変数の列が一番後ろに存在しますることに加えて、「`y_yes` (申し込んだ)」だけでなく、「`y_no` (申し込まなかった)」も存在します。
+| Pandas の `concat <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html>`_ を使って、「`y_yes`」を切り出して1列目に、後方に存在する「y_yes」「y_no」を削除 (drop) した表を結合して新たな表を作成しています。
+| 組み込みアルゴリズムの XGBoost は、学習データの形式として CSV 形式もしくは libsvm 形式をサポートしていますので、ここでは CSV 形式に変換しています。
+
+- (備忘) 変換前後の DF を示す。
 
 
 (学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う

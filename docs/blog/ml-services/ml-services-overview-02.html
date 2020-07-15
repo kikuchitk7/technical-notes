@@ -253,6 +253,38 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>チュートリアルのソースコードには「バージニア北部」リージョンを想定するコードがあるので、これを「東京」リージョン向けに改変すれば実行は可能。</p></li>
 </ul>
 </li>
+<li><p>ノートブックインスタンスの Python と主要なパッケージのバージョン</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>名前</p></th>
+<th class="head"><p>バージョン</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Python</p></td>
+<td><p>3.6.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Numpy</p></td>
+<td><p>1.18.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Pandas</p></td>
+<td><p>1.0.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>AWS SDK for Python (Boto3)</p></td>
+<td><p>1.14.16</p></td>
+</tr>
+<tr class="row-even"><td><p>Amazon SageMaker SDK for Python</p></td>
+<td><p>1.67.1.post0</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>XGBoost はビルトインアルゴリズムとして提供されている リリース 0.72 を利用する。</p></li>
 </ul>
 </div>
 <div class="section" id="id6">
@@ -580,6 +612,16 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line">Python でよく利用される「Numpy」や「Pandas」に加えて、「Boto3」と呼ばれる 「<a class="reference external" href="https://aws.amazon.com/jp/sdk-for-python/">AWS SDK for Python</a>」、その名の通りで Amazon SageMaker の Python 向け SDK である「<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/">Amazon SageMaker SDK for Python</a>」を読み込んでいます。</div>
 <div class="line">Matplotlib など利用しないものも一部含まれますが、ここでは一旦無視しましょう。</div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define IAM role</span>
+<span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;sagemaker/DEMO-xgboost-dm&#39;</span>
+<span class="n">containers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;us-west-2&#39;</span><span class="p">:</span> <span class="s1">&#39;433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span> <span class="s1">&#39;811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
+<span class="n">my_region</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">region_name</span> <span class="c1"># set the region of the instance</span>
+</pre></div>
+</div>
 <p>「<cite># Define IAM role</cite>」から始まる処理では、主に下記を実行しています。</p>
 <div class="line-block">
 <div class="line">1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得</div>
@@ -720,40 +762,78 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="line-block">
 <div class="line"><a class="reference external" href="https://docs.python.org/ja/3.6/library/urllib.request.html#urllib.request.urlretrieve">urllib.request.urlretrieve</a> メソッドは、引数に指定した URL からファイルをローカルにダウンロードします。</div>
-<div class="line">引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである CloudFront もしくは S3 と思われます。</div>
+<div class="line">引数に示した URL は ドメイン名から AWS の静的ファイルを配布するための CDN サービスである Amazon CloudFront もしくは Amazon S3 と思われます。</div>
 <div class="line">ここからノートブックインスタンスのローカルディスク上に、学習や推論に利用するデータである「Bank Marketing Data Set」をダウンロードしています。</div>
 </div>
 <div class="line-block">
-<div class="line">AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータとなります。</div>
+<div class="line">AWS が配布しているデータは、チュートリアルを進めやすいように前処理の実施済のデータです。</div>
 <div class="line">UCI の Machine Learning Repository で公開されているデータをダウンロードして利用する場合は、そのままの状態では利用できず、機械学習で利用できるようにデータの前処理が必要となりますのでご注意ください。</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank_clean.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">read_csv</a> メソッドを使って、CSV 形式の「Bank Marketing Data Set」を DataFrame に読み込んでいます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
 </pre></div>
+</div>
+<div class="line-block">
+<div class="line">Numpy の split メソッドを使って、DataFrame として読み込んだデータ (model_data) を学習データ (train_data) とテストデータ (test_data) を 7:3 の割合で分割しています。</div>
+<div class="line">更に、Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">sample</a> メソッドを使ってランダムにデータを選択することでデータの順序性を排除しています。</div>
 </div>
 </div>
 </div>
 <div class="section" id="id17">
 <h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。</div>
+<div class="line">今回は Amazon SageMaker に`組み込みアルゴリズム &lt;<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html">https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html</a>&gt;`_ として用意されている「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost.html">XGBoost</a>」と呼ばれる機械学習アルゴリズムを利用します。</div>
+</div>
+<div class="line-block">
+<div class="line">組み込みアルゴリズムとして提供されている機械学習アルゴリズムは、コンテナイメージとして予め Amazon ECR のレジストリに準備されています。</div>
+<div class="line">利用者は機械学習アルゴリズムを実装する必要はありません。</div>
+<div class="line">利用したい機械学習アルゴリズムのコンテナイメージをダウンロードしてコンテナを起動し、学習データを渡すだけで利用することができます。</div>
+</div>
 <ul class="simple">
-<li><p>(メモ) ECR の言及</p></li>
-<li><p>長くなりそうなので、(開発) で一度話を切った方が良いかも。</p></li>
+<li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
+<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。</div>
+<div class="line">下記のコードをセルにコピー＆ペーストして実行してください。</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;train/train.csv&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
 <span class="n">s3_input_train</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">s3_input</span><span class="p">(</span><span class="n">s3_data</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/train&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>上記の実行後に、下記のコードもセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">],</span><span class="n">role</span><span class="p">,</span> <span class="n">train_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">train_instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span><span class="n">sagemaker_session</span><span class="o">=</span><span class="n">sess</span><span class="p">)</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">min_child_weight</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">silent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;binary:logistic&#39;</span><span class="p">,</span><span class="n">num_round</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="section" id="id18">
+<h4>コードの解説<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="xgboost">
-<h3>(学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う<a class="headerlink" href="#xgboost" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">組み込みアルゴリズムの XGBoost は、学習データを表形式でデータを与える必要があります。</div>
+<div class="line">学習データの1列目を目的変数に、2列目以降を説明変数 (特徴量) とする必要があります。</div>
+<div class="line">今回の場合、目的変数は「キャンペーンの結果、顧客が預金証書 (CD) を申し込んだか否か」、説明変数は年齢や職業などの「顧客の属性情報」となります。</div>
+</div>
+<div class="line-block">
+<div class="line">加工前の状態では、目的変数の列が一番後ろに存在しますることに加えて、「<cite>y_yes</cite> (申し込んだ)」だけでなく、「<cite>y_no</cite> (申し込まなかった)」も存在します。</div>
+<div class="line">Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html">concat</a> を使って、「<cite>y_yes</cite>」を切り出して1列目に、後方に存在する「y_yes」「y_no」を削除 (drop) した表を結合して新たな表を作成しています。</div>
+<div class="line">組み込みアルゴリズムの XGBoost は、学習データの形式として CSV 形式もしくは libsvm 形式をサポートしていますので、ここでは CSV 形式に変換しています。</div>
+</div>
+<ul class="simple">
+<li><p>(備忘) 変換前後の DF を示す。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>(学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) ビルトインアルゴリズムを利用することでコーディング量が減る。</p></li>
 </ul>
@@ -761,8 +841,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id20">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -775,8 +855,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id21">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) デプロイ前におきたいな。</p></li>
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
@@ -792,8 +872,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id22">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -805,8 +885,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id21">
-<h2>考察<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>考察<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -819,15 +899,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id22">
-<h2>まとめ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id24">
+<h2>まとめ<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id23">
-<h2>参考文献<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id25">
+<h2>参考文献<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -836,8 +916,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id28">
-<h2>著者紹介<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id30">
+<h2>著者紹介<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
