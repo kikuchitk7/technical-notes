@@ -830,19 +830,226 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <ul class="simple">
 <li><p>(備忘) 変換前後の DF を示す。</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">boto3</span>
+    <span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">Object</span><span class="p">(</span>
+      <span class="n">os</span>
+        <span class="o">.</span><span class="n">path</span>
+        <span class="o">.</span><span class="n">join</span><span class="p">(</span>
+          <span class="n">prefix</span><span class="p">,</span>
+          <span class="s1">&#39;train/train.csv&#39;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">メソッドチェーンで書かれていて見通しが悪いので、改行してみます。</div>
+<div class="line">要するに、ここでやりたいことは「学習データを S3 バケットにアップロードする」ことです。</div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/session.html">Session</a> クラスは、AWS のリソースを操作するために認証情報を環境変数やプロファイルから取得して設定します。</div>
+<div class="line">その後の処理はメソッド名から推測できると思いますが、<cite>resource</cite> メソッドで S3 を設定し、S3 バケット名とオブジェクト名を指定して学習データをアップローとしています。</div>
+</div>
+<div class="line-block">
+<div class="line">次の処理も改行して記載します。</div>
+<div class="line">Amazon SageMaker SDK for Python の <a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/utility/inputs.html#sagemaker.inputs.s3_input">s3_input</a> クラスのオプジェクトを生成しています。</div>
+<div class="line">ここでは、その名の通り入力となる学習データが格納された S3 バケットと学習データのファイル形式 (CSV) を設定しています。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Amazon SageMaker API およびその他の必要な AWS サービスとのやり取りを管理するための Session オブジェクトを作成しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span>
+  <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">],</span>
+  <span class="n">role</span><span class="p">,</span>
+  <span class="n">train_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">train_instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">,</span>
+  <span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span>
+  <span class="n">sagemaker_session</span><span class="o">=</span><span class="n">sess</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">上記の処理も改行して記載します。</div>
+<div class="line">Amazon SageMaker SDK for Python の <a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator">Estimator</a> クラスのオプジェクトを生成しています。</div>
+</div>
+<div class="line-block">
+<div class="line">Estimator クラスにて、学習の設定を行います。</div>
+<div class="line">パラメータ (Estimator クラスの引数) の意味について下記に示します。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>パラメータ (引数)</p></th>
+<th class="head"><p>パラメータの意味</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>containers</p></td>
+<td><div class="line-block">
+<div class="line">学習に利用するコンテナイメージの URI を指定する。</div>
+<div class="line">ここでは、組み込みアルゴリズムの XGBoost リリース 0.72 のコンテナイメージの URI を指定している。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>role</p></td>
+<td><div class="line-block">
+<div class="line">Amazon SageMaker にアタッチする IAM ロールの名前もしくは ARN を指定する。</div>
+<div class="line">ここでは、前段で作成した IAM ロール (AmazonSageMakerFullAccess ポリシーが設定されたもの) を設定している。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>train_instance_count</p></td>
+<td><div class="line-block">
+<div class="line">学習用インスタンス数を設定する。</div>
+<div class="line">2 以上を設定することで複数インスタンスでの分散学習の実行が可能である。</div>
+<div class="line">ただし、独自アルゴリズムを利用する場合は分散学習に対応したコードを開発する必要がある。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>train_instance_type</p></td>
+<td><div class="line-block">
+<div class="line">学習用インスタンスのインスタンスタイプを設定する。</div>
+<div class="line">ML インスタンスとして様々なタイプが用意されており、学習の特性に応じたものを選択する。</div>
+<div class="line">ここでは、汎用 (M4) の xlarge を設定している。その他に利用できるインスタンスタイプと料金は下記を参照のこと。</div>
+<div class="line">- 「<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">Amazon SageMaker ML インスタンスタイプ</a>」</div>
+<div class="line">- 「<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">Amazon SageMaker の料金</a>」</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>output_path</p></td>
+<td><div class="line-block">
+<div class="line">学習におけるアウトプット (モデルアーティファクトと出力ファイル) の出力先となる S3 バケットを指定する。</div>
+<div class="line">このパラメータが設定されていない場合は、デフォルトバケットに出力される。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>sagemaker_session</p></td>
+<td><p>Session オブジェクトを設定する。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">xgb</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">(</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">eta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">silent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;binary:logistic&#39;</span><span class="p">,</span>
+    <span class="n">num_round</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">上記の処理も改行して記載します。</div>
+<div class="line">ここでは、XGBoost のハイパーパラメータを設定しています。</div>
+<div class="line">ハイパーパラメータの値は機械学習モデルの精度に直結します。</div>
+<div class="line">Amazon SageMaker にはハイパーパラメータを自動チューニングする機能がありますが、ここでは固定値として上記の値を設定しています。</div>
+<div class="line">XGBoost で設定できるハイパーパラメータとそれぞれの意味は、「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost-72.html#xgboost-72-hyperparameters">XGBoost リリース 0.72 のハイパーパラメータ</a> 」に一覧でまとめられていますので、知りたい方は参照してください。</div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>(学習) XGBoost (ビルトインアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>(メモ) ビルトインアルゴリズムを利用することでコーディング量が減る。</p></li>
-</ul>
+</div>
+<div class="section" id="id21">
+<h3>(学習) XGBoost (組み込みアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>学習の設定まで完了しましたので、ここからは実際に学習を行います。</p>
+<div class="section" id="id22">
+<h4>実行するコード<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">({</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">s3_input_train</span><span class="p">})</span>
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line">なお、学習が開始されると下記の画像に示したような実行ログが出力されます。</div>
+<div class="line">1 画面に収まらない量が出力されますが、ただの実行ログですので問題ありません。</div>
 </div>
-<div class="section" id="id20">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/sagemaker-training-start.png"><img alt="../../_images/sagemaker-training-start.png" src="../../_images/sagemaker-training-start.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">学習が完了すると、下記のように完了を示すメッセージが出力されます。</div>
+<div class="line">このチュートリアルはデータ量が少ないため、数分で完了します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-training-complete.png"><img alt="../../_images/sagemaker-training-complete.png" src="../../_images/sagemaker-training-complete.png" style="width: 900px;" /></a>
+</div>
+<div class="section" id="id23">
+<h4>コードの解説<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">Amazon SageMaker における学習の実行は、<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.EstimatorBase.fit">fit</a> メソッドに学習データが格納されている S3 バケットの所在を渡すだけで実行できます。</div>
+<div class="line">fit メソッドを実行すると、学習ジョブが起動して XGBoost による機械学習モデルが構築されます。</div>
+</div>
+<div class="line-block">
+<div class="line">実行ログを簡単に見てみましょう。</div>
+<div class="line">Amazon SageMaker が背後で行っている処理を確認することができます。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>実行ログ</p></th>
+<th class="head"><p>処理内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2020-07-11 11:34:39 Starting - Starting the training job...</p></td>
+<td><p>学習ジョブの開始</p></td>
+</tr>
+<tr class="row-odd"><td><p>2020-07-11 11:34:42 Starting - Launching requested ML instances......</p></td>
+<td><p>学習用インスタンスの起動開始</p></td>
+</tr>
+<tr class="row-even"><td><p>2020-07-11 11:35:57 Starting - Preparing the instances for training......</p></td>
+<td><p>学習を開始するためのインスタンスの準備開始</p></td>
+</tr>
+<tr class="row-odd"><td><p>2020-07-11 11:36:53 Downloading - Downloading input data</p></td>
+<td><p>S3 バケットから学習データをダウンロード中</p></td>
+</tr>
+<tr class="row-even"><td><p>2020-07-11 11:37:39 Training - Downloading the training image...</p></td>
+<td><p>トレーニングに利用する XGBoost の Docker コンテナイメージのダウンロード中</p></td>
+</tr>
+<tr class="row-odd"><td><p>2020-07-11 11:37:39 Uploading - Uploading generated training model</p></td>
+<td><p>学習が完了し、アーティファクトを S3 バケットにアップロード中</p></td>
+</tr>
+<tr class="row-even"><td><p>Arguments: train</p></td>
+<td><p>学習の実行を示すメッセージ</p></td>
+</tr>
+<tr class="row-odd"><td><p>[2020-07-11:11:37:34:INFO] Running standalone xgboost training.</p></td>
+<td><div class="line-block">
+<div class="line">XGBoost による学習の実行ログ</div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>(中略)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2020-07-11 11:37:46 Completed - Training job completed</p></td>
+<td><p>学習ジョブの完了</p></td>
+</tr>
+<tr class="row-even"><td><p>Training seconds: 53</p></td>
+<td><p>トレーニングに要した時間 (秒)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Billable seconds: 53</p></td>
+<td><p>課金される時間 (秒)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Amazon SageMaker は従量課金性であり、今回のトレーニングでは 53 秒分の課金がされることがわかります。</p>
+<ul class="simple">
+<li><p>(メモ) ビルトインアルゴリズムを利用することでコーディング量が減る。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id24">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -855,8 +1062,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id21">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id25">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) デプロイ前におきたいな。</p></li>
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
@@ -872,8 +1079,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id22">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id26">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -885,8 +1092,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id23">
-<h2>考察<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id27">
+<h2>考察<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -899,15 +1106,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id24">
-<h2>まとめ<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id28">
+<h2>まとめ<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id25">
-<h2>参考文献<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id29">
+<h2>参考文献<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -916,8 +1123,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id30">
-<h2>著者紹介<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id34">
+<h2>著者紹介<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
