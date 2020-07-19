@@ -888,6 +888,8 @@ Amazon SageMaker は従量課金性であり、今回のトレーニングでは
   predictions_array = np.fromstring(predictions[1:], sep=',') # and turn the prediction into an array
   print(predictions_array.shape)
 
+実行した結果出力される `(12357,)` は、予測した顧客の数 (12,357人) です。
+
 
 コードの解説
 ********************
@@ -922,9 +924,15 @@ Amazon SageMaker は従量課金性であり、今回のトレーニングでは
 
 (推論) 精度の評価を行う
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| 推論結果を得ることができましたので、最後に精度の評価を行います。
+| 二値分類の精度評価においてよく利用される「混同行列 (confusion matrix)」を使います。
 
 - (メモ) ROC 曲線、AUC を利用しても良いかも。
 - (メモ) アプリからの接続方法についても言及する。
+
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
@@ -935,6 +943,49 @@ Amazon SageMaker は従量課金性であり、今回のトレーニングでは
   print("Observed")
   print("{0:<15}{1:<2.0f}% ({2:<}){3:>6.0f}% ({4:<})".format("No Purchase", tn/(tn+fn)*100,tn, fp/(tp+fp)*100, fp))
   print("{0:<16}{1:<1.0f}% ({2:<}){3:>7.0f}% ({4:<}) \n".format("Purchase", fn/(tn+fn)*100,fn, tp/(tp+fp)*100, tp))
+
+
+コードの解説
+********************
+Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/reference/api/pandas.crosstab.html>`_ 関数を使って、推論結果のクロス集計を行っています。
+
+ここで、精度評価で利用している混同行列について補足します。
+
+.. image:: ../../../images/confusion-matrix.png
+  :width: 450px
+
+| 行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。
+| 正解 (2種類) * 予測 (2種類) で、下記に示す 4 つの指標があります。
+| 混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。
+| その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。
+
+- True Positive (TP): 預金証書 (CD) を申し込むと予測して、実際に申し込んだ顧客の数
+- False Poritive (FP): 預金証書 (CD) を申し込むと予測したが、実際には申し込まなかった顧客の数
+- True Negative (TN): 預金証書 (CD) を申し込まないと予測して実際に申し込まなかった顧客の数
+- False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数
+
+
+推論結果についての考察
+******************************
+上記のコードを実行すると、下記のような出力結果を得られます。
+
+.. image:: ../../../images/sagemaker-predict-confusion-matrix.png
+  :width: 450px
+
+| `Overall Classification Rate` で示されている数値が正解率であり、今回は 89.5% でした。
+| True Negative が 90% である一方で、True Poritive は 65% とかなり低いように見えます。
+| なぜでしょうか？
+
+| 学習データ (train_data) には、28,831 人分の顧客データを利用しました。
+| このうち、預金証書 (CD) を申し込んだ顧客数 (`y_yes` が 1 の合計) と申し込まなかった (`y_no` が 1 の合計) を確認してみます。
+
+.. image:: ../../../images/sagemaker-predict-train-data.png
+  :width: 450px
+
+| 前者が 3,219 人であることに対して、後者は 25,612 人と 5 倍近い差があります。
+| 預金証書 (CD) を申し込んだ顧客数のデータを増やすと、True Positive の割合も高くなり、精度を高められる可能性があります。
+| 二値分類においては、学習データとなる正解データは十分な量を同程度用意することが望ましいと言われています。
+| 今回のチュートリアルでもその一端を垣間見ることができました。
 
 
 (後片付け) 作成したリソースを削除する

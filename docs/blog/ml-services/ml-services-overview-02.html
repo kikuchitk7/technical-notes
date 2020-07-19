@@ -1143,6 +1143,7 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <span class="k">print</span><span class="p">(</span><span class="n">predictions_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>実行した結果出力される <cite>(12357,)</cite> は、予測した顧客の数 (12,357人) です。</p>
 </div>
 <div class="section" id="id35">
 <h4>コードの解説<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -1171,10 +1172,17 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="id36">
 <h3>(推論) 精度の評価を行う<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">推論結果を得ることができましたので、最後に精度の評価を行います。</div>
+<div class="line">二値分類の精度評価においてよく利用される「混同行列 (confusion matrix)」を使います。</div>
+</div>
 <ul class="simple">
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
 <li><p>(メモ) アプリからの接続方法についても言及する。</p></li>
 </ul>
+<div class="section" id="id37">
+<h4>実行するコード<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{0:&lt;20}{1:&lt;4.1f}%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Overall Classification Rate: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
@@ -1185,8 +1193,48 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id37">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id38">
+<h4>コードの解説<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.3/reference/api/pandas.crosstab.html">crosstab</a> 関数を使って、推論結果のクロス集計を行っています。</p>
+<p>ここで、精度評価で利用している混同行列について補足します。</p>
+<a class="reference internal image-reference" href="../../_images/confusion-matrix.png"><img alt="../../_images/confusion-matrix.png" src="../../_images/confusion-matrix.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。</div>
+<div class="line">正解 (2種類) * 予測 (2種類) で、下記に示す 4 つの指標があります。</div>
+<div class="line">混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。</div>
+<div class="line">その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。</div>
+</div>
+<ul class="simple">
+<li><p>True Positive (TP): 預金証書 (CD) を申し込むと予測して、実際に申し込んだ顧客の数</p></li>
+<li><p>False Poritive (FP): 預金証書 (CD) を申し込むと予測したが、実際には申し込まなかった顧客の数</p></li>
+<li><p>True Negative (TN): 預金証書 (CD) を申し込まないと予測して実際に申し込まなかった顧客の数</p></li>
+<li><p>False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数</p></li>
+</ul>
+</div>
+<div class="section" id="id39">
+<h4>推論結果についての考察<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>上記のコードを実行すると、下記のような出力結果を得られます。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-predict-confusion-matrix.png"><img alt="../../_images/sagemaker-predict-confusion-matrix.png" src="../../_images/sagemaker-predict-confusion-matrix.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line"><cite>Overall Classification Rate</cite> で示されている数値が正解率であり、今回は 89.5% でした。</div>
+<div class="line">True Negative が 90% である一方で、True Poritive は 65% とかなり低いように見えます。</div>
+<div class="line">なぜでしょうか？</div>
+</div>
+<div class="line-block">
+<div class="line">学習データ (train_data) には、28,831 人分の顧客データを利用しました。</div>
+<div class="line">このうち、預金証書 (CD) を申し込んだ顧客数 (<cite>y_yes</cite> が 1 の合計) と申し込まなかった (<cite>y_no</cite> が 1 の合計) を確認してみます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-predict-train-data.png"><img alt="../../_images/sagemaker-predict-train-data.png" src="../../_images/sagemaker-predict-train-data.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">前者が 3,219 人であることに対して、後者は 25,612 人と 5 倍近い差があります。</div>
+<div class="line">預金証書 (CD) を申し込んだ顧客数のデータを増やすと、True Positive の割合も高くなり、精度を高められる可能性があります。</div>
+<div class="line">二値分類においては、学習データとなる正解データは十分な量を同程度用意することが望ましいと言われています。</div>
+<div class="line">今回のチュートリアルでもその一端を垣間見ることができました。</div>
+</div>
+</div>
+</div>
+<div class="section" id="id40">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
@@ -1198,8 +1246,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id38">
-<h2>考察<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id41">
+<h2>考察<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -1212,15 +1260,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id39">
-<h2>まとめ<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id42">
+<h2>まとめ<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id40">
-<h2>参考文献<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id43">
+<h2>参考文献<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -1229,8 +1277,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id45">
-<h2>著者紹介<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id48">
+<h2>著者紹介<a class="headerlink" href="#id48" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
