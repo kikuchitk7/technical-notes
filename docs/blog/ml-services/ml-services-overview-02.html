@@ -1235,19 +1235,77 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <div class="section" id="id40">
 <h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">以上で「開発」「学習」「推論」を一通り実施することができました。</div>
+<div class="line">課金対象のリソースがありますので、課金を防ぐためにリソースを削除します。</div>
+</div>
 <ul class="simple">
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
 </ul>
+<div class="section" id="id41">
+<h4>実行するコード<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="n">xgb_predictor</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
 <span class="n">bucket_to_delete</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
 <span class="n">bucket_to_delete</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="id42">
+<h4>コードの解説<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>上記のコードを実行することによって、下記が実行されます。</p>
+<ul class="simple">
+<li><p>推論用エンドポイントの削除</p></li>
+<li><p>S3 バケット内のオブジェクトの削除</p></li>
+</ul>
 </div>
-<div class="section" id="id41">
-<h2>考察<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id43">
+<h4>その他のリソースの削除<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>この他にも「ノートブックインスタンス」と「CloudWatch Logs」が課金対象となりますので、削除忘れに注意してください。
+ノートブックインスタンスは「停止」と「削除」の 2 段階での対応が必要です。</p>
+<div class="line-block">
+<div class="line">まず、ノートブックインスタンスの削除を行います。</div>
+<div class="line">JupyterLab のタブは、Web ブラウザの「×」ボタンなどで閉じてください。</div>
+</div>
+<div class="line-block">
+<div class="line">AWS マネジメントコンソールのノートブックインスタンスの画面に移動します。</div>
+<div class="line">削除対象のノートブックインスタンスをラジオボタンで選択し、「アクション」で「停止」を選択します。</div>
+<div class="line">停止処理に移ると、「ステータス」が「InService」から「Stopping」に移行しますので、数分待ちます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-1.png"><img alt="../../_images/sagemaker-notebook-delete-1.png" src="../../_images/sagemaker-notebook-delete-1.png" style="width: 900px;" /></a>
+<p>「ステータス」が「Stopped」になったことを確認して、「アクション」で「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-2.png"><img alt="../../_images/sagemaker-notebook-delete-2.png" src="../../_images/sagemaker-notebook-delete-2.png" style="width: 900px;" /></a>
+<p>ノートブックインスタンスの削除を確認するウィンドウが表示されますので、「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-3.png"><img alt="../../_images/sagemaker-notebook-delete-3.png" src="../../_images/sagemaker-notebook-delete-3.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">「ステータス」が「Deleting」に移行し、数分待つとノートブックインスタンスが画面からなくなります。</div>
+<div class="line">これでノートブックインスタンスの削除は完了です。</div>
+</div>
+<div class="line-block">
+<div class="line">次に、CloudWatch Logs の削除を行います。</div>
+<div class="line">AWS マネジメントコンソールのトップ画面などから「CloudWatch」を検索して移動します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-1.png"><img alt="../../_images/cloudwatch-logs-delete-1.png" src="../../_images/cloudwatch-logs-delete-1.png" style="width: 900px;" /></a>
+<p>CloudWatch の画面に移動できたら、左側のメニューから「ロググループ」を選択します。</p>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-2.png"><img alt="../../_images/cloudwatch-logs-delete-2.png" src="../../_images/cloudwatch-logs-delete-2.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">ロググループの画面に移動できたら、検索バーに「sagemaker」と入力してログを検索します。</div>
+<div class="line">削除するログを全て選択して、「アクション」で「削除」をクリックします。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-3.png"><img alt="../../_images/cloudwatch-logs-delete-3.png" src="../../_images/cloudwatch-logs-delete-3.png" style="width: 900px;" /></a>
+<p>ロググループの削除を確認するウィンドウが表示されますので、「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-4.png"><img alt="../../_images/cloudwatch-logs-delete-4.png" src="../../_images/cloudwatch-logs-delete-4.png" style="width: 450px;" /></a>
+<p>ロググループが画面からなくなったら削除は完了です。</p>
+<div class="line-block">
+<div class="line">S3 バケットと IAM ロールも作成しましたが、これらは存在するだけでは課金されません。</div>
+<div class="line">それぞれのサービスの画面から必要に応じて削除してください。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id44">
+<h2>考察<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -1260,15 +1318,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id42">
-<h2>まとめ<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id45">
+<h2>まとめ<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id43">
-<h2>参考文献<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id46">
+<h2>参考文献<a class="headerlink" href="#id46" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -1277,8 +1335,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id48">
-<h2>著者紹介<a class="headerlink" href="#id48" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id51">
+<h2>著者紹介<a class="headerlink" href="#id51" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
