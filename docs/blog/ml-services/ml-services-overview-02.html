@@ -158,8 +158,8 @@
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/4983">前回</a> は、ML サービスおよび Amazon SageMaker の概要と利用方法についてご説明させていただきました。</div>
-<div class="line">図を用いて「開発」「学習」「推論」の流れを説明しましたが、今回の記事では、実際に Amazon SageMaker を使ってみたいと思います。</div>
-<div class="line">今回は、下記を理解していただくことを目標に解説をしていきます。</div>
+<div class="line">図を用いて「開発」「学習」「推論」の流れを説明しましたが、今回から数回の記事では、実際に Amazon SageMaker を使ってみたいと思います。</div>
+<div class="line">下記を理解していただくことを目標に解説をしていきます。</div>
 </div>
 <ul class="simple">
 <li><p>Amazon SageMaker を使って実際に「開発」を始めるまでの準備作業の流れがわかる。</p></li>
@@ -168,28 +168,32 @@
 </div>
 <div class="section" id="amazon-sagemaker">
 <h2>実際に Amazon SageMaker を使う<a class="headerlink" href="#amazon-sagemaker" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a> という簡単なチュートリアルがありますので、これをベースに進めたいと思います。</p>
-<p>「自分が今何をしているのか」、「背後でどのような処理が行われているか」を整理しながら解説を進めていきます。
-前回の記事で示した「開発」「学習」「推論」に沿った流れとなりますが、より細かい手順を示す点に注意してください。</p>
+<p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a> というチュートリアルがありますので、これをベースに進めたいと思います。</p>
 <div class="section" id="id3">
 <h3>チュートリアルの概要<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>今回利用するチュートリアルの概要を下記に示します。</p>
 <ul class="simple">
-<li><p>Amazon SageMaker を使って、「開発」「学習」「推論」の一連の流れを体験できる。</p></li>
-<li><p>XGBoost と呼ばれる機械学習アルゴリズムを利用して、二値分類を行う。</p></li>
-<li><p>学習・推論に利用するデータは、カリフォルニア大学アーバイン校 (UCI) が公開しているオープンデータを利用する。</p></li>
-<li><p>利用するデータは「Bank Marketing Data Set」と呼ばれる「ポルトガルの銀行マーケティングキャンペーン」のデータである。</p></li>
+<li><p>Amazon SageMaker を使って、「開発」「学習」「推論」の一連の流れを体験する。</p></li>
+<li><p>学習・推論に利用するデータは、カリフォルニア大学アーバイン校 (UCI) が公開しているオープンデータを利用する。
+「<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Bank+Marketing">Bank Marketing Data Set</a>」と呼ばれる「ポルトガルの銀行マーケティングキャンペーン」のデータを利用する。</p></li>
 <li><p>データには大きく2種類の情報が記録されている。</p>
 <ul>
 <li><p>データ 1：「年齢」や「職業」といった銀行の顧客の属性情報など</p></li>
 <li><p>データ 2：マーケティングを行った結果、その顧客が実際に「預金証書 (CD)」を申し込んだか否かのフラグ</p></li>
 </ul>
 </li>
-<li><p>「データ 1」から機械学習アルゴリズムによって何らかのパターンを見出して、これから営業をかける顧客 (「データ 2」が未知の顧客) が「預金証書 (CD)」を申し込んでくれそうかどうかを分類する機械学習モデルを構築する。</p></li>
-<li><p>「預金証書 (CD) を申し込んでくれそうな顧客」を重点的に営業をかけることによって営業活動を効率化することができる。顧客名簿の上から順に営業をかけるよりも顧客を獲得できる可能性が高まる。</p></li>
+<li><p>「データ 1」から機械学習アルゴリズムによって何らかのパターンを見出して、これから営業をかける顧客 (「データ 2」が未知の顧客) が「預金証書 (CD)」を申し込んでくれそうかどうかを二値分類する機械学習モデルを構築する。</p></li>
+<li><p><strong>「預金証書 (CD) を申し込んでくれそうな顧客」に重点的に営業をかけることによって、営業活動を効率化することができる。顧客名簿の上から順に営業をかけるよりも顧客を獲得できる可能性が高まる。</strong></p></li>
+<li><p>機械学習アルゴリズムは、Amazon SageMaker の組み込みアルゴリズムとして提供されている「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost-72.html">XGBoost</a>」を利用する。</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h3>今回の記事で実施すること<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>これから数回の記事で実施すること<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">チュートリアルは 30 分以内に実施可能な簡単な内容ですが、「自分が Amazon SageMaker を使って今何をしているのか」「Amazon SageMaker が背後でどのような処理が行っているか」を理解できるよう注意しながら詳しく解説を進めていきます。</div>
+<div class="line">チュートリアルの手順に沿って進めていきます。
+<a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/4983">前回</a>  の記事で示した「開発」「学習」「推論」と概ね同じ流れであるものの、多少前後する箇所があるので予めご了承ください。</div>
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 33%" />
@@ -250,8 +254,8 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id5">
-<h3>前提<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h3>前提<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>今回の記事の内容を実施する際の前提を下記に示します。</p>
 <ul class="simple">
 <li><p>本番環境 (商用サービスが稼働する AWS アカウント) ではなく、開発環境や検証環境で実施する。</p></li>
@@ -303,8 +307,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>XGBoost はビルトインアルゴリズムとして提供されている リリース 0.72 を利用する。</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h3>(開発) AWS マネジメントコンソールにログインする<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3>(開発) AWS マネジメントコンソールにログインする<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
@@ -314,8 +318,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <p>リージョンは「バージニア北部」を利用しますので、その他のリージョンにいる場合は AWS マネジメントコンソールの右上のプルダウンメニューから移動してください。</p>
 <a class="reference internal image-reference" href="../../_images/region-check.png"><img alt="../../_images/region-check.png" src="../../_images/region-check.png" style="width: 600px;" /></a>
 </div>
-<div class="section" id="id7">
-<h3>(開発) ノートブックインスタンスを作成する<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id8">
+<h3>(開発) ノートブックインスタンスを作成する<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
@@ -537,8 +541,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-pending.png"><img alt="../../_images/sagemaker-notebook-instance-create-pending.png" src="../../_images/sagemaker-notebook-instance-create-pending.png" style="width: 900px;" /></a>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-inservice.png"><img alt="../../_images/sagemaker-notebook-instance-create-inservice.png" src="../../_images/sagemaker-notebook-instance-create-inservice.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id9">
-<h3>(開発) ノートブックを起動する<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h3>(開発) ノートブックを起動する<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。</div>
 </div>
@@ -581,8 +585,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line">今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-python3-notebook.png"><img alt="../../_images/sagemaker-jupyterlab-python3-notebook.png" src="../../_images/sagemaker-jupyterlab-python3-notebook.png" style="width: 900px;" /></a>
-<div class="section" id="id10">
-<h4>実行するコード<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id11">
+<h4>実行するコード<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="line-block">
 <div class="line">グレーの部分を「セル」と呼び、ここにコードを記述していきます。</div>
@@ -616,8 +620,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line"><em>Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.</em></div>
 </div>
 </div>
-<div class="section" id="id11">
-<h4>コードの解説<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id12">
+<h4>コードの解説<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ここでは「<cite># import libraries</cite>」と「<cite># Define IAM role</cite>」から始まる大きく2つの処理に分けられます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
@@ -650,8 +654,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line">4. リージョンの設定</div>
 </div>
 <p>特に、1 と 3 の処理について見ていきます。</p>
-<div class="section" id="id12">
-<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="section" id="id13">
+<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -698,8 +702,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<div class="section" id="id15">
-<h4>実行するコード<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id16">
+<h4>実行するコード<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="line-block">
 <div class="line">下記のコードをセルにコピー＆ペーストした後に、必ず ** <cite>bucket_name</cite> の <cite>your-s3-bucket-name</cite> の箇所を変更してから** 実行してください。</div>
@@ -719,8 +723,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h4>コードの解説<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id17">
+<h4>コードの解説<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックから S3 バケットを作成する方法が示されています。</div>
 <div class="line">AWS マネジメントコンソールを利用しても同等の作業ができますが、ノートブックで作成した方が後々の開発効率を考えても好ましいと考えられます。</div>
@@ -749,8 +753,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">前のセクションで学習・推論用のデータを格納するための S3 バケットの作成が完了しました。</div>
 <div class="line">ここでは、インターネット上で公開されているデータをノートブックインスタンスのローカルディスク上にダウンロードして簡単な前処理を行います。</div>
@@ -760,8 +764,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<div class="section" id="id18">
-<h4>実行するコード<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id19">
+<h4>実行するコード<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
@@ -782,8 +786,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h4>コードの解説<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id20">
+<h4>コードの解説<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -809,8 +813,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id21">
+<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。</div>
 <div class="line">今回は Amazon SageMaker に`組み込みアルゴリズム &lt;<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html">https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html</a>&gt;`_ として用意されている「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost.html">XGBoost</a>」と呼ばれる機械学習アルゴリズムを利用します。</div>
@@ -828,8 +832,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <div class="line">XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。</div>
 <div class="line">下記のコードをセルにコピー＆ペーストして実行してください。</div>
 </div>
-<div class="section" id="id21">
-<h4>実行するコード<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id23">
+<h4>実行するコード<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;train/train.csv&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
@@ -843,8 +847,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id22">
-<h4>コードの解説<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id24">
+<h4>コードの解説<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -990,11 +994,11 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id25">
-<h3>(学習) XGBoost (組み込みアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id27">
+<h3>(学習) XGBoost (組み込みアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>学習の設定まで完了しましたので、ここからは実際に学習を行います。</p>
-<div class="section" id="id26">
-<h4>実行するコード<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id28">
+<h4>実行するコード<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">({</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">s3_input_train</span><span class="p">})</span>
 </pre></div>
@@ -1010,8 +1014,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-training-complete.png"><img alt="../../_images/sagemaker-training-complete.png" src="../../_images/sagemaker-training-complete.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id27">
-<h4>コードの解説<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id29">
+<h4>コードの解説<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">Amazon SageMaker における学習の実行は、<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.fit">fit</a> メソッドに学習データが格納されている S3 バケットの所在を渡すだけで実行できます。</div>
 <div class="line">fit メソッドを実行すると、学習ジョブが起動して XGBoost による機械学習モデルが構築されます。</div>
@@ -1079,15 +1083,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 </div>
-<div class="section" id="id28">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id30">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">学習を実行し、機械学習モデルの構築まで完了しました。</div>
 <div class="line">ここでは機械学習モデルをデプロイします。</div>
 <div class="line">デプロイとは、API サーバの構築。推論用インスタンスの作成、推論用コンテナとして機械学習モデルを起動する。</div>
 </div>
-<div class="section" id="id29">
-<h4>実行するコード<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id31">
+<h4>実行するコード<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1098,8 +1102,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 デプロイ処理は数分で完了します。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-deploy-complete.png"><img alt="../../_images/sagemaker-deploy-complete.png" src="../../_images/sagemaker-deploy-complete.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id30">
-<h4>コードの解説<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id32">
+<h4>コードの解説<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
   <span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
   <span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span>
@@ -1146,10 +1150,10 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id33">
-<h3>(推論) テストデータを使って顧客が申し込みを行ったかを予測する<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="section" id="id34">
-<h4>実行するコード<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id35">
+<h3>(推論) テストデータを使って顧客が申し込みを行ったかを予測する<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id36">
+<h4>実行するコード<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
 <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;text/csv&#39;</span> <span class="c1"># set the data type for an inference</span>
@@ -1161,8 +1165,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 <p>実行した結果出力される <cite>(12357,)</cite> は、予測した顧客の数 (12,357人) です。</p>
 </div>
-<div class="section" id="id35">
-<h4>コードの解説<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id37">
+<h4>コードの解説<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
 </pre></div>
 </div>
@@ -1186,8 +1190,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <p>推論結果がカンマ区切りのテキストデータで返されるので、後続の精度の評価をするために Numpy の <a class="reference external" href="https://numpy.org/doc/1.18/reference/generated/numpy.fromstring.html">fromstring</a> メソッドを使って Array に変換しています。</p>
 </div>
 </div>
-<div class="section" id="id36">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id38">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">推論結果を得ることができましたので、最後に精度の評価を行います。</div>
 <div class="line">二値分類の精度評価においてよく利用される「混同行列 (confusion matrix)」を使います。</div>
@@ -1196,8 +1200,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
 <li><p>(メモ) アプリからの接続方法についても言及する。</p></li>
 </ul>
-<div class="section" id="id37">
-<h4>実行するコード<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id39">
+<h4>実行するコード<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
@@ -1209,8 +1213,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id38">
-<h4>コードの解説<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id40">
+<h4>コードの解説<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.3/reference/api/pandas.crosstab.html">crosstab</a> 関数を使って、推論結果のクロス集計を行っています。</p>
 <p>ここで、精度評価で利用している混同行列について補足します。</p>
 <a class="reference internal image-reference" href="../../_images/confusion-matrix.png"><img alt="../../_images/confusion-matrix.png" src="../../_images/confusion-matrix.png" style="width: 450px;" /></a>
@@ -1227,8 +1231,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数</p></li>
 </ul>
 </div>
-<div class="section" id="id39">
-<h4>推論結果についての考察<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id41">
+<h4>推論結果についての考察<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>上記のコードを実行すると、下記のような出力結果を得られます。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-predict-confusion-matrix.png"><img alt="../../_images/sagemaker-predict-confusion-matrix.png" src="../../_images/sagemaker-predict-confusion-matrix.png" style="width: 450px;" /></a>
 <div class="line-block">
@@ -1249,8 +1253,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id40">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id42">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">以上で「開発」「学習」「推論」を一通り実施することができました。</div>
 <div class="line">課金対象のリソースがありますので、課金を防ぐためにリソースを削除します。</div>
@@ -1259,8 +1263,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
 </ul>
-<div class="section" id="id41">
-<h4>実行するコード<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id43">
+<h4>実行するコード<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="n">xgb_predictor</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
 <span class="n">bucket_to_delete</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
@@ -1268,16 +1272,16 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </pre></div>
 </div>
 </div>
-<div class="section" id="id42">
-<h4>コードの解説<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id44">
+<h4>コードの解説<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>上記のコードを実行することによって、下記が実行されます。</p>
 <ul class="simple">
 <li><p>推論用エンドポイントの削除</p></li>
 <li><p>S3 バケット内のオブジェクトの削除</p></li>
 </ul>
 </div>
-<div class="section" id="id43">
-<h4>その他のリソースの削除<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id45">
+<h4>その他のリソースの削除<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>この他にも「ノートブックインスタンス」と「CloudWatch Logs」が課金対象となりますので、削除忘れに注意してください。
 ノートブックインスタンスは「停止」と「削除」の 2 段階での対応が必要です。</p>
 <div class="line-block">
@@ -1320,8 +1324,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </div>
 </div>
 </div>
-<div class="section" id="id44">
-<h2>考察<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id46">
+<h2>考察<a class="headerlink" href="#id46" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -1334,15 +1338,15 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </li>
 </ul>
 </div>
-<div class="section" id="id45">
-<h2>まとめ<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id47">
+<h2>まとめ<a class="headerlink" href="#id47" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id46">
-<h2>参考文献<a class="headerlink" href="#id46" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id48">
+<h2>参考文献<a class="headerlink" href="#id48" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -1351,8 +1355,8 @@ IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順と�
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id51">
-<h2>著者紹介<a class="headerlink" href="#id51" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id53">
+<h2>著者紹介<a class="headerlink" href="#id53" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
