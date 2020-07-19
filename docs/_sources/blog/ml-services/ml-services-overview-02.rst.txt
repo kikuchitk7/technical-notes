@@ -343,6 +343,11 @@
 .. image:: ../../../images/blog/5th/sagemaker-jupyterlab-python3-notebook.png
   :width: 900px
 
+
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
+
 | グレーの部分を「セル」と呼び、ここにコードを記述していきます。
 | 下記のコードをコピー＆ペーストして、「Run」を押下するか、「Shift」+「Enter」で実行できます。
 | この後もいくつかコードを示しますが、同様の方法で実行してください。
@@ -460,6 +465,10 @@
 .. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
   :width: 900px
 
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
+
 | 下記のコードをセルにコピー＆ペーストした後に、必ず ** `bucket_name` の `your-s3-bucket-name` の箇所を変更してから** 実行してください。
 | S3 バケット名は世界で唯一の値にする必要がありますので、名前が重複するとエラーとなります。
 | S3 バケット名には、「AWS アカウント ID (12桁の数字)」を含めるなどすると重複しづらいと思います。検証目的であれば「日付」を入れても良いと思います。
@@ -516,6 +525,8 @@
 .. image:: ../../../images/amazon_sagemaker_notebook_instance_1.png
   :width: 900px
 
+実行するコード
+********************
 下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
@@ -587,6 +598,10 @@ Pandas の `read_csv <https://pandas.pydata.org/pandas-docs/stable/reference/api
 
 | XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。
 | 下記のコードをセルにコピー＆ペーストして実行してください。
+
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
@@ -755,7 +770,7 @@ Amazon SageMaker API およびその他の必要な AWS サービスとのやり
 
 コードの解説
 ********************
-| Amazon SageMaker における学習の実行は、`fit <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.EstimatorBase.fit>`_ メソッドに学習データが格納されている S3 バケットの所在を渡すだけで実行できます。
+| Amazon SageMaker における学習の実行は、`fit <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.fit>`_ メソッドに学習データが格納されている S3 バケットの所在を渡すだけで実行できます。
 | fit メソッドを実行すると、学習ジョブが起動して XGBoost による機械学習モデルが構築されます。
 
 | 実行ログを簡単に見てみましょう。
@@ -799,11 +814,70 @@ Amazon SageMaker は従量課金性であり、今回のトレーニングでは
 
 (推論) 学習済モデルを推論用インスタンスにデプロイする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| 学習を実行し、機械学習モデルの構築まで完了しました。
+| ここでは機械学習モデルをデプロイします。
+| デプロイとは、API サーバの構築。推論用インスタンスの作成、推論用コンテナとして機械学習モデルを起動する。
+
+
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
   xgb_predictor = xgb.deploy(initial_instance_count=1,instance_type='ml.m4.xlarge')
 
+なお、デプロイが開始されると、下記の画像に示したように処理の進行とともに「- (ハイフン)」が出力されていきます。
+
+.. image:: ../../../images/sagemaker-deploy-start.png
+  :width: 900px
+
+デプロイが完了すると、下記のように完了を示す「!」が出力されます。
+デプロイ処理は数分で完了します。
+
+.. image:: ../../../images/sagemaker-deploy-complete.png
+  :width: 900px
+
+
+コードの解説
+********************
+
+.. code-block:: python
+
+  xgb_predictor = xgb.deploy(
+    initial_instance_count=1,
+    instance_type='ml.m4.xlarge'
+  )
+
+| この処理も改行して記載します。
+| `deploy <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.deploy>`_ メソッドを使って、機械学習モデルのデプロイを実行します。
+| ここで設定するパラメータ (引数) とそれぞれの意味を下記に示します。
+
+.. list-table::
+    :header-rows: 1
+
+    * - パラメータ (引数)
+      - パラメータの意味
+    * - initial_instance_count
+      - | 推論用インスタンス数を設定する。
+    * - instance_type
+      - | 推論用インスタンスのインスタンスタイプを設定する。
+        | ML インスタンスとして様々なタイプが用意されており、学習の特性に応じたものを選択する。
+        | ここでは、汎用 (M4) の xlarge を設定している。その他に利用できるインスタンスタイプと料金は下記を参照のこと。
+        | - 「`Amazon SageMaker ML インスタンスタイプ <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_」
+        | - 「`Amazon SageMaker の料金 <https://aws.amazon.com/jp/sagemaker/pricing/>`_」
+
+| 推論用インスタンスを作成して、S3 バケットから学習済の機械学習モデルを、Amazon ECR から推論用コンテナイメージをダウンロードして、推論用コンテナを起動します。
+| アプリなどからアクセスするためのエンドポイントを作成しています。エンドポイントには HTTPS で接続します。
+
+
+(推論) テストデータを使って顧客が申し込みを行ったかを予測する
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+実行するコード
+********************
+下記のコードをセルにコピー＆ペーストして実行してください。
 
 .. code-block:: python
 
@@ -815,9 +889,40 @@ Amazon SageMaker は従量課金性であり、今回のトレーニングでは
   print(predictions_array.shape)
 
 
+コードの解説
+********************
+
+.. code-block:: python
+
+  test_data_array = test_data.drop(['y_no', 'y_yes'], axis=1).values #load the data into an array
+
+| 前段でデータを学習データとテストデータに分割しました。
+| その際には単純に分割しただけで、テストデータには正解の値 (「y_yes」と「y_no」) が含まれます。
+| 顧客の属性情報から申し込みを行うか否かを予測したいので、正解の値を削除 (drop) しています。
+
+.. code-block:: python
+
+  xgb_predictor.content_type = 'text/csv' # set the data type for an inference
+  xgb_predictor.serializer = csv_serializer # set the serializer type
+
+推論に用いるテストデータの Content type とシリアライザのタイプに CSV 用のものを指定しています。
+
+.. code-block:: python
+
+  predictions = xgb_predictor.predict(test_data_array).decode('utf-8') # predict!
+
+テストデータを推論エンドポイントに送信して、推論結果を得ています。
+
+.. code-block:: python
+
+  predictions_array = np.fromstring(predictions[1:], sep=',') # and turn the prediction into an array
+
+推論結果がカンマ区切りのテキストデータで返されるので、後続の精度の評価をするために Numpy の `fromstring <https://numpy.org/doc/1.18/reference/generated/numpy.fromstring.html>`_ メソッドを使って Array に変換しています。
+
+
 (推論) 精度の評価を行う
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- (メモ) デプロイ前におきたいな。
+
 - (メモ) ROC 曲線、AUC を利用しても良いかも。
 - (メモ) アプリからの接続方法についても言及する。
 
