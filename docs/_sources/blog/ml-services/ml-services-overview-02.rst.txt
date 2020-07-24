@@ -80,18 +80,18 @@
       - 第7回
 
 
-前提
-^^^^^^^^^^^^^^^^^^
-今回の記事の内容を実施する際の前提を下記に示します。
+前提・注意事項
+^^^^^^^^^^^^^^^^^^^^^^^^
+| 今回の記事の内容を実施する際の前提と注意事項を下記に示します。
+| なお、 **この記事の内容を実施すると数百円程度の課金が発生する可能性があります。無用な課金を避けるために必ず作成したリソースの削除が必要ですが、「後片付け」の手順は第 7 回に掲載予定です。あまり期間を開けずに投稿予定であるため、第 7 回の掲載後に試してください。**
 
 - 本番環境 (商用サービスが稼働する AWS アカウント) ではなく、開発環境や検証環境で実施する。
-- 「AWS アカウントの取得」と「IAM ユーザの作成」を未実施の場合は、下記の Amazon SageMaker の開発者ガイドを参照して実施する。
-  IAM ユーザに管理者権限 (AdministratorAccess) を付与する手順となっているが、実際の業務では必要最小限の権限に制限してほしい。
+- AWS アカウントを持っていない場合は、「`Amazon SageMaker をセットアップします <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-set-up.html>`_」を参照して取得・セットアップをする。
+  今回は Amazon SageMaker Studio は利用しないため、下記の 2 つの手順を実施する。
 
-  - `「AWS アカウントを作成する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account.html>`_
-  - `「IAM 管理者ユーザーおよびグループの作成」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account-user.html>`_
+  - 「`AWS アカウントを作成する <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account.html>`_」
+  - 「`IAM 管理者ユーザーおよびグループの作成 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-account-user.html>`_」
 
-- この記事の内容を実施すると数百円程度の課金が発生する可能性がある。課金が気になる場合は必ず削除。
 - 画面や手順は2020年7月11日時点のもの。仕様変更などにより表示内容や設定値に変更が入る可能性がある。
 - チュートリアルのリージョンは「バージニア北部 (us-east-1)」を想定している。簡単のために「バージニア北部 (us-east-1)」で実施する。
 
