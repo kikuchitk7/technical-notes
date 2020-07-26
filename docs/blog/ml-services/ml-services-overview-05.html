@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第8回] Amazon SageMaker の基本的な使い方を理解する (4) &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/blog/ml-services/ml-services-overview-05.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-sagemaker-4">
+<h1>[第8回] Amazon SageMaker の基本的な使い方を理解する (4)<a class="headerlink" href="#amazon-sagemaker-4" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">前回は、Amazon SageMaker のチュートリアルをベースにして、学習を行って機械学習モデルの構築まで実施しました。</div>
+<div class="line">今回は学習を行って構築した機械学習モデルを使って、推論を実行してみます。</div>
+</div>
+<div class="section" id="id2">
+<h3>今回の記事で実施すること<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>今回は下記の表の「ステップ 5: モデルのデプロイ」、「ステップ 6: モデルの性能評価」、「ステップ 7: モデルの性能評価」を扱います。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>工程</p></th>
+<th class="head"><p>ステップ</p></th>
+<th class="head"><p>枝番</p></th>
+<th class="head"><p>実施内容</p></th>
+<th class="head"><p>連載回</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>開発</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>Amazon SageMaker コンソールにログインする</p></td>
+<td><p>第 5 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>2</p></td>
+<td></td>
+<td><p>Amazon SageMaker notebook instance を作成する</p></td>
+<td><p>第 5 回</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>データの準備</p></td>
+<td><p>第 6 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3a, 3b</p></td>
+<td><p>ノートブックを起動する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>3c</p></td>
+<td><p>ノートブックの利用準備をする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3d</p></td>
+<td><p>S3 バケットを作成する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>3e</p></td>
+<td><p>学習・推論に利用するデータをダウンロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3f</p></td>
+<td><p>データを分割する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>学習</p></td>
+<td><p>4</p></td>
+<td></td>
+<td><p>データからのモデルのトレーニング</p></td>
+<td><p>第 7 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>4a</p></td>
+<td><p>学習データを S3 バケットにアップロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>4b</p></td>
+<td><p>学習の設定をする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>4c</p></td>
+<td><p>学習を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>推論</p></td>
+<td><p>5</p></td>
+<td></td>
+<td><p>モデルのデプロイ</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>5a</p></td>
+<td><p>推論エンドポイントを作成して、モデルをデプロイする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>5b</p></td>
+<td><p>推論を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>6</p></td>
+<td></td>
+<td><p>モデルの性能評価</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+<tr class="row-even"><td><p>後片付け</p></td>
+<td><p>7</p></td>
+<td></td>
+<td><p>リソースを終了する</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>ステップ 5: モデルのデプロイ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>学習を実行し、機械学習モデルの構築まで完了しました。ここでは、機械学習モデルをデプロイします。</p>
+<div class="section" id="a">
+<h3>ステップ 5a: 推論エンドポイントを作成して、モデルをデプロイする<a class="headerlink" href="#a" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ここでいう「デプロイ」とは、API サーバの構築を指します。</div>
+<div class="line">下記に示す一連の処理を deploy メソッドを利用することで実行できます。</div>
+</div>
+<ul class="simple">
+<li><p>推論用インスタンスの作成</p></li>
+<li><p>S3 バケットからの機械学習モデルのダウンロード</p></li>
+<li><p>推論用コンテナの起動</p></li>
+<li><p>API の公開</p></li>
+</ul>
+<div class="section" id="id4">
+<h4>実行するコード<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>なお、デプロイが開始されると、下記の画像に示したように処理の進行とともに「- (ハイフン)」が出力されていきます。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-deploy-start.png"><img alt="../../_images/sagemaker-deploy-start.png" src="../../_images/sagemaker-deploy-start.png" style="width: 900px;" /></a>
+<p>デプロイが完了すると、下記のように完了を示す「!」が出力されます。
+デプロイ処理は数分で完了します。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-deploy-complete.png"><img alt="../../_images/sagemaker-deploy-complete.png" src="../../_images/sagemaker-deploy-complete.png" style="width: 900px;" /></a>
+</div>
+<div class="section" id="id5">
+<h4>コードの解説<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
+  <span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">この処理も改行して記載します。</div>
+<div class="line"><a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.deploy">deploy</a> メソッドを使って、機械学習モデルのデプロイを実行します。</div>
+<div class="line">ここで設定するパラメータ (引数) とそれぞれの意味を下記に示します。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>パラメータ (引数)</p></th>
+<th class="head"><p>パラメータの意味</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>initial_instance_count</p></td>
+<td><div class="line-block">
+<div class="line">推論用インスタンス数を設定する。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>instance_type</p></td>
+<td><div class="line-block">
+<div class="line">推論用インスタンスのインスタンスタイプを設定する。</div>
+<div class="line">ML インスタンスとして様々なタイプが用意されており、学習の特性に応じたものを選択する。</div>
+<div class="line">ここでは、汎用 (M4) の xlarge を設定している。その他に利用できるインスタンスタイプと料金は下記を参照のこと。</div>
+<div class="line">- 「<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">Amazon SageMaker ML インスタンスタイプ</a>」</div>
+<div class="line">- 「<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">Amazon SageMaker の料金</a>」</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">推論用インスタンスを作成して、S3 バケットから学習済の機械学習モデルを、Amazon ECR から推論用コンテナイメージをダウンロードして、推論用コンテナを起動します。</div>
+<div class="line">アプリなどからアクセスするためのエンドポイントを作成しています。エンドポイントには HTTPS で接続します。</div>
+</div>
+</div>
+</div>
+<div class="section" id="b">
+<h3>ステップ 5b: 推論を行う<a class="headerlink" href="#b" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h4>実行するコード<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
+<span class="n">xgb_predictor</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;text/csv&#39;</span> <span class="c1"># set the data type for an inference</span>
+<span class="n">xgb_predictor</span><span class="o">.</span><span class="n">serializer</span> <span class="o">=</span> <span class="n">csv_serializer</span> <span class="c1"># set the serializer type</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data_array</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1"># predict!</span>
+<span class="n">predictions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1"># and turn the prediction into an array</span>
+<span class="k">print</span><span class="p">(</span><span class="n">predictions_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>実行した結果出力される <cite>(12357,)</cite> は、予測した顧客の数 (12,357人) です。</p>
+</div>
+<div class="section" id="id7">
+<h4>コードの解説<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">前段でデータを学習データとテストデータに分割しました。</div>
+<div class="line">その際には単純に分割しただけで、テストデータには正解の値 (「y_yes」と「y_no」) が含まれます。</div>
+<div class="line">顧客の属性情報から申し込みを行うか否かを予測したいので、正解の値を削除 (drop) しています。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;text/csv&#39;</span> <span class="c1"># set the data type for an inference</span>
+<span class="n">xgb_predictor</span><span class="o">.</span><span class="n">serializer</span> <span class="o">=</span> <span class="n">csv_serializer</span> <span class="c1"># set the serializer type</span>
+</pre></div>
+</div>
+<p>推論に用いるテストデータの Content type とシリアライザのタイプに CSV 用のものを指定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data_array</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1"># predict!</span>
+</pre></div>
+</div>
+<p>テストデータを推論エンドポイントに送信して、推論結果を得ています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1"># and turn the prediction into an array</span>
+</pre></div>
+</div>
+<p>推論結果がカンマ区切りのテキストデータで返されるので、後続の精度の評価をするために Numpy の <a class="reference external" href="https://numpy.org/doc/1.18/reference/generated/numpy.fromstring.html">fromstring</a> メソッドを使って Array に変換しています。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>ステップ 6: モデルの性能評価<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">推論結果を得ることができましたので、最後に精度の評価を行います。</div>
+<div class="line">二値分類の精度評価においてよく利用される「混同行列 (confusion matrix)」を使います。</div>
+</div>
+<div class="section" id="id9">
+<h4>実行するコード<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{0:&lt;20}{1:&lt;4.1f}%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Overall Classification Rate: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;15}{1:&lt;15}{2:&gt;8}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">,</span> <span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="s2">&quot;Purchase&quot;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Observed&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;15}{1:&lt;2.0f}% ({2:&lt;}){3:&gt;6.0f}% ({4:&lt;})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="n">tn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">fp</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;16}{1:&lt;1.0f}% ({2:&lt;}){3:&gt;7.0f}% ({4:&lt;}) </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Purchase&quot;</span><span class="p">,</span> <span class="n">fn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">tp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>コードの解説<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.3/reference/api/pandas.crosstab.html">crosstab</a> 関数を使って、推論結果のクロス集計を行っています。</p>
+<p>ここで、精度評価で利用している混同行列について補足します。</p>
+<a class="reference internal image-reference" href="../../_images/confusion-matrix.png"><img alt="../../_images/confusion-matrix.png" src="../../_images/confusion-matrix.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。</div>
+<div class="line">正解 (2種類) * 予測 (2種類) で、下記に示す 4 つの指標があります。</div>
+<div class="line">混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。</div>
+<div class="line">その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。</div>
+</div>
+<ul class="simple">
+<li><p>True Positive (TP): 預金証書 (CD) を申し込むと予測して、実際に申し込んだ顧客の数</p></li>
+<li><p>False Poritive (FP): 預金証書 (CD) を申し込むと予測したが、実際には申し込まなかった顧客の数</p></li>
+<li><p>True Negative (TN): 預金証書 (CD) を申し込まないと予測して実際に申し込まなかった顧客の数</p></li>
+<li><p>False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h4>推論結果についての考察<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>上記のコードを実行すると、下記のような出力結果を得られます。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-predict-confusion-matrix.png"><img alt="../../_images/sagemaker-predict-confusion-matrix.png" src="../../_images/sagemaker-predict-confusion-matrix.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line"><cite>Overall Classification Rate</cite> で示されている数値が正解率であり、今回は 89.5% でした。</div>
+<div class="line">True Negative が 90% である一方で、True Poritive は 65% とかなり低いように見えます。</div>
+<div class="line">なぜでしょうか？</div>
+</div>
+<div class="line-block">
+<div class="line">学習データ (train_data) には、28,831 人分の顧客データを利用しました。</div>
+<div class="line">このうち、預金証書 (CD) を申し込んだ顧客数 (<cite>y_yes</cite> が 1 の合計) と申し込まなかった (<cite>y_no</cite> が 1 の合計) を確認してみます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-predict-train-data.png"><img alt="../../_images/sagemaker-predict-train-data.png" src="../../_images/sagemaker-predict-train-data.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">前者が 3,219 人であることに対して、後者は 25,612 人と 5 倍近い差があります。</div>
+<div class="line">預金証書 (CD) を申し込んだ顧客数のデータを増やすと、True Positive の割合も高くなり、精度を高められる可能性があります。</div>
+<div class="line">二値分類においては、学習データとなる正解データは十分な量を同程度用意することが望ましいと言われています。</div>
+<div class="line">今回のチュートリアルでもその一端を垣間見ることができました。</div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>ステップ 7: リソースを終了する<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">以上で「開発」「学習」「推論」を一通り実施することができました。</div>
+<div class="line">課金対象のリソースがありますので、課金を防ぐためにリソースを削除します。</div>
+</div>
+<ul class="simple">
+<li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
+<li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
+</ul>
+<div class="section" id="id13">
+<h4>実行するコード<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="n">xgb_predictor</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+<span class="n">bucket_to_delete</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+<span class="n">bucket_to_delete</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h4>コードの解説<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>上記のコードを実行することによって、下記が実行されます。</p>
+<ul class="simple">
+<li><p>推論用エンドポイントの削除</p></li>
+<li><p>S3 バケット内のオブジェクトの削除</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h4>その他のリソースの削除<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>この他にも「ノートブックインスタンス」と「CloudWatch Logs」が課金対象となりますので、削除忘れに注意してください。
+ノートブックインスタンスは「停止」と「削除」の 2 段階での対応が必要です。</p>
+<div class="line-block">
+<div class="line">まず、ノートブックインスタンスの削除を行います。</div>
+<div class="line">JupyterLab のタブは、Web ブラウザの「×」ボタンなどで閉じてください。</div>
+</div>
+<div class="line-block">
+<div class="line">AWS マネジメントコンソールのノートブックインスタンスの画面に移動します。</div>
+<div class="line">削除対象のノートブックインスタンスをラジオボタンで選択し、「アクション」で「停止」を選択します。</div>
+<div class="line">停止処理に移ると、「ステータス」が「InService」から「Stopping」に移行しますので、数分待ちます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-1.png"><img alt="../../_images/sagemaker-notebook-delete-1.png" src="../../_images/sagemaker-notebook-delete-1.png" style="width: 900px;" /></a>
+<p>「ステータス」が「Stopped」になったことを確認して、「アクション」で「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-2.png"><img alt="../../_images/sagemaker-notebook-delete-2.png" src="../../_images/sagemaker-notebook-delete-2.png" style="width: 900px;" /></a>
+<p>ノートブックインスタンスの削除を確認するウィンドウが表示されますので、「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-delete-3.png"><img alt="../../_images/sagemaker-notebook-delete-3.png" src="../../_images/sagemaker-notebook-delete-3.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">「ステータス」が「Deleting」に移行し、数分待つとノートブックインスタンスが画面からなくなります。</div>
+<div class="line">これでノートブックインスタンスの削除は完了です。</div>
+</div>
+<div class="line-block">
+<div class="line">次に、CloudWatch Logs の削除を行います。</div>
+<div class="line">AWS マネジメントコンソールのトップ画面などから「CloudWatch」を検索して移動します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-1.png"><img alt="../../_images/cloudwatch-logs-delete-1.png" src="../../_images/cloudwatch-logs-delete-1.png" style="width: 900px;" /></a>
+<p>CloudWatch の画面に移動できたら、左側のメニューから「ロググループ」を選択します。</p>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-2.png"><img alt="../../_images/cloudwatch-logs-delete-2.png" src="../../_images/cloudwatch-logs-delete-2.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">ロググループの画面に移動できたら、検索バーに「sagemaker」と入力してログを検索します。</div>
+<div class="line">削除するログを全て選択して、「アクション」で「削除」をクリックします。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-3.png"><img alt="../../_images/cloudwatch-logs-delete-3.png" src="../../_images/cloudwatch-logs-delete-3.png" style="width: 900px;" /></a>
+<p>ロググループの削除を確認するウィンドウが表示されますので、「削除」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/cloudwatch-logs-delete-4.png"><img alt="../../_images/cloudwatch-logs-delete-4.png" src="../../_images/cloudwatch-logs-delete-4.png" style="width: 450px;" /></a>
+<p>ロググループが画面からなくなったら削除は完了です。</p>
+<div class="line-block">
+<div class="line">S3 バケットと IAM ロールも作成しましたが、これらは存在するだけでは課金されません。</div>
+<div class="line">それぞれのサービスの画面から必要に応じて削除してください。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>考察<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
+<li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
+<li><p>(メモ) XGBoost の詳細を知る必要があるか？ (下記あたりを抑えておけば良いのでは？)</p>
+<ul>
+<li><p>どんな課題に適用できるか？</p></li>
+<li><p>どんなデータを準備すれば良いか？</p></li>
+<li><p>どうやって利用するか？</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>まとめ<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">今回までの数回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
+<div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>参考文献<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">「Amazon SageMaker ML インスタンスタイプ」</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">「Amazon SageMaker の料金」</a></p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id22">
+<h2>著者紹介<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
