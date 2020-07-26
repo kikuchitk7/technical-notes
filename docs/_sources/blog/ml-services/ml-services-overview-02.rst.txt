@@ -219,11 +219,13 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
   :width: 900px
 
 
-下記のいずれかの画面に移動しますが、どちらでも問題ありません。
+初めて Amazon SageMaker に接続する際は上の機能説明のページに移動します。
 
 .. image:: ../../../images/blog/5th/sagemaker-initial.png
   :width: 900px
 
+
+2回目以降はしたのダッシュボードページに移動すると思いますが、どちらでも問題ありません。
 
 .. image:: ../../../images/blog/5th/sagemaker-dashboard.png
   :width: 900px
@@ -239,8 +241,8 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
 
 実施手順
 ********************
-| 左側の折りたたみメニューの「ノートブック」をクリックして開き、「ノートブックインスタンス」をクリックします。
-| ダッシュボードにいる場合は、画面中央の「概要」の中にある「ノートブックインスタンス」をクリックしても構いません。
+| 左側の折りたたみメニューの「**ノートブック**」をクリックして開き、「**ノートブックインスタンス**」をクリックします。
+| ダッシュボードにいる場合は、画面中央の「概要」の中にある「**ノートブックインスタンス**」をクリックしても構いません。
 
 .. image:: ../../../images/blog/5th/sagemaker-dashboard-notebook.png
   :width: 900px
@@ -248,6 +250,7 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
 
 | ノートブックインスタンスの画面に移動します。
 | 現在はノートブックインスタンスが存在しませんが、ここにそのリージョンに存在するノートブックインスタンスの一覧が表示されます。
+| 「**ノートブックインスタンスの作成**」をクリックします。
 
 .. image:: ../../../images/blog/5th/sagemaker-notebook-instance-initial.png
   :width: 900px
@@ -259,8 +262,8 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
   :width: 900px
 
 | ノートブックインスタンス作成時の設定項目を下記の表に示します。
-| 今回は簡単なチュートリアルですので、原則としてデフォルト値を設定します。各設定値の説明を記しますので、実際の業務で利用する際は要件に従って適切に設定してください。
-| 設定が完了したら、画面の最下部にある「ノートブックインスタンスの作成」をクリックします。
+| 今回は簡単なチュートリアルですので、**原則としてデフォルト値を設定** します。
+| 各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。
 
 .. list-table::
     :header-rows: 1
@@ -273,111 +276,139 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
     * - ノートブックインスタンス設定
       - 
       - ノートブックインスタンス名
-      - | ノートブックインスタンスの名前を設定する。
+      - | **ノートブックインスタンスの名前を設定する。**
+        |
         | 最大 63 文字まで設定可能。英数字もしくはハイフン (-) の利用が可能。
         | 1つのAWS リージョンのアカウント内で一意である必要がある。
-      - | (空白)
-        | 今回は「mynotebook」と設定
+      - | なし
+        | (今回は「mynotebook」と設定)
     * - 
       - 
       - ノートブックインスタンスのタイプ
-      - | ノートブックインスタンスのタイプを設定する。
-        | まずは「ml.t2.medium」など小さいインスタンスで試した方が良い。
-        | CPU やメモリなどのリソース不足が発生した場合にスケールアップもしくは不足するリソースに応じたインスタンスタイプを選択する。
-        | (例) CPUを重点的に増やしたい：コンピューティング最適化 (ml.c5.large など)、 メモリを重点的に増やしたい：メモリの最適化 (ml.r5.large など)
-        | `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
-        | `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
+      - | **ノートブックインスタンスのタイプを設定する。**
+        |
+        | ノートブックインスタンスでの作業はデータの簡単な前処理とコーディングがメインであり、学習や推論は行わない。
+        | まずはデフォルトの「ml.t2.medium」など **小さいインスタンス** で試して、CPU やメモリなどのリソース不足が発生した場合にスケールアップもしくは不足するリソースに応じたインスタンスタイプを選択する。
+        | (例)
+        | - CPUを重点的に増やしたい：コンピューティング最適化 (ml.c5 シリーズなど)
+        | - メモリを重点的に増やしたい：メモリの最適化 (ml.r5.シリーズなど)
+        |
+        | (参考)
+        | - `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
+        | - `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
       - ml.t2.medium
     * - 
       - 
       - Elastic Inference
-      - | GPU リソースをアタッチする。ディープラーニングフレームワーク TensorFlow、 Apache MXNet、PyTorch でサポートされている。 
-        | `「Amazon SageMaker Elastic Inference (EI) を使用する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ei.html>`_
+      - | **ノートブックインスタンスに GPU リソースをアタッチして、ローカル環境での推論テストを高速化する。**
+        | 
+        | ディープラーニングフレームワークとしては、TensorFlow、 Apache MXNet、PyTorch がサポートされている。 
+        | 今回のチュートリアルで利用する機械学習アルゴリズム (フレームワーク) は XGBoost であり、GPU は利用する計算はしないため不要である。
+        | 
+        | (参考)
+        | - `「Amazon SageMaker Elastic Inference (EI) を使用する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ei.html>`_
       - なし
     * - 
       - 追加設定
       - ライフサイクル設定
-      - ノートブックインスタンスの作成時にスクリプトを実行して、ノートブックインスタンスをカスタマイズする。
-      - 設定値なし
+      - | **ノートブックインスタンスの作成時または起動時に実行するシェルスクリプトを定義する。**
+        |
+        | (参考)
+        | - `「ライフサイクル設定スクリプトを使用したノートブックインスタンスをカスタマイズする」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/notebook-lifecycle-config.html>`_
+      - 設定なし
     * - 
       - 
       - ボリュームサイズ (GB 単位)
-      - | ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) のサイズ。
-        | ボリュームサイズは 5 GB - 16 TB の範囲で設定可能。 
+      - | **ノートブックインスタンスにアタッチする汎用ストレージ (SSD) のボリュームのサイズを設定する。**
+        |
+        | ボリュームサイズは **5 GB - 16 TB** の範囲で設定可能。 
       - 5
     * - アクセス許可と暗号化
       - 
       - IAM ロール
-      - | ノートブックインスタンスに付与する AWS リソースの操作権限を IAM ロールとして設定する。
-        | AmazonSageMakerFullAccess を付与する場合、`「AmazonSageMakerFullAccess ポリシー」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-amazonsagemakerfullaccess-policy>`_ に記載されている操作権限が付与される。
-      - 新しい IAM ロールの作成
+      - | **ノートブックインスタンスに AWS リソースの操作権限を付与する。**
+        | 
+        | この表の下に補足情報を記載するので、そちらも参照すること。
+      - | IAM ロールを選択する
+        | (新しい IAM ロールの作成)
     * - 
       - 
       - ルートアクセス - オプション
-      - 
+      - | **有効化によりノートブックインスタンスのすべてのユーザーに管理者権限を付与する。**
+        |
+        | ノートブックインスタンス上のすべてのファイルにアクセスして編集できる権限が与えられる。
       - 有効化 - ノートブックへのルートアクセス権をユーザーに付与する
     * - 
       - 
       - 暗号化キー - オプション
-      - ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) の Amazon KMS の暗号鍵を設定する。
+      - | **AWS Key Management Service (KMS) の暗号鍵を利用して、ノートブックインスタンスにアタッチする汎用ストレージを暗号化する。**
+        |
+        | セキュリティ要件で汎用ストレージの暗号化が必要な場合は設定する。
+        | 別途、AWS KMS の利用料が必要となる点に注意する。
+        | 
+        | (参考)
+        | - `「AWS Key Management Service の料金」 <https://aws.amazon.com/jp/kms/pricing/>`_
       - カスタム暗号化なし
     * - ネットワーク - オプション
       - 
       - VPC - オプション
-      - 
+      - | **ノートブックインスタンスの VPC への配置を設定する。**
+        |
+        | セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する。
+        | 他の AWS サービスに接続する場合はインターネット接続もしくは接続したいサービスの VPC エンドポイントが必要となる点に注意すること。
+        |
+        | (参考)
+        | - `「ノートブックインスタンスを VPC のリソースに接続する」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/appendix-notebook-and-internet-access.html>`_
       - 非 VPC
     * - Git リポジトリ - オプション
       - デフォルトのリポジトリ
       - リポジトリ
-      - | ノートブックインスタンスの作成時に自動で Git リポジトリをクローンする。
-        | 例えば、学習・推論用コードが格納された Git リポジトリやアプリのコードが格納されたリポジトリを自動でクローンし、その分の手間が省ける。
+      - | **ノートブックインスタンスの作成時に自動で /home/ec2-user/SageMaker 直下に登録した Git リポジトリをクローンする。**
+        | 
+        | AWS CodeCommit や GitHub の Git リポジトリを登録してノートブックインスタンスの作成時に自動で /home/ec2-user/SageMaker 直下に クローンして、手動でクローンする手間を省くことができる。
         | デフォルトのリポジトリを1つ、追加のリポジトリを最大3つ設定可能。
+        |
+        | (参考)
+        | - `「Git リポジトリを Amazon SageMaker のノートブックインスタンスに関連付ける」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/nbi-git-repo.html#nbi-git-create>`_
       - なし
     * - タグ - オプション
       - 
       - キー、値
-      - | キーバリュー形式で値を設定する。
-        | (例) Name タグ (Name: *<notebook_instance_name>*)、環境タグ (Environment: Production)
-      - (空白)
+      - | **キーバリュー形式で値を設定する。**
+        |
+        | (例) 
+        | - Name タグ (Name: *<notebook_instance_name>*)
+        | - 環境タグ (Environment: Production)
+      - なし
 
 
-| ノートブックインスタンスに付与する IAM ロールに関して補足します。
+ここで、ノートブックインスタンスに付与する IAM ロールに関して補足します。
+
 | IAM ロールは AWS のリソースに操作権限を与えるために利用します。
 | 例えば、学習用データの取得のためにノートブックインスタンスから Amazon S3 のバケットにアクセスが必要となります。
-| IAM ユーザに紐づく認証情報として「アクセスキー ID」と「シークレットキー」がありますが、これをコードにハードコーディングすることはアンチパターンとなります。
+
+| IAM ユーザに紐づく認証情報として「アクセスキー ID」と「シークレットキー」がありますが、これをソースコードに **ハードコーディングすることはアンチパターン** となります。
+| Git リポジトリのコードとしてパブリックなリポジトリに公開してしまった場合、数十分程度でその情報が搾取されるとの指摘もありますので十分に注意してください。
 | IAM ロールに操作権限を定義してノートブックインスタンスに付与することで、具体的な認証情報を記述せずに操作権限を付与することができます。
 
-- (備忘) 図を入れる。
+| ノートブックインスタンスの作成の画面に従って IAM ロールを新規作成する場合は、「**AmazonSageMakerFullAccess**」を権限として持つ IAM ロールを作成することになります。
+| `「AmazonSageMakerFullAccess ポリシー」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-amazonsagemakerfullaccess-policy>`_ に記載されている操作権限が付与されます。
 
-| 今回新規作成した IAM ロールは「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。
-| 特に、下記の条件に当てはまる Amazon S3 のバケットとオブジェクトの操作権限が与えられる点に注意してください。
+| IAM ロールの作成時に下記に示すウィンドウが表示されます。
+| この条件に当てはまる Amazon S3 のバケットとオブジェクト (ファイル) の操作権限が与えられる点に注意してください。
+| 問題がなければ、「ロールの作成」をクリックして作成します。
 
-
-.. list-table::
-  :header-rows: 1
-
-  * - 条件
-    - 説明
-  * - 指定する S3 バケット - オプション
-    - | 本項目以外の条件に当てはまらない S3 バケットに対するアクセスを許可する。オプション項目であり、これを設定しないことも可能。
-      | - **任意の S3 バケット**
-      | (例) my-s3-bucket
-      | - **特定の S3 バケット**
-      | (例) my-s3-bucket-1, my-s3-bucket-2
-      | - **なし**
-  * - 名前に「sagemaker」が含まれる任意の S3 バケット
-    - | 下記のように S3 バケット名に「sagemaker」を含む S3 バケットにはアクセスが可能。
-      | (例) **アクセス可能** : my-sagemaker-s3-bucket、**アクセス不可能** : my-s3-bucket
-  * - 名前に「sagemaker」が含まれる任意の S3 オブジェクト
-    - | 下記のように S3 バケットに格納されているオブジェクト (ファイル) 名に 「sagemaker」を含むオブジェクトにはアクセスが可能。
-      | (例) **アクセス可能** : my-sagemaker-object.csv、**アクセス不可能** : my-object.csv
-  * - タグ「sagemaker」と値「true」が含まれる任意の S3 オブジェクトにはアクセスが可能。
-    - | キーが「sagemaker」、値が「true」と設定されたオブジェクトにはアクセスが可能。
-  * - SageMaker へのアクセスを許可するバケットポリシーを持つ S3 バケット
-    - 条件に記載されている通り、バケットポリシーにて Amazon SageMaker のアクセスが許可された S3 バケットにはアクセスが可能。
+.. image:: ../../../images/blog/5th/sagemaker-notebook-instance-create-iamrole.png
+  :width: 900px
 
 
-| 設定値に問題がなければ画面が切り替わり、「成功! ノートブックインスタンスが作成されています。」と表示されます。
+ノートブックインスタンスの設定が完了したら、画面の最下部にある「**ノートブックインスタンスの作成**」をクリックします。
+
+.. image:: ../../../images/blog/5th/sagemaker-notebook-instance-create-instance.png
+  :width: 900px
+
+
+| 設定値に問題がなければ画面が切り替わり、「**成功! ノートブックインスタンスが作成されています。**」と表示されます。
 | 数分間待って、「ステータス」が「**Pending**」から「**InService**」に変わると、ノートブックインスタンスの作成が完了です。
 
 .. image:: ../../../images/blog/5th/sagemaker-notebook-instance-create-pending.png
@@ -390,16 +421,8 @@ AWS マネジメントコンソールに自身の IAM ユーザでログイン�
 
 まとめ
 --------------------
-| 今回の記事では、Amazon SageMaker のチュートリアルをベースにして、ノートブックインスタンスの作成するまでの手順をご説明させていただきました。
-| 次回は学習の実行までの手順を扱います。
-
-
-参考文献
------------------
-- `「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」 <https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/>`_
-- `「Amazon SageMaker 開発者ガイド」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html>`_
-- `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
-- `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
+| 今回の記事では、Amazon SageMaker のチュートリアルをベースにして、ノートブックインスタンスの作成までの手順をご説明させていただきました。
+| 次回は学習・推論に利用するデータの準備を行います。
 
 
 +++++++++++

@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="[第4回] ML サービスの全体像を把握する" href="ml-services-overview-01.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,14 +81,34 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker">実際に Amazon SageMaker を使う</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">チュートリアルの概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">これから数回の記事で実施すること</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">注意事項</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">ステップ 1: Amazon SageMaker コンソールにログインする</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amazon-sagemaker-notebook-instance">ステップ 2: Amazon SageMaker notebook instance を作成する</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -132,6 +153,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
         
       <li>[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</li>
     
@@ -401,8 +424,9 @@
 <div class="line">「サービスを検索する」の箇所にある検索バーに「sage」程度を入れると、「Amazon SageMaker」が登場しますので、これをクリックして移動します。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/search-sagemaker.png"><img alt="../../_images/search-sagemaker.png" src="../../_images/search-sagemaker.png" style="width: 900px;" /></a>
-<p>下記のいずれかの画面に移動しますが、どちらでも問題ありません。</p>
+<p>初めて Amazon SageMaker に接続する際は上の機能説明のページに移動します。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-initial.png"><img alt="../../_images/sagemaker-initial.png" src="../../_images/sagemaker-initial.png" style="width: 900px;" /></a>
+<p>2回目以降はしたのダッシュボードページに移動すると思いますが、どちらでも問題ありません。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-dashboard.png"><img alt="../../_images/sagemaker-dashboard.png" src="../../_images/sagemaker-dashboard.png" style="width: 900px;" /></a>
 </div>
 </div>
@@ -413,21 +437,22 @@
 <div class="section" id="id11">
 <h4>実施手順<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
-<div class="line">左側の折りたたみメニューの「ノートブック」をクリックして開き、「ノートブックインスタンス」をクリックします。</div>
-<div class="line">ダッシュボードにいる場合は、画面中央の「概要」の中にある「ノートブックインスタンス」をクリックしても構いません。</div>
+<div class="line">左側の折りたたみメニューの「<strong>ノートブック</strong>」をクリックして開き、「<strong>ノートブックインスタンス</strong>」をクリックします。</div>
+<div class="line">ダッシュボードにいる場合は、画面中央の「概要」の中にある「<strong>ノートブックインスタンス</strong>」をクリックしても構いません。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-dashboard-notebook.png"><img alt="../../_images/sagemaker-dashboard-notebook.png" src="../../_images/sagemaker-dashboard-notebook.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">ノートブックインスタンスの画面に移動します。</div>
 <div class="line">現在はノートブックインスタンスが存在しませんが、ここにそのリージョンに存在するノートブックインスタンスの一覧が表示されます。</div>
+<div class="line">「<strong>ノートブックインスタンスの作成</strong>」をクリックします。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-initial.png"><img alt="../../_images/sagemaker-notebook-instance-initial.png" src="../../_images/sagemaker-notebook-instance-initial.png" style="width: 900px;" /></a>
 <p>ノートブックインスタンスの作成画面に移動します。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create.png"><img alt="../../_images/sagemaker-notebook-instance-create.png" src="../../_images/sagemaker-notebook-instance-create.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">ノートブックインスタンス作成時の設定項目を下記の表に示します。</div>
-<div class="line">今回は簡単なチュートリアルですので、原則としてデフォルト値を設定します。各設定値の説明を記しますので、実際の業務で利用する際は要件に従って適切に設定してください。</div>
-<div class="line">設定が完了したら、画面の最下部にある「ノートブックインスタンスの作成」をクリックします。</div>
+<div class="line">今回は簡単なチュートリアルですので、<strong>原則としてデフォルト値を設定</strong> します。</div>
+<div class="line">各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -450,14 +475,15 @@
 <td></td>
 <td><p>ノートブックインスタンス名</p></td>
 <td><div class="line-block">
-<div class="line">ノートブックインスタンスの名前を設定する。</div>
+<div class="line"><strong>ノートブックインスタンスの名前を設定する。</strong></div>
+<div class="line"><br /></div>
 <div class="line">最大 63 文字まで設定可能。英数字もしくはハイフン (-) の利用が可能。</div>
 <div class="line">1つのAWS リージョンのアカウント内で一意である必要がある。</div>
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">(空白)</div>
-<div class="line">今回は「mynotebook」と設定</div>
+<div class="line">なし</div>
+<div class="line">(今回は「mynotebook」と設定)</div>
 </div>
 </td>
 </tr>
@@ -465,12 +491,17 @@
 <td></td>
 <td><p>ノートブックインスタンスのタイプ</p></td>
 <td><div class="line-block">
-<div class="line">ノートブックインスタンスのタイプを設定する。</div>
-<div class="line">まずは「ml.t2.medium」など小さいインスタンスで試した方が良い。</div>
-<div class="line">CPU やメモリなどのリソース不足が発生した場合にスケールアップもしくは不足するリソースに応じたインスタンスタイプを選択する。</div>
-<div class="line">(例) CPUを重点的に増やしたい：コンピューティング最適化 (ml.c5.large など)、 メモリを重点的に増やしたい：メモリの最適化 (ml.r5.large など)</div>
-<div class="line"><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">「Amazon SageMaker ML インスタンスタイプ」</a></div>
-<div class="line"><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">「Amazon SageMaker の料金」</a></div>
+<div class="line"><strong>ノートブックインスタンスのタイプを設定する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">ノートブックインスタンスでの作業はデータの簡単な前処理とコーディングがメインであり、学習や推論は行わない。</div>
+<div class="line">まずはデフォルトの「ml.t2.medium」など <strong>小さいインスタンス</strong> で試して、CPU やメモリなどのリソース不足が発生した場合にスケールアップもしくは不足するリソースに応じたインスタンスタイプを選択する。</div>
+<div class="line">(例)</div>
+<div class="line">- CPUを重点的に増やしたい：コンピューティング最適化 (ml.c5 シリーズなど)</div>
+<div class="line">- メモリを重点的に増やしたい：メモリの最適化 (ml.r5.シリーズなど)</div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">「Amazon SageMaker ML インスタンスタイプ」</a></div>
+<div class="line">- <a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">「Amazon SageMaker の料金」</a></div>
 </div>
 </td>
 <td><p>ml.t2.medium</p></td>
@@ -479,8 +510,13 @@
 <td></td>
 <td><p>Elastic Inference</p></td>
 <td><div class="line-block">
-<div class="line">GPU リソースをアタッチする。ディープラーニングフレームワーク TensorFlow、 Apache MXNet、PyTorch でサポートされている。</div>
-<div class="line"><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ei.html">「Amazon SageMaker Elastic Inference (EI) を使用する」</a></div>
+<div class="line"><strong>ノートブックインスタンスに GPU リソースをアタッチして、ローカル環境での推論テストを高速化する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">ディープラーニングフレームワークとしては、TensorFlow、 Apache MXNet、PyTorch がサポートされている。</div>
+<div class="line">今回のチュートリアルで利用する機械学習アルゴリズム (フレームワーク) は XGBoost であり、GPU は利用する計算はしないため不要である。</div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ei.html">「Amazon SageMaker Elastic Inference (EI) を使用する」</a></div>
 </div>
 </td>
 <td><p>なし</p></td>
@@ -488,15 +524,22 @@
 <tr class="row-odd"><td></td>
 <td><p>追加設定</p></td>
 <td><p>ライフサイクル設定</p></td>
-<td><p>ノートブックインスタンスの作成時にスクリプトを実行して、ノートブックインスタンスをカスタマイズする。</p></td>
-<td><p>設定値なし</p></td>
+<td><div class="line-block">
+<div class="line"><strong>ノートブックインスタンスの作成時または起動時に実行するシェルスクリプトを定義する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/notebook-lifecycle-config.html">「ライフサイクル設定スクリプトを使用したノートブックインスタンスをカスタマイズする」</a></div>
+</div>
+</td>
+<td><p>設定なし</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td></td>
 <td><p>ボリュームサイズ (GB 単位)</p></td>
 <td><div class="line-block">
-<div class="line">ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) のサイズ。</div>
-<div class="line">ボリュームサイズは 5 GB - 16 TB の範囲で設定可能。</div>
+<div class="line"><strong>ノートブックインスタンスにアタッチする汎用ストレージ (SSD) のボリュームのサイズを設定する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">ボリュームサイズは <strong>5 GB - 16 TB</strong> の範囲で設定可能。</div>
 </div>
 </td>
 <td><p>5</p></td>
@@ -505,37 +548,69 @@
 <td></td>
 <td><p>IAM ロール</p></td>
 <td><div class="line-block">
-<div class="line">ノートブックインスタンスに付与する AWS リソースの操作権限を IAM ロールとして設定する。</div>
-<div class="line">AmazonSageMakerFullAccess を付与する場合、<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-amazonsagemakerfullaccess-policy">「AmazonSageMakerFullAccess ポリシー」</a> に記載されている操作権限が付与される。</div>
+<div class="line"><strong>ノートブックインスタンスに AWS リソースの操作権限を付与する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">この表の下に補足情報を記載するので、そちらも参照すること。</div>
 </div>
 </td>
-<td><p>新しい IAM ロールの作成</p></td>
+<td><div class="line-block">
+<div class="line">IAM ロールを選択する</div>
+<div class="line">(新しい IAM ロールの作成)</div>
+</div>
+</td>
 </tr>
 <tr class="row-even"><td></td>
 <td></td>
 <td><p>ルートアクセス - オプション</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line"><strong>有効化によりノートブックインスタンスのすべてのユーザーに管理者権限を付与する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">ノートブックインスタンス上のすべてのファイルにアクセスして編集できる権限が与えられる。</div>
+</div>
+</td>
 <td><p>有効化 - ノートブックへのルートアクセス権をユーザーに付与する</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td></td>
 <td><p>暗号化キー - オプション</p></td>
-<td><p>ノートブックインスタンスにアタッチする EBS ボリューム (ディスク) の Amazon KMS の暗号鍵を設定する。</p></td>
+<td><div class="line-block">
+<div class="line"><strong>AWS Key Management Service (KMS) の暗号鍵を利用して、ノートブックインスタンスにアタッチする汎用ストレージを暗号化する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">セキュリティ要件で汎用ストレージの暗号化が必要な場合は設定する。</div>
+<div class="line">別途、AWS KMS の利用料が必要となる点に注意する。</div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://aws.amazon.com/jp/kms/pricing/">「AWS Key Management Service の料金」</a></div>
+</div>
+</td>
 <td><p>カスタム暗号化なし</p></td>
 </tr>
 <tr class="row-even"><td><p>ネットワーク - オプション</p></td>
 <td></td>
 <td><p>VPC - オプション</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line"><strong>ノートブックインスタンスの VPC への配置を設定する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する。</div>
+<div class="line">他の AWS サービスに接続する場合はインターネット接続もしくは接続したいサービスの VPC エンドポイントが必要となる点に注意すること。</div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/appendix-notebook-and-internet-access.html">「ノートブックインスタンスを VPC のリソースに接続する」</a></div>
+</div>
+</td>
 <td><p>非 VPC</p></td>
 </tr>
 <tr class="row-odd"><td><p>Git リポジトリ - オプション</p></td>
 <td><p>デフォルトのリポジトリ</p></td>
 <td><p>リポジトリ</p></td>
 <td><div class="line-block">
-<div class="line">ノートブックインスタンスの作成時に自動で Git リポジトリをクローンする。</div>
-<div class="line">例えば、学習・推論用コードが格納された Git リポジトリやアプリのコードが格納されたリポジトリを自動でクローンし、その分の手間が省ける。</div>
+<div class="line"><strong>ノートブックインスタンスの作成時に自動で /home/ec2-user/SageMaker 直下に登録した Git リポジトリをクローンする。</strong></div>
+<div class="line"><br /></div>
+<div class="line">AWS CodeCommit や GitHub の Git リポジトリを登録してノートブックインスタンスの作成時に自動で /home/ec2-user/SageMaker 直下に クローンして、手動でクローンする手間を省くことができる。</div>
 <div class="line">デフォルトのリポジトリを1つ、追加のリポジトリを最大3つ設定可能。</div>
+<div class="line"><br /></div>
+<div class="line">(参考)</div>
+<div class="line">- <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/nbi-git-repo.html#nbi-git-create">「Git リポジトリを Amazon SageMaker のノートブックインスタンスに関連付ける」</a></div>
 </div>
 </td>
 <td><p>なし</p></td>
@@ -544,77 +619,41 @@
 <td></td>
 <td><p>キー、値</p></td>
 <td><div class="line-block">
-<div class="line">キーバリュー形式で値を設定する。</div>
-<div class="line">(例) Name タグ (Name: <em>&lt;notebook_instance_name&gt;</em>)、環境タグ (Environment: Production)</div>
+<div class="line"><strong>キーバリュー形式で値を設定する。</strong></div>
+<div class="line"><br /></div>
+<div class="line">(例)</div>
+<div class="line">- Name タグ (Name: <em>&lt;notebook_instance_name&gt;</em>)</div>
+<div class="line">- 環境タグ (Environment: Production)</div>
 </div>
 </td>
-<td><p>(空白)</p></td>
+<td><p>なし</p></td>
 </tr>
 </tbody>
 </table>
+<p>ここで、ノートブックインスタンスに付与する IAM ロールに関して補足します。</p>
 <div class="line-block">
-<div class="line">ノートブックインスタンスに付与する IAM ロールに関して補足します。</div>
 <div class="line">IAM ロールは AWS のリソースに操作権限を与えるために利用します。</div>
 <div class="line">例えば、学習用データの取得のためにノートブックインスタンスから Amazon S3 のバケットにアクセスが必要となります。</div>
-<div class="line">IAM ユーザに紐づく認証情報として「アクセスキー ID」と「シークレットキー」がありますが、これをコードにハードコーディングすることはアンチパターンとなります。</div>
+</div>
+<div class="line-block">
+<div class="line">IAM ユーザに紐づく認証情報として「アクセスキー ID」と「シークレットキー」がありますが、これをソースコードに <strong>ハードコーディングすることはアンチパターン</strong> となります。</div>
+<div class="line">Git リポジトリのコードとしてパブリックなリポジトリに公開してしまった場合、数十分程度でその情報が搾取されるとの指摘もありますので十分に注意してください。</div>
 <div class="line">IAM ロールに操作権限を定義してノートブックインスタンスに付与することで、具体的な認証情報を記述せずに操作権限を付与することができます。</div>
 </div>
-<ul class="simple">
-<li><p>(備忘) 図を入れる。</p></li>
-</ul>
 <div class="line-block">
-<div class="line">今回新規作成した IAM ロールは「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。</div>
-<div class="line">特に、下記の条件に当てはまる Amazon S3 のバケットとオブジェクトの操作権限が与えられる点に注意してください。</div>
+<div class="line">ノートブックインスタンスの作成の画面に従って IAM ロールを新規作成する場合は、「<strong>AmazonSageMakerFullAccess</strong>」を権限として持つ IAM ロールを作成することになります。</div>
+<div class="line"><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-amazonsagemakerfullaccess-policy">「AmazonSageMakerFullAccess ポリシー」</a> に記載されている操作権限が付与されます。</div>
 </div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>条件</p></th>
-<th class="head"><p>説明</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>指定する S3 バケット - オプション</p></td>
-<td><div class="line-block">
-<div class="line">本項目以外の条件に当てはまらない S3 バケットに対するアクセスを許可する。オプション項目であり、これを設定しないことも可能。</div>
-<div class="line">- <strong>任意の S3 バケット</strong></div>
-<div class="line">(例) my-s3-bucket</div>
-<div class="line">- <strong>特定の S3 バケット</strong></div>
-<div class="line">(例) my-s3-bucket-1, my-s3-bucket-2</div>
-<div class="line">- <strong>なし</strong></div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>名前に「sagemaker」が含まれる任意の S3 バケット</p></td>
-<td><div class="line-block">
-<div class="line">下記のように S3 バケット名に「sagemaker」を含む S3 バケットにはアクセスが可能。</div>
-<div class="line">(例) <strong>アクセス可能</strong> : my-sagemaker-s3-bucket、<strong>アクセス不可能</strong> : my-s3-bucket</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>名前に「sagemaker」が含まれる任意の S3 オブジェクト</p></td>
-<td><div class="line-block">
-<div class="line">下記のように S3 バケットに格納されているオブジェクト (ファイル) 名に 「sagemaker」を含むオブジェクトにはアクセスが可能。</div>
-<div class="line">(例) <strong>アクセス可能</strong> : my-sagemaker-object.csv、<strong>アクセス不可能</strong> : my-object.csv</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>タグ「sagemaker」と値「true」が含まれる任意の S3 オブジェクトにはアクセスが可能。</p></td>
-<td><div class="line-block">
-<div class="line">キーが「sagemaker」、値が「true」と設定されたオブジェクトにはアクセスが可能。</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>SageMaker へのアクセスを許可するバケットポリシーを持つ S3 バケット</p></td>
-<td><p>条件に記載されている通り、バケットポリシーにて Amazon SageMaker のアクセスが許可された S3 バケットにはアクセスが可能。</p></td>
-</tr>
-</tbody>
-</table>
 <div class="line-block">
-<div class="line">設定値に問題がなければ画面が切り替わり、「成功! ノートブックインスタンスが作成されています。」と表示されます。</div>
+<div class="line">IAM ロールの作成時に下記に示すウィンドウが表示されます。</div>
+<div class="line">この条件に当てはまる Amazon S3 のバケットとオブジェクト (ファイル) の操作権限が与えられる点に注意してください。</div>
+<div class="line">問題がなければ、「ロールの作成」をクリックして作成します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-iamrole.png"><img alt="../../_images/sagemaker-notebook-instance-create-iamrole.png" src="../../_images/sagemaker-notebook-instance-create-iamrole.png" style="width: 900px;" /></a>
+<p>ノートブックインスタンスの設定が完了したら、画面の最下部にある「<strong>ノートブックインスタンスの作成</strong>」をクリックします。</p>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-instance.png"><img alt="../../_images/sagemaker-notebook-instance-create-instance.png" src="../../_images/sagemaker-notebook-instance-create-instance.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">設定値に問題がなければ画面が切り替わり、「<strong>成功! ノートブックインスタンスが作成されています。</strong>」と表示されます。</div>
 <div class="line">数分間待って、「ステータス」が「<strong>Pending</strong>」から「<strong>InService</strong>」に変わると、ノートブックインスタンスの作成が完了です。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-pending.png"><img alt="../../_images/sagemaker-notebook-instance-create-pending.png" src="../../_images/sagemaker-notebook-instance-create-pending.png" style="width: 900px;" /></a>
@@ -622,25 +661,16 @@
 </div>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>まとめ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="line-block">
-<div class="line">今回の記事では、Amazon SageMaker のチュートリアルをベースにして、ノートブックインスタンスの作成するまでの手順をご説明させていただきました。</div>
-<div class="line">次回は学習の実行までの手順を扱います。</div>
-</div>
-</div>
 <div class="section" id="id14">
-<h2>参考文献<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
-<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">「Amazon SageMaker ML インスタンスタイプ」</a></p></li>
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">「Amazon SageMaker の料金」</a></p></li>
-</ul>
+<h2>まとめ<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">今回の記事では、Amazon SageMaker のチュートリアルをベースにして、ノートブックインスタンスの作成までの手順をご説明させていただきました。</div>
+<div class="line">次回は学習・推論に利用するデータの準備を行います。</div>
+</div>
 </div>
 <hr class="docutils" />
-<div class="section" id="id19">
-<h2>著者紹介<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id15">
+<h2>著者紹介<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
@@ -658,6 +688,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ml-services-overview-01.html" class="btn btn-neutral float-left" title="[第4回] ML サービスの全体像を把握する" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
