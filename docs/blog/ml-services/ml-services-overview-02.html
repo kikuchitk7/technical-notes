@@ -206,73 +206,122 @@
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>工程</p></th>
+<th class="head"><p>ステップ</p></th>
+<th class="head"><p>枝番</p></th>
 <th class="head"><p>実施内容</p></th>
-<th class="head"><p>対応するチュートリアルのステップ</p></th>
 <th class="head"><p>連載回</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>開発</p></td>
-<td><p>AWS マネジメントコンソールにログインする</p></td>
 <td><p>1</p></td>
-<td><p>第5回</p></td>
+<td></td>
+<td><p>Amazon SageMaker コンソールにログインする</p></td>
+<td><p>第 5 回</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p>ノートブックインスタンスを作成する</p></td>
 <td><p>2</p></td>
-<td><p>第5回</p></td>
+<td></td>
+<td><p>Amazon SageMaker notebook instance を作成する</p></td>
+<td><p>第 5 回</p></td>
 </tr>
 <tr class="row-even"><td></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>データの準備</p></td>
+<td><p>第 6 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3a</p></td>
 <td><p>ノートブックを起動する</p></td>
-<td><p>3 (3a, 3b, 3c)</p></td>
-<td><p>第5回</p></td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p>学習データを格納するための S3 バケットを作成する</p></td>
-<td><p>3 (3d)</p></td>
-<td><p>第6回</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p>学習・推論に利用するデータを準備する</p></td>
-<td><p>3 (3e, 3f)</p></td>
-<td><p>第6回</p></td>
+<td></td>
+<td><p>3b, 3c</p></td>
+<td><p>ノートブックの利用準備をする</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p>学習用のコードを開発する</p></td>
-<td><p>4 (4a, 4b)</p></td>
-<td><p>第6回</p></td>
+<td></td>
+<td><p>3d</p></td>
+<td><p>S3 バケットを作成する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>3e</p></td>
+<td><p>学習・推論に利用するデータをダウンロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3f</p></td>
+<td><p>データを分割する</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p>学習</p></td>
-<td><p>XGBoost (組み込みアルゴリズム) を利用して学習を行う</p></td>
-<td><p>4 (4c)</p></td>
-<td><p>第6回</p></td>
-</tr>
-<tr class="row-odd"><td><p>推論</p></td>
-<td><p>学習済モデルを推論用インスタンスにデプロイする</p></td>
-<td><p>5 (5a)</p></td>
-<td><p>第7回</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p>テストデータを使って顧客が申し込みを行ったかを予測する</p></td>
-<td><p>5 (5b)</p></td>
-<td><p>第7回</p></td>
+<td><p>4</p></td>
+<td></td>
+<td><p>データからのモデルのトレーニング</p></td>
+<td><p>第 6 回</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p>精度の評価を行う</p></td>
+<td></td>
+<td><p>4a</p></td>
+<td><p>学習データを S3 バケットにアップロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>4b</p></td>
+<td><p>学習の設定をする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>4c</p></td>
+<td><p>学習を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>推論</p></td>
+<td><p>5</p></td>
+<td></td>
+<td><p>モデルのデプロイ</p></td>
+<td><p>第 7 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>5a</p></td>
+<td><p>推論エンドポイントを作成して、モデルをデプロイする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>5b</p></td>
+<td><p>推論を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
 <td><p>6</p></td>
-<td><p>第7回</p></td>
+<td></td>
+<td><p>モデルの性能評価</p></td>
+<td><p>第 7 回</p></td>
 </tr>
 <tr class="row-even"><td><p>後片付け</p></td>
-<td><p>作成したリソースを削除する</p></td>
 <td><p>7</p></td>
-<td><p>第7回</p></td>
+<td></td>
+<td><p>リソースを終了する</p></td>
+<td><p>第 7 回</p></td>
 </tr>
 </tbody>
 </table>
@@ -338,22 +387,15 @@
 </ul>
 </div>
 <div class="section" id="id9">
-<h3>(開発) AWS マネジメントコンソールにログインする<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<p>まずは AWS マネジメントコンソールに自身の IAM ユーザでログインします。</p>
-<a class="reference internal image-reference" href="../../_images/aws-management-console.png"><img alt="../../_images/aws-management-console.png" src="../../_images/aws-management-console.png" style="width: 900px;" /></a>
-<p>リージョンは「バージニア北部」を利用しますので、その他のリージョンにいる場合は AWS マネジメントコンソールの右上のプルダウンメニューから移動してください。</p>
-<a class="reference internal image-reference" href="../../_images/region-check.png"><img alt="../../_images/region-check.png" src="../../_images/region-check.png" style="width: 600px;" /></a>
-</div>
+<h3>ステップ 1: Amazon SageMaker コンソールにログインする<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AWS マネジメントコンソールにログインして、Amazon SageMaker のコンソールに移動します。</p>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-tutorial-step1.png"><img alt="../../_images/amazon-sagemaker-tutorial-step1.png" src="../../_images/amazon-sagemaker-tutorial-step1.png" style="width: 900px;" /></a>
 <div class="section" id="id10">
-<h3>(開発) ノートブックインスタンスを作成する<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>このセクションでの該当箇所は下記の赤枠です。</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
+<h4>実施手順<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>AWS マネジメントコンソールに自身の IAM ユーザでログインします。</p>
+<a class="reference internal image-reference" href="../../_images/aws-management-console.png"><img alt="../../_images/aws-management-console.png" src="../../_images/aws-management-console.png" style="width: 900px;" /></a>
+<p>リージョンは「 <strong>米国東部 (バージニア北部)</strong> 」を利用しますので、その他のリージョンにいる場合は AWS マネジメントコンソールの右上のプルダウンメニューから移動してください。</p>
+<a class="reference internal image-reference" href="../../_images/region-check.png"><img alt="../../_images/region-check.png" src="../../_images/region-check.png" style="width: 600px;" /></a>
 <div class="line-block">
 <div class="line">それでは、Amazon SageMaker に移動します。</div>
 <div class="line">「サービスを検索する」の箇所にある検索バーに「sage」程度を入れると、「Amazon SageMaker」が登場しますので、これをクリックして移動します。</div>
@@ -362,8 +404,15 @@
 <p>下記のいずれかの画面に移動しますが、どちらでも問題ありません。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-initial.png"><img alt="../../_images/sagemaker-initial.png" src="../../_images/sagemaker-initial.png" style="width: 900px;" /></a>
 <a class="reference internal image-reference" href="../../_images/sagemaker-dashboard.png"><img alt="../../_images/sagemaker-dashboard.png" src="../../_images/sagemaker-dashboard.png" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="amazon-sagemaker-notebook-instance">
+<h3>ステップ 2: Amazon SageMaker notebook instance を作成する<a class="headerlink" href="#amazon-sagemaker-notebook-instance" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>学習・推論用のコードの開発環境となる「ノートブックインスタンス」を作成していきます。</p>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-tutorial-step2.png"><img alt="../../_images/amazon-sagemaker-tutorial-step2.png" src="../../_images/amazon-sagemaker-tutorial-step2.png" style="width: 900px;" /></a>
+<div class="section" id="id11">
+<h4>実施手順<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
-<div class="line">学習・推論用のコードの開発環境となる「ノートブックインスタンス」を作成していきます。</div>
 <div class="line">左側の折りたたみメニューの「ノートブック」をクリックして開き、「ノートブックインスタンス」をクリックします。</div>
 <div class="line">ダッシュボードにいる場合は、画面中央の「概要」の中にある「ノートブックインスタンス」をクリックしても構いません。</div>
 </div>
@@ -571,15 +620,11 @@
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-pending.png"><img alt="../../_images/sagemaker-notebook-instance-create-pending.png" src="../../_images/sagemaker-notebook-instance-create-pending.png" style="width: 900px;" /></a>
 <a class="reference internal image-reference" href="../../_images/sagemaker-notebook-instance-create-inservice.png"><img alt="../../_images/sagemaker-notebook-instance-create-inservice.png" src="../../_images/sagemaker-notebook-instance-create-inservice.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id12">
-<h3>(開発) ノートブックを起動する<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="line-block">
-<div class="line">ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。</div>
 </div>
-<ul class="simple">
-<li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
+<div class="section" id="id13">
+<h3>ステップ 3: データの準備<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ノートブックインスタンスの作成まで完了したので、ノートブックを起動します。</p>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-tutorial-step3.png"><img alt="../../_images/amazon-sagemaker-tutorial-step3.png" src="../../_images/amazon-sagemaker-tutorial-step3.png" style="width: 900px;" /></a>
 <div class="line-block">
 <div class="line">Amazon SageMaker のノートブックインスタンスでは、Jupyter Notebook もしくは JupyterLab が利用できます。</div>
 <div class="line">これらがプリインストールされた状態でノートブックインスタンスが作成されており、利用者側でインストールは必要ありません。</div>
@@ -615,8 +660,8 @@
 <div class="line">今回はこの状態のまま進みますが、左側のメニューを右クリックして、「Rename」を選択することによりファイル名を変更することも可能です。</div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-python3-notebook.png"><img alt="../../_images/sagemaker-jupyterlab-python3-notebook.png" src="../../_images/sagemaker-jupyterlab-python3-notebook.png" style="width: 900px;" /></a>
-<div class="section" id="id13">
-<h4>実行するコード<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id14">
+<h4>実行するコード<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="line-block">
 <div class="line">グレーの部分を「セル」と呼び、ここにコードを記述していきます。</div>
@@ -650,8 +695,8 @@
 <div class="line"><em>Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.</em></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h4>コードの解説<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id15">
+<h4>コードの解説<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ここでは「<cite># import libraries</cite>」と「<cite># Define IAM role</cite>」から始まる大きく2つの処理に分けられます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
@@ -684,8 +729,8 @@
 <div class="line">4. リージョンの設定</div>
 </div>
 <p>特に、1 と 3 の処理について見ていきます。</p>
-<div class="section" id="id15">
-<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="section" id="id16">
+<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -732,8 +777,8 @@
 <li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<div class="section" id="id18">
-<h4>実行するコード<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id19">
+<h4>実行するコード<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="line-block">
 <div class="line">下記のコードをセルにコピー＆ペーストした後に、必ず ** <cite>bucket_name</cite> の <cite>your-s3-bucket-name</cite> の箇所を変更してから** 実行してください。</div>
@@ -753,8 +798,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h4>コードの解説<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id20">
+<h4>コードの解説<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックから S3 バケットを作成する方法が示されています。</div>
 <div class="line">AWS マネジメントコンソールを利用しても同等の作業ができますが、ノートブックで作成した方が後々の開発効率を考えても好ましいと考えられます。</div>
@@ -783,8 +828,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id21">
+<h3>(開発) 学習・推論に利用するデータを準備する<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">前のセクションで学習・推論用のデータを格納するための S3 バケットの作成が完了しました。</div>
 <div class="line">ここでは、インターネット上で公開されているデータをノートブックインスタンスのローカルディスク上にダウンロードして簡単な前処理を行います。</div>
@@ -794,8 +839,8 @@
 <li><p>(備忘) このセクションでの該当箇所は下記の赤枠です。</p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/amazon_sagemaker_notebook_instance_1.png"><img alt="../../_images/amazon_sagemaker_notebook_instance_1.png" src="../../_images/amazon_sagemaker_notebook_instance_1.png" style="width: 900px;" /></a>
-<div class="section" id="id21">
-<h4>実行するコード<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id22">
+<h4>実行するコード<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
@@ -816,8 +861,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id22">
-<h4>コードの解説<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id23">
+<h4>コードの解説<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -843,8 +888,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id23">
-<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id24">
+<h3>(開発) 学習用のコードを開発する<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">データの準備まで完了しましたので、ここからは学習用のコードを開発していきます。</div>
 <div class="line">今回は Amazon SageMaker に`組み込みアルゴリズム &lt;<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html">https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algos.html</a>&gt;`_ として用意されている「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/xgboost.html">XGBoost</a>」と呼ばれる機械学習アルゴリズムを利用します。</div>
@@ -862,8 +907,8 @@
 <div class="line">XGBoost を利用するための準備として、学習用データの並べ替えと Estimator と呼ばれる Amazon SageMaker の学習の設定を行います。</div>
 <div class="line">下記のコードをセルにコピー＆ペーストして実行してください。</div>
 </div>
-<div class="section" id="id25">
-<h4>実行するコード<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id26">
+<h4>実行するコード<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;train/train.csv&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
@@ -877,8 +922,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id26">
-<h4>コードの解説<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id27">
+<h4>コードの解説<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1024,11 +1069,11 @@
 </div>
 </div>
 </div>
-<div class="section" id="id30">
-<h3>(学習) XGBoost (組み込みアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>学習の設定まで完了しましたので、ここからは実際に学習を行います。</p>
 <div class="section" id="id31">
-<h4>実行するコード<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h3>(学習) XGBoost (組み込みアルゴリズム) を利用して学習を行う<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>学習の設定まで完了しましたので、ここからは実際に学習を行います。</p>
+<div class="section" id="id32">
+<h4>実行するコード<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">({</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">s3_input_train</span><span class="p">})</span>
 </pre></div>
@@ -1044,8 +1089,8 @@
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-training-complete.png"><img alt="../../_images/sagemaker-training-complete.png" src="../../_images/sagemaker-training-complete.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id32">
-<h4>コードの解説<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id33">
+<h4>コードの解説<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">Amazon SageMaker における学習の実行は、<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.fit">fit</a> メソッドに学習データが格納されている S3 バケットの所在を渡すだけで実行できます。</div>
 <div class="line">fit メソッドを実行すると、学習ジョブが起動して XGBoost による機械学習モデルが構築されます。</div>
@@ -1113,15 +1158,15 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id33">
-<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id34">
+<h3>(推論) 学習済モデルを推論用インスタンスにデプロイする<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">学習を実行し、機械学習モデルの構築まで完了しました。</div>
 <div class="line">ここでは機械学習モデルをデプロイします。</div>
 <div class="line">デプロイとは、API サーバの構築。推論用インスタンスの作成、推論用コンテナとして機械学習モデルを起動する。</div>
 </div>
-<div class="section" id="id34">
-<h4>実行するコード<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id35">
+<h4>実行するコード<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span><span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1132,8 +1177,8 @@
 デプロイ処理は数分で完了します。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-deploy-complete.png"><img alt="../../_images/sagemaker-deploy-complete.png" src="../../_images/sagemaker-deploy-complete.png" style="width: 900px;" /></a>
 </div>
-<div class="section" id="id35">
-<h4>コードの解説<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id36">
+<h4>コードの解説<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_predictor</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
   <span class="n">initial_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
   <span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span>
@@ -1180,10 +1225,10 @@
 </div>
 </div>
 </div>
-<div class="section" id="id38">
-<h3>(推論) テストデータを使って顧客が申し込みを行ったかを予測する<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="section" id="id39">
-<h4>実行するコード<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h3>(推論) テストデータを使って顧客が申し込みを行ったかを予測する<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id40">
+<h4>実行するコード<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
 <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;text/csv&#39;</span> <span class="c1"># set the data type for an inference</span>
@@ -1195,8 +1240,8 @@
 </div>
 <p>実行した結果出力される <cite>(12357,)</cite> は、予測した顧客の数 (12,357人) です。</p>
 </div>
-<div class="section" id="id40">
-<h4>コードの解説<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id41">
+<h4>コードの解説<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_array</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1">#load the data into an array</span>
 </pre></div>
 </div>
@@ -1220,8 +1265,8 @@
 <p>推論結果がカンマ区切りのテキストデータで返されるので、後続の精度の評価をするために Numpy の <a class="reference external" href="https://numpy.org/doc/1.18/reference/generated/numpy.fromstring.html">fromstring</a> メソッドを使って Array に変換しています。</p>
 </div>
 </div>
-<div class="section" id="id41">
-<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id42">
+<h3>(推論) 精度の評価を行う<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">推論結果を得ることができましたので、最後に精度の評価を行います。</div>
 <div class="line">二値分類の精度評価においてよく利用される「混同行列 (confusion matrix)」を使います。</div>
@@ -1230,8 +1275,8 @@
 <li><p>(メモ) ROC 曲線、AUC を利用しても良いかも。</p></li>
 <li><p>(メモ) アプリからの接続方法についても言及する。</p></li>
 </ul>
-<div class="section" id="id42">
-<h4>実行するコード<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id43">
+<h4>実行するコード<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
@@ -1243,8 +1288,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id43">
-<h4>コードの解説<a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id44">
+<h4>コードの解説<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.3/reference/api/pandas.crosstab.html">crosstab</a> 関数を使って、推論結果のクロス集計を行っています。</p>
 <p>ここで、精度評価で利用している混同行列について補足します。</p>
 <a class="reference internal image-reference" href="../../_images/confusion-matrix.png"><img alt="../../_images/confusion-matrix.png" src="../../_images/confusion-matrix.png" style="width: 450px;" /></a>
@@ -1261,8 +1306,8 @@
 <li><p>False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数</p></li>
 </ul>
 </div>
-<div class="section" id="id44">
-<h4>推論結果についての考察<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id45">
+<h4>推論結果についての考察<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>上記のコードを実行すると、下記のような出力結果を得られます。</p>
 <a class="reference internal image-reference" href="../../_images/sagemaker-predict-confusion-matrix.png"><img alt="../../_images/sagemaker-predict-confusion-matrix.png" src="../../_images/sagemaker-predict-confusion-matrix.png" style="width: 450px;" /></a>
 <div class="line-block">
@@ -1283,8 +1328,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id45">
-<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id45" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id46">
+<h3>(後片付け) 作成したリソースを削除する<a class="headerlink" href="#id46" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">以上で「開発」「学習」「推論」を一通り実施することができました。</div>
 <div class="line">課金対象のリソースがありますので、課金を防ぐためにリソースを削除します。</div>
@@ -1293,8 +1338,8 @@
 <li><p>(メモ) 任意で実施。課金が気になる場合は必ず実施する。</p></li>
 <li><p>(メモ) 課金されるリソース・課金されないリソースを書いておく。</p></li>
 </ul>
-<div class="section" id="id46">
-<h4>実行するコード<a class="headerlink" href="#id46" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id47">
+<h4>実行するコード<a class="headerlink" href="#id47" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="n">xgb_predictor</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
 <span class="n">bucket_to_delete</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
@@ -1302,16 +1347,16 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id47">
-<h4>コードの解説<a class="headerlink" href="#id47" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id48">
+<h4>コードの解説<a class="headerlink" href="#id48" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>上記のコードを実行することによって、下記が実行されます。</p>
 <ul class="simple">
 <li><p>推論用エンドポイントの削除</p></li>
 <li><p>S3 バケット内のオブジェクトの削除</p></li>
 </ul>
 </div>
-<div class="section" id="id48">
-<h4>その他のリソースの削除<a class="headerlink" href="#id48" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id49">
+<h4>その他のリソースの削除<a class="headerlink" href="#id49" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>この他にも「ノートブックインスタンス」と「CloudWatch Logs」が課金対象となりますので、削除忘れに注意してください。
 ノートブックインスタンスは「停止」と「削除」の 2 段階での対応が必要です。</p>
 <div class="line-block">
@@ -1354,8 +1399,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id49">
-<h2>考察<a class="headerlink" href="#id49" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id50">
+<h2>考察<a class="headerlink" href="#id50" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>(メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。</p></li>
 <li><p>(メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？</p></li>
@@ -1368,15 +1413,15 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id50">
-<h2>まとめ<a class="headerlink" href="#id50" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id51">
+<h2>まとめ<a class="headerlink" href="#id51" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">今回の記事では、Amazon SageMaker を実際に使って開発・学習・推論をする方法についてご説明させていただきました。</div>
 <div class="line">次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。</div>
 </div>
 </div>
-<div class="section" id="id51">
-<h2>参考文献<a class="headerlink" href="#id51" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id52">
+<h2>参考文献<a class="headerlink" href="#id52" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
 <li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
@@ -1385,8 +1430,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="id56">
-<h2>著者紹介<a class="headerlink" href="#id56" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id57">
+<h2>著者紹介<a class="headerlink" href="#id57" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile Professional 担当</p>
