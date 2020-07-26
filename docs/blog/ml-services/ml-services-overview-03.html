@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" href="ml-services-overview-02.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,14 +81,38 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-02.html">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">今回の記事で実施すること</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ステップ 3: データの準備</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-3b">ステップ 3a, 3b: ノートブックを起動する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c">ステップ 3c: ノートブックの利用準備をする</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d-s3">ステップ 3d: S3 バケットを作成する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#e">ステップ 3e: 学習・推論に利用するデータをダウンロードする</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#f">ステップ 3f: データを分割する</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -132,6 +157,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
         
       <li>[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</li>
     
@@ -570,18 +597,9 @@
 <div class="line">次回は、今回準備したデータを使って学習を行います。</div>
 </div>
 </div>
-<div class="section" id="id14">
-<h2>参考文献<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/">「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」</a></p></li>
-<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html">「Amazon SageMaker 開発者ガイド」</a></p></li>
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/instance-types/">「Amazon SageMaker ML インスタンスタイプ」</a></p></li>
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">「Amazon SageMaker の料金」</a></p></li>
-</ul>
-</div>
 <hr class="docutils" />
-<div class="section" id="id17">
-<h2>著者紹介<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h2>著者紹介<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
@@ -599,6 +617,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ml-services-overview-02.html" class="btn btn-neutral float-left" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
