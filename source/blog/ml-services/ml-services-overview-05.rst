@@ -398,14 +398,6 @@ CloudWatch の画面に移動できたら、左側のメニューから「ログ
 | 次回は、Amazon SageMaker Studio の使い方についてみていきたいと思います。
 
 
-参考文献
------------------
-- `「機械学習モデルの構築およびトレーニング、デプロイ with Amazon SageMaker」 <https://aws.amazon.com/jp/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/>`_
-- `「Amazon SageMaker 開発者ガイド」 <https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/whatis.html>`_
-- `「Amazon SageMaker ML インスタンスタイプ」 <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_
-- `「Amazon SageMaker の料金」 <https://aws.amazon.com/jp/sagemaker/pricing/>`_
-
-
 +++++++++++
 
 .. include:: ../author/author.rst
