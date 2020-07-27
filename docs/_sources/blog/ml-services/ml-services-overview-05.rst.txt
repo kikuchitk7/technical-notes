@@ -270,10 +270,10 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 | 混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。
 | その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。
 
-- True Positive (TP): 預金証書 (CD) を申し込むと予測して、実際に申し込んだ顧客の数
-- False Poritive (FP): 預金証書 (CD) を申し込むと予測したが、実際には申し込まなかった顧客の数
-- True Negative (TN): 預金証書 (CD) を申し込まないと予測して実際に申し込まなかった顧客の数
-- False Negative (FN): 預金証書 (CD) を申し込まないと予測したが、実際には申し込んだ顧客の数
+- True Positive (TP): 定期預金を申し込むと予測して、実際に申し込んだ顧客の数
+- False Poritive (FP): 定期預金を申し込むと予測したが、実際には申し込まなかった顧客の数
+- True Negative (TN): 定期預金を申し込まないと予測して実際に申し込まなかった顧客の数
+- False Negative (FN): 定期預金を申し込まないと予測したが、実際には申し込んだ顧客の数
 
 
 推論結果についての考察
