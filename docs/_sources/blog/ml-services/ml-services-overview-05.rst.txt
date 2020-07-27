@@ -9,7 +9,8 @@
 
 今回の記事で実施すること
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-今回は下記の表の「ステップ 5: モデルのデプロイ」、「ステップ 6: モデルの性能評価」、「ステップ 7: モデルの性能評価」を扱います。
+| 今回は下記の表の「ステップ 5: モデルのデプロイ」、「ステップ 6: モデルの性能評価」、「ステップ 7: リソースを終了する」を扱います。
+| 4 回に渡って Amazon SageMaker の使い方を解説してきましたが、今回で完了です。
 
 
 .. list-table::
@@ -109,7 +110,11 @@
 
 ステップ 5: モデルのデプロイ
 --------------------------------------
-学習を実行し、機械学習モデルの構築まで完了しました。ここでは、機械学習モデルをデプロイします。
+| 学習を実行し、機械学習モデルの構築まで完了しました。
+| ここでは、機械学習モデルのデプロイと推論データを使って推論 (見込み顧客の予測) を行います。
+
+.. image:: ../../../images/blog/5th/amazon-sagemaker-tutorial-step5.png
+  :width: 900px
 
 
 ステップ 5a: 推論エンドポイントを作成して、モデルをデプロイする
@@ -133,13 +138,13 @@
 
 なお、デプロイが開始されると、下記の画像に示したように処理の進行とともに「- (ハイフン)」が出力されていきます。
 
-.. image:: ../../../images/sagemaker-deploy-start.png
+.. image:: ../../../images/blog/5th/sagemaker-deploy-start.png
   :width: 900px
 
 デプロイが完了すると、下記のように完了を示す「!」が出力されます。
 デプロイ処理は数分で完了します。
 
-.. image:: ../../../images/sagemaker-deploy-complete.png
+.. image:: ../../../images/blog/5th/sagemaker-deploy-complete.png
   :width: 900px
 
 
@@ -154,7 +159,7 @@
   )
 
 | この処理も改行して記載します。
-| `deploy <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.deploy>`_ メソッドを使って、機械学習モデルのデプロイを実行します。
+| Amazon SageMaker SDK for Python の `deploy <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.deploy>`_ メソッドを使って、機械学習モデルのデプロイを実行します。
 | ここで設定するパラメータ (引数) とそれぞれの意味を下記に示します。
 
 .. list-table::
@@ -168,11 +173,15 @@
       - | 推論用インスタンスのインスタンスタイプを設定する。
         | ML インスタンスとして様々なタイプが用意されており、学習の特性に応じたものを選択する。
         | ここでは、汎用 (M4) の xlarge を設定している。その他に利用できるインスタンスタイプと料金は下記を参照のこと。
+        |
+        | (参考)
         | - 「`Amazon SageMaker ML インスタンスタイプ <https://aws.amazon.com/jp/sagemaker/pricing/instance-types/>`_」
         | - 「`Amazon SageMaker の料金 <https://aws.amazon.com/jp/sagemaker/pricing/>`_」
 
 | 推論用インスタンスを作成して、S3 バケットから学習済の機械学習モデルを、Amazon ECR から推論用コンテナイメージをダウンロードして、推論用コンテナを起動します。
 | アプリなどからアクセスするためのエンドポイントを作成しています。エンドポイントには HTTPS で接続します。
+
+- (備忘) エンドポイントの図をいれる
 
 
 ステップ 5b: 推論を行う
@@ -202,22 +211,22 @@
 
   test_data_array = test_data.drop(['y_no', 'y_yes'], axis=1).values #load the data into an array
 
-| 前段でデータを学習データとテストデータに分割しました。
-| その際には単純に分割しただけで、テストデータには正解の値 (「y_yes」と「y_no」) が含まれます。
-| 顧客の属性情報から申し込みを行うか否かを予測したいので、正解の値を削除 (drop) しています。
+| ステップ 3e でデータをダウンロードし、ステップ 3f でそのデータを学習データと推論データ (テストデータ) に分割しました。
+| 推論データは `test_data` に格納されていますが、ステップ 3f では単純に分割しただけで、正解 (「y_yes」と「y_no」) が含まれます。
+| 顧客の属性情報から見込み顧客であるか否かを予測したいので、正解の値を削除 (drop) しています。
 
 .. code-block:: python
 
   xgb_predictor.content_type = 'text/csv' # set the data type for an inference
   xgb_predictor.serializer = csv_serializer # set the serializer type
 
-推論に用いるテストデータの Content type とシリアライザのタイプに CSV 用のものを指定しています。
+推論データの Content type とシリアライザのタイプに CSV 用のものを指定しています。
 
 .. code-block:: python
 
   predictions = xgb_predictor.predict(test_data_array).decode('utf-8') # predict!
 
-テストデータを推論エンドポイントに送信して、推論結果を得ています。
+`predict <https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html#sagemaker.predictor.RealTimePredictor.predict>`_ メソッドを使って推論データを推論エンドポイントに送信し、推論結果を得ています。
 
 .. code-block:: python
 
@@ -253,7 +262,7 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 
 ここで、精度評価で利用している混同行列について補足します。
 
-.. image:: ../../../images/confusion-matrix.png
+.. image:: ../../../images/blog/5th/confusion-matrix.png
   :width: 450px
 
 | 行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。
@@ -271,7 +280,7 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 ******************************
 上記のコードを実行すると、下記のような出力結果を得られます。
 
-.. image:: ../../../images/sagemaker-predict-confusion-matrix.png
+.. image:: ../../../images/blog/5th/sagemaker-predict-confusion-matrix.png
   :width: 450px
 
 | `Overall Classification Rate` で示されている数値が正解率であり、今回は 89.5% でした。
@@ -279,24 +288,49 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 | なぜでしょうか？
 
 | 学習データ (train_data) には、28,831 人分の顧客データを利用しました。
-| このうち、預金証書 (CD) を申し込んだ顧客数 (`y_yes` が 1 の合計) と申し込まなかった (`y_no` が 1 の合計) を確認してみます。
+| このうち、定期預金を申し込んだ顧客数 (`y_yes` が 1 の合計) と申し込まなかった (`y_no` が 1 の合計) を確認してみます。
 
-.. image:: ../../../images/sagemaker-predict-train-data.png
+.. image:: ../../../images/blog/5th/sagemaker-predict-train-data.png
   :width: 450px
 
-| 前者が 3,219 人であることに対して、後者は 25,612 人と 5 倍近い差があります。
-| 預金証書 (CD) を申し込んだ顧客数のデータを増やすと、True Positive の割合も高くなり、精度を高められる可能性があります。
-| 二値分類においては、学習データとなる正解データは十分な量を同程度用意することが望ましいと言われています。
-| 今回のチュートリアルでもその一端を垣間見ることができました。
+| 定期預金を申し込んだ顧客数が 3,219 人であることに対して、定期預金を申し込まなかった顧客数は 25,612 人と 5 倍近い差があることがわかります。
+| **定期預金を申し込んだ顧客のデータ数が不足している可能性** があり、あと 2.2万人程度のデータを用意して再度学習をすると、同程度の精度を出せる可能性があります。
+
+| 二値分類における各ラベルの学習データは、**十分な量を均等に用意すること** が望ましいと言われています。
+| 今回は UCI が公開しているオープンデータを利用していますので、データを増やして再検証をすることはできません。
+| 実際の業務で同様の問題が発生した場合は、顧客の申し込み履歴がデータベースに格納されているのであれば更にデータを抽出するか、そもそもこれ以上データが存在しない場合は新たにデータを取得して増やさなければなりません。
+
+| また、True Negative が 90% と比較的高い数値を示しているように見えますが、**この数値で十分な精度を確保できているのかは業務要件次第** です。
+| 100% に近い数字でなければならない場合は、定期預金を申し込まなかった顧客のデータも増やさなければならない可能性があります。
+| **機械学習にかかる時間の約 8 割はデータの準備や前処理である** と言われることがありますが、今回の結果からも垣間見ることができるかと思います。
+
+| あるいは、ステップ 4b で固定値としたハイパーパラメータをチューニングすることで精度を改善できるかもしれません。
+| いずれにしても機械学習はこのような仮説立案と検証の繰り返しが必要であり、ビジネスにおいて活用していくには根気や労力が必要です。
 
 
 ステップ 7: リソースを終了する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| 以上で「開発」「学習」「推論」を一通り実施することができました。
+| ここまでで「開発」「学習」「推論」を一通り実施することができました。
 | 課金対象のリソースがありますので、課金を防ぐためにリソースを削除します。
 
-- (メモ) 任意で実施。課金が気になる場合は必ず実施する。
-- (メモ) 課金されるリソース・課金されないリソースを書いておく。
+| 課金される可能性があるリソースは、下記の表の通りとなります。
+| チュートリアルのステップ 7 の手順では「推論エンドポイント」と「S3 バケットに格納されているオブジェクト」しかありませんので、その他のリソースの削除漏れに注意してください。
+| **請求ダッシュボードや Cost Explorer で課金されていないことを必ず確認してください。**
+
+.. list-table::
+    :header-rows: 1
+
+    * - サービス名
+      - リソース名
+    * - Amazon SageMaker
+      - ノートブックインスタンス
+    * -
+      - 推論エンドポイント (推論用インスタンス・推論用コンテナ)
+    * - Amazon S3
+      - S3 バケットに格納されているオブジェクト
+    * - Amazon CloudWatch
+      - CloudWatch Logs に格納されているログ
+
 
 実行するコード
 ********************
@@ -319,7 +353,8 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 
 その他のリソースの削除
 *********************************
-この他にも「ノートブックインスタンス」と「CloudWatch Logs」が課金対象となりますので、削除忘れに注意してください。
+上記の通り、「ノートブックインスタンス」と「CloudWatch Logs」も課金対象となりますので、削除漏れに注意してください。
+
 ノートブックインスタンスは「停止」と「削除」の 2 段階での対応が必要です。
 
 | まず、ノートブックインスタンスの削除を行います。
@@ -329,19 +364,19 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 | 削除対象のノートブックインスタンスをラジオボタンで選択し、「アクション」で「停止」を選択します。
 | 停止処理に移ると、「ステータス」が「InService」から「Stopping」に移行しますので、数分待ちます。
 
-.. image:: ../../../images/sagemaker-notebook-delete-1.png
+.. image:: ../../../images/blog/5th/sagemaker-notebook-delete-1.png
   :width: 900px
 
 
 「ステータス」が「Stopped」になったことを確認して、「アクション」で「削除」をクリックします。
 
-.. image:: ../../../images/sagemaker-notebook-delete-2.png
+.. image:: ../../../images/blog/5th/sagemaker-notebook-delete-2.png
   :width: 900px
 
 
 ノートブックインスタンスの削除を確認するウィンドウが表示されますので、「削除」をクリックします。
 
-.. image:: ../../../images/sagemaker-notebook-delete-3.png
+.. image:: ../../../images/blog/5th/sagemaker-notebook-delete-3.png
   :width: 450px
 
 
@@ -352,26 +387,26 @@ Pandas の `crosstab <https://pandas.pydata.org/pandas-docs/version/1.0.3/refere
 | 次に、CloudWatch Logs の削除を行います。
 | AWS マネジメントコンソールのトップ画面などから「CloudWatch」を検索して移動します。
 
-.. image:: ../../../images/cloudwatch-logs-delete-1.png
+.. image:: ../../../images/blog/5th/cloudwatch-logs-delete-1.png
   :width: 900px
 
 
 CloudWatch の画面に移動できたら、左側のメニューから「ロググループ」を選択します。
 
-.. image:: ../../../images/cloudwatch-logs-delete-2.png
+.. image:: ../../../images/blog/5th/cloudwatch-logs-delete-2.png
   :width: 450px
 
 
 | ロググループの画面に移動できたら、検索バーに「sagemaker」と入力してログを検索します。
 | 削除するログを全て選択して、「アクション」で「削除」をクリックします。
 
-.. image:: ../../../images/cloudwatch-logs-delete-3.png
+.. image:: ../../../images/blog/5th/cloudwatch-logs-delete-3.png
   :width: 900px
 
 
 ロググループの削除を確認するウィンドウが表示されますので、「削除」をクリックします。
 
-.. image:: ../../../images/cloudwatch-logs-delete-4.png
+.. image:: ../../../images/blog/5th/cloudwatch-logs-delete-4.png
   :width: 450px
 
 
@@ -379,17 +414,6 @@ CloudWatch の画面に移動できたら、左側のメニューから「ログ
 
 | S3 バケットと IAM ロールも作成しましたが、これらは存在するだけでは課金されません。
 | それぞれのサービスの画面から必要に応じて削除してください。
-
-
-考察
-----------------
-- (メモ) ここまででかなりの長さになることが予想されるので、連載を分けた方が良いかも。
-- (メモ) 自分のビジネス課題に応用するにはどうすれば良いのか？
-- (メモ) XGBoost の詳細を知る必要があるか？ (下記あたりを抑えておけば良いのでは？)
-
-  - どんな課題に適用できるか？
-  - どんなデータを準備すれば良いか？
-  - どうやって利用するか？
 
 
 まとめ
