@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" href="ml-services-overview-04.html" />
     <link rel="prev" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" href="ml-services-overview-02.html" /> 
 </head>
 
@@ -111,6 +112,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id17">著者紹介</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-04.html">[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-05.html">[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</a></li>
 </ul>
 </li>
 </ul>
@@ -376,11 +379,6 @@
 <div class="section" id="id6">
 <h4>実行するコード<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
-<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-run.png"><img alt="../../_images/sagemaker-jupyterlab-run.png" src="../../_images/sagemaker-jupyterlab-run.png" style="width: 900px;" /></a>
-<div class="line-block">
-<div class="line">上部のメニューに表示されている「▶︎」を押下するか、「Shift」+「Enter」で実行できます。</div>
-<div class="line">この後もいくつかコードを示しますが、同様の方法で実行してください。</div>
-</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
@@ -402,6 +400,11 @@
 <span class="n">my_region</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">region_name</span> <span class="c1"># set the region of the instance</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Success - the MySageMakerInstance is in the &quot;</span> <span class="o">+</span> <span class="n">my_region</span> <span class="o">+</span> <span class="s2">&quot; region. You will use the &quot;</span> <span class="o">+</span> <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; container for your SageMaker endpoint.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-run.png"><img alt="../../_images/sagemaker-jupyterlab-run.png" src="../../_images/sagemaker-jupyterlab-run.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">上部のメニューに表示されている「▶︎」を押下するか、「Shift」+「Enter」で実行できます。</div>
+<div class="line">この後もいくつかコードを示しますが、同様の方法で実行してください。</div>
 </div>
 <div class="line-block">
 <div class="line">セルの下側に下記のメッセージが出力されれば成功です。</div>
@@ -638,6 +641,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ml-services-overview-04.html" class="btn btn-neutral float-right" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ml-services-overview-02.html" class="btn btn-neutral float-left" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

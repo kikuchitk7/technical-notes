@@ -176,12 +176,6 @@
 ********************
 下記のコードをセルにコピー＆ペーストして実行してください。
 
-.. image:: ../../../images/blog/5th/sagemaker-jupyterlab-run.png
-  :width: 900px
-
-| 上部のメニューに表示されている「▶︎」を押下するか、「Shift」+「Enter」で実行できます。
-| この後もいくつかコードを示しますが、同様の方法で実行してください。
-
 .. code-block:: python
 
   # import libraries
@@ -204,6 +198,13 @@
                 'eu-west-1': '685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest'} # each region has its XGBoost container
   my_region = boto3.session.Session().region_name # set the region of the instance
   print("Success - the MySageMakerInstance is in the " + my_region + " region. You will use the " + containers[my_region] + " container for your SageMaker endpoint.")
+
+
+.. image:: ../../../images/blog/5th/sagemaker-jupyterlab-run.png
+  :width: 900px
+
+| 上部のメニューに表示されている「▶︎」を押下するか、「Shift」+「Enter」で実行できます。
+| この後もいくつかコードを示しますが、同様の方法で実行してください。
 
 
 | セルの下側に下記のメッセージが出力されれば成功です。
