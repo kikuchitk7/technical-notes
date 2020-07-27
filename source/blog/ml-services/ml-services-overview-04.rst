@@ -245,7 +245,7 @@ Amazon SageMaker API およびその他の必要な AWS サービスとのやり
 
 | 上記の処理も改行して記載します。
 | Amazon SageMaker SDK for Python の `Estimator <https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator>`_ クラスのオプジェクトを生成しています。
-| 引数で学習の設定を行います。ここで設定する項目の意味を下記の表に示します。
+| パラメータ (引数) で学習の設定を行います。ここで設定する項目の意味を下記の表に示します。
 
 .. list-table::
     :header-rows: 1
