@@ -396,9 +396,17 @@
 <div class="line">推論用インスタンスを作成して、S3 バケットから学習済の機械学習モデルを、Amazon ECR から推論用コンテナイメージをダウンロードして、推論用コンテナを起動します。</div>
 <div class="line">アプリなどからアクセスするためのエンドポイントを作成しています。エンドポイントには HTTPS で接続します。</div>
 </div>
-<ul class="simple">
-<li><p>(備忘) エンドポイントの図をいれる</p></li>
-</ul>
+<div class="line-block">
+<div class="line">エンドポイントは Amazon SageMaker のコンソール画面から確認することができます。</div>
+<div class="line">左側の折りたたみメニューの「推論」をクリックして開き、「エンドポイント」をクリックします。</div>
+<div class="line">下記のようにそのアカウントとリージョンで稼働しているエンドポイントを確認することができます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-inference-endpoint-console.png"><img alt="../../_images/sagemaker-inference-endpoint-console.png" src="../../_images/sagemaker-inference-endpoint-console.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">エンドポイントを選択すると、詳細画面に移動します。</div>
+<div class="line">エンドポイントに関する様々な情報が提示されますが、「エンドポイント設定 &gt; URL」にてデプロイした機械学習モデルに接続するためのエンドポイントを確認することができます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-inference-endpoint-console-detail.png"><img alt="../../_images/sagemaker-inference-endpoint-console-detail.png" src="../../_images/sagemaker-inference-endpoint-console-detail.png" style="width: 900px;" /></a>
 </div>
 </div>
 <div class="section" id="b">
