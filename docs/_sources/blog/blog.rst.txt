@@ -5,12 +5,12 @@ AWS ではじめる機械学習
     :maxdepth: 1
     :caption: Contents:
 
-    summary/introduction
-    summary/overview
-    ai-services/ai-services-overview
-    ml-services/ml-services-overview-01
-    ml-services/ml-services-overview-02
-    ml-services/ml-services-overview-03
-    ml-services/ml-services-overview-04
-    ml-services/ml-services-overview-05
+    .. summary/introduction
+    .. summary/overview
+    .. ai-services/ai-services-overview
+    .. ml-services/ml-services-overview-01
+    .. ml-services/ml-services-overview-02
+    .. ml-services/ml-services-overview-03
+    .. ml-services/ml-services-overview-04
+    .. ml-services/ml-services-overview-05
     
