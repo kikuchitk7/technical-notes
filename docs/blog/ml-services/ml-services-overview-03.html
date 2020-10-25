@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,34 +12,30 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" href="ml-services-overview-04.html" />
-    <link rel="prev" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" href="ml-services-overview-02.html" /> 
+    <link rel="search" title="検索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+            <a href="../../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -75,7 +72,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -84,46 +80,19 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-02.html">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">今回の記事で実施すること</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">ステップ 3: データの準備</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#a-3b">ステップ 3a, 3b: ノートブックを起動する</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c">ステップ 3c: ノートブックの利用準備をする</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#d-s3">ステップ 3d: S3 バケットを作成する</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#e">ステップ 3e: 学習・推論に利用するデータをダウンロードする</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#f">ステップ 3f: データを分割する</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">著者紹介</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-04.html">[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-05.html">[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -162,9 +131,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
       <li>[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</li>
     
@@ -385,9 +352,9 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">gmtime</span><span class="p">,</span> <span class="n">strftime</span>
@@ -401,7 +368,7 @@
               <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
               <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
 <span class="n">my_region</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">region_name</span> <span class="c1"># set the region of the instance</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success - the MySageMakerInstance is in the &quot;</span> <span class="o">+</span> <span class="n">my_region</span> <span class="o">+</span> <span class="s2">&quot; region. You will use the &quot;</span> <span class="o">+</span> <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; container for your SageMaker endpoint.&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Success - the MySageMakerInstance is in the &quot;</span> <span class="o">+</span> <span class="n">my_region</span> <span class="o">+</span> <span class="s2">&quot; region. You will use the &quot;</span> <span class="o">+</span> <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; container for your SageMaker endpoint.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-run.png"><img alt="../../_images/sagemaker-jupyterlab-run.png" src="../../_images/sagemaker-jupyterlab-run.png" style="width: 900px;" /></a>
@@ -421,8 +388,8 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="c1"># (以下、省略)</span>
 </pre></div>
 </div>
@@ -508,9 +475,9 @@
       <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">CreateBucketConfiguration</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">:</span> <span class="n">my_region</span> <span class="p">})</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S3 bucket created successfully&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;S3 bucket created successfully&#39;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S3 error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;S3 error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -555,15 +522,15 @@
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
   <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
   <span class="n">model_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank_clean.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Success: Data loaded into dataframe.&#39;</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Success: Data loaded into dataframe.&#39;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -599,7 +566,7 @@
 <h4>実行するコード<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -643,33 +610,16 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="ml-services-overview-04.html" class="btn btn-neutral float-right" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="ml-services-overview-02.html" class="btn btn-neutral float-left" title="[第5回] Amazon SageMaker の基本的な使い方を理解する (1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 著作権 2019, kikuchitk7
+        &copy; Copyright 2019, kikuchitk7
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -680,6 +630,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

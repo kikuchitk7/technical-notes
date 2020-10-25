@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,34 +12,30 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="[第4回] ML サービスの全体像を把握する" href="../ml-services/ml-services-overview-01.html" />
-    <link rel="prev" title="[第2回] AWS の機械学習サービスとは" href="../summary/overview.html" /> 
+    <link rel="search" title="検索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+            <a href="../../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -75,7 +72,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -84,40 +80,19 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">[第3回] AI サービスの全体像を把握する</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">AI サービスとは</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">AI サービスの全体像</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">AI サービスの特徴</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">著者紹介</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../ml-services/ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ml-services/ml-services-overview-02.html">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ml-services/ml-services-overview-03.html">[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ml-services/ml-services-overview-04.html">[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ml-services/ml-services-overview-05.html">[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -156,9 +131,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
       <li>[第3回] AI サービスの全体像を把握する</li>
     
@@ -695,33 +668,16 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../ml-services/ml-services-overview-01.html" class="btn btn-neutral float-right" title="[第4回] ML サービスの全体像を把握する" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../summary/overview.html" class="btn btn-neutral float-left" title="[第2回] AWS の機械学習サービスとは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 著作権 2019, kikuchitk7
+        &copy; Copyright 2019, kikuchitk7
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -732,6 +688,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

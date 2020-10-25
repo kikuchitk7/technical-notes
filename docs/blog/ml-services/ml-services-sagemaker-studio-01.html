@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第9回] Amazon SageMaker Studio の基本的な使い方 (1) &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="AWS ではじめる機械学習" href="../blog.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">Amazon SageMaker Studio とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
+        
+      <li>[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/blog/ml-services/ml-services-sagemaker-studio-01.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-sagemaker-studio-1">
+<h1>[第9回] Amazon SageMaker Studio の基本的な使い方 (1)<a class="headerlink" href="#amazon-sagemaker-studio-1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>第5〜8回目の連載では、Amazon SageMaker のチュートリアルを使って、基本的な使い方の紹介をさせていただきました。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5099">「【第5回】Amazon SageMakerの基本的な使い方を理解する(1)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5101">「【第6回】Amazon SageMakerの基本的な使い方を理解する(2)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5113">「【第7回】Amazon SageMakerの基本的な使い方を理解する(3)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5115">「【第8回】Amazon SageMakerの基本的な使い方を理解する(4)」</a></p></li>
+</ul>
+</div></blockquote>
+<p>これから数回に渡って、昨年末にアメリカのラスベガスで開催された AWS re:Invent 2019 で発表された新機能である「Amazon SageMaker Studio」について扱いたいと思います。</p>
+<p>今回からの連載では、下記を理解していただくことを目標に解説をしていきます。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Amazon SageMaker Studio の概要と基本的な利用方法がわかる。</p></li>
+<li><p>Amazon SageMaker Autopilot などの関連機能の概要や基本的な利用機能もわかる。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="amazon-sagemaker-studio">
+<h2>Amazon SageMaker Studio とは<a class="headerlink" href="#amazon-sagemaker-studio" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">Amazon SageMaker Studio は、Amazon SageMaker が提供する統合開発環境 (IDE) です。</div>
+</div>
+<div class="line-block">
+<div class="line">AWS re:Invent 2019 では、Amazon SageMaker にたくさんの機能が追加されましたが、これらの機能とシームレスに連携して利用することができます。</div>
+<div class="line">機械学習ワークフローの大部分のタスクをカバーしているので、利用者は Amazon SageMaker Studio だけで作業を完結することができます。</div>
+</div>
+<div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg"><img alt="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" src="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">AWS の ML スタック</span><a class="headerlink" href="#id4" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="figure align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-service-coverage.jpg"><img alt="../../_images/9th-sagemaker-studio-service-coverage.jpg" src="../../_images/9th-sagemaker-studio-service-coverage.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="line-block">
+<div class="line">上図に登場する Amazon SageMaker 機能の概要を下記に示します。</div>
+<div class="line">次回以降の連載でも登場します。その際に詳しく解説することとして、ここでは概要に留めます。</div>
+</div>
+<ul class="simple">
+<li><p>Amazon SageMaker Notebooks : Amazon SageMaker Studio に統合された完全マネージドなノートブック</p></li>
+<li><p>Amazon SageMaker Experiments : 学習ジョブの実行履歴や設定、結果を一元管理</p></li>
+<li><p>Amazon SageMaker Debugger : 学習の監視、記録、分析と異常の検知</p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/autopilot/">Amazon SageMaker Autopilot</a> : AutoML 機能による機械学習モデルの自動構築</p></li>
+<li><p>Amazon SageMaker Model Monitor : 本番環境にデプロイした推論エンドポイントの継続的な監視</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>まとめ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回はAmazon SageMaker Studio の概要を中心に解説をしました。
+次回からは実際に Amazon SageMaker Studio を使っていきたいと思います。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id3">
+<h2>著者紹介<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../blog.html" class="btn btn-neutral float-left" title="AWS ではじめる機械学習" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, kikuchitk7
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

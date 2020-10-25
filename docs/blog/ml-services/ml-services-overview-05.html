@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,33 +12,30 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" />
-    <link rel="prev" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" href="ml-services-overview-04.html" /> 
+    <link rel="search" title="検索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+            <a href="../../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -74,7 +72,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,45 +80,19 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-02.html">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-03.html">[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-04.html">[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">今回の記事で実施すること</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">ステップ 5: モデルのデプロイ</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#a">ステップ 5a: 推論エンドポイントを作成して、モデルをデプロイする</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#b">ステップ 5b: 推論を行う</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">ステップ 6: モデルの性能評価</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">ステップ 7: リソースを終了する</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">著者紹介</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -160,9 +131,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
       <li>[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</li>
     
@@ -422,7 +391,7 @@
 <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">serializer</span> <span class="o">=</span> <span class="n">csv_serializer</span> <span class="c1"># set the serializer type</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">xgb_predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data_array</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1"># predict!</span>
 <span class="n">predictions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1"># and turn the prediction into an array</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">predictions_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">predictions_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>実行した結果出力される <cite>(12357,)</cite> は、予測した顧客の数 (12,357人) です。</p>
@@ -463,11 +432,11 @@
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{0:&lt;20}{1:&lt;4.1f}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Overall Classification Rate: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:&lt;15}{1:&lt;15}{2:&gt;8}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">,</span> <span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="s2">&quot;Purchase&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observed&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:&lt;15}{1:&lt;2.0f}</span><span class="s2">% (</span><span class="si">{2:&lt;}</span><span class="s2">)</span><span class="si">{3:&gt;6.0f}</span><span class="s2">% (</span><span class="si">{4:&lt;}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="n">tn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">fp</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:&lt;16}{1:&lt;1.0f}</span><span class="s2">% (</span><span class="si">{2:&lt;}</span><span class="s2">)</span><span class="si">{3:&gt;7.0f}</span><span class="s2">% (</span><span class="si">{4:&lt;}</span><span class="s2">) </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Purchase&quot;</span><span class="p">,</span> <span class="n">fn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">tp</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{0:&lt;20}{1:&lt;4.1f}%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Overall Classification Rate: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;15}{1:&lt;15}{2:&gt;8}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">,</span> <span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="s2">&quot;Purchase&quot;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Observed&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;15}{1:&lt;2.0f}% ({2:&lt;}){3:&gt;6.0f}% ({4:&lt;})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;No Purchase&quot;</span><span class="p">,</span> <span class="n">tn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">fp</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0:&lt;16}{1:&lt;1.0f}% ({2:&lt;}){3:&gt;7.0f}% ({4:&lt;}) </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Purchase&quot;</span><span class="p">,</span> <span class="n">fn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">tp</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -648,31 +617,16 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="ml-services-overview-04.html" class="btn btn-neutral float-left" title="[第7回] Amazon SageMaker の基本的な使い方を理解する (3)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 著作権 2019, kikuchitk7
+        &copy; Copyright 2019, kikuchitk7
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -683,6 +637,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
