@@ -91,9 +91,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../blog.html">AWS ではじめる機械学習</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">Amazon SageMaker Studio とは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">Amazon SageMaker Studio とは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Amazon SageMaker Studio を利用するメリット</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -195,13 +198,13 @@
 <div class="line">AWS re:Invent 2019 では、Amazon SageMaker にたくさんの機能が追加されましたが、これらの機能とシームレスに連携して利用することができます。</div>
 <div class="line">機械学習ワークフローの大部分のタスクをカバーしているので、利用者は Amazon SageMaker Studio だけで作業を完結することができます。</div>
 </div>
-<div class="figure align-default" id="id4">
-<a class="reference internal image-reference" href="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg"><img alt="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" src="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">AWS の ML スタック</span><a class="headerlink" href="#id4" title="この画像へのパーマリンク">¶</a></p>
-</div>
 <div class="figure align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg"><img alt="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" src="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">AWS の ML スタック</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-service-coverage.jpg"><img alt="../../_images/9th-sagemaker-studio-service-coverage.jpg" src="../../_images/9th-sagemaker-studio-service-coverage.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">¶</a></p>
+<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id6" title="この画像へのパーマリンク">¶</a></p>
 </div>
 <div class="line-block">
 <div class="line">上図に登場する Amazon SageMaker 機能の概要を下記に示します。</div>
@@ -214,15 +217,73 @@
 <li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/autopilot/">Amazon SageMaker Autopilot</a> : AutoML 機能による機械学習モデルの自動構築</p></li>
 <li><p>Amazon SageMaker Model Monitor : 本番環境にデプロイした推論エンドポイントの継続的な監視</p></li>
 </ul>
-</div>
 <div class="section" id="id2">
-<h2>まとめ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>Amazon SageMaker Studio を利用するメリット<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Amazon SageMaker Studio を利用するメリットについて考えていきたいと思います。</p>
+<div class="line-block">
+<div class="line">まず、従来の Amazon SageMaker における課題をみてみましょう。</div>
+<div class="line">下記に Amazon SageMaker を利用する際によく発生する課題とその所在を示します。(オレンジ色の吹き出しで記載)</div>
+<div class="line">なお、「維持・運用」とは推論以降の本番システムの稼働後の維持・運用工程を指します。</div>
+</div>
+<div class="figure align-default" id="id7">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-usage-problem.jpg"><img alt="../../_images/9th-sagemaker-usage-problem.jpg" src="../../_images/9th-sagemaker-usage-problem.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 3 </span><span class="caption-text">Amazon SageMaker を利用する際の課題とその所在</span><a class="headerlink" href="#id7" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 29%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項番</p></th>
+<th class="head"><p>主な関連工程</p></th>
+<th class="head"><p>問題点</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">開発</div>
+<div class="line">維持・運用</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">* 利用者がノートブックインスタンスのサイジングを行い、作成する必要がある。</div>
+<div class="line">* ノートブックインスタンスのリソースの利用状況のモニタリングを継続的に行い、必要に応じてスケールアップなどの対処を行う必要がある。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>全体</p></td>
+<td><ul class="simple">
+<li><p>開発は主にノートブックインスタンスの Jupyter Notebook/JupyterLab 上で行うが、過去・現在の学習ジョブや推論エンドポイントの情報を確認したい場合はコマンドを実行するか、AWS マネジメントコンソールでのページ遷移が必要となる。(項番3とも関連)</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><div class="line-block">
+<div class="line">推論</div>
+<div class="line">維持・運用</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>学習を繰り返す度に機械学習モデルが増えるので、それぞれの機械学習モデルとハイパーパラメータや精度などの情報を一覧で管理したくなるが、AWS マネジメントコンソールではそれができない。Excel や Jupyter で管理する仕組みを実装する必要がある。</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>まとめ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回はAmazon SageMaker Studio の概要を中心に解説をしました。
 次回からは実際に Amazon SageMaker Studio を使っていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id3">
-<h2>著者紹介<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h2>著者紹介<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
