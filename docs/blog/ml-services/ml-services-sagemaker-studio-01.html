@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,30 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="prev" title="AWS ではじめる機械学習" href="../blog.html" /> 
@@ -51,7 +50,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+            <a href="../../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -74,7 +73,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -95,11 +93,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">Amazon SageMaker Studio とは</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#amazon-sagemaker">Amazon SageMaker の利用時の課題</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Amazon SageMaker Studio を利用するメリット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Amazon SageMaker Studio の導入メリット</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -109,7 +107,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -148,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../blog.html">AWS ではじめる機械学習</a> &raquo;</li>
         
@@ -202,13 +199,9 @@
 <div class="line">AWS re:Invent 2019 では、Amazon SageMaker にたくさんの機能が追加されましたが、これらの機能とシームレスに連携して利用することができます。</div>
 <div class="line">機械学習ワークフローの大部分のタスクをカバーしているので、利用者は Amazon SageMaker Studio だけで作業を完結することができます。</div>
 </div>
-<div class="figure align-default" id="id5">
+<div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg"><img alt="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" src="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">AWS の ML スタック</span><a class="headerlink" href="#id5" title="この画像へのパーマリンク">¶</a></p>
-</div>
-<div class="figure align-default" id="id6">
-<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-service-coverage.jpg"><img alt="../../_images/9th-sagemaker-studio-service-coverage.jpg" src="../../_images/9th-sagemaker-studio-service-coverage.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id6" title="この画像へのパーマリンク">¶</a></p>
+<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">AWS の ML スタック</span><a class="headerlink" href="#id7" title="この画像へのパーマリンク">¶</a></p>
 </div>
 <div class="line-block">
 <div class="line">上図に登場する Amazon SageMaker 機能の概要を下記に示します。</div>
@@ -225,13 +218,13 @@
 <div class="section" id="amazon-sagemaker">
 <h3>Amazon SageMaker の利用時の課題<a class="headerlink" href="#amazon-sagemaker" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="line-block">
-<div class="line">まずは、従来の Amazon SageMaker における課題をみてみましょう。</div>
 <div class="line">下記に Amazon SageMaker を利用する際によく発生する課題とその所在を示します。(オレンジ色の吹き出しで記載)</div>
-<div class="line">なお、「維持・運用」とは推論以降の本番システムの稼働後の維持・運用工程を指します。</div>
+<div class="line">これらの作業は価値を生まない作業であり、開発者にとってはストレスとなるため、可能な限りなくしたい作業であると考えられます。</div>
 </div>
-<div class="figure align-default" id="id7">
+<p>なお、「維持・運用」とは推論以降の本番システムの稼働後の維持・運用工程を指します。</p>
+<div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../../_images/9th-sagemaker-usage-problem.jpg"><img alt="../../_images/9th-sagemaker-usage-problem.jpg" src="../../_images/9th-sagemaker-usage-problem.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">図 3 </span><span class="caption-text">Amazon SageMaker を利用する際の課題とその所在</span><a class="headerlink" href="#id7" title="この画像へのパーマリンク">¶</a></p>
+<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">Amazon SageMaker を利用する際の課題とその所在</span><a class="headerlink" href="#id8" title="この画像へのパーマリンク">¶</a></p>
 </div>
 <table class="colwidths-given docutils align-default">
 <colgroup>
@@ -252,27 +245,28 @@
 <div class="line">維持・運用</div>
 </div>
 </td>
-<td><div class="line-block">
-<div class="line">* 利用者がノートブックインスタンスのサイジングを行い、作成する必要がある。</div>
-<div class="line">* ノートブックインスタンスのリソースの利用状況のモニタリングを継続的に行い、必要に応じてスケールアップなどの対処を行う必要がある。</div>
-</div>
+<td><ul class="simple">
+<li><p>利用者がノートブックインスタンスのサイジングを行い、作成する必要がある。</p></li>
+<li><p>ノートブックインスタンスのリソースの利用状況のモニタリングを継続的に行い、必要に応じてスケールアップなどの対処を行う必要がある。</p></li>
+</ul>
 </td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p>全体</p></td>
 <td><ul class="simple">
 <li><p>開発は主にノートブックインスタンスの Jupyter Notebook/JupyterLab 上で行うが、過去・現在の学習ジョブや推論エンドポイントの情報を確認したい場合はコマンドを実行するか、AWS マネジメントコンソールでのページ遷移が必要となる。(項番3とも関連)</p></li>
+<li><p>学習を繰り返す度に機械学習モデルが増えるので、それぞれの機械学習モデルとハイパーパラメータや精度などの情報を一覧で管理したくなるが、AWS マネジメントコンソールではそれができない。Excel や Jupyter で管理する仕組みを実装する必要がある。</p></li>
 </ul>
 </td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><div class="line-block">
-<div class="line">推論</div>
+<div class="line">開発</div>
 <div class="line">維持・運用</div>
 </div>
 </td>
 <td><ul class="simple">
-<li><p>学習を繰り返す度に機械学習モデルが増えるので、それぞれの機械学習モデルとハイパーパラメータや精度などの情報を一覧で管理したくなるが、AWS マネジメントコンソールではそれができない。Excel や Jupyter で管理する仕組みを実装する必要がある。</p></li>
+<li><p>開発者の増員とともに IAM ユーザの数が増える。機械学習エンジニアを一時的に雇用するようなケースでも IAM ユーザの払い出しが必要となる。</p></li>
 </ul>
 </td>
 </tr>
@@ -280,18 +274,63 @@
 </table>
 </div>
 <div class="section" id="id2">
-<h3>Amazon SageMaker Studio を利用するメリット<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Amazon SageMaker Studio は、上記の課題に対するソリューションを提供してくれます。</p>
-</div>
-</div>
+<h3>Amazon SageMaker Studio の導入メリット<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Amazon SageMaker Studio は、上記の課題に対するソリューションを提供してくれます。
+利用者は価値を生まない作業から解放され、価値の創出に注力することができます。</p>
 <div class="section" id="id3">
-<h2>まとめ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h4>ノートブックインスタンスの作成・管理が不要<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Amazon SageMaker Studio では、「Amazon SageMaker Notebooks」というフルマネージドなノートブックを利用することができます。
+Amazon SageMaker Notebooks は JypyterLab がベースとなるノートブックです。
+これまでの Jupyter Notebook や JypyterLab と同じ調子で利用することができます。
+既存のノートブックファイルを持ち込んで利用することができます。</p>
+<p>ノートブックインスタンスを利用する開発スタイルとの違いがわかりづらいかもしれないですが、
+利用者が明示的にノートブックインスタンスを作成する必要がありません。
+インスタンスタイプやノートブックインスタンスにアタッチするディスクは負荷や利用量に応じて自動調整されるため、利用者が意識する必要がありません。</p>
+<p>次回以降に実際に Amazon SageMaker Studio を利用してみますので、ノートブックインスタンスの作成・管理が不要であることを実際に示したいと思います。</p>
+</div>
+<div class="section" id="id4">
+<h4>開発・学習・推論のほぼ全ての作業が Amazon SageMaker Studio で完結<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="figure align-default" id="id9">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-service-coverage.jpg"><img alt="../../_images/9th-sagemaker-studio-service-coverage.jpg" src="../../_images/9th-sagemaker-studio-service-coverage.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 3 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id9" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>過去の学習ジョブの情報をみたいという場合
+現在デプロイされている推論エンドポイントに関する情報をみたい
+下記のいずれか。一手間が必要。</p>
+<ul class="simple">
+<li><p>ノートブックから Python のコードか AWS CLI で情報参照</p></li>
+<li><p>Web ブラウザで新しいタブを開いて、AWS マネジメントコンソールで学習ジョブへ</p></li>
+</ul>
+<p>上記は単一の場合。
+並べて比較したいということもある。
+やはり同じような対応が必要。
+場合によっては、Excel で管理するかもしれない。作成も更新も面倒。</p>
+<p>Amazon SageMaker Studio では画面遷移をせずにここだけで情報が完結する。
+メニューを選択したり、タブを切り替える程度で情報を参照することができる。</p>
+<p>情報は自動で一覧化されている。
+詳細な情報はドリルダウンするような感じで確認することができる。</p>
+<p>グラフを作ることもできる。</p>
+</div>
+<div class="section" id="iam">
+<h4>IAM ユーザを持たない利用者でも利用が可能<a class="headerlink" href="#iam" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Amazon SageMaker Studio では、AWS SSO と連携して外部 ID による認証認可を行うことができる。
+これにより、IAM ユーザを作成せずに機械学習の開発を行うことができます。</p>
+<p>組織の Idp を使う、外部から機械学習に強いエンジニアを一時的に追加する場合などが可能。
+IAM ユーザを作成せずに済む、AWS マネジメントコンソールへのログインという一手間を省くことができる。
+ID 管理の対象がへる。</p>
+<p>AWS SSO は2020年9月に東京に対応した。<a class="reference external" href="https://aws.amazon.com/jp/blogs/news/aws-single-sign-on-tokyo/">https://aws.amazon.com/jp/blogs/news/aws-single-sign-on-tokyo/</a>
+Amazon SageMaker Studio の対応まち。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>まとめ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回はAmazon SageMaker Studio の概要を中心に解説をしました。
 次回からは実際に Amazon SageMaker Studio を使っていきたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id4">
-<h2>著者紹介<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>著者紹介<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
@@ -322,19 +361,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 著作権 2019, kikuchitk7
+        &copy; Copyright 2019, kikuchitk7
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -345,6 +376,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

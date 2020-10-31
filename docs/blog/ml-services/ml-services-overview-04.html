@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,30 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" /> 
 </head>
@@ -50,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+            <a href="../../index.html" class="icon icon-home"> technical notes
           
 
           
@@ -73,7 +72,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -95,7 +93,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -134,7 +131,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
       <li>[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</li>
     
@@ -307,16 +304,16 @@
 <div class="section" id="id5">
 <h4>実行するコード<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;train/train.csv&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
-<span class="n">s3_input_train</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">s3_input</span><span class="p">(</span><span class="n">s3_data</span><span class="o">=</span><span class="s1">&#39;s3://</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">/train&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
+<span class="n">s3_input_train</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">s3_input</span><span class="p">(</span><span class="n">s3_data</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/train&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
 <h4>コードの解説<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;y_no&#39;</span><span class="p">,</span> <span class="s1">&#39;y_yes&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -362,7 +359,7 @@
 <div class="line">その後の処理はメソッド名から推測できると思いますが、<cite>resource</cite> メソッドで S3 を設定し、S3 バケット名とオブジェクト名を指定して、学習データを S3 バケットにアップロードしています。</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s3_input_train</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">s3_input</span><span class="p">(</span>
-    <span class="n">s3_data</span><span class="o">=</span><span class="s1">&#39;s3://</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">/train&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span>
+    <span class="n">s3_data</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/train&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span>
     <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span>
 <span class="p">)</span>
 </pre></div>
@@ -395,7 +392,7 @@
 <h4>実行するコード<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-<span class="n">xgb</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">],</span><span class="n">role</span><span class="p">,</span> <span class="n">train_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">train_instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span><span class="n">sagemaker_session</span><span class="o">=</span><span class="n">sess</span><span class="p">)</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">],</span><span class="n">role</span><span class="p">,</span> <span class="n">train_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">train_instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span><span class="n">sagemaker_session</span><span class="o">=</span><span class="n">sess</span><span class="p">)</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">min_child_weight</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">silent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;binary:logistic&#39;</span><span class="p">,</span><span class="n">num_round</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -411,7 +408,7 @@
   <span class="n">role</span><span class="p">,</span>
   <span class="n">train_instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
   <span class="n">train_instance_type</span><span class="o">=</span><span class="s1">&#39;ml.m4.xlarge&#39;</span><span class="p">,</span>
-  <span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span>
+  <span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;s3://{}/{}/output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">),</span>
   <span class="n">sagemaker_session</span><span class="o">=</span><span class="n">sess</span>
 <span class="p">)</span>
 </pre></div>
@@ -665,19 +662,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 著作権 2019, kikuchitk7
+        &copy; Copyright 2019, kikuchitk7
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -688,6 +677,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
