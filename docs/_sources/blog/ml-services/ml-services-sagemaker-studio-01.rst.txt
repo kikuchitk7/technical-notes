@@ -39,6 +39,12 @@ Amazon SageMaker Studio とは
 ----------------------------------------
 
 Amazon SageMaker Studio は、AWS re:Invent 2019 で発表された Amazon SageMaker の提供する統合開発環境 (IDE) です。
+
+.. figure:: ../../../images/9th-sagemaker-studio-gui-example.jpg
+  :width: 900px
+
+  Amazon SageMaker Studio の GUI
+
 同イベントでは、Amazon SageMaker Studio の他にもたくさんの機能が追加されて、Amazon SageMaker が大幅に機能強化されました。
 下記に主な新機能の概要を示します。
 いくつかの機能は次回以降の連載に登場しますので、ここでは概要の提示に留めます。
@@ -180,10 +186,16 @@ Amazon SageMaker では検索機能は提供されていますが、情報を一
 情報は自動で追加・更新されて一覧化されるため、利用者はそれを参照するだけです。
 ドリルダウンをして詳細な情報を参照したり、グラフを作成することもできます。
 
-.. .. figure:: ../../../images/9th-sagemaker-studio-xxx.jpg
-..   :width: 900px
+.. figure:: ../../../images/9th-sagemaker-studio-jobs-list.jpg
+  :width: 900px
 
-..   Amazon SageMaker Studio の
+  Amazon SageMaker Studio の学習ジョブの一覧
+
+
+.. figure:: ../../../images/9th-sagemaker-studio-aws-settings.jpg
+  :width: 900px
+
+  Amazon SageMaker Studio の学習ジョブの詳細 (AWS Settings)
 
 
 IAM ユーザを持たない利用者でも利用が可能
