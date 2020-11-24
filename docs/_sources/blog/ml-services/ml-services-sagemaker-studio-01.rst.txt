@@ -209,7 +209,7 @@ Amazon SageMaker Studio では、`AWS Single Sign-On (SSO) <https://aws.amazon.c
 
   Amazon SageMaker Studio のセットアップ画面
 
-AWS SSO は SAML 2.0 をサポートしており、Active Derectory などの既存のディレクトリサービスや GitHub や Slack などのアプリケーションと連携することも可能です。
+AWS SSO は SAML 2.0 をサポートしており、Active Directory などの既存のディレクトリサービスや GitHub や Slack などのアプリケーションと連携することも可能です。
 また、Amazon SageMaker Studio に直接アクセスするための URL が払い出されます。
 
 例えば、機械学習は専門的な知識が必要であるため、外部からエンジニアを一時的に雇用する場合があるかと思います。
