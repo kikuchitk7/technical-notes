@@ -5,10 +5,10 @@ Cloud Native
    :maxdepth: 1
    :caption: Contents:
 
-   cloud/cloud
    basics/basics
+   cloud/cloud
    containerization/containerization
-   cicd/cicd
+   devops/devops
 
 
 Cloud Native Trail Map

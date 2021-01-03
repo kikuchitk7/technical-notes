@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Machine Learning &mdash; technical notes  ドキュメント</title>
+  <title>Infrastructure as Code &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -37,8 +37,8 @@
     
     <link rel="index" title="索引" href="../../../../genindex.html" />
     <link rel="search" title="検索" href="../../../../search.html" />
-    <link rel="next" title="Overview" href="overview.html" />
-    <link rel="prev" title="DynamoDB" href="../databases/dynamodb.html" /> 
+    <link rel="next" title="Terraform" href="terraform/terraform.html" />
+    <link rel="prev" title="Gitの基本事項" href="../git/git-basics.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,23 +86,18 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../../cloudnative.html">Cloud Native</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../cloud/cloud.html">Cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../basics/basics.html">基礎事項</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../cloud.html">Cloud</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../aws.html">AWS</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../analytics/analytics.html">Analytics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cli/cli.html">AWS CLI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../compute/compute.html">Compute</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../customerengagement/customerengagement.html">Customer Engagement</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../databases/databases.html">Databases</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Machine Learning</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">参考</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../networking_contents_delivery/networking_contents_delivery.html">Networking &amp; Contents Delivery</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../containerization/containerization.html">Containerization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../devops/devops.html">DevOps</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../devops.html">DevOps</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../cicd.html">CI/CD</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../cicd-overview.html">CI/CD の概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../git/git.html">Git</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Infrastructure as Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cloudnative.html#cloud-native-trail-map">Cloud Native Trail Map</a></li>
 </ul>
 </li>
@@ -159,17 +154,17 @@
         
           <li><a href="../../../cloudnative.html">Cloud Native</a> &raquo;</li>
         
-          <li><a href="../../cloud.html">Cloud</a> &raquo;</li>
+          <li><a href="../../devops.html">DevOps</a> &raquo;</li>
         
-          <li><a href="../aws.html">AWS</a> &raquo;</li>
+          <li><a href="../cicd.html">CI/CD</a> &raquo;</li>
         
-      <li>Machine Learning</li>
+      <li>Infrastructure as Code</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../../_sources/cloudnative/cloud/aws/machinelearning/machinelearning.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/cloudnative/devops/cicd/iac/iac.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -182,24 +177,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="machine-learning">
-<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="infrastructure-as-code">
+<h1>Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ai-services/ai-services.html">AI サービス</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml-services/ml-services.html">ML サービス</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning-tool/learning-tool.html">学習ツール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform/terraform.html">Terraform</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="id1">
-<h1>参考<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/machine-learning/">AWS での機械学習</a></p></li>
-<li><p><a class="reference external" href="https://aws.amazon.com/jp/blogs/machine-learning/">AWS Machine Learning Blog</a></p></li>
-</ul>
 </div>
 
 
@@ -210,10 +195,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="terraform/terraform.html" class="btn btn-neutral float-right" title="Terraform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../databases/dynamodb.html" class="btn btn-neutral float-left" title="DynamoDB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../git/git-basics.html" class="btn btn-neutral float-left" title="Gitの基本事項" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
