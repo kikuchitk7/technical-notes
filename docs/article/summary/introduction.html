@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第1回] AWS ではじめる機械学習 &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aws/aws.html">AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment/environment.html">環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case/case.html">事例</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>[第1回] AWS ではじめる機械学習</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/article/summary/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="aws">
+<h1>[第1回] AWS ではじめる機械学習<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>昨今は、ビジネスの様々な場面にデジタル技術を取り入れて、ビジネスを変革していく「デジタル・トランスフォーメーション (DX)」の必要性が訴えられています。
+デジタル技術には「機械学習」が含まれており、2000年代以降から現在も「第3次人工知能ブーム」の真っ只中にあると言われています。
+特にここ数年は「人工知能 (AI)」や「機械学習」に関連する情報を毎日のように目にするようになり、ビジネスにおける機械学習の成功事例の報告も増えています。</p>
+<p>その一方で、例えば下記のような悩みを持っている方が少なからず存在するのではないでしょうか？</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>機械学習を取り入れたいが、担い手がおらず導入に踏み切れない。</p></li>
+<li><p>機械学習の知識はある程度あるが、実装手段までは分からない。</p></li>
+<li><p>有償トレーニングの受講などノウハウ習得に費用をかけられない。</p></li>
+</ul>
+</div></blockquote>
+<p>そこで、この記事ではこのような悩みを持つ読者が、パブリック・クラウドとしてシェアの高い <a class="reference external" href="https://aws.amazon.com/jp/">AWS (Amazon Web Services)</a> が提供するサービスを使って、ビジネスに機械学習を取り入れていく方法を考えていきます。</p>
+<p>AWS では、「Amazon で培った機械学習に関するノウハウをすべての開発者に届ける」というコンセプトのもと、多数の <a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc2=h_ql_sol_use_ml">「機械学習サービス」</a> が提供されています。</p>
+<p>独自の機械学習モデルを開発・学習・推論したい開発者・データサイエンティスト向けの「ML サービス」だけでなく、利用者に機械学習のスキルがなくてもデータを用意するだけで気軽に機械学習を実現できる「AI サービス」もあります。</p>
+<p>機械学習に関する特別なノウハウが不要とはいいつつも、最大限活用していくためには各サービスの概要や使い方、ユースケースなどを理解することは必要です。
+機械学習サービスの基本事項を整理した上で、読者が持つビジネス課題に取り組む方法を考えていきます。</p>
+<img alt="../../_images/AWSの機械学習サービススタック.png" src="../../_images/AWSの機械学習サービススタック.png" />
+<p>(出典：<a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20190924-aws-black-belt-online-seminar-aws-ai-services">「20190924 AWS Black Belt Online Seminar AWS AI Service」</a>  P.11)</p>
+</div>
+<div class="section" id="id3">
+<h2>前提事項について<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>この記事における前提事項は下記です。</p>
+<div class="section" id="id4">
+<h3>想定読者<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>ビジネスに機械学習を取り入れたいと考えているシステム開発担当者を対象とする。</p></li>
+<li><p>機械学習に関する基礎的な知識を持っている。</p></li>
+<li><p>AWS アカウントを持っており、AWS マネージメントコンソールを使って、Amazon S3 などの基本サービスを使ったことがある。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3>目指す状態<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>AWS の機械学習サービスの種類、それぞれのサービスの概要や使い方がわかる。</p></li>
+<li><p>AWS の機械学習サービスや関連するサービスを組み合わせて、自身のビジネスに活用できる。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h3>注意事項<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この記事では、機械学習と AWS について、基礎的な知識があることを前提としています。
+「機械学習とは？」「AWS とは？」といったそれぞれの基礎的な知識や AWS の基本的な使い方に関する解説は行いません。(当該の記事に関連する技術の解説は適宜行います)</p>
+<p>機械学習に関する基礎的な知識は持っていない場合は、<a class="reference external" href="https://news.mynavi.jp/itsearch/article/solution/2697">「【連載】教えてカナコさん! これならわかるAI入門」</a> を参照してください。
+機械学習の基礎的な知識について非常にわかりやすく解説されています。</p>
+<p>また、 AWS はオンラインで多数の学習リソースが提供されています。
+例えば、下記のオンラインセミナーなどを必要に応じて参照してください。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://pages.awscloud.com/hajimete-ondemand-jp.html">「はじめてのアマゾン ウェブ サービス」</a></p></li>
+<li><p><a class="reference external" href="https://pages.awscloud.com/event_JAPAN_at-least-10-ondemand.html?trk=aws_event_page">「AWS ご利用開始時に最低限おさえておきたい10のこと」</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/aws-jp-introduction/aws-jp-webinar-service-cut/">「AWS サービス別資料」</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>今後の記事の投稿内容について<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今後は下記の流れで記事を投稿していくことを検討しています。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AWS の機械学習サービスの全体像について</p></li>
+<li><p>AI サービスに分類される10種類(※)の個々のサービスの概要と使い方について(※ 2019年11月現在のサービス数。上の図の分類で数えた場合)</p></li>
+<li><p>ML サービスに分類される Amazon SageMaker の概要と使い方について</p></li>
+</ul>
+</div></blockquote>
+<p>その他にも適宜下記の内容も織り交ぜていきます。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>実際のビジネスシーンを想定した例題を設定して、複数の AWS のサービスを組み合わせたソリューションを考える。</p></li>
+<li><p>AWS re:Invent 等のイベントで発表された新サービスや既存サービスの新機能の概要や使い方も紹介する。</p></li>
+</ul>
+</div></blockquote>
+<p>次回は、まずは総論としてAWS の機械学習サービスの全体像についてまとめます。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id10">
+<h2>著者紹介<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -16,7 +16,7 @@ Welcome to technical notes's documentation!
    environment/environment
    testing/testing
    case/case
-   blog/blog
+   article/blog
 
 
 Indices and tables
