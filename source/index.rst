@@ -13,9 +13,8 @@ Welcome to technical notes's documentation!
    cloudnative/cloudnative
    methodology/methodology
    python/python
-   environment/environment
-   case/case
    article/blog
+   others/others
 
 
 Indices and tables

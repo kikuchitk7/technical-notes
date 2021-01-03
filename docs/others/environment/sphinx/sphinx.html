@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CI/CD &mdash; technical notes  ドキュメント</title>
+  <title>Sphinx の環境構築 &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -37,8 +37,8 @@
     
     <link rel="index" title="索引" href="../../../genindex.html" />
     <link rel="search" title="検索" href="../../../search.html" />
-    <link rel="next" title="CI/CD の概要" href="cicd-overview.html" />
-    <link rel="prev" title="DevOps" href="../devops.html" /> 
+    <link rel="next" title="Sphinx と GitHub Pages を使ってドキュメントを公開する" href="sphinx-githubpages.html" />
+    <link rel="prev" title="環境構築" href="../environment.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,22 +86,22 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../cloudnative/cloudnative.html">Cloud Native</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../methodology.html">Methodology</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../devops.html">DevOps</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">CI/CD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cicd-overview.html">CI/CD の概要</a></li>
-<li class="toctree-l4"><a class="reference internal" href="git/git.html">Git</a></li>
-<li class="toctree-l4"><a class="reference internal" href="iac/iac.html">Infrastructure as Code</a></li>
-<li class="toctree-l4"><a class="reference internal" href="testing/testing.html">テスト</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../methodology/methodology.html">Methodology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../python/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../article/blog.html">AWS ではじめる機械学習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../others/others.html">その他</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../others.html">その他</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../environment.html">環境構築</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sphinx の環境構築</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sphinx-githubpages.html">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sphinx-custom-css.html">Sphinx でカスタム CSS を適用する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../case/case.html">事例</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -148,17 +148,17 @@
     
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../../methodology.html">Methodology</a> &raquo;</li>
+          <li><a href="../../others.html">その他</a> &raquo;</li>
         
-          <li><a href="../devops.html">DevOps</a> &raquo;</li>
+          <li><a href="../environment.html">環境構築</a> &raquo;</li>
         
-      <li>CI/CD</li>
+      <li>Sphinx の環境構築</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/methodology/devops/cicd/cicd.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/others/environment/sphinx/sphinx.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -171,15 +171,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ci-cd">
-<h1>CI/CD<a class="headerlink" href="#ci-cd" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="sphinx">
+<h1>Sphinx の環境構築<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cicd-overview.html">CI/CD の概要</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git/git.html">Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="iac/iac.html">Infrastructure as Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing/testing.html">テスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-githubpages.html">Sphinx と GitHub Pages を使ってドキュメントを公開する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-by-markdown.html">Sphinx のドキュメントを Markdown で作成する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-custom-css.html">Sphinx でカスタム CSS を適用する</a></li>
 </ul>
 </div>
 </div>
@@ -192,10 +191,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cicd-overview.html" class="btn btn-neutral float-right" title="CI/CD の概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sphinx-githubpages.html" class="btn btn-neutral float-right" title="Sphinx と GitHub Pages を使ってドキュメントを公開する" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../devops.html" class="btn btn-neutral float-left" title="DevOps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../environment.html" class="btn btn-neutral float-left" title="環境構築" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
