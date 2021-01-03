@@ -5,6 +5,7 @@ Cloud Native
    :maxdepth: 1
    :caption: Contents:
 
+   cloud/cloud
    basics/basics
    containerization/containerization
    cicd/cicd
