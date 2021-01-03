@@ -24,7 +24,7 @@ Amazon SageMaker とは
 ----------------------
 - `サービスの紹介ページ <https://aws.amazon.com/jp/sagemaker/>`_ より。
 
-.. image:: ../../../../../images/amazon_sagemaker_services.png
+.. image:: /../images/amazon_sagemaker_services.png
 
 開発フロー
 ---------------

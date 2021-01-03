@@ -28,7 +28,7 @@ CD (Continuous Delivery/Deploy)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - Continuous Delivery と Continuous Deploy は異なる。
 
-.. image:: ../../../images/aws_cicd_pipeline.png
+.. image:: /../images/aws_cicd_pipeline.png
 
 
 Continuous Delivery
