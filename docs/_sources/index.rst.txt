@@ -14,7 +14,6 @@ Welcome to technical notes's documentation!
    methodology/methodology
    python/python
    environment/environment
-   testing/testing
    case/case
    article/blog
 
