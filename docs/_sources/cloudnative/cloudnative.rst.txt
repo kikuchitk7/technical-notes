@@ -8,7 +8,6 @@ Cloud Native
    basics/basics
    cloud/cloud
    containerization/containerization
-   devops/devops
 
 
 Cloud Native Trail Map

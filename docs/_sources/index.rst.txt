@@ -10,8 +10,8 @@ Welcome to technical notes's documentation!
    :maxdepth: 1
    :caption: Contents:
 
-   aws/aws
    cloudnative/cloudnative
+   methodology/methodology
    python/python
    environment/environment
    testing/testing
