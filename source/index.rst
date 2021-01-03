@@ -13,7 +13,7 @@ Welcome to technical notes's documentation!
    cloudnative/cloudnative
    methodology/methodology
    softwaredevelopment/softwaredevelopment
-   article/blog
+   article/article
    others/others
 
 
