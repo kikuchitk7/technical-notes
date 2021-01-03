@@ -12,7 +12,7 @@ Welcome to technical notes's documentation!
 
    cloudnative/cloudnative
    methodology/methodology
-   python/python
+   softwaredevelopment/softwaredevelopment
    article/blog
    others/others
 
