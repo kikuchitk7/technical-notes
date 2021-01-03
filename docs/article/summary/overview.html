@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第2回] AWS の機械学習サービスとは &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../methodology/methodology.html">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../article.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../others/others.html">その他</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>[第2回] AWS の機械学習サービスとは</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/article/summary/overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="aws">
+<h1>[第2回] AWS の機械学習サービスとは<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> は、本連載の背景についてご説明させていただき、想定読者や目指す状態などを設定しました。今回から AWS の機械学習サービスの具体的な内容を見ていきたいと思います。</p>
+<div class="line-block">
+<div class="line">ところで、2019年12月1日〜6日にアメリカのラスベガスにて AWS の最大のイベントである <a class="reference external" href="https://reinvent.awsevents.com/">AWS re:Invent 2019</a> が開催され、全部で70を超える新サービスが発表されました。</div>
+<div class="line">注目すべきなのは、機械学習サービスだけで20の新サービスが発表されており、全体の3割程度を占めている点です。AWS 社がサービスの開発に注力していることが伺え、今後も多数のサービスが登場することが予想されます。</div>
+</div>
+<p>後続の記事では、新サービスも含めて機械学習サービス全体を扱っていきますが、AWS re:Invent 2019 の新サービスについていち早く知りたい方は、Black Belt Online Seminar 「AWS re:Invent 2019 アップデート速報」の <a class="reference external" href="https://www.youtube.com/watch?v=v9bu2LYN0PY&amp;feature=youtu.be">[動画 (YouTube)]</a> もしくは <a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20191206-aws-black-belt-online-seminar-aws-reinvent-202177403">[資料 (SlideShare)]</a> をご確認ください。</p>
+<p>さて、本題に戻り、今回の記事の目標を下記に示します。</p>
+<div class="section" id="id3">
+<h3>今回の目標<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>AWS の機械学習サービスの3種類のサービスとそれぞれの概要がわかる。</p></li>
+<li><p>機械学習を活用する際の注意事項がわかる。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>AWS の機械学習サービスとは<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>AWS の機械学習サービスについて整理をしていきます。</p>
+<div class="section" id="id5">
+<h3>機械学習分野における AWS のミッション<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">AWS 社はどのようなミッションの元で機械学習サービスを提供しているのでしょうか？</div>
+<div class="line">それは機械学習サービスの製品紹介ページにて宣言されている通り「すべての開発者に機械学習の恩恵を」です。</div>
+<div class="line">すなわち、機械学習を専門に扱う研究者やエンジニアだけでなく、これから機械学習をビジネスに取り入れたいといった機械学習に関する専門的な知識を持たないエンジニアに向けたサービスも用意されています。</div>
+</div>
+<img alt="../../_images/機械学習分野におけるAWSのミッション.png" src="../../_images/機械学習分野におけるAWSのミッション.png" />
+<p>(出典：<a class="reference external" href="https://aws.amazon.com/jp/machine-learning/?nc1=h_ls">機械学習サービスの製品紹介ページ</a>)</p>
+</div>
+<div class="section" id="id7">
+<h3>機械学習サービスの種類<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">AWS の機械学習サービスのラインナップ (ML スタック) を下記の図に示します。</div>
+<div class="line"><a class="reference external" href="https://news.mynavi.jp/itsearch/article/cloud/4722">前回</a> の記事でも同様の図を示しましたが、AWS re:Invent 2019 にて新サービスが追加されたため、内容が異なっている点に注意してください。</div>
+</div>
+<img alt="../../_images/AWSのMLスタック_2019.png" src="../../_images/AWSのMLスタック_2019.png" />
+<p>(出典：2019年12月12日開催 「AWS re:Invent 2019 re:Cap | AI/ML」 の資料より)</p>
+<div class="line-block">
+<div class="line">機械学習サービスは、大きく「AI サービス」「ML サービス」「ML フレームワークとインフラストラクチャ」の3種類に分けることができます。</div>
+<div class="line">それぞれの機械学習サービスの特徴を下記の表に簡単にまとめます。</div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>サービス名</p></th>
+<th class="head"><p>サービスの特徴</p></th>
+<th class="head"><p>導入の難易度</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AI サービス</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">AWS がユースケースごとに用意したサービスと自身の解決したい問題・課題とマッチする人向けのサービス。</div>
+<div class="line">(例) 機械翻訳がしたい：Amazon Translate、商品の在庫を予測したい：Amazon Forecast など</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">学習済の機械学習モデル、もしくは、機械学習モデルを生成する仕組みが AWS から提供される。</div>
+<div class="line">利用者が考える部分が少なくて済むため、導入の難易度は最も低い。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">上記の理由で「機械学習の深い知識なしに利用可能」である。</div>
+</div>
+</li>
+</ul>
+</td>
+<td><p>易</p></td>
+</tr>
+<tr class="row-odd"><td><p>ML サービス</p></td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">機械学習エンジニアやデベロッパ向けのサービス。</div>
+<div class="line">Amazon SageMaker とその関連機能により、機械学習のプロセス (開発・学習・デプロイ・推論・監視など)</div>
+<div class="line">を効率良く行うための機能が提供されている。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AWS が用意したビルトインアルゴリズムを利用して機械学習モデルを開発することや</div>
+<div class="line">利用者独自のアルゴリズムを元に機械学習モデルを開発するも可能である。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">AI サービスと比較すると柔軟性が増す一方で利用者が準備する部分が増えるため、導入の難易度が上がる。</div>
+</div>
+</li>
+</ul>
+</td>
+<td><p>難</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ML フレームワークと</div>
+<div class="line">インフラストラクチャ</div>
+</div>
+</td>
+<td><ul>
+<li><div class="line-block">
+<div class="line">Amazon SageMaker の実行環境をカスタマイズするためのサービス。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">利用者が好きな ML (機械学習) フレームワークを選択して開発することや</div>
+<div class="line">機械学習向けに最適化されたインスタンスを利用して、推論を実行することができる。</div>
+</div>
+</li>
+</ul>
+</td>
+<td><p>ー</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">上記の表に示した通り、AI サービスは導入の難易度が低いため、それぞれのサービスのユースケースと使い方を正しく把握できれば、機械学習をビジネスに取り入れることができます。</div>
+<div class="line">一方で柔軟性に欠けるため、ユースケースや要件が合わない、細かいチューニングを行いたいといった場合は、ML サービス、ML フレームワークとインフラストラクチャで提供されるサービスを利用してカスタマイズします。</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>機械学習を活用する際の注意事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本連載ではビジネスに機械学習を活用することをテーマとしていますが、機械学習を導入することが必ずしも正解とは限りません。
+機械学習の活用を考える際の注意事項を下記に挙げましたので参考にしていただきたいと思います。</p>
+<div class="section" id="id10">
+<h4>自身のビジネスにおける問題・課題から入っているか？<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">機械学習に限りませんが、自身の「ビジネスにおける問題・課題」から入ることが重要です。すなわち、機械学習を利用することはビジネスで価値を出すための手段であり、機械学習の導入を目的化しないということです。</div>
+<div class="line">例えば、「機械学習を使ってとりあえず何かをやりたい！」という思いから出発してしまうパターンです。機械学習は技術的なトレンドになっていますので、試してみたい・世の中に流れに遅れを取りたくないなどの理由から導入を検討したいという気持ちは理解できます。</div>
+<div class="line">しかし、手段と目的が逆転した状態で開発を進めてしまうと、利用者に使われないシステムや機能が作られてしまいがちです。技術検証やPoC (Proof of Consent; 概念実証) を実施するにしても、背景にビジネス課題があって、それを確認するために実施するはずです。</div>
+</div>
+<p>まずは自身のビジネスにおける問題・課題を明確にし、機械学習を使うことで生み出されるビジネス価値をはっきりさせることが重要と考えます。</p>
+</div>
+<div class="section" id="id11">
+<h4>機械学習を使うべき理由が明確になっているか？<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">少数の条件の組み合わせで後続の処理が決まるのであれば、わざわざ機械学習を導入せずに条件分岐 (if 文など) を使って実装すれば済みます。</div>
+<div class="line">機械学習モデルの維持や運用には手間がかかる場合が多いので、機械学習を使わずに簡便に対処できるのであれば、使わない方が賢明と考えられます。</div>
+<div class="line">しかし、これがEC サイトにおける商品のレコメンド (推薦) のような問題では事情が変わります。商品の数や購入数などを考慮すると購入パターンは無数に存在しますし、同じような好みを持っている人が同じ商品の組み合わせで購入するとは限りません。</div>
+<div class="line">このような場合には、機械学習が活躍します。ユーザの購入履歴からユーザの購買行動のパターンを見出し、ユーザが購入してくれる可能性が高いものを推薦することができます。</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>ビジネス課題とユースケースが合っているか？<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">例えば、Amazon Forecast は時系列データの予測サービスであり、時系列データ以外のものを予測させることはできません。</div>
+<div class="line">AI サービスの場合は利用するサービス、ML サービスの場合は利用する機械学習アルゴリズムのユースケースを正確に把握してビジネス課題とマッチしていることを確認する必要があります。</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>機械学習モデルが十分な予測精度を出すために十分なデータの量と質が揃えられているか？<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">機械学習モデルの構築にかかる時間の大半は、データの準備が占めると言われます。データの質と量は精度を左右する大切な要素の1つです。</div>
+<div class="line">例えば、クレジットカードの不正検知を教師あり学習の分類問題として対処する場合を考えてみます。</div>
+<div class="line">この場合、正解データとして不正利用がある場合のデータとない場合のデータの両方を用意する必要があります。</div>
+<div class="line">下記の項目に &quot;No&quot; がある場合は、データの収集から見直して、データの質と量を揃えることから検討した方が良いかもしれません。</div>
+</div>
+<ul class="simple">
+<li><p>不正利用あり/なしデータのデータ数に偏りがない</p></li>
+<li><p>不正利用の特徴を説明するデータ (購入した商品や取引が発生した場所など) が含まれる</p></li>
+<li><p>十分な量のデータ数が存在する</p></li>
+</ul>
+<div class="line-block">
+<div class="line">上記の不正検知の例のように正常と異常の両方のデータが必要となる場合は、異常を示すデータが少なくなりがちなので、課題になりやすいポイントです。</div>
+<div class="line">なお、必要となるデータ数は場合によって異なります。テストデータを使って、精度から判断する必要があります。</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h4>機械学習モデルの判断の間違いに歯止めが効かせられるか？<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">機械学習モデルの精度は一般的に100%にはならないので、間違った判断を下すことがあります。</div>
+<div class="line">上記の不正検知の例でいえば、利用者本人であるにもかかわらず不正利用と判定されて決済処理が行えないという事態が起こり得ます。</div>
+<div class="line">何度も発生すると、ユーザの満足度が低下し、場合によっては離反につながってしまいます。</div>
+<div class="line">そのような事態をなくすために、不正利用を検知した場合は本人の電話番号に確認用の自動電話を掛けるなど機械学習モデルの判断に歯止めを効かせる仕組みを入れておく方が安全と考えられます。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>まとめ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回の記事では、AWS の機械学習サービスの3種類のサービスとそれぞれの概要、機械学習を活用する際の注意事項についてご説明させていただきました。</p>
+<p>次回は、AI サービスとして提供されているサービスの概要やユースケースについて見ていきたいと思います。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id16">
+<h2>著者紹介<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto3.jpg"><img alt="../../_images/myphoto3.jpg" class="align-right" src="../../_images/myphoto3.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

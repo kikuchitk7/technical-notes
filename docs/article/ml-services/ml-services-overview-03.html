@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第6回] Amazon SageMaker の基本的な使い方を理解する (2) &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../methodology/methodology.html">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../article.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../others/others.html">その他</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/article/ml-services/ml-services-overview-03.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-sagemaker-2">
+<h1>[第6回] Amazon SageMaker の基本的な使い方を理解する (2)<a class="headerlink" href="#amazon-sagemaker-2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">前回は、Amazon SageMaker のチュートリアルをベースにして、ノートブックインスタンスの作成までの手順をご説明させていただきました。</div>
+<div class="line">今回は学習・推論に利用するデータの準備を行っていきます。</div>
+</div>
+<div class="section" id="id2">
+<h3>今回の記事で実施すること<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>今回は下記の表の「<strong>ステップ 3: データの準備</strong>」を扱います。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>工程</p></th>
+<th class="head"><p>ステップ</p></th>
+<th class="head"><p>枝番</p></th>
+<th class="head"><p>実施内容</p></th>
+<th class="head"><p>連載回</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>開発</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>Amazon SageMaker コンソールにログインする</p></td>
+<td><p>第 5 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>2</p></td>
+<td></td>
+<td><p>Amazon SageMaker notebook instance を作成する</p></td>
+<td><p>第 5 回</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>データの準備</p></td>
+<td><p>第 6 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3a, 3b</p></td>
+<td><p>ノートブックを起動する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>3c</p></td>
+<td><p>ノートブックの利用準備をする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3d</p></td>
+<td><p>S3 バケットを作成する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>3e</p></td>
+<td><p>学習・推論に利用するデータをダウンロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>3f</p></td>
+<td><p>データを分割する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>学習</p></td>
+<td><p>4</p></td>
+<td></td>
+<td><p>データからのモデルのトレーニング</p></td>
+<td><p>第 7 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>4a</p></td>
+<td><p>学習データを S3 バケットにアップロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>4b</p></td>
+<td><p>学習の設定をする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>4c</p></td>
+<td><p>学習を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>推論</p></td>
+<td><p>5</p></td>
+<td></td>
+<td><p>モデルのデプロイ</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>5a</p></td>
+<td><p>推論エンドポイントを作成して、モデルをデプロイする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>5b</p></td>
+<td><p>推論を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>6</p></td>
+<td></td>
+<td><p>モデルの性能評価</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+<tr class="row-even"><td><p>後片付け</p></td>
+<td><p>7</p></td>
+<td></td>
+<td><p>リソースを終了する</p></td>
+<td><p>第 8 回</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>ステップ 3: データの準備<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">ステップ 2 まででノートブックインスタンスの作成まで完了しました。</div>
+<div class="line">ここからはノートブックを起動して、学習・推論に必要なデータの準備を行っていきます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-tutorial-step3.png"><img alt="../../_images/amazon-sagemaker-tutorial-step3.png" src="../../_images/amazon-sagemaker-tutorial-step3.png" style="width: 900px;" /></a>
+<div class="section" id="a-3b">
+<h3>ステップ 3a, 3b: ノートブックを起動する<a class="headerlink" href="#a-3b" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">Amazon SageMaker のノートブックインスタンスでは、「Jupyter Notebook」もしくは「JupyterLab」が利用できます。</div>
+<div class="line">これらがプリインストールされた状態でノートブックインスタンスが作成されており、利用者側でインストールする必要はありません。</div>
+</div>
+<div class="line-block">
+<div class="line">Jupyter Notebook、JupyterLab は、「<a class="reference external" href="https://jupyter.org/index.html">Project Jupyter</a>」と呼ばれる非営利の OSS プロジェクトにより管理されているプログラミングのツールです。</div>
+<div class="line">特に、Python の開発環境が充実していますが、R や Spark など様々な言語で利用することができます。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-lineup.png"><img alt="../../_images/sagemaker-jupyterlab-lineup.png" src="../../_images/sagemaker-jupyterlab-lineup.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">参考までに、下記に AWS Japan 社が GitHub で公開している <a class="reference external" href="https://github.com/aws-samples/amazon-sagemaker-examples-jp/blob/master/tensorflow-in-sagemaker-workshop/0_Running_TensorFlow_In_SageMaker.ipynb">サンプルのノートブック</a> の画像を掲載します。</div>
+<div class="line">下記は JupyterLab を使って開いたものとなります。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-jupyter-sample.png"><img alt="../../_images/sagemaker-notebook-jupyter-sample.png" src="../../_images/sagemaker-notebook-jupyter-sample.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">「セル」と呼ばれる灰色のブロックにコードを記述して、少しずつ確認しながら実行することができます。</div>
+<div class="line">マークダウンでテキストや画像、数式なども記載することもできます。</div>
+<div class="line">ソースコードにコメントで設計根拠などを残すことがありますが、Jupyter を利用することで従来の方法よりも詳細に情報を残すことができます。</div>
+</div>
+<div class="line-block">
+<div class="line">JupyterLab は Jupyter Notebook の後継となるノートブックです。</div>
+<div class="line">このチュートリアルを実施範囲ではどちらを選んでも問題ありません。</div>
+<div class="line">AWS のチュートリアルは Jupyter Notebook を利用していますので、こちらの記事では「<strong>JupyterLab</strong>」を利用して進めたいと思います。</div>
+</div>
+<div class="section" id="id5">
+<h4>実施手順<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">「アクション」の「JupyterLab を開く」をクリックします。</div>
+<div class="line">なお、前者をクリックすると従来からの Jupyter notebook が起動し、後者をクリックすると JupyterLab が起動します。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-notebook-launch.png"><img alt="../../_images/sagemaker-notebook-launch.png" src="../../_images/sagemaker-notebook-launch.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">JupyterLab を起動すると、下記のような「Launcher」タブが表示されます。</div>
+<div class="line">このチュートリアルでは、Python 3 の実行環境があれば良いので、「Notebook」の配下にある「conda_python3」をダブルクリックします。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-launcher.png"><img alt="../../_images/sagemaker-jupyterlab-launcher.png" src="../../_images/sagemaker-jupyterlab-launcher.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">すると、「Untitled.ipynb」というタブに切り替わり、左側のメニューに同名のファイルが表示されます。</div>
+<div class="line">これはノートブックのファイルとなります。</div>
+<div class="line">今回はこの状態のまま進みますが、左側のメニューに表示されている「Untitled.ipynb」を右クリックして、「Rename」を選択することによりファイル名を変更することが可能です。</div>
+<div class="line">また、ノートブックの右端に「conda_python3」と表示されており、自分がどの環境を使っているのかはここを確認するとわかります。</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-python3-notebook.png"><img alt="../../_images/sagemaker-jupyterlab-python3-notebook.png" src="../../_images/sagemaker-jupyterlab-python3-notebook.png" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="c">
+<h3>ステップ 3c: ノートブックの利用準備をする<a class="headerlink" href="#c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">JupyterLab でノートブックを起動できました。</div>
+<div class="line">ノートブックの利用準備として、このチュートリアルで利用するライブラリ (モジュール) の読み込み (インポート) や権限の設定などを行います。</div>
+</div>
+<div class="section" id="id6">
+<h4>実行するコード<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">gmtime</span><span class="p">,</span> <span class="n">strftime</span>
+<span class="kn">from</span> <span class="nn">sagemaker.predictor</span> <span class="kn">import</span> <span class="n">csv_serializer</span>
+
+<span class="c1"># Define IAM role</span>
+<span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;sagemaker/DEMO-xgboost-dm&#39;</span>
+<span class="n">containers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;us-west-2&#39;</span><span class="p">:</span> <span class="s1">&#39;433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span> <span class="s1">&#39;811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
+<span class="n">my_region</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">region_name</span> <span class="c1"># set the region of the instance</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success - the MySageMakerInstance is in the &quot;</span> <span class="o">+</span> <span class="n">my_region</span> <span class="o">+</span> <span class="s2">&quot; region. You will use the &quot;</span> <span class="o">+</span> <span class="n">containers</span><span class="p">[</span><span class="n">my_region</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; container for your SageMaker endpoint.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sagemaker-jupyterlab-run.png"><img alt="../../_images/sagemaker-jupyterlab-run.png" src="../../_images/sagemaker-jupyterlab-run.png" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">上部のメニューに表示されている「▶︎」を押下するか、「Shift」+「Enter」で実行できます。</div>
+<div class="line">この後もいくつかコードを示しますが、同様の方法で実行してください。</div>
+</div>
+<div class="line-block">
+<div class="line">セルの下側に下記のメッセージが出力されれば成功です。</div>
+<div class="line"><br /></div>
+<div class="line"><em>Success - the MySageMakerInstance is in the us-east-1 region. You will use the 811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest container for your SageMaker endpoint.</em></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>コードの解説<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ここでは「<cite># import libraries</cite>」と「<cite># Define IAM role</cite>」から始まる大きく2つの処理に分けられます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sagemaker</span><span class="o">,</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">sagemaker</span> <span class="kn">import</span> <span class="n">get_execution_role</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># (以下、省略)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">「<cite># import libraries</cite>」から始まる処理では、チュートリアルの実行に必要なライブラリ (モジュール) の読み込み (インポート) を行っています。</div>
+<div class="line">Python でよく利用される「<a class="reference external" href="https://numpy.org/doc/1.18/">NumPy</a>」や「<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html">Pandas</a>」に加えて、AWS での開発に利用する「<a class="reference external" href="https://aws.amazon.com/jp/sdk-for-python/">AWS SDK for Python (Boto3)</a>」や Amazon SageMaker の開発に利用する「<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/">Amazon SageMaker SDK for Python</a>」などを読み込んでいます。Matplotlib など利用しないものも一部含まれますが、ここでは一旦無視します。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define IAM role</span>
+<span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;sagemaker/DEMO-xgboost-dm&#39;</span>
+<span class="n">containers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;us-west-2&#39;</span><span class="p">:</span> <span class="s1">&#39;433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span> <span class="s1">&#39;811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
+<span class="n">my_region</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">region_name</span> <span class="c1"># set the region of the instance</span>
+</pre></div>
+</div>
+<p>「<cite># Define IAM role</cite>」から始まる処理では、主に下記を実行しています。</p>
+<div class="line-block">
+<div class="line">1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得</div>
+<div class="line">2. S3 バケットのプレフィックスの設定</div>
+<div class="line">3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定</div>
+<div class="line">4. リージョンの設定</div>
+</div>
+<p>特に、1 と 3 の処理について見ていきます。</p>
+<div class="section" id="iam">
+<h5>1. ノートブックインスタンスにアタッチした IAM ロールの実行権限の取得<a class="headerlink" href="#iam" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">role</span> <span class="o">=</span> <span class="n">get_execution_role</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">ノートブックインスタンスにアタッチされている実行ロールの ARN を取得して、その実行ロールを使用して操作を行います。</div>
+<div class="line">ここでいう「実行ロール」とは、ノートブックインスタンス作成時に新規作成した IAM ロールであり、「AmazonSageMakerFullAccess ポリシー」が操作権限として与えられています。</div>
+<div class="line">詳細に知りたい方は、「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning-ex-role.html">Amazon SageMaker の実行ロールを取得する</a>」「<a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/utility/session.html#sagemaker.session.get_execution_role">sagemaker.session.get_execution_role(sagemaker_session=None)</a>」を参照してください。</div>
+</div>
+</div>
+<div class="section" id="xgboost-ecr">
+<h5>3. 組み込みアルゴリズム XGBoost のコンテナイメージの ECR レジストリのパスの設定<a class="headerlink" href="#xgboost-ecr" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">containers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;us-west-2&#39;</span><span class="p">:</span> <span class="s1">&#39;433757028032.dkr.ecr.us-west-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span> <span class="s1">&#39;811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;us-east-2&#39;</span><span class="p">:</span> <span class="s1">&#39;825641698319.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;eu-west-1&#39;</span><span class="p">:</span> <span class="s1">&#39;685385470294.dkr.ecr.eu-west-1.amazonaws.com/xgboost:latest&#39;</span><span class="p">}</span> <span class="c1"># each region has its XGBoost container</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/4983">第 4 回目</a> の記事で説明したように、Amazon SageMaker では Amazon ECR から学習用コンテナイメージをダウンロードし、学習用インスタンス上でコンテナを起動して学習を行います。</p>
+<div class="line-block">
+<div class="line">上記のコードは <strong>AWS が管理する Amazon ECR のレジストリから「XGBoost リリース 0.72 のコンテナイメージで最新 (latest) 」取得するための設定</strong> です。</div>
+<div class="line">「<strong>AWS が管理する学習用コンテナイメージを利用して学習を行う</strong>」とは、「<strong>組み込みアルゴリズムによる学習を行う</strong>」ということです。</div>
+<div class="line">組み込みアルゴリズムを利用することにより、機械学習アルゴリズムの実装が不要となって利用者が開発する範囲を小さく抑えることができます。</div>
+</div>
+<div class="line-block">
+<div class="line">AWS が管理する Amazon ECR のレジストリはリージョンごとに用意されています。</div>
+<div class="line">今回は「バージニア北部 (us-east-1)」ですので、「<cite>811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest</cite>」からコンテナイメージを取得します。</div>
+<div class="line">「東京 (ap-northeast-1)」で利用する場合は、「<cite>'ap-northeast-1': '501404015308.dkr.ecr.ap-northeast-1.amazonaws.com'</cite>」を追加するなどコードの改変が必要です。</div>
+</div>
+<div class="line-block">
+<div class="line">また、今回は「XGBoost リリース 0.72」を利用していますが、より新しい「XGBoost リリース 0.90」もリリースされています。</div>
+<div class="line">リリース 0.72 と 0.90 とではレジストリのパスが異なりますので、ご注意ください。</div>
+<div class="line">詳細に知りたい方は、「<a class="reference external" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html">組み込みアルゴリズムの共通パラメータ</a>」を参照してください。</div>
+<div class="line">今回は組み込みアルゴリズムの中から XGBoost を利用していますが、その他のアルゴリズムについても記載されていますので、応用する際に参照して適切に変更してください。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="d-s3">
+<h3>ステップ 3d: S3 バケットを作成する<a class="headerlink" href="#d-s3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ここでは、学習・推論に利用するデータを格納するための S3 バケットを作成します。</div>
+<div class="line">作業は引き続き、JupyterLab で行います。</div>
+</div>
+<div class="section" id="id10">
+<h4>実行するコード<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="line-block">
+<div class="line">なお、下記のコードをセルにコピー＆ペーストした後に、必ず <strong>`bucket_name` の `your-s3-bucket-name` の箇所を変更してから</strong> 実行してください。</div>
+<div class="line"><strong>S3 バケット名は世界で唯一の値にする必要がありますので、名前が重複するとエラーとなります。</strong></div>
+<div class="line">S3 バケット名に「システム名」などの固有になり易い情報を含めると重複しづらいと思います。検証目的であれば「日付」を入れても良いと思います。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="s1">&#39;your-s3-bucket-name&#39;</span> <span class="c1"># &lt;--- CHANGE THIS VARIABLE TO A UNIQUE NAME FOR YOUR BUCKET</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span>  <span class="n">my_region</span> <span class="o">==</span> <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span>
+      <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">CreateBucketConfiguration</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">:</span> <span class="n">my_region</span> <span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S3 bucket created successfully&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S3 error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>コードの解説<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line">チュートリアルでは AWS SDK for Python (Boto3) を利用してノートブックから S3 バケットを作成する方法が示されています。</div>
+<div class="line">AWS マネジメントコンソールからも同等の作業ができますが、ここではチュートリアルに従ってノートブックから作成してみましょう。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">AWS SDK for Python (Boto3) では、 AWS のリソースを操作する方法に「Resources」と「Clients」の2種類があります。</div>
+<div class="line">S3 バケットの作成はどちらでも可能ですが、チュートリアルでは抽象度の高い「Resources」の方の API を使って S3 バケットを作成しています。</div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html">Resources</a>: 高レベルのオブジェクト指向インターフェース。Clients と比べて抽象度が高い。</p></li>
+<li><p><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html">Clients</a>: 低レベルのサービス接続。メソッドはサービス API とほぼ1：1で対応し、すべてのサービスの操作がサポートされる。</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span>  <span class="n">my_region</span> <span class="o">==</span> <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span>
+  <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">CreateBucketConfiguration</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">:</span> <span class="n">my_region</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.create_bucket">create_bucket</a> メソッドには、<cite>CreateBucketConfiguration</cite> という引数があり、<cite>LocationConstraint</cite> で S3 バケットを作成するリージョンを指定することができます。</div>
+<div class="line">これが省略された場合は、作成するリージョンが「バージニア北部 (us-east-1)」となるため、<cite>my_region</cite> の値によって条件分岐をしています。</div>
+</div>
+</div>
+</div>
+<div class="section" id="e">
+<h3>ステップ 3e: 学習・推論に利用するデータをダウンロードする<a class="headerlink" href="#e" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">前のセクションで学習・推論用のデータを格納するための S3 バケットの作成が完了しました。</div>
+<div class="line">このチュートリアルでは、インターネット上で公開されているデータを学習・推論に利用します。</div>
+<div class="line">データをノートブックインスタンスのローカルディスク上にダウンロードして、簡単な前処理を行います。</div>
+</div>
+<div class="section" id="id12">
+<h4>実行するコード<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Success: downloaded bank_clean.csv.&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">model_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank_clean.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Success: Data loaded into dataframe.&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data load error: &#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>コードの解説<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">&quot;https://d1.awsstatic.com/tmt/build-train-deploy-machine-learning-model-sagemaker/bank_clean.27f01fbbdf43271788427f3682996ae29ceca05d.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;bank_clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://docs.python.org/ja/3.6/library/urllib.request.html#urllib.request.urlretrieve">urllib.request.urlretrieve</a> メソッドは、引数に指定した URL からファイルをローカルにダウンロードします。</div>
+<div class="line">引数に示した URL はそのホスト名から AWS の静的ファイルを配布するための CDN サービスである Amazon CloudFront もしくは Amazon S3 と思われます。</div>
+<div class="line">ここからノートブックインスタンスのローカルディスク上に、学習や推論に利用するデータである「Bank Marketing Data Set」をダウンロードしています。</div>
+</div>
+<div class="line-block">
+<div class="line">なお、AWS が配布しているデータは、チュートリアルを進めやすいように前処理が実施されています。</div>
+<div class="line">UCI の Machine Learning Repository で公開されているデータをダウンロードして利用する場合は、そのままの状態では利用できず、機械学習で利用できるようにデータの前処理が必要となりますのでご注意ください。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank_clean.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">read_csv</a> 関数を使ってダウンロードした「Bank Marketing Data Set」を DataFrame に読み込んでいます。</div>
+</div>
+</div>
+</div>
+<div class="section" id="f">
+<h3>ステップ 3f: データを分割する<a class="headerlink" href="#f" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">「Bank Marketing Data Set」は 41,188 行 × 61 列のデータです。</div>
+<div class="line">これを学習と推論の双方で利用するために　学習 : 推論 = 7 : 3 の割合で分割します。</div>
+</div>
+<div class="section" id="id14">
+<h4>実行するコード<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下記のコードをセルにコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>コードの解説<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">model_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1729</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">))])</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">NumPy の split メソッドを使って、DataFrame として読み込んだデータ (model_data) を学習データ (train_data) とテストデータ (test_data) を 7:3 の割合で分割しています。</div>
+<div class="line">更に、Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">sample</a> メソッドを使ってランダムにデータを選択することでデータの順序性を排除しています。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>まとめ<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">今回の記事では、Amazon SageMaker のチュートリアルをベースにして、学習・推論に利用するデータの準備を行う手順をご説明させていただきました。</div>
+<div class="line">次回は、今回準備したデータを使って学習を行います。</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id17">
+<h2>著者紹介<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

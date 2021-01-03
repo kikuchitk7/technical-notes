@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>[第9回] Amazon SageMaker Studio の基本的な使い方 (1) &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="その他" href="../../others/others.html" />
+    <link rel="prev" title="AWS ではじめる機械学習" href="../article.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../methodology/methodology.html">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../article.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">Amazon SageMaker Studio とは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Amazon SageMaker Studio の登場の背景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Amazon SageMaker Studio の導入メリット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ノートブックインスタンスと Amazon SageMaker Studio の使い分け</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../others/others.html">その他</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../article.html">AWS ではじめる機械学習</a> &raquo;</li>
+        
+      <li>[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/article/ml-services/ml-services-sagemaker-studio-01.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-sagemaker-studio-1">
+<h1>[第9回] Amazon SageMaker Studio の基本的な使い方 (1)<a class="headerlink" href="#amazon-sagemaker-studio-1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>第5〜8回目の連載では、Amazon SageMaker のチュートリアルを使って、基本的な使い方の紹介をさせていただきました。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5099">「【第5回】Amazon SageMakerの基本的な使い方を理解する(1)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5101">「【第6回】Amazon SageMakerの基本的な使い方を理解する(2)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5113">「【第7回】Amazon SageMakerの基本的な使い方を理解する(3)」</a></p></li>
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5115">「【第8回】Amazon SageMakerの基本的な使い方を理解する(4)」</a></p></li>
+</ul>
+</div></blockquote>
+<p>今回からの数回に渡って、昨年の AWS re:Invent 2019 で発表された新機能である「Amazon SageMaker Studio」について扱いたいと思います。</p>
+<p>下記を理解していただくことを目標にして解説をしていきます。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Amazon SageMaker Studio の概要と基本的な利用方法がわかる。</p></li>
+<li><p>Amazon SageMaker Autopilot などの関連機能の概要や基本的な利用機能もわかる。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="amazon-sagemaker-studio">
+<h2>Amazon SageMaker Studio とは<a class="headerlink" href="#amazon-sagemaker-studio" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Amazon SageMaker Studio は、AWS re:Invent 2019 で発表された Amazon SageMaker の提供する統合開発環境 (IDE) です。</p>
+<div class="figure align-default" id="id9">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-gui-example.jpg"><img alt="../../_images/9th-sagemaker-studio-gui-example.jpg" src="../../_images/9th-sagemaker-studio-gui-example.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 1 </span><span class="caption-text">Amazon SageMaker Studio の GUI</span><a class="headerlink" href="#id9" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>同イベントでは、Amazon SageMaker Studio の他にもたくさんの機能が追加されて、Amazon SageMaker が大幅に機能強化されました。
+下記に主な新機能の概要を示します。
+いくつかの機能は次回以降の連載に登場しますので、ここでは概要の提示に留めます。</p>
+<ul class="simple">
+<li><p>Amazon SageMaker Notebooks : Amazon SageMaker Studio に統合されたフルマネージドなノートブック</p></li>
+<li><p>Amazon SageMaker Experiments : 学習ジョブの実行履歴や設定、結果を一元管理</p></li>
+<li><p>Amazon SageMaker Debugger : 学習の監視、記録、分析と異常の検知</p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/sagemaker/autopilot/">Amazon SageMaker Autopilot</a> : AutoML 機能による機械学習モデルの自動構築</p></li>
+<li><p>Amazon SageMaker Model Monitor : 本番環境にデプロイした推論エンドポイントの継続的な監視</p></li>
+</ul>
+<p>Amazon SageMaker Studio は、これらの機能とシームレスに連携して機械学習モデルの開発・学習・推論に加え、維持・運用まで含めて効率的に行うことができます。</p>
+<div class="figure align-default" id="id10">
+<a class="reference internal image-reference" href="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg"><img alt="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" src="../../_images/9th-aws-ml-stack-sagemaker-studio.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 2 </span><span class="caption-text">AWS の ML スタック (AWS 社主催のセミナー資料等を参考に作成)</span><a class="headerlink" href="#id10" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="section" id="id2">
+<h3>Amazon SageMaker Studio の登場の背景<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>前述の通り、Amazon SageMaker Studio は IDE としての機能を提供します。
+前回までに Amazon SageMaker の基本的な使い方を説明しましたが、開発環境に相当するものは「ノートブックインスタンス」でした。
+すなわち、Amazon SageMaker を利用する場合の開発スタイルが2種類あるように見えます。</p>
+<ul class="simple">
+<li><p>ノートブックインスタンスを利用する従来からの開発スタイル</p></li>
+<li><p>Amazon SageMaker Studio を利用する新しい開発スタイル</p></li>
+</ul>
+<div class="line-block">
+<div class="line">ここからは Amazon SageMaker Studio がもたらす変化について詳細を見ていきたいと思います。</div>
+<div class="line">まずは、従来型のノートブックインスタンスを利用する開発スタイルにまつわる課題を見ていきましょう。(下図にオレンジ色の吹き出しで記載)</div>
+</div>
+<div class="figure align-default" id="id11">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-usage-problem.jpg"><img alt="../../_images/9th-sagemaker-usage-problem.jpg" src="../../_images/9th-sagemaker-usage-problem.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 3 </span><span class="caption-text">Amazon SageMaker を利用する際の課題とその所在</span><a class="headerlink" href="#id11" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>下表に課題の詳細を記載します。上記の吹き出しの番号と対応付けて確認してください。</p>
+<table class="colwidths-given docutils align-default" id="id12">
+<caption><span class="caption-number">表 1 </span><span class="caption-text">ノートブックインスタンスでの開発にまつわる課題の詳細</span><a class="headerlink" href="#id12" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 30%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項番</p></th>
+<th class="head"><p>主な関連工程</p></th>
+<th class="head"><p>問題点</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">開発</div>
+<div class="line">維持・運用</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>利用者がノートブックインスタンスのサイジングを行い、作成する必要がある。</p></li>
+<li><p>ノートブックインスタンスのリソースの利用状況のモニタリングを継続的に行い、必要に応じてスケールアップなどの対処を行う必要がある。</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>全体</p></td>
+<td><ul class="simple">
+<li><p>開発は主にノートブックインスタンス上で行うが、過去に実行した学習ジョブの結果や現在デプロイされている推論エンドポイントの情報を確認したい場合はコマンドを実行するか、AWS マネジメントコンソールでのページ遷移が必要となる。</p></li>
+<li><p>学習を繰り返す度に機械学習モデルが増えるので、ハイパーパラメータや精度などの情報の一元管理をしたくなるが、AWS マネジメントコンソールではそれができない。Excel や Jupyter など情報を管理する仕組みを用意する必要がある。</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><div class="line-block">
+<div class="line">開発</div>
+<div class="line">維持・運用</div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>開発者の増員とともに IAM ユーザの数が増えるため、作成や管理が必要となる。機械学習を専門とするエンジニアなど Amazon SageMaker 以外のサービスの操作が不要な場合でも IAM ユーザの払い出しが必要となる。</p></li>
+<li><p>当然、AWS マネジメントコンソールへのログインと Amazon SageMaker への画面遷移が必要である。</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h3>Amazon SageMaker Studio の導入メリット<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ここに記載した作業 (課題) は価値を生まない作業であるばかりか、開発者にとってはストレスとなるため、可能な限りなくしたい作業です。</div>
+<div class="line">Amazon SageMaker Studio は、上記の課題に対するソリューションを提供してくれます。利用者は価値を生まない作業から解放され、価値の創出に注力することができます。</div>
+</div>
+<div class="section" id="id4">
+<h4>ノートブックインスタンスの作成・管理が不要<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Amazon SageMaker Studio では、「Amazon SageMaker Notebooks」という JypyterLab ベースのフルマネージドなノートブックが提供されます。
+ノートブックインスタンスと同様の特徴、Amazon SageMaker Notebooks に固有の特徴について下記に示します。</p>
+<p><strong>ノートブックインスタンスと同様の特徴</strong></p>
+<ul class="simple">
+<li><p>JupyterLab ベースのノートブック環境が提供されるため、同じ要領で開発をすることができる。既存のノートブックファイルを持ち込みも可能である。</p></li>
+<li><p>AWS SDK for Python (Boto 3) や Amazon SageMaker Python SDK などの開発に必要な SDK やツールがプリインストールされている。</p></li>
+<li><p>カーネル、すなわち、Conda による仮想的な実行環境が提供される。</p></li>
+</ul>
+<div class="figure align-default" id="id13">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-notebooks-launcher.jpg"><img alt="../../_images/9th-sagemaker-studio-notebooks-launcher.jpg" src="../../_images/9th-sagemaker-studio-notebooks-launcher.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 4 </span><span class="caption-text">Amazon SageMaker Notebooks の Launcher 画面</span><a class="headerlink" href="#id13" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="figure align-default" id="id14">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-notebooks-kernel.jpg"><img alt="../../_images/9th-sagemaker-studio-notebooks-kernel.jpg" src="../../_images/9th-sagemaker-studio-notebooks-kernel.jpg" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">図 5 </span><span class="caption-text">Amazon SageMaker Notebooks で選択可能なカーネル</span><a class="headerlink" href="#id14" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p><strong>Amazon SageMaker Notebooks に固有の特徴</strong></p>
+<ul class="simple">
+<li><p>利用者が明示的にノートブックインスタンスを作成する必要がない。</p></li>
+<li><p>「高速起動タイプ (Fast Launch)」と呼ばれるインスタンスタイプが用意されており、通常は2分以内に高速起動するよう設計されている。</p></li>
+<li><p>永続的な記憶領域として Amazon EFS が利用されており、ノートブックをシャットダウンしても他のユーザやサービスからファイルにアクセス可能である。</p></li>
+<li><p>ワークロード (対象) に合わせてインスタンスタイプ (汎用/コンピューティング最適化/高速コンピューティング) を選択することができる。変更も数クリックで可能である。(下図を参照)</p></li>
+<li><p>「ローカルモード」 (後述) での実行がサポートされていない。</p></li>
+</ul>
+<div class="figure align-default" id="id15">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-notebooks-instance-type.jpg"><img alt="../../_images/9th-sagemaker-studio-notebooks-instance-type.jpg" src="../../_images/9th-sagemaker-studio-notebooks-instance-type.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 6 </span><span class="caption-text">Amazon SageMaker Notebooks のインスタンスタイプの選択</span><a class="headerlink" href="#id15" title="この画像へのパーマリンク">¶</a></p>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>開発・学習・推論の大部分の作業が Amazon SageMaker Studio で完結<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>下図に示すように、機械学習ワークフローの大部分のタスクをカバーしており、利用者は Amazon SageMaker Studio だけで作業を完結することができます。</p>
+<div class="figure align-default" id="id16">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-service-coverage.jpg"><img alt="../../_images/9th-sagemaker-studio-service-coverage.jpg" src="../../_images/9th-sagemaker-studio-service-coverage.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 7 </span><span class="caption-text">機械学習ワークフローにおける Amazon SageMaker Studio のカバー範囲</span><a class="headerlink" href="#id16" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>従来型の開発スタイルで機械学習モデルの開発を進める場合は、下記のいずれかの方法で対応します。</p>
+<ul class="simple">
+<li><p>ノートブックから Python のコードか AWS CLI で操作する。(前回紹介した方法)</p></li>
+<li><p>AWS マネジメントコンソール (Amazon SageMaker のコンソール) で画面操作をする。</p></li>
+</ul>
+<p>機械学習モデルは一度学習して終わることはなく、精度の改善のために試行錯誤を何度も繰り返します。
+その結果、下図のように学習ジョブ (トレーニングジョブ) を多数作成することになります。</p>
+<div class="figure align-default" id="id17">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-training-jobs.jpg"><img alt="../../_images/9th-sagemaker-training-jobs.jpg" src="../../_images/9th-sagemaker-training-jobs.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 8 </span><span class="caption-text">Amazon SageMaker のコンソール画面 (トレーニングジョブ)</span><a class="headerlink" href="#id17" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>このようにジョブが増えてくると、ハイパーパラメータなどの条件やその際の精度を把握しきれなくなるため、情報を整理して一覧化したくなります。
+Amazon SageMaker では検索機能は提供されていますが、情報を一元管理する機能は提供されていませんでした。
+情報の参照にはそれぞれのページへの遷移が必要であり、Excel や Jupyter で管理する仕組みを実装する必要がありました。</p>
+<div class="figure align-default" id="id18">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-search.jpg"><img alt="../../_images/9th-sagemaker-search.jpg" src="../../_images/9th-sagemaker-search.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 9 </span><span class="caption-text">Amazon SageMaker の検索機能</span><a class="headerlink" href="#id18" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>下図に示すように、Amazon SageMaker Studio では情報を一元管理する機能が提供され、画面遷移をせずにここだけで情報が完結します。
+情報は自動で追加・更新されて一覧化されるため、利用者はそれを参照するだけです。
+ドリルダウンをして詳細な情報を参照したり、グラフを作成することもできます。</p>
+<div class="figure align-default" id="id19">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-jobs-list.jpg"><img alt="../../_images/9th-sagemaker-studio-jobs-list.jpg" src="../../_images/9th-sagemaker-studio-jobs-list.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 10 </span><span class="caption-text">Amazon SageMaker Studio の学習ジョブの一覧</span><a class="headerlink" href="#id19" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<div class="figure align-default" id="id20">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-aws-settings.jpg"><img alt="../../_images/9th-sagemaker-studio-aws-settings.jpg" src="../../_images/9th-sagemaker-studio-aws-settings.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 11 </span><span class="caption-text">Amazon SageMaker Studio の学習ジョブの詳細 (AWS Settings)</span><a class="headerlink" href="#id20" title="この画像へのパーマリンク">¶</a></p>
+</div>
+</div>
+<div class="section" id="iam">
+<h4>IAM ユーザを持たない利用者でも利用が可能<a class="headerlink" href="#iam" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Amazon SageMaker Studio では、<a class="reference external" href="https://aws.amazon.com/jp/single-sign-on/">AWS Single Sign-On (SSO)</a> をサポートしており、外部の ID プロバイダと連携してユーザの認証を行うことができます。
+もちろん通常の AWS サービスと同様に IAM ユーザでの利用も可能です。</p>
+<div class="figure align-default" id="id21">
+<a class="reference internal image-reference" href="../../_images/9th-sagemaker-studio-sso.jpg"><img alt="../../_images/9th-sagemaker-studio-sso.jpg" src="../../_images/9th-sagemaker-studio-sso.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">図 12 </span><span class="caption-text">Amazon SageMaker Studio のセットアップ画面</span><a class="headerlink" href="#id21" title="この画像へのパーマリンク">¶</a></p>
+</div>
+<p>AWS SSO は SAML 2.0 をサポートしており、Active Directory などの既存のディレクトリサービスや GitHub や Slack などのアプリケーションと連携することも可能です。
+また、Amazon SageMaker Studio に直接アクセスするための URL が払い出されます。</p>
+<p>例えば、機械学習は専門的な知識が必要であるため、外部からエンジニアを一時的に雇用する場合があるかと思います。
+AWS SSO を利用すると、下記のようなメリットがあります。</p>
+<ul class="simple">
+<li><p>管理者目線：IAM ユーザを作成する必要がないため、管理する対象を増やさずに済む。</p></li>
+<li><p>開発者目線：AWS マネジメントコンソールへのログインと Amazon SageMaker Studio への画面遷移という一手間を省くことができる。</p></li>
+</ul>
+<p>なお、AWS SSO は2020年9月に東京リージョンに対応しましたので、Amazon SageMaker Studio が東京リージョンに対応後にはこの方法も選択肢に含めることができます。 (参考：「<a class="reference external" href="https://aws.amazon.com/jp/blogs/news/aws-single-sign-on-tokyo/">AWS Single Sign-On が東京リージョンで利用できるようになりました</a>」)</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>ノートブックインスタンスと Amazon SageMaker Studio の使い分け<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここまで Amazon SageMaker Studio や Amazon SageMaker Notebooks の導入メリットについて見てきました。
+機械学習モデルの開発を便利に行うことができるため、これから開発する方やご紹介したメリットに魅力を感じる方は、Amazon SageMaker Studio を利用して開発することが良いと考えられます。
+(本稿の執筆時点で東京リージョンに対応していないため、東京リージョンでの対応が前提です)</p>
+<p>ただし、細かな違いや制約があるため、それらを踏まえてもビジネス要件が満たせ、メリットを享受できることを確認した上で利用してください。</p>
+<p>例えば、料金です。
+Amazon SageMaker Studio も背後でインスタンスが稼働しており、そのインスタンスに対する課金は発生します。
+インスタンスに対する費用は同一水準で提供されていますが、ストレージに違いがあります。</p>
+<p>ノートブックインスタンスは ML ストレージ (EBS ボリュームに相当)、Amazon SageMaker Studio は Amazon EFS を利用します。
+Amazon EFS の方が割高であるため、同一構成とした場合は Amazon SageMaker Studio を利用した方がコスト高となります。
+割高である分、ここまでに紹介したメリットを享受できるため、差額はそれに対する費用と考えると良いと思います。</p>
+<p>参考までに、バージニア北部リージョンでの価格を記載します。
+料金は見直されることがあるため、最新情報は「<a class="reference external" href="https://aws.amazon.com/jp/sagemaker/pricing/">Amazon SageMaker の料金</a>」で確認してください。</p>
+<table class="colwidths-given docutils align-default" id="id22">
+<caption><span class="caption-number">表 2 </span><span class="caption-text">インスタンスの料金の例 (バージニア北部リージョン)</span><a class="headerlink" href="#id22" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>インスタンスタイプ</p></th>
+<th class="head"><p>料金</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ml.t3.medium [USD/時間]</p></td>
+<td><p>0.0582</p></td>
+</tr>
+<tr class="row-odd"><td><p>ml.g4dn.xlarge [USD/時間]</p></td>
+<td><p>0.7364</p></td>
+</tr>
+<tr class="row-even"><td><p>ml.m5.large [USD/時間]</p></td>
+<td><p>0.1344</p></td>
+</tr>
+<tr class="row-odd"><td><p>ml.c5.large [USD/時間]</p></td>
+<td><p>0.119</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id23">
+<caption><span class="caption-number">表 3 </span><span class="caption-text">ML ストレージの料金  (ノートブックインスタンスで利用)</span><a class="headerlink" href="#id23" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ML ストレージ</p></th>
+<th class="head"><p>料金</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>汎用 (SSD) ストレージ [USD/GB・月]</p></td>
+<td><p>0.14</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id24">
+<caption><span class="caption-number">表 4 </span><span class="caption-text">Amazon EFS の料金 (Amazon SageMaker Studio で利用)</span><a class="headerlink" href="#id24" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Amazon EFS のストレージクラス</p></th>
+<th class="head"><p>料金</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>標準ストレージ [USD/GB・月]</p></td>
+<td><p>0.30</p></td>
+</tr>
+<tr class="row-odd"><td><p>低頻度アクセスストレージ [USD/GB・月]</p></td>
+<td><p>0.025</p></td>
+</tr>
+<tr class="row-even"><td><p>低頻度アクセスリクエスト [転送 GB あたり]</p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-odd"><td><p>プロビジョニングスループット [MB/秒・月]</p></td>
+<td><p>6.00</p></td>
+</tr>
+</tbody>
+</table>
+<p>また、Amazon SageMaker Studio は「ローカルモード」をサポートしていません。
+ローカルモードとは、学習や推論をノートブックインスタンスのローカルでテストする機能です。</p>
+<p>Amazon SageMaker での学習や推論は、それぞれ専用のインスタンスを作成して、そのインスタンス上で処理を行います。
+すなわち、ノートブックインスタンスの費用とは別に学習と推論の費用もかかります。</p>
+<p>開発したコードの妥当性が確認できていない状況で大規模にテストをすると費用がかさんでしまう可能性があります。
+ローカルモードを利用すると、ノートブックインスタンス上で学習や推論を行うことができるため、これを回避することができます。
+今後のアップデートで機能追加がされる可能性もありますが、現状はサポートしていないので注意が必要です。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>まとめ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回はAmazon SageMaker Studio や Amazon SageMaker Notebooks の概要を中心に解説をしました。
+次回からは実際に Amazon SageMaker Studio を使っていきたいと思います。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id8">
+<h2>著者紹介<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../others/others.html" class="btn btn-neutral float-right" title="その他" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../article.html" class="btn btn-neutral float-left" title="AWS ではじめる機械学習" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
