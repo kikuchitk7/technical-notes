@@ -5,6 +5,6 @@ Compute
    :maxdepth: 1
    :caption: Contents:
 
-   ecs
-   lambda/lambda
-   sam
+   lambda-container
+   lambda-logging
+   

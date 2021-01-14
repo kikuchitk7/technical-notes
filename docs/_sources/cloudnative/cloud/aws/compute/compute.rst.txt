@@ -6,5 +6,5 @@ Compute
    :caption: Contents:
 
    ecs
-   lambda
+   lambda/lambda
    sam
