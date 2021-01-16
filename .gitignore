@@ -1,4 +1,7 @@
-/.DS_Store
+.DS_Store
+.python-version
+images/.DS_Store
+make.bat
 docs/.DS_Store
 docs/_images/.DS_Store
 source/.DS_Store
@@ -6,6 +9,4 @@ source/_static/.DS_Store
 source/blog/summary/*.rst
 source/blog/ai-services/*.rst
 source/blog/ml-services/ml-services-overview*
-images/.DS_Store
-/make.bat
-.python-version
+source/cloud/aws/.DS_Store
