@@ -6,3 +6,6 @@ DevOps
    :caption: Contents:
 
    cicd/cicd
+   git/git
+   iac/iac
+   testing/testing
