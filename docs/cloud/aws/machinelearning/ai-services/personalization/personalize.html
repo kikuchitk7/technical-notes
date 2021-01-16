@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Amazon Personalize &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../../../search.html" />
+    <link rel="next" title="Amazon Forecast" href="../forecasting/forecast.html" />
+    <link rel="prev" title="Amazon Lex" href="../chatbots/lex.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../cloud.html">Cloud</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../aws.html">AWS</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../analytics/analytics.html">Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/cli.html">AWS CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../compute/compute.html">Compute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../customerengagement/customerengagement.html">Customer Engagement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../databases/databases.html">Databases</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../machinelearning.html">Machine Learning</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../ai-services.html">AI サービス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../ml-services/ml-services.html">ML サービス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../learning-tool/learning-tool.html">学習ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../machinelearning.html#id1">参考</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../networking_contents_delivery/networking_contents_delivery.html">Networking &amp; Contents Delivery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../methodology/methodology.html">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../article/article.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../others/others.html">その他</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../cloud.html">Cloud</a> &raquo;</li>
+        
+          <li><a href="../../../aws.html">AWS</a> &raquo;</li>
+        
+          <li><a href="../../machinelearning.html">Machine Learning</a> &raquo;</li>
+        
+          <li><a href="../ai-services.html">AI サービス</a> &raquo;</li>
+        
+      <li>Amazon Personalize</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/cloud/aws/machinelearning/ai-services/personalization/personalize.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-personalize">
+<h1>Amazon Personalize<a class="headerlink" href="#amazon-personalize" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>背景<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h3>レコメンデーションの必要性<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>パーソナライズとは、利用者一人一人のニーズに合わせたレコメンデーションを行う技術のことである。</p></li>
+<li><p>利用者に対して適切なレコメンデーションを行うことで事業の収益に繋がる可能性があるため、商品やコンテンツの配信サービスにおいて、パーソナライズは必須。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>これまでのレコメンドシステム<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>ルールベース</p>
+<blockquote>
+<div><ul>
+<li><p>事前にルールを設定し推薦する。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>例：商品Aを買う人は、商品Bを推薦する。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>協調フィルタリング</p>
+<blockquote>
+<div><ul>
+<li><p>過去の利用者の購買履歴を利用し、近しい思考の利用者が購入した商品を推薦する。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>例：この商品を買った人は、この商品も買っています。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>コンテンツベース</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>商品情報の類似度を使って、関連商品を推薦する。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ハイブリッド</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>上記の組み合わせで推薦を行う。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>パーソナライゼーションの課題<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>Custom models</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ビジネスコンテキストやユーザの行動などをモデルに反映させる必要がある。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Real-Time</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ユーザの関心の変化に柔軟に対応していく必要がある。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Cold Starts</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>過去の履歴情報が存在しない、新しいお客様に対しても適切なレコメンドが必要である。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Popularity Trap</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>単純なモデルは人気のあるアイテムを推薦する傾向となってしまう。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Scale</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>数千の商品・お客様へのスケーラビリティが必要。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>Amazon Personalize の概要<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>ユーザ向けにパーソナライズしたレコメンデーションするための機械学習サービス</p></li>
+<li><p>Amazon.com と同様の技術を、幅広い対象に対して適用できる</p></li>
+<li><p>ユーザ向けにパーソナライズされたレコメンデーションリストの提供</p></li>
+<li><p>「この商品を購入した方は…」といった特定のアイテムに対する類似アイテムリストの提供</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>Amazon Personalize のユースケース<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>Personalized recommendations</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ユーザのプロファイルや習慣だけでなく、ユーザの行動、履歴、好みに基づいて推奨する</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Personalized search</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ユーザの好みや検索語だけでなく、ユーザの過去の行動データを使用して検索結果を並べ替えることで検索精度を向上させる</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Personalized notifications</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ユーザの場所、購入週間、以前行動につながったプロモーションに基づいてモバイルアプリ通知する</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>Amazon Personalize の構成<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h3>学習データ<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>学習データは CSV 形式で準備し、S3 に格納する必要がある。</p></li>
+<li><p>RDS など DB からのデータの読み出しができないため、Glue を使って S3 にデータを格納する必要がある。</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>データセットグループ<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>データセット、ソリューション、キャンペーンをまとめてデータセットグループという。</p></li>
+</ul>
+<div class="section" id="id10">
+<h4>データセット<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul class="simple">
+<li><p>データとスキーマをまとめてデータセットという。</p></li>
+</ul>
+<div class="section" id="id11">
+<h5>データ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul>
+<li><p>下記の3種類のデータを CSV 形式で S3 に保存する。</p>
+<blockquote>
+<div><ul>
+<li><p>Interactions (必須)</p>
+<blockquote>
+<div><ul>
+<li><p>ユーザとアイテム間の過去のインタラクションデータを提供</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>購買履歴、視聴履歴など</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>必須項目</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>USER_ID</p></li>
+<li><p>ITEM_ID</p></li>
+<li><p>TIMESTAMP</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Users</p>
+<blockquote>
+<div><ul>
+<li><p>ユーザに関するメタデータを提供</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>年齢、性別、ロイヤリティメンバーシップなど</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>必須項目</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>USER_ID</p></li>
+<li><p>1メタフィールド</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Items</p>
+<blockquote>
+<div><ul>
+<li><p>アイテムに関するメタデータの提供</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>価格、ジャンルなど</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>必須項目</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>USER_ID</p></li>
+<li><p>1メタフィールド</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h5>スキーマ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<ul>
+<li><p>データセットをインポートするには、データセットのスキーマを定義する必要がある。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>スキーマは CSV ファイルのデータ並び(内容)を定義するもの。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>スキーマは、Avro 形式で定義する。</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>ソリューション<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>トレーニングのこと</p></li>
+<li><p>利用するアルゴリズムはレシピと呼ばれる</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3>キャンペーン<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>ユーザにレコメンデーションを提供するために使用する**エンドポイント**</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>Amazon Personalize の の使い方<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p>事前準備</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>S3 にアクセスするための権限(IAM ロール)を設定する。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>データの準備</p>
+<blockquote>
+<div><ul>
+<li><p>S3 バケットの作成、CSV 形式の学習データを格納する。</p></li>
+<li><p>データセットグループの作成</p></li>
+<li><p>データセットの作成をする。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>スキーマを作成する。</p></li>
+<li><p>データのインポートを行う。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ソリューションの作成</p>
+<blockquote>
+<div><ul>
+<li><p>レシピの選択</p>
+<blockquote>
+<div><ul>
+<li><p>下記の種類がある。</p>
+<blockquote>
+<div><ul>
+<li><p>USER_PERSONALIZATION (パーソナライゼーション)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>HRNN (Hierarchical recurrent neural network)</p></li>
+<li><p>HRNN-metadata</p></li>
+<li><p>HRNN-coldstart</p></li>
+<li><p>Popularity-count</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>PERSONALIZED_RANKING (ユーザ向けランキング)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Personalized-Ranking</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>RELATED_ITEMS (類似アイテム)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>SIMS</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ソリューションバージョンの作成</p>
+<blockquote>
+<div><ul>
+<li><p>イベントタイプの選択</p></li>
+<li><p>レシピの選択</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Manual/Automatic</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ハイパーパラメータチューニング実施の選択</p></li>
+<li><p>ソリューションバージョンの作成</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>機械学習のモデルに相当する。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ソリューションバージョンの評価</p>
+<blockquote>
+<div><ul>
+<li><p>下記の3つの評価が提供される。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Normalized discounted cumulative</p></li>
+<li><p>Precision</p></li>
+<li><p>Mean reciprocal rank</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>指標単体では良し悪しが判断しづらいケースもあるため、Popularity-Count レシピの指標との比較をすると良い。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>キャンペーンの作成</p>
+<blockquote>
+<div><ul>
+<li><p>ミニマムのプロビジョンドスループットを指定する。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>負荷が高くなった場合に自動スケールする。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>API を呼び出す。</p>
+<blockquote>
+<div><ul>
+<li><p>GetRecommendations API</p></li>
+<li><p>GetPersonalizedRanking API</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AWS SDK で 利用する。</p></li>
+<li><p>AWS マネジメントコンソールで確認する。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id16">
+<h2>システム構成例<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>商品のレコメンデーションシステム</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>料金体系と提供リージョン<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h3>料金体系<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>無料枠：○</p>
+<blockquote>
+<div><ul>
+<li><p>サインアップ後最初の 2 ヶ月間、以下が提供されます:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>データ処理およびストレージ：毎月最大20GB</p></li>
+<li><p>トレーニング：毎月最大100トレーニング時間</p></li>
+<li><p>レコメンデーション：最大50TPS時間のリアルタイムリコメンデーション/月</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/personalize/pricing/">Amazon Personalize の料金</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>提供リージョン<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><strong>東京リージョンで利用可能</strong></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>用語<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>パーソナライゼーションとは</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>利用者一人一人に合わせたレコメンデーションを行う技術。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>コンバージョン</p>
+<blockquote>
+<div><ul>
+<li><p>Web マーケティングにおいて、消費者や見込み顧客が商品の購入やサービスの加入を行うこと。</p></li>
+<li><p>顧客への転換という意味で「コンバージョン」という単語が使われる。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>例：オンラインショップの訪問者が実際に商品の購入手続きを行う。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ある期間にサイトを訪れた人のうち、コンバージョンに至った人の割合をコンバージョン率 (Conversion Rate) という。</p></li>
+<li><p>参考：<a class="reference external" href="http://e-words.jp/w/%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3.html">コンバージョン【conversion】CV</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>参考<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.slideshare.net/AmazonWebServicesJapan/20190716-aws-black-belt-online-seminar-amazon-personalize">Black Belt Amazon AI Service</a></p></li>
+<li><p>AWS INNOVATE ONLINE CONFERENCE Amazon Personalize 入門</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../forecasting/forecast.html" class="btn btn-neutral float-right" title="Amazon Forecast" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chatbots/lex.html" class="btn btn-neutral float-left" title="Amazon Lex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

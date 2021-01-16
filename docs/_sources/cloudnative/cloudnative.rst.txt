@@ -5,7 +5,6 @@ Cloud Native
    :maxdepth: 1
    :caption: Contents:
 
-   cloud/cloud
    containerization/containerization
 
 

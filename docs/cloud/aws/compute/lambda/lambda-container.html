@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lambda ランタイムのコンテナイメージサポート &mdash; technical notes  ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../../search.html" />
+    <link rel="next" title="Lambda logging" href="lambda-logging.html" />
+    <link rel="prev" title="Compute" href="lambda.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> technical notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cloud.html">Cloud</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../aws.html">AWS</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../analytics/analytics.html">Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/cli.html">AWS CLI</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../compute.html">Compute</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../ecs.html">Amazon ECS</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lambda.html">Compute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sam.html">AWS Serverless Application Model (SAM)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../customerengagement/customerengagement.html">Customer Engagement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../databases/databases.html">Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machinelearning/machinelearning.html">Machine Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machinelearning/machinelearning.html#id1">参考</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../networking_contents_delivery/networking_contents_delivery.html">Networking &amp; Contents Delivery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloudnative/cloudnative.html">Cloud Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../methodology/methodology.html">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../article/article.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../others/others.html">その他</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">technical notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../cloud.html">Cloud</a> &raquo;</li>
+        
+          <li><a href="../../aws.html">AWS</a> &raquo;</li>
+        
+          <li><a href="../compute.html">Compute</a> &raquo;</li>
+        
+          <li><a href="lambda.html">Compute</a> &raquo;</li>
+        
+      <li>Lambda ランタイムのコンテナイメージサポート</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/cloud/aws/compute/lambda/lambda-container.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lambda">
+<h1>Lambda ランタイムのコンテナイメージサポート<a class="headerlink" href="#lambda" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>従来から AWS Lambda では、関数コードや依存関係を ZIP 形式でパッケージ化してデプロイをする必要があった。これはデプロイパッケージと呼ばれ、AWS re:Invent 2020 のアップデートで、Docker コンテナイメージによるパッケージ化がサポートされた。</p></li>
+<li><p>Docker コンテナイメージによるデプロイパッケージは、例えば下記の点で優位性がある。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>デプロイパッケージのサイズ制限が緩和される。 (ZIP: 250 MB → Docker コンテナイメージ：10GB)</p></li>
+<li><p>ECS/Fargate などによる他のコンテナベースのアプリとデプロイ方法の統一が可能である。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>AWS から Lambda 関数向けの Docker コンテナイメージ (AWS ベースイメージ) 及びその基になる Dockerfile が OSS として提供されている。要件に合わせて関数コードや依存関係を追加して利用することが可能である。</p></li>
+<li><p>AWS ベースイメージは AWS により管理され、定期的に更新される。</p></li>
+<li><p>AWS ベースイメージで提供されないランタイム (言語・バージョン) を利用したい場合は、Amazon Linux 2 のベースイメージを利用して、カスタムランタイムを構築することが可能である。Alpine、CentOS、Debian、Ubuntu も選択可能。Amazon Linux は後述の RIC がサポート対象外のため利用不可。</p></li>
+<li><p>関数コードから Lambda を操作するには Runtime API が必要。Runtime API は Lambda からの invocation event の受信や Lambda への関数の処理結果の送信を HTTP で行う。</p></li>
+<li><p>Docker コンテナイメージの構築を容易にするために Runtime API をパッケージ化して、Runtime interface client (RIC) としてリリースされた。</p></li>
+<li><p>AWS ベースイメージには RIC が組み込まれているが、カスタムランタイムには組み込まれていないので自分でインストールする必要がある。</p></li>
+<li><p>Extensions API (Lambda Extensions) を利用して、サードパーティのモニタリングツールを組み込むなどのカスタマイズも可能である。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>詳細<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="aws">
+<h3>AWS ベースイメージ<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>AWS ベースイメージとして、下記の表に示すコンテナイメージが提供されている。</p></li>
+<li><p>AWS ベースイメージは、Docker Hub と Amazon ECR Public (<a class="reference external" href="https://gallery.ecr.aws/">Amazon ECR Public Gallery</a>) で公開されている。</p></li>
+<li><p>それぞれの AWS ベースイメージの Dockerfile は、GitHub (<a class="reference external" href="https://github.com/aws/aws-lambda-base-images">aws/aws-lambda-base-images</a> で公開されている。</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tags</p></th>
+<th class="head"><p>Runtime</p></th>
+<th class="head"><p>OS</p></th>
+<th class="head"><p>Dockerfile</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>nodejs12.x</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/nodejs12.x/Dockerfile.nodejs12.x">Dockerfile.nodejs12.x</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>nodejs10.x</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/nodejs10.x/Dockerfile.nodejs10.x">Dockerfile.nodejs10.x</a></p></td>
+</tr>
+<tr class="row-even"><td><p>3, 3.8</p></td>
+<td><p>python3.8</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/python3.8/Dockerfile.python3.8">Dockerfile.python3.8</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>3.7</p></td>
+<td><p>python3.7</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/python3.7/Dockerfile.python3.7">Dockerfile.python3.7</a></p></td>
+</tr>
+<tr class="row-even"><td><p>3.6</p></td>
+<td><p>python3.6</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/python3.6/Dockerfile.python3.6">Dockerfile.python3.6</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>2, 2.7</p></td>
+<td><p>python2.7</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/python2.7/Dockerfile.python2.7">Dockerfile.python2.7</a></p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Java 11 (Corretto)</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/java11/Dockerfile.java11">Dockerfile.java11</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Java 11 (Corretto)</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/java11/Dockerfile.java11">Dockerfile.java11</a></p></td>
+</tr>
+<tr class="row-even"><td><p>8.al2</p></td>
+<td><p>Java 8 (Corretto)</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/java8.al2/Dockerfile.java8.al2">Dockerfile.java8.al2</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Java 8 (OpenJDK)</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/java8/Dockerfile.java8">Dockerfile.java8</a></p></td>
+</tr>
+<tr class="row-even"><td><p>5.0</p></td>
+<td><p>.NET 5.0</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-dotnet/blob/master/LambdaRuntimeDockerfiles/dotnet5/Dockerfile">Dockerfile</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>core3.1</p></td>
+<td><p>.NET Core 3.1</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/dotnetcore3.1/Dockerfile.dotnetcore3.1">Dockerfile.dotnetcore3.1</a></p></td>
+</tr>
+<tr class="row-even"><td><p>core2.1</p></td>
+<td><p>.NET Core 2.1</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/dotnetcore2.1/Dockerfile.dotnetcore2.1">Dockerfile.dotnetcore2.1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Go 1.x</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/go1.x/Dockerfile.go1.x">Dockerfile.go1.x</a></p></td>
+</tr>
+<tr class="row-even"><td><p>2, 2.7</p></td>
+<td><p>Ruby 2.7</p></td>
+<td><p>Amazon Linux 2</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/ruby2.7/Dockerfile.ruby2.7">Dockerfile.ruby2.7</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>2.5</p></td>
+<td><p>Ruby 2.5</p></td>
+<td><p>Amazon Linux 2018.03</p></td>
+<td><p><a class="reference external" href="https://github.com/aws/aws-lambda-base-images/blob/ruby2.5/Dockerfile.ruby2.5">Dockerfile.ruby2.5</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Amazon Linux 2018.03 は、Amazon Linux の最新のリリース。Amazon Linux は、2020年12月31日で EOL となるため、商用では利用しないことが望ましい。</p>
+</div>
+<ul class="simple">
+<li><p>Amazon Linux 2 のベースイメージを利用して、カスタムランタイムを構成することが可能である。</p></li>
+<li><p>Alpine、CentOS、Debian、Ubuntu も選択可能。Amazon Linux は後述の RIC がサポート対象外のため利用不可。</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tags</p></th>
+<th class="head"><p>Runtime</p></th>
+<th class="head"><p>OS</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>al2</p></td>
+<td><p>provided.al2</p></td>
+<td><p>Amazon Linux 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>alami</p></td>
+<td><p>provided</p></td>
+<td><p>Amazon Linux</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="runtime-interface-client-ric">
+<h3>Runtime interface client (RIC)<a class="headerlink" href="#runtime-interface-client-ric" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><strong>(再掲)</strong></p>
+<ul class="simple">
+<li><p>関数コードから Lambda を操作するには Runtime API が必要。Runtime API は Extensions API とともに Lambda からの invocation event の受信や Lambda への関数の処理結果の送信を HTTP で行う。</p></li>
+<li><p>Docker コンテナイメージの構築を容易にするために Runtime API をパッケージ化して、Runtime interface client (RIC) としてリリースされた。</p></li>
+<li><p>AWS ベースイメージには RIC が組み込まれているが、カスタムランタイムには組み込まれていないので自分でインストールする必要がある。</p></li>
+</ul>
+</div>
+<div class="section" id="runtime-interface-emulator-rie">
+<h3>Runtime interface emulator (RIE)<a class="headerlink" href="#runtime-interface-emulator-rie" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>ローカル環境でのテスト用に <a class="reference external" href="https://github.com/aws/aws-lambda-runtime-interface-emulator">Runtime interface emulator (RIE)</a> が提供されている。</p></li>
+<li><p>Linux、macOS、Windows 用の RIE が提供されている。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>参考文献<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-images.html">Runtime support for Lambda container images</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/blogs/news/new-for-aws-lambda-container-image-support/">AWS Lambda の新機能 – コンテナイメージのサポート</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aws/aws-lambda-python-runtime-interface-client">aws/aws-lambda-python-runtime-interface-client</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aws/aws-lambda-nodejs-runtime-interface-client">aws/aws-lambda-nodejs-runtime-interface-client</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aws/aws-lambda-ruby-runtime-interface-client">aws/aws-lambda-ruby-runtime-interface-client</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/awslambdaric/">awslambdaric 1.0.0</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-limits.html">AWS Lambda のクォータ</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/blogs/news/introducing-aws-lambda-extensions-in-preview/">AWS Lambda Extensions（プレビュー）のご紹介</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/amazon-linux-ami/">Amazon Linux AMI</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/blogs/aws/update-on-amazon-linux-ami-end-of-life/">Update on Amazon Linux AMI end-of-life</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/about-aws/whats-new/2019/03/announcing_the_amazon_linux_2_preupgrade_assistant/">Amazon Linux 2 プレアップグレードアシスタントの発表</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lambda-logging.html" class="btn btn-neutral float-right" title="Lambda logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lambda.html" class="btn btn-neutral float-left" title="Compute" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2019, kikuchitk7
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

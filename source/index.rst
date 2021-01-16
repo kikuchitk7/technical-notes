@@ -10,6 +10,7 @@ Welcome to technical notes's documentation!
    :maxdepth: 1
    :caption: Contents:
 
+   cloud/cloud
    cloudnative/cloudnative
    methodology/methodology
    softwaredevelopment/softwaredevelopment
