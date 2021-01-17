@@ -114,7 +114,7 @@ Alexa スキル
 
 LaunchRequest の例
 
-.. code-block:: json
+.. code-block:: none
 
     "request": {
         "type": "LaunchRequest",
@@ -127,7 +127,7 @@ LaunchRequest の例
 
 IntentRequest の例
 
-.. code-block:: json
+.. code-block:: none
 
     "request": {
         "type": "IntentRequest",
@@ -153,7 +153,7 @@ IntentRequest の例
 
 リクエスト本文は、例えば下記。
 
-.. code-block:: json
+.. code-block:: none
 
     {
         "version": "1.0",
