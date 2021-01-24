@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>[第9回] Amazon SageMaker Studio の基本的な使い方 (2) &mdash; technical notes  ドキュメント</title>
+  <title>[第10回] Amazon SageMaker Studio の基本的な使い方 (2) &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -36,7 +36,9 @@
 
     
     <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="検索" href="../../search.html" /> 
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="その他" href="../../others/others.html" />
+    <link rel="prev" title="[第9回] Amazon SageMaker Studio の基本的な使い方 (1)" href="ml-services-sagemaker-studio-01.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,12 +84,42 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../cloud/cloud.html">Cloud</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cloudnative/cloudnative.html">Cloud Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../methodology/methodology.html">Methodology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../softwaredevelopment/softwaredevelopment.html">Software Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../article.html">AWS ではじめる機械学習</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../article.html">AWS ではじめる機械学習</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../summary/introduction.html">[第1回] AWS ではじめる機械学習</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../summary/overview.html">[第2回] AWS の機械学習サービスとは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-services/ai-services-overview.html">[第3回] AI サービスの全体像を把握する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-01.html">[第4回] ML サービスの全体像を把握する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-02.html">[第5回] Amazon SageMaker の基本的な使い方を理解する (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-03.html">[第6回] Amazon SageMaker の基本的な使い方を理解する (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-04.html">[第7回] Amazon SageMaker の基本的な使い方を理解する (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-overview-05.html">[第8回] Amazon SageMaker の基本的な使い方を理解する (4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-sagemaker-studio-01.html">[第9回] Amazon SageMaker Studio の基本的な使い方 (1)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[第10回] Amazon SageMaker Studio の基本的な使い方 (2)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-sagemaker-studio">実際に Amazon SageMaker Studio を使う</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">チュートリアルの概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aws">ステップ 1 : AWS アカウントを今すぐ無料で作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">ステップ 2 : Amazon SageMaker Studio をセットアップする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">ステップ 3 : データセットをダウンロードする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sagemaker-autopilot">ステップ 4 : SageMaker Autopilot 実験を作成する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">ステップ 6 : 最適なモデルをデプロイする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">ステップ 7 : モデルを使用して予測を行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">ステップ 8 : クリーンアップ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">著者紹介</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../others/others.html">その他</a></li>
 </ul>
 
@@ -135,7 +167,9 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>[第9回] Amazon SageMaker Studio の基本的な使い方 (2)</li>
+          <li><a href="../article.html">AWS ではじめる機械学習</a> &raquo;</li>
+        
+      <li>[第10回] Amazon SageMaker Studio の基本的な使い方 (2)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,18 +189,147 @@
            <div itemprop="articleBody">
             
   <div class="section" id="amazon-sagemaker-studio-2">
-<h1>[第9回] Amazon SageMaker Studio の基本的な使い方 (2)<a class="headerlink" href="#amazon-sagemaker-studio-2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>[第10回] Amazon SageMaker Studio の基本的な使い方 (2)<a class="headerlink" href="#amazon-sagemaker-studio-2" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>前回は XXX について解説しました。</p>
+<ul class="simple">
+<li><p>Amazon SageMaker Studio の使い方がわかる。</p></li>
+<li><p>Amazon SageMaker Autopilot の概要と使い方がわかる。</p></li>
+</ul>
 </div>
+<div class="section" id="amazon-sagemaker-studio">
+<h2>実際に Amazon SageMaker Studio を使う<a class="headerlink" href="#amazon-sagemaker-studio" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回も解説の題材に AWS 社が公開するチュートリアルを利用します。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/jp/getting-started/hands-on/create-machine-learning-model-automatically-sagemaker-autopilot/">「機械学習モデルを自動的に作成する Amazon SageMaker Autopilot を使用」</a></p></li>
+</ul>
+</div></blockquote>
+<p>このチュートリアルでは、「Amazon SageMaker Autopilot」をはじめとする新機能を利用します。
+チュートリアルで利用する新機能についても紹介していきます。</p>
 <div class="section" id="id2">
-<h2>まとめ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>チュートリアルの概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>このチュートリアルで扱う課題とデータセットは、第 5 〜 8 回目の連載と同一です。
+「ポルトガル銀行のダイレクトマーケティングのデータ」を利用して、顧客の属性データから顧客が定期預金を「申し込む」か「申し込まないか」の二値分類を行います。
+機械学習を使って見込み顧客を予測できることにより、営業活動を効率化することができます。</p>
+<p>第 5 回目の連載で背景を説明していますので、必要に応じて確認してください。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5099">「【第5回】Amazon SageMaker の基本的な使い方 (1)」</a></p></li>
+</ul>
+</div></blockquote>
+<p>チュートリアルの流れを下記に示します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>工程</p></th>
+<th class="head"><p>ステップ</p></th>
+<th class="head"><p>枝番</p></th>
+<th class="head"><p>実施内容</p></th>
+<th class="head"><p>連載回</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>準備</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>AWS アカウントを今すぐ無料で作成</p></td>
+<td><p>第 10 回</p></td>
+</tr>
+<tr class="row-odd"><td><p>開発</p></td>
+<td><p>2</p></td>
+<td></td>
+<td><p>Amazon SageMaker Studio をセットアップする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>データセットをダウンロードする</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>学習</p></td>
+<td><p>4</p></td>
+<td></td>
+<td><p>SageMaker Autopilot 実験を作成する</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>5</p></td>
+<td></td>
+<td><p>SageMaker Autopilot 実験のさまざまなステージを調べる</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>推論</p></td>
+<td><p>6</p></td>
+<td></td>
+<td><p>最適なモデルをデプロイする</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>7</p></td>
+<td></td>
+<td><p>モデルを使用して予測を行う</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>8</p></td>
+<td></td>
+<td><p>クリーンアップ</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h3>注意事項<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>今回の解説の題材に使うチュートリアルを試す場合、下記に注意してください。
+特に、課金が発生する点に注意してください。</p>
+<ul class="simple">
+<li><p>チュートリアルの最終更新日が「2020 年 5 月 12 日」となっています。Amazon SageMaker は 2020 年 11 〜 12 月に大幅な機能アップデートがありましたが、その内容がまだ取り込まれておらず、チュートリアルの画面の一部が古いものがあります。</p></li>
+<li><p>チュートリアルの「時間」に「10分」と記載されていますが、実際には Amazon SageMaker Autopilot のジョブ実行による待ち時間を含めると 2 時間程度はかかります。時間に余裕をもって実行してください。</p></li>
+<li><p>Amazon SageMaker Autopilot により数多くのジョブが起動されます。無償枠を超えて 10 ドル未満の課金が発生する可能性があります。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="aws">
+<h2>ステップ 1 : AWS アカウントを今すぐ無料で作成<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id4">
+<h2>ステップ 2 : Amazon SageMaker Studio をセットアップする<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id5">
+<h2>ステップ 3 : データセットをダウンロードする<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="sagemaker-autopilot">
+<h2>ステップ 4 : SageMaker Autopilot 実験を作成する<a class="headerlink" href="#sagemaker-autopilot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id6">
+<h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id7">
+<h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id8">
+<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id9">
+<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id10">
+<h2>まとめ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回は XXX について解説をしました。次回は YYY について扱いたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id3">
-<h2>著者紹介<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h2>著者紹介<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
@@ -184,6 +347,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../others/others.html" class="btn btn-neutral float-right" title="その他" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ml-services-sagemaker-studio-01.html" class="btn btn-neutral float-left" title="[第9回] Amazon SageMaker Studio の基本的な使い方 (1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

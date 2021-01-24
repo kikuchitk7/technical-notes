@@ -14,4 +14,5 @@ AWS ではじめる機械学習
     ml-services/ml-services-overview-04
     ml-services/ml-services-overview-05
     ml-services/ml-services-sagemaker-studio-01.rst
+    ml-services/ml-services-sagemaker-studio-02.rst
     
