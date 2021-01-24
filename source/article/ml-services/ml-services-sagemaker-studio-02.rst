@@ -20,6 +20,10 @@
 このチュートリアルでは、「Amazon SageMaker Autopilot」をはじめとする新機能を利用します。
 チュートリアルで利用する新機能についても紹介していきます。
 
+なお、Amazon SageMaker Studio は、2020 年 11 月に東京リージョンでの提供開始が発表されました。
+今回の記事では、東京リージョンを利用して進めていきます。
+
+    * `Amazon SageMaker Studio is now expanded to AWS regions worldwide <https://aws.amazon.com/jp/about-aws/whats-new/2020/11/amazon-sagemaker-studio-is-expanded-to-aws-regions-worldwide/>`_
 
 
 チュートリアルの概要
@@ -96,7 +100,6 @@
 * チュートリアルの最終更新日が「2020 年 5 月 12 日」となっています。Amazon SageMaker は 2020 年 11 〜 12 月に大幅な機能アップデートがありましたが、その内容がまだ取り込まれておらず、チュートリアルの画面の一部が古いものがあります
 * チュートリアルの「時間」に「10分」と記載されていますが、実際には Amazon SageMaker Autopilot のジョブ実行による待ち時間を含めると 2 時間程度はかかります。時間に余裕をもって実行してください
 * Amazon SageMaker Autopilot により数多くのジョブが起動されます。無償枠を超えて 10 ドル未満の課金が発生する可能性があります
-* 
 
 
 ステップ 1 : AWS アカウントを今すぐ無料で作成
