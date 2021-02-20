@@ -236,6 +236,29 @@ index.js の基本的な書式。
 * 参考：`Alexa道場 S02 EP09 ASK SDK for Node js を使おう <https://www.youtube.com/watch?v=itsNdkr8btU&list=PLan9XPu5-9zx-p7tJrjPAlMFvyELIck6t&index=10>`_
 
 
+ロールと権限
+---------------------------------------------------
 
+.. list-table::
+    :header-rows: 1
 
-
+    * - ロール
+      - 管理者
+      - 開発者
+      - マーケティング担当者
+      - アナリスト
+    * - 収益／支払いレポート
+      - ○
+      - 
+      - 
+      - ○
+    * - アプリ内課金
+      - ○
+      - 
+      - ○
+      - 
+    * - 売上レポート
+      - ○
+      - 
+      - ○
+      - ○
