@@ -207,6 +207,91 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 ステップ 3 : データセットをダウンロードする
 -------------------------------------------------------------------
 
+「Studio を開く」
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg
+  :width: 700px
+
+
+「Select a SageMaker Image」に「Data Science」を選択
+
+「Notebook」を選択
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg
+  :width: 700px
+
+ノートブックの右上の赤枠が「Unknown」の場合は、これを選択
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg
+  :width: 700px
+
+
+今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg
+  :width: 700px
+
+
+インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
+「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg
+  :width: 700px
+
+
+ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+実行はノートブック上部にある ▷ ボタンか、Shift キー＋Enter キーで行ってください。
+
+.. code-block:: python
+
+    %%sh
+    apt-get install -y unzip
+    wget https://sagemaker-sample-data-us-west-2.s3-us-west-2.amazonaws.com/autopilot/direct_marketing/bank-additional.zip
+    unzip -o bank-additional.zip
+
+
+amazon-sagemaker-autopilot-tutorial-step3-download
+
+
+
+ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+
+.. code-block:: python
+    
+    import pandas as pd
+    data = pd.read_csv('./bank-additional/bank-additional-full.csv')
+    data[:10]
+
+下記のように表形式でデータが表示されれば成功です。
+
+
+
+ここでは、Pandas の read_csv メソッドを使って、ダウンロードした CSV 形式のファイルの最初の10行を出力しています。
+
+
+
+
+ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+
+.. code-block:: python
+    
+    import sagemaker
+
+    prefix = 'sagemaker/tutorial-autopilot/input'
+    sess   = sagemaker.Session()
+
+    uri = sess.upload_data(path="./bank-additional/bank-additional-full.csv", key_prefix=prefix)
+    print(uri)
+
+
+下記のように S3 バケットの URI が表示されれば成功です。
+
+.. code-block::
+    
+    s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/input/bank-additional-full.csv
+
+「ACCOUNT_NUMBER」にはご自身の AWS アカウントの 12 ケタの数字が入ります。
+
 
 ステップ 4 : SageMaker Autopilot 実験を作成する
 -------------------------------------------------------------------

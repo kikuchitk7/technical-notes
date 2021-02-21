@@ -441,6 +441,60 @@
 </div>
 <div class="section" id="id7">
 <h2>ステップ 3 : データセットをダウンロードする<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「Studio を開く」</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" style="width: 700px;" /></a>
+</div>
+<p>「Select a SageMaker Image」に「Data Science」を選択</p>
+<p>「Notebook」を選択</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" style="width: 700px;" /></a>
+</div>
+<p>ノートブックの右上の赤枠が「Unknown」の場合は、これを選択</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" style="width: 700px;" /></a>
+</div>
+<p>今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" style="width: 700px;" /></a>
+</div>
+<p>インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
+「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" style="width: 700px;" /></a>
+</div>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+実行はノートブック上部にある ▷ ボタンか、Shift キー＋Enter キーで行ってください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sh</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">unzip</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">s3</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">autopilot</span><span class="o">/</span><span class="n">direct_marketing</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">unzip</span> <span class="o">-</span><span class="n">o</span> <span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>amazon-sagemaker-autopilot-tutorial-step3-download</p>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank-additional/bank-additional-full.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>下記のように表形式でデータが表示されれば成功です。</p>
+<p>ここでは、Pandas の read_csv メソッドを使って、ダウンロードした CSV 形式のファイルの最初の10行を出力しています。</p>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sagemaker</span>
+
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;sagemaker/tutorial-autopilot/input&#39;</span>
+<span class="n">sess</span>   <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">upload_data</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;./bank-additional/bank-additional-full.csv&quot;</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下記のように S3 バケットの URI が表示されれば成功です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">ACCOUNT_NUMBER</span><span class="o">/</span><span class="n">sagemaker</span><span class="o">/</span><span class="n">tutorial</span><span class="o">-</span><span class="n">autopilot</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">-</span><span class="n">full</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>「ACCOUNT_NUMBER」にはご自身の AWS アカウントの 12 ケタの数字が入ります。</p>
 </div>
 <div class="section" id="sagemaker-autopilot">
 <h2>ステップ 4 : SageMaker Autopilot 実験を作成する<a class="headerlink" href="#sagemaker-autopilot" title="このヘッドラインへのパーマリンク">¶</a></h2>
