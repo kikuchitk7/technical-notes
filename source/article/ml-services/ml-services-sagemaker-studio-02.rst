@@ -296,6 +296,91 @@ amazon-sagemaker-autopilot-tutorial-step3-download
 ステップ 4 : SageMaker Autopilot 実験を作成する
 -------------------------------------------------------------------
 
+Autopilot から前処理・学習を行う「実験」を作成する
+背後で Amazon SageMaker Experiment と連携して実現されている。
+
+Amazon SageMaker Studio のアップデートにより、チュートリアルの画面イメージと異なるので注意してください。
+
+左側のナビゲーションペインで、下図に示す三角形のアイコンを選択します。
+続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg
+  :width: 700px
+
+
+「Create Experiment」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg
+  :width: 700px
+
+
+ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。
+今回は簡単なチュートリアルですので、原則としてデフォルト値を設定 します。
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。
+
+.. list-table::
+    :header-rows: 1
+
+    * - 設定値名
+      - 説明
+      - デフォルト値
+    * - Experiment name
+      - 実験の名称を設定する。
+      - なし (今回は「tutorial-autopilot」と設定)
+    * - TAGS - Optional
+      - 実験に付与するタグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する。
+      - なし
+    * - Project
+      - 踏襲するプロジェクトがある場合に設定する。オプション設定であるため、必要に応じて設定する。
+      - なし
+    * - CONNECT YOUR DATA
+      - 
+      - なし
+    * - S3 bucket address
+      -
+      -
+    * - Is your S3 input a manifest file?
+      -
+      -
+    * - Target
+      -
+      -
+    * - Output data location (S3 bucket)
+      -
+      -
+    * - S3 bucket name
+      -
+      -
+    * - Dataset directory name
+      -
+      -
+    * - Select the machine learning problem type
+      -
+      -
+    * - Do you want to run a complete experiment?
+      - |
+        | Yes
+        | No, run a pilot to create a notebook with candidate definitions
+      -
+    * - IAM role
+      -
+      - Default SageMaker Role
+    * - Encryption key - Optional
+      - 
+      - なし
+    * - Virtual private cloud (VPC) - Optional
+      -
+      - なし
+    * - Max trial runtime in seconds
+      -
+      - 0
+    * - Max job runtime in seconds
+      -
+      - 0
+    * - Max candidates
+      -
+      - 0
+
 
 ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる
 -------------------------------------------------------------------

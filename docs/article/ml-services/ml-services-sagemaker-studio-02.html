@@ -498,6 +498,113 @@
 </div>
 <div class="section" id="sagemaker-autopilot">
 <h2>ステップ 4 : SageMaker Autopilot 実験を作成する<a class="headerlink" href="#sagemaker-autopilot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Autopilot から前処理・学習を行う「実験」を作成する
+背後で Amazon SageMaker Experiment と連携して実現されている。</p>
+<p>Amazon SageMaker Studio のアップデートにより、チュートリアルの画面イメージと異なるので注意してください。</p>
+<p>左側のナビゲーションペインで、下図に示す三角形のアイコンを選択します。
+続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" style="width: 700px;" /></a>
+</div>
+<p>「Create Experiment」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" style="width: 700px;" /></a>
+</div>
+<p>ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。
+今回は簡単なチュートリアルですので、原則としてデフォルト値を設定 します。
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>設定値名</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>デフォルト値</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Experiment name</p></td>
+<td><p>実験の名称を設定する。</p></td>
+<td><p>なし (今回は「tutorial-autopilot」と設定)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAGS - Optional</p></td>
+<td><p>実験に付与するタグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する。</p></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td><p>Project</p></td>
+<td><p>踏襲するプロジェクトがある場合に設定する。オプション設定であるため、必要に応じて設定する。</p></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-odd"><td><p>CONNECT YOUR DATA</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td><p>S3 bucket address</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Is your S3 input a manifest file?</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Target</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Output data location (S3 bucket)</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>S3 bucket name</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Dataset directory name</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Select the machine learning problem type</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Do you want to run a complete experiment?</p></td>
+<td><div class="line-block">
+<div class="line"><br /></div>
+<div class="line">Yes</div>
+<div class="line">No, run a pilot to create a notebook with candidate definitions</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>IAM role</p></td>
+<td></td>
+<td><p>Default SageMaker Role</p></td>
+</tr>
+<tr class="row-odd"><td><p>Encryption key - Optional</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td><p>Virtual private cloud (VPC) - Optional</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max trial runtime in seconds</p></td>
+<td></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Max job runtime in seconds</p></td>
+<td></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max candidates</p></td>
+<td></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id8">
 <h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
