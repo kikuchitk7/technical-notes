@@ -321,64 +321,77 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
 .. list-table::
     :header-rows: 1
 
-    * - 設定値名
+    * - 分類
+      - 設定値名
       - 説明
       - デフォルト値
-    * - Experiment name
-      - 実験の名称を設定する。
-      - なし (今回は「tutorial-autopilot」と設定)
-    * - TAGS - Optional
+    * - AUTOPILOT EXPERIMENT SETTINGS
+      - Experiment name
+      - 実験の名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
+      - なし (今回は「tutorial-autopilot」を設定)
+    * - 
+      - TAGS - Optional
       - 実験に付与するタグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する。
       - なし
-    * - Project
+    * -
+      - Project
       - 踏襲するプロジェクトがある場合に設定する。オプション設定であるため、必要に応じて設定する。
       - なし
-    * - CONNECT YOUR DATA
-      - 
-      - なし
-    * - S3 bucket address
-      -
-      -
-    * - Is your S3 input a manifest file?
-      -
-      -
-    * - Target
-      -
-      -
-    * - Output data location (S3 bucket)
-      -
-      -
-    * - S3 bucket name
-      -
-      -
-    * - Dataset directory name
-      -
-      -
-    * - Select the machine learning problem type
-      -
-      -
-    * - Do you want to run a complete experiment?
-      - |
-        | Yes
-        | No, run a pilot to create a notebook with candidate definitions
-      -
-    * - IAM role
-      -
+    * - 
+      - CONNECT YOUR DATA
+      - | 入力となる学習データが格納されている S3 バケットとファイル名を指定する。S3 バケットは同一リージョンに存在する必要があり、ファイルは CSV 形式で 500 行以上である必要がある
+        | ・Find S3 bucket: バケット名とファイル名をプルダウンから選択する
+        | ・Enter S3 bucket location: 「s3://」から始まる URI 形式でファイル名を指定する
+      - Find S3 bucket (今回は「s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/input/bank-additional-full.csv」(ステップ 3) を指定)
+    * - 
+      - Is your S3 input a manifest file?
+      - S3 バケットに格納したファイルがマニフェストファイルである場合に有効化する。マニフェストファイルは、入力となる学習データとメタデータ (データの格納場所などの属性情報) が含まれる。 
+      - 無効
+    * - 
+      - Target
+      - 推論の対象となる正解データが格納されている列名
+      - なし (今回は「y」を設定)
+    * -
+      - Output data location (S3 bucket)
+      - 機械学習モデルなどの出力ファイルを出力する S3 バケットを指定する。設定値の意味は「CONNECT YOUR DATA」と同じ
+      - Find S3 bucket (今回は「s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/output」を指定)
+    * -
+      - Select the machine learning problem type
+      - | 実験で扱う機械学習の問題を設定する。
+        | ・Auto: 自動
+        | ・Binary classification: 二値分類
+        | ・Regression: 回帰
+        | ・Multiclass classification: 多値分類
+      - Auto
+    * - ADVANCED SETTINGS - Optional
+      - Do you want to run a complete experiment?
+      - | Amazon SageMaker Autopilot による完全な実験を行うか、候補が定義されたノートブックの出力に留めるかを選択する
+        | ・Yes
+        | ・No, run a pilot to create a notebook with candidate definitions
+      - Yes
+    * -
+      - IAM role
+      - Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する
       - Default SageMaker Role
-    * - Encryption key - Optional
-      - 
+    * -
+      - Encryption key - Optional
+      - AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
       - なし
-    * - Virtual private cloud (VPC) - Optional
-      -
+    * -
+      - Virtual private cloud (VPC) - Optional
+      - セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
       - なし
-    * - Max trial runtime in seconds
-      -
+    * -
+      - Max trial runtime in seconds
+      - 試行の完了を待機する実行時間 (秒)
       - 0
-    * - Max job runtime in seconds
-      -
+    * -
+      - Max job runtime in seconds
+      - ジョブの完了を待機する実行時間 (秒)
       - 0
-    * - Max candidates
-      -
+    * -
+      - Max candidates
+      - トレーニングジョブの実行が許可される最大回数
       - 0
 
 
