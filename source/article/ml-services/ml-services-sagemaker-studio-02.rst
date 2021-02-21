@@ -229,7 +229,7 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg
-  :width: 900px
+  :width: 450px
 
 
 インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
