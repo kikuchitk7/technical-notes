@@ -447,6 +447,81 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 ステップ 6 : 最適なモデルをデプロイする
 -------------------------------------------------------------------
 
+実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行います。
+「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg
+  :width: 900px
+
+
+.. list-table::
+    :header-rows: 1
+
+    * - 分類
+      - 設定値名
+      - 説明
+      - デフォルト値
+    * - REALTIME DEPLOYMENT SETTINGS
+      - Endpoint name
+      - 
+      - なし (今回は「tutorial-autopilot-best-model」と設定)
+    * - 
+      - Instance type
+      - 
+      - ml.m5.xlarge (今回は「ml.m5.large」と設定)
+    * - 
+      - Instance count
+      - 
+      - 1
+    * - 
+      - Data capture
+      - | 
+        | ・Save prediction requests
+        | ・Sace prediction responce
+      - 未選択
+    * - 
+      - Inference Responce Content
+      - 
+      - 
+    * - ADVANCED SETTINGS - Optional
+      - Environment variables - Optional
+      - 
+      - なし
+    * - 
+      - IAM role
+      - 
+      - 
+    * - 
+      - Encryption key - Optional
+      - 
+      - なし
+    * - 
+      - Virtual private cloud (VPC) - Optional
+      - 
+      - なし
+
+
+「Instance type」について補足します。
+デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。
+今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg
+  :width: 900px
+
+
+設定の完了後に「Deploy model」を選択します。
+推論インスタンスの作成と機械学習モデルのデプロイが行われます。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg
+  :width: 900px
+
+
+上記の画面では進行状況がわかりづらいため、「Experiments and trials」と表示されているプルダウンメニューから、「Endpoint」を選択して移動します。
+「Endpoint status」が「Creating」から「InService」となれば完了です。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg
+  :width: 900px
+
 
 ステップ 7 : モデルを使用して予測を行う
 -------------------------------------------------------------------

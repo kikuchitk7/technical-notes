@@ -658,6 +658,94 @@
 </div>
 <div class="section" id="id9">
 <h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行います。
+「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" style="width: 900px;" /></a>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>分類</p></th>
+<th class="head"><p>設定値名</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>デフォルト値</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>REALTIME DEPLOYMENT SETTINGS</p></td>
+<td><p>Endpoint name</p></td>
+<td></td>
+<td><p>なし (今回は「tutorial-autopilot-best-model」と設定)</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Instance type</p></td>
+<td></td>
+<td><p>ml.m5.xlarge (今回は「ml.m5.large」と設定)</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Instance count</p></td>
+<td></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Data capture</p></td>
+<td><div class="line-block">
+<div class="line"><br /></div>
+<div class="line">・Save prediction requests</div>
+<div class="line">・Sace prediction responce</div>
+</div>
+</td>
+<td><p>未選択</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Inference Responce Content</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ADVANCED SETTINGS - Optional</p></td>
+<td><p>Environment variables - Optional</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>IAM role</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Encryption key - Optional</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Virtual private cloud (VPC) - Optional</p></td>
+<td></td>
+<td><p>なし</p></td>
+</tr>
+</tbody>
+</table>
+<p>「Instance type」について補足します。
+デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。
+今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" style="width: 900px;" /></a>
+</div>
+<p>設定の完了後に「Deploy model」を選択します。
+推論インスタンスの作成と機械学習モデルのデプロイが行われます。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg" style="width: 900px;" /></a>
+</div>
+<p>上記の画面では進行状況がわかりづらいため、「Experiments and trials」と表示されているプルダウンメニューから、「Endpoint」を選択して移動します。
+「Endpoint status」が「Creating」から「InService」となれば完了です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" style="width: 900px;" /></a>
+</div>
 </div>
 <div class="section" id="id10">
 <h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
