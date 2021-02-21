@@ -526,6 +526,67 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 ステップ 7 : モデルを使用して予測を行う
 -------------------------------------------------------------------
 
+ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。
+
+.. code-block:: python
+
+    import boto3, sys
+
+    ep_name = 'tutorial-autopilot-best-model'
+    sm_rt = boto3.Session().client('runtime.sagemaker')
+
+    tn=tp=fn=fp=count=0
+
+    with open('bank-additional/bank-additional-full.csv') as f:
+        lines = f.readlines()
+        for l in lines[1:2000]:   # Skip header
+            l = l.split(',')      # Split CSV line into features
+            label = l[-1]         # Store 'yes'/'no' label
+            l = l[:-1]            # Remove label
+            l = ','.join(l)       # Rebuild CSV line without label
+                    
+            response = sm_rt.invoke_endpoint(EndpointName=ep_name, 
+                                            ContentType='text/csv',       
+                                            Accept='text/csv', Body=l)
+
+            response = response['Body'].read().decode("utf-8")
+            #print ("label %s response %s" %(label,response))
+
+            if 'yes' in label:
+                # Sample is positive
+                if 'yes' in response:
+                    # True positive
+                    tp=tp+1
+                else:
+                    # False negative
+                    fn=fn+1
+            else:
+                # Sample is negative
+                if 'no' in response:
+                    # True negative
+                    tn=tn+1
+                else:
+                    # False positive
+                    fp=fp+1
+            count = count+1
+            if (count % 100 == 0):   
+                sys.stdout.write(str(count)+' ')
+                
+    print ("Done")
+
+    accuracy  = (tp+tn)/(tp+tn+fp+fn)
+    precision = tp/(tp+fp)
+    recall    = tn/(tn+fn)
+    f1        = (2*precision*recall)/(precision+recall)
+
+    print ("%.4f %.4f %.4f %.4f" % (accuracy, precision, recall, f1))
+
+
+正確度 (accuracy)、適合率 (precision)、再現率、F1 値の順に結果が表示されます。
+著者の環境では下記となりました。
+0.9895、0.6909、0.9979、0.8165
+
 
 ステップ 8 : クリーンアップ
 -------------------------------------------------------------------

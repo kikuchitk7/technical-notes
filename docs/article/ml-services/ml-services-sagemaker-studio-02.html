@@ -749,6 +749,63 @@
 </div>
 <div class="section" id="id10">
 <h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="n">ep_name</span> <span class="o">=</span> <span class="s1">&#39;tutorial-autopilot-best-model&#39;</span>
+<span class="n">sm_rt</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;runtime.sagemaker&#39;</span><span class="p">)</span>
+
+<span class="n">tn</span><span class="o">=</span><span class="n">tp</span><span class="o">=</span><span class="n">fn</span><span class="o">=</span><span class="n">fp</span><span class="o">=</span><span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;bank-additional/bank-additional-full.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2000</span><span class="p">]:</span>   <span class="c1"># Skip header</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>      <span class="c1"># Split CSV line into features</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>         <span class="c1"># Store &#39;yes&#39;/&#39;no&#39; label</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>            <span class="c1"># Remove label</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>       <span class="c1"># Rebuild CSV line without label</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">sm_rt</span><span class="o">.</span><span class="n">invoke_endpoint</span><span class="p">(</span><span class="n">EndpointName</span><span class="o">=</span><span class="n">ep_name</span><span class="p">,</span>
+                                        <span class="n">ContentType</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                                        <span class="n">Accept</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span> <span class="n">Body</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="c1">#print (&quot;label %s response %s&quot; %(label,response))</span>
+
+        <span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+            <span class="c1"># Sample is positive</span>
+            <span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="c1"># True positive</span>
+                <span class="n">tp</span><span class="o">=</span><span class="n">tp</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># False negative</span>
+                <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Sample is negative</span>
+            <span class="k">if</span> <span class="s1">&#39;no&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="c1"># True negative</span>
+                <span class="n">tn</span><span class="o">=</span><span class="n">tn</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># False positive</span>
+                <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+<span class="n">accuracy</span>  <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">recall</span>    <span class="o">=</span> <span class="n">tn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">f1</span>        <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">precision</span><span class="o">*</span><span class="n">recall</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">precision</span><span class="o">+</span><span class="n">recall</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>正確度 (accuracy)、適合率 (precision)、再現率、F1 値の順に結果が表示されます。
+著者の環境では下記となりました。
+0.9895、0.6909、0.9979、0.8165</p>
 </div>
 <div class="section" id="id11">
 <h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
