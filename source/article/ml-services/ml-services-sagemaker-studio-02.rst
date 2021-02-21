@@ -447,7 +447,7 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 ステップ 6 : 最適なモデルをデプロイする
 -------------------------------------------------------------------
 
-実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行います。
+実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行い、推論エンドポイントを作成します。
 「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg
@@ -590,6 +590,27 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 
 ステップ 8 : クリーンアップ
 -------------------------------------------------------------------
+
+下記が課金要素となるため、必要に応じて削除を行います。
+
+* 推論エンドポイント
+* S3 バケットに格納したデータ
+
+
+.. code-block:: python
+
+    sess.delete_endpoint(endpoint_name=ep_name)
+
+
+.. code-block:: python
+
+    %%sh
+    aws s3 rm --recursive s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/
+
+
+Amazon SageMaker Notebooks の背後で動いているインスタンスの停止もしくは削除も忘れずに実施してください。
+
+
 
 
 まとめ
