@@ -198,7 +198,7 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 プロジェクトの「起動制約ロール」と「製品使用ロール」が存在しないことを示すエラーです。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg
-  :width: 700px
+  :width: 900px
 
 しかし、「SageMaker Studio コントロールパネル」の図の赤枠内に示したようにどちらのロールも正常にアタッチされています。
 このチュートリアルではプロジェクトは使わないため問題ありませんので、気にせずに進めてください。
@@ -210,7 +210,7 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 「Studio を開く」
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg
-  :width: 700px
+  :width: 900px
 
 
 「Select a SageMaker Image」に「Data Science」を選択
@@ -218,25 +218,25 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 「Notebook」を選択
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg
-  :width: 700px
+  :width: 900px
 
 ノートブックの右上の赤枠が「Unknown」の場合は、これを選択
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg
-  :width: 700px
+  :width: 900px
 
 
 今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg
-  :width: 700px
+  :width: 900px
 
 
 インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
 「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg
-  :width: 700px
+  :width: 900px
 
 
 ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
@@ -305,13 +305,13 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
 続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg
-  :width: 700px
+  :width: 900px
 
 
 「Create Experiment」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg
-  :width: 700px
+  :width: 900px
 
 
 ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。
@@ -382,8 +382,66 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
       - 0
 
 
+入力が終わったら、「Create Experiment」を選択します。
+
+なお、実験の完了までに2時間程度かかる点に注意してください。
+途中経過を観察する必要はありませんが、放置が許されない場合や余分な課金を防ぐために実験完了後に Amazon SageMaker Notebooks のインスタンスを停止させたい場合もあるかと思いますので、時間に余裕を持って実施してください。
+
+
 ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる
 -------------------------------------------------------------------
+
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg
+  :width: 900px
+
+Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行します。
+
+1. Pre-processing
+2. Candidate Definitions Generated
+3. Feature Engineering
+4. Model Tuning
+
+
+1. Pre-processing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2. Candidate Definitions Generated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg
+  :width: 900px
+
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg
+  :width: 900px
+
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg
+  :width: 900px
+
+
+
+3. Feature Engineering
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+4. Model Tuning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg
+  :width: 900px
+
+
+
+実験が完了すると、下記のようにアニメーションが消えて、結果の表示のみとなります。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg
+  :width: 900px
 
 
 ステップ 6 : 最適なモデルをデプロイする

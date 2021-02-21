@@ -110,7 +110,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#id5">ステップ 2 : Amazon SageMaker Studio をセットアップする</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">ステップ 3 : データセットをダウンロードする</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sagemaker-autopilot">ステップ 4 : SageMaker Autopilot 実験を作成する</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-processing">1. Pre-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#candidate-definitions-generated">2. Candidate Definitions Generated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-engineering">3. Feature Engineering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-tuning">4. Model Tuning</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id9">ステップ 6 : 最適なモデルをデプロイする</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id10">ステップ 7 : モデルを使用して予測を行う</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">ステップ 8 : クリーンアップ</a></li>
@@ -434,7 +440,7 @@
 <p>なお、著者の AWS アカウントでは、下図のようなエラーが発生しました。
 プロジェクトの「起動制約ロール」と「製品使用ロール」が存在しないことを示すエラーです。</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg" style="width: 900px;" /></a>
 </div>
 <p>しかし、「SageMaker Studio コントロールパネル」の図の赤枠内に示したようにどちらのロールも正常にアタッチされています。
 このチュートリアルではプロジェクトは使わないため問題ありませんので、気にせずに進めてください。</p>
@@ -443,25 +449,25 @@
 <h2>ステップ 3 : データセットをダウンロードする<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>「Studio を開く」</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" style="width: 900px;" /></a>
 </div>
 <p>「Select a SageMaker Image」に「Data Science」を選択</p>
 <p>「Notebook」を選択</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" style="width: 900px;" /></a>
 </div>
 <p>ノートブックの右上の赤枠が「Unknown」の場合は、これを選択</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" style="width: 900px;" /></a>
 </div>
 <p>今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" style="width: 900px;" /></a>
 </div>
 <p>インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
 「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" style="width: 900px;" /></a>
 </div>
 <p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 実行はノートブック上部にある ▷ ボタンか、Shift キー＋Enter キーで行ってください。</p>
@@ -504,11 +510,11 @@
 <p>左側のナビゲーションペインで、下図に示す三角形のアイコンを選択します。
 続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" style="width: 900px;" /></a>
 </div>
 <p>「Create Experiment」を選択します。</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" style="width: 900px;" /></a>
 </div>
 <p>ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。
 今回は簡単なチュートリアルですので、原則としてデフォルト値を設定 します。
@@ -605,9 +611,50 @@
 </tr>
 </tbody>
 </table>
+<p>入力が終わったら、「Create Experiment」を選択します。</p>
+<p>なお、実験の完了までに2時間程度かかる点に注意してください。
+途中経過を観察する必要はありませんが、放置が許されない場合や余分な課金を防ぐために実験完了後に Amazon SageMaker Notebooks のインスタンスを停止させたい場合もあるかと思いますので、時間に余裕を持って実施してください。</p>
 </div>
 <div class="section" id="id8">
 <h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" style="width: 900px;" /></a>
+</div>
+<p>Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行します。</p>
+<ol class="arabic simple">
+<li><p>Pre-processing</p></li>
+<li><p>Candidate Definitions Generated</p></li>
+<li><p>Feature Engineering</p></li>
+<li><p>Model Tuning</p></li>
+</ol>
+<div class="section" id="pre-processing">
+<h3>1. Pre-processing<a class="headerlink" href="#pre-processing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="candidate-definitions-generated">
+<h3>2. Candidate Definitions Generated<a class="headerlink" href="#candidate-definitions-generated" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" style="width: 900px;" /></a>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" style="width: 900px;" /></a>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="feature-engineering">
+<h3>3. Feature Engineering<a class="headerlink" href="#feature-engineering" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="model-tuning">
+<h3>4. Model Tuning<a class="headerlink" href="#model-tuning" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg" style="width: 900px;" /></a>
+</div>
+<p>実験が完了すると、下記のようにアニメーションが消えて、結果の表示のみとなります。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" style="width: 900px;" /></a>
+</div>
+</div>
 </div>
 <div class="section" id="id9">
 <h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
