@@ -427,13 +427,33 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
   :width: 900px
 
 
-.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg
-  :width: 900px
+.. list-table::
+    :header-rows: 1
+
+    * - 生成されるノートブック
+      - 説明
+    * - | データ探索ノートブック
+        | (Data Exploration Notebook)
+      - | 学習データの分析結果として下記を提示する
+        | ・データセットのサンプル
+        | ・カラムごとの分析結果
+        | 　・欠損値の割合
+        | 　・値の種類
+        | 　・統計情報 (最大・最小値、平均値、中央値)
+    * - | 候補生成ノートブック
+        | (Candidate Generation Notebook)
+      - | Amazon SageMaker Autopilot が判断した内容が示される。ノートブックをダウンロードして編集や手動実行も可能
+        | ・前処理と機械学習アルゴリズムの組み合わせ
+        | ・ハイパーパラメータ最適化の手法や探索範囲
+        | ・上記の実行方法
 
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg
   :width: 900px
 
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg
+  :width: 900px
 
 
 3. Feature Engineering
