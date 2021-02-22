@@ -4,7 +4,10 @@
 はじめに
 -------------------------------------------------------------------
 
-前回は XXX について解説しました。
+`前回 <https://news.mynavi.jp/itsearch/article/devsoft/5232>`_ は Amazon SageMaker Studio の概要について解説しました。
+今回は実際に Amazon SageMaker Studio を使ってみたいと思います。
+
+下記を理解していただくことを目標にして解説をしていきます。
 
 * Amazon SageMaker Studio の使い方がわかる。
 * Amazon SageMaker Autopilot の概要と使い方がわかる。
@@ -240,7 +243,7 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 
 
 ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
-実行はノートブック上部にある ▷ ボタンか、Shift キー＋Enter キーで行ってください。
+ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。
 
 .. code-block:: python
 
