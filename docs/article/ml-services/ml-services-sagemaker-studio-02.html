@@ -697,23 +697,27 @@
 <tbody>
 <tr class="row-even"><td><p>REALTIME DEPLOYMENT SETTINGS</p></td>
 <td><p>Endpoint name</p></td>
-<td></td>
+<td><p>推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある</p></td>
 <td><p>なし (今回は「tutorial-autopilot-best-model」と設定)</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Instance type</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する</div>
+<div class="line">※この表の下に補足情報を記載するので、そちらも参照されたい</div>
+</div>
+</td>
 <td><p>ml.m5.xlarge (今回は「ml.m5.large」と設定)</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Instance count</p></td>
-<td></td>
+<td><p>推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する</p></td>
 <td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Data capture</p></td>
 <td><div class="line-block">
-<div class="line"><br /></div>
+<div class="line">推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる</div>
 <div class="line">・Save prediction requests</div>
 <div class="line">・Sace prediction responce</div>
 </div>
@@ -722,27 +726,34 @@
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Inference Responce Content</p></td>
-<td></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">推論エンドポイントが入力データごとに返す応答コンテンツを設定する</div>
+<div class="line">・predicted_label：分類されたクラスのラベル</div>
+<div class="line">・probability: 分類されたクラスの確率</div>
+<div class="line">・probabilites: 全てのラベルの確率のリスト</div>
+<div class="line">・labels：全てのラベルのリスト</div>
+</div>
+</td>
+<td><p>predicted_label</p></td>
 </tr>
 <tr class="row-odd"><td><p>ADVANCED SETTINGS - Optional</p></td>
 <td><p>Environment variables - Optional</p></td>
-<td></td>
+<td><p>推論エンドポイントの Docker コンテナに環境変数を設定する</p></td>
 <td><p>なし</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>IAM role</p></td>
-<td></td>
-<td></td>
+<td><p>Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する</p></td>
+<td><p>Default SageMaker Role</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Encryption key - Optional</p></td>
-<td></td>
+<td><p>AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する</p></td>
 <td><p>なし</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Virtual private cloud (VPC) - Optional</p></td>
-<td></td>
+<td><p>セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</p></td>
 <td><p>なし</p></td>
 </tr>
 </tbody>

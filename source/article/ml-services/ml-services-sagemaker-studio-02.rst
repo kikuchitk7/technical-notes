@@ -476,41 +476,46 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
       - デフォルト値
     * - REALTIME DEPLOYMENT SETTINGS
       - Endpoint name
-      - 
+      - 推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
       - なし (今回は「tutorial-autopilot-best-model」と設定)
     * - 
       - Instance type
-      - 
+      - | 推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する
+        | ※この表の下に補足情報を記載するので、そちらも参照されたい
       - ml.m5.xlarge (今回は「ml.m5.large」と設定)
     * - 
       - Instance count
-      - 
+      - 推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する
       - 1
     * - 
       - Data capture
-      - | 
+      - | 推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる
         | ・Save prediction requests
         | ・Sace prediction responce
       - 未選択
     * - 
       - Inference Responce Content
-      - 
-      - 
+      - | 推論エンドポイントが入力データごとに返す応答コンテンツを設定する
+        | ・predicted_label：分類されたクラスのラベル
+        | ・probability: 分類されたクラスの確率
+        | ・probabilites: 全てのラベルの確率のリスト
+        | ・labels：全てのラベルのリスト
+      - predicted_label
     * - ADVANCED SETTINGS - Optional
       - Environment variables - Optional
-      - 
+      - 推論エンドポイントの Docker コンテナに環境変数を設定する
       - なし
     * - 
       - IAM role
-      - 
-      - 
+      - Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する
+      - Default SageMaker Role
     * - 
       - Encryption key - Optional
-      - 
+      - AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
       - なし
     * - 
       - Virtual private cloud (VPC) - Optional
-      - 
+      - セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
       - なし
 
 
