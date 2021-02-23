@@ -326,7 +326,7 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
     s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/input/bank-additional-full.csv
 
 
-実行するコード
+コードの解説
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ここでは、Amazon SageMaker Python SDK の `upload_data メソッド <https://sagemaker.readthedocs.io/en/stable/api/utility/session.html?highlight=session#sagemaker.session.Session.upload_data>`_ を利用して、S3 バケットにデータセットをアップロードしています。
@@ -652,6 +652,12 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 ステップ 7 : モデルを使用して予測を行う
 -------------------------------------------------------------------
 
+推論エンドポイントのデプロイまで完了しましたので、最後に実際に推論を実施して精度を検証してみましょう。
+
+
+実行するコード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。
 
@@ -659,7 +665,7 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 
     import boto3, sys
 
-    ep_name = 'tutorial-autopilot-best-model'
+    ep_name = 'tutorial-autopilot-best-model'  # (著者追記) ステップ 6 で設定した「Endpoint name」と一致させること
     sm_rt = boto3.Session().client('runtime.sagemaker')
 
     tn=tp=fn=fp=count=0
@@ -708,10 +714,103 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 
     print ("%.4f %.4f %.4f %.4f" % (accuracy, precision, recall, f1))
 
+| 推論が100個行われるごとに数字が表示され、「Done」が表示されると完了です。
+| 4つ数字が表示され、左から「正確度 (accuracy)」、「適合率 (precision)」、「再現率 (recall)」、「F1 値 (F-measure)」を表します。
 
-正確度 (accuracy)、適合率 (precision)、再現率、F1 値の順に結果が表示されます。
-著者の環境では下記となりました。
-0.9895、0.6909、0.9979、0.8165
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step7-predict.jpg
+  :width: 900px
+
+
+コードの解説
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ここでは、「bank-additional-full.csv」のヘッダ行を除いた最初の2,000行を精度検証用のテストデータとして利用しています。
+
+.. code-block:: Python
+
+    response = sm_rt.invoke_endpoint(EndpointName=ep_name, 
+                                     ContentType='text/csv',       
+                                     Accept='text/csv', Body=l)
+
+AWS SDK for Python (Boto3) の SageMakerRuntime クラスの `invoke_endpoint メソッド <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint>`_ を使って、テストデータを1行ずつ推論エンドポイントに送信し、その応答として推論結果を取得しています。
+
+
+.. code-block:: Python
+
+    if 'yes' in label:
+        # Sample is positive
+        if 'yes' in response:
+            # True positive
+            tp=tp+1
+        else:
+            # False negative
+            fn=fn+1
+    else:
+        # Sample is negative
+        if 'no' in response:
+            # True negative
+            tn=tn+1
+        else:
+            # False positive
+            fp=fp+1
+
+上記のコードでは、推論結果を基にして混同行列を計算しています。
+前回のチュートリアルでは Pandas の crosstab 関数を使っていましたが、今回のチュートリアルでは手動で計算を行っています。
+
+混同行列については、`第8回目の連載 <https://news.mynavi.jp/itsearch/article/devsoft/5115>`_ で解説しましたが、下記に再掲します。
+
+.. image:: ../../../images/blog/5th/confusion-matrix.png
+  :width: 450px
+
+| 行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。
+| 正解 (2種類) * 予測 (2種類) で、下記に示す 4 つの指標があります。
+| 混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。
+| その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。
+
+- True Positive (TP): 定期預金を申し込むと予測して、実際に申し込んだ顧客の数
+- False Poritive (FP): 定期預金を申し込むと予測したが、実際には申し込まなかった顧客の数
+- True Negative (TN): 定期預金を申し込まないと予測して実際に申し込まなかった顧客の数
+- False Negative (FN): 定期預金を申し込まないと予測したが、実際には申し込んだ顧客の数
+
+「正確度 (accuracy)」、「適合率 (precision)」、「再現率 (recall)」、「F1 値 (F-measure)」は、機械学習モデルの精度を評価する際によく用いられる指標であり、それぞれ下記を意味します。
+
+- 正確度 (accuracy): 予測したもののうち、正しく定期預金を申し込む・申し込まないを予測できた割合 (今回は 0.9895)
+
+.. math::
+
+    \rm{accuracy} = \frac{TP + TN}{TP + FP + TN + FN}
+
+- 適合率 (precision): 定期預金を申し込むと予測したもののうち、正しく定期預金を申し込むと予測できた割合 (今回は 0.6909)
+
+.. math::
+
+    \rm{precision} = \frac{TP}{TP + FP}
+
+- 再現率 (recall): 実際に定期預金を申し込んだもののうち、正しく定期預金を申し込むと予測できた割合 (今回は 0.9979)
+
+.. math::
+
+    \rm{recall} = \frac{TP}{TP + FN}
+
+- F1 値 (F-measure): 適合率と再現率の調和平均 (今回は 0.8165)
+
+.. math::
+
+    \rm{F-measure} = \frac{2 \cdot \rm{recall} \cdot \rm{precision}}{\rm{recall} + \rm{precision}}
+
+今回の精度検証では、正確度と再現率が高い一方で、適合率が低くなっています。
+適合率の定義は、「定期預金を申し込むと予測したもののうち、正しく定期預金を申し込むと予測できた割合」を表すため、「定期預金を申し込むと予測した誤検出」が多いと言えます。
+
+`第8回目の連載 <https://news.mynavi.jp/itsearch/article/devsoft/5115>`_ で確認したように、このチュートリアルのデータは、「定期預金を申し込んだ顧客」のデータ数が不足している「不均衡データ」でした。
+このデータはオープンデータであるためデータ数を増やすことはできませんが、実際の業務で同様の事象が発生した場合は、定期預金を申し込んだ顧客のデータ数を増やすと指標値が改善する可能性があります。
+
+
+注意事項
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+精度検証で「bank-additional-full.csv」を利用していますが、厳密に言うと学習に用いたデータを精度検証に用いるのは正しい方法とは言えません。
+
+今回はチュートリアルに従いましたが、正しく評価するためには、「`第6回の連載 <https://news.mynavi.jp/itsearch/article/devsoft/5101>`_」で紹介したように NumPy のメソッド、Pandas の sample メソッドを使うなどして、学習に利用しなかったデータをテストデータに採用して精度検証を行うべきでしょう。
 
 
 ステップ 8 : クリーンアップ
@@ -723,6 +822,9 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 * S3 バケットに格納したデータ
 
 
+| ノートブックのセルに下記のコードをそれぞれコピー＆ペーストして実行してください。
+| なお、「ACCOUNT_NUMBER」はご自身の AWS アカウントの 12 ケタの数字に読み替えてください。
+
 .. code-block:: python
 
     sess.delete_endpoint(endpoint_name=ep_name)
@@ -733,10 +835,36 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
     %%sh
     aws s3 rm --recursive s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/
 
+また、Amazon SageMaker Studio を削除する場合は、下記の手順で削除を行ってください。
 
-Amazon SageMaker Notebooks の背後で動いているインスタンスの停止もしくは削除も忘れずに実施してください。
+| 「SageMaker Studio コントロールパネル」に移動します。
+| 削除対象の「ユーザー名」を選択します。
 
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step8-control-panel.jpg
+  :width: 900px
 
+下記の図の赤枠内に示す「アプリを削除」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step8-user-detail.jpg
+  :width: 900px
+
+| 下記の図の赤枠内に示す「はい、アプリを削除します」を選択します。
+| テキストボックスに「削除」を記載して、「削除」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step8-delete-app.jpg
+  :width: 450px
+
+| 数分程度待って、アプリの「ステータス」が「Deleted」になったことを確認します。
+| その後、「ユーザーを削除」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step8-deleted.jpg
+  :width: 900px
+
+| 下記の図の赤枠内に示す「はい、ユーザーを削除します」を選択します。
+| テキストボックスに「削除」を記載して、「削除」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step8-delete-user.jpg
+  :width: 450px
 
 
 まとめ
