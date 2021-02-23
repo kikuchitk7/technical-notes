@@ -335,10 +335,15 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 ステップ 4 : SageMaker Autopilot 実験を作成する
 -------------------------------------------------------------------
 
-Autopilot から前処理・学習を行う「実験」を作成する
-背後で Amazon SageMaker Experiment と連携して実現されている。
+ステップ 3 までで環境構築とデータの準備が終わりました。
+ここからは、Amazon SageMaker Autopilot の設定を行っていきます。
 
-Amazon SageMaker Studio のアップデートにより、チュートリアルの画面イメージと異なるので注意してください。
+Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データから前処理・学習アルゴリズムの選択・学習・ハイパーパラメータの最適化を自動で行います。
+背後では、 Amazon SageMaker Experiment と連携して実現されています。
+チュートリアルの本文に「Experiment」や「実験」という単語が出てきますが、これに由来すると考えられます。
+
+なお、実験の完了までに2時間程度かかる点に注意してください。
+途中経過を観察する必要はありませんが、放置が許されない場合もあるかと思いますので、時間に余裕を持って実施してください。
 
 左側のナビゲーションペインで、下図に示す三角形のアイコンを選択します。
 続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。
@@ -346,15 +351,17 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg
   :width: 900px
 
-
-「Create Experiment」を選択します。
+続けて、「Create Experiment」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg
   :width: 900px
 
-
 ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。
-今回は簡単なチュートリアルですので、原則としてデフォルト値を設定 します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step4-autopilot-experiment-settings.jpg
+  :width: 900px
+
+今回は簡単なチュートリアルですので、原則としてデフォルト値を設定します。
 各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。
 
 .. list-table::
@@ -366,37 +373,49 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
       - デフォルト値
     * - AUTOPILOT EXPERIMENT SETTINGS
       - Experiment name
-      - 実験の名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
-      - なし (今回は「tutorial-autopilot」を設定)
+      - | **実験の名称の設定**
+        | 最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
+      - | なし
+        | (今回は「tutorial-autopilot」を設定)
     * - 
       - TAGS - Optional
-      - 実験に付与するタグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する。
+      - | **実験に付与するタグの設定**
+        | タグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する
       - なし
     * -
-      - Project
-      - 踏襲するプロジェクトがある場合に設定する。オプション設定であるため、必要に応じて設定する。
+      - Project - Optional
+      - | **プロジェクトの設定**
+        | 既存のプロジェクトを利用する場合に設定する。オプション設定であるため、必要に応じて設定する
       - なし
     * - 
       - CONNECT YOUR DATA
-      - | 入力となる学習データが格納されている S3 バケットとファイル名を指定する。S3 バケットは同一リージョンに存在する必要があり、ファイルは CSV 形式で 500 行以上である必要がある
+      - | **入力データの設定**
+        | 学習データが格納されている S3 バケットとファイル名を指定する。S3 バケットは同一リージョンに存在する必要があり、ファイルは CSV 形式で 500 行以上である必要がある
         | ・Find S3 bucket: バケット名とファイル名をプルダウンから選択する
         | ・Enter S3 bucket location: 「s3://」から始まる URI 形式でファイル名を指定する
-      - Find S3 bucket (今回は「s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/input/bank-additional-full.csv」(ステップ 3) を指定)
+      - | Enter S3 bucket location
+        | (今回は「ステップ 3」で確認した S3 の URI を指定)
     * - 
       - Is your S3 input a manifest file?
-      - S3 バケットに格納したファイルがマニフェストファイルである場合に有効化する。マニフェストファイルは、入力となる学習データとメタデータ (データの格納場所などの属性情報) が含まれる。 
+      - | **マニフェストファイルの設定**
+        | S3 バケットに格納したファイルがマニフェストファイルである場合に有効化する。マニフェストファイルは、入力となる学習データとメタデータ (データの格納場所などの属性情報) が含まれる
       - 無効
     * - 
       - Target
-      - 推論の対象となる正解データが格納されている列名
-      - なし (今回は「y」を設定)
+      - | **正解データの列名**
+        | 推論の対象となる正解データが格納されている列名
+      - | なし
+        | (今回は「y」を設定)
     * -
       - Output data location (S3 bucket)
-      - 機械学習モデルなどの出力ファイルを出力する S3 バケットを指定する。設定値の意味は「CONNECT YOUR DATA」と同じ
-      - Find S3 bucket (今回は「s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/output」を指定)
+      - | **出力データの格納場所の設定**
+        | 機械学習モデルなどの出力ファイルを出力する S3 バケットを指定する。設定値の意味は「CONNECT YOUR DATA」と同じ
+      - | Find S3 bucket
+        | (今回は「ステップ 3」で確認した S3 バケットを設定)
     * -
       - Select the machine learning problem type
-      - | 実験で扱う機械学習の問題を設定する。
+      - | **機械学習の問題の設定**
+        | 実験で扱う機械学習の問題を下記の中から設定する
         | ・Auto: 自動
         | ・Binary classification: 二値分類
         | ・Regression: 回帰
@@ -404,48 +423,57 @@ Amazon SageMaker Studio のアップデートにより、チュートリアル�
       - Auto
     * - ADVANCED SETTINGS - Optional
       - Do you want to run a complete experiment?
-      - | Amazon SageMaker Autopilot による完全な実験を行うか、候補が定義されたノートブックの出力に留めるかを選択する
+      - | **実験の実行範囲の設定**
+        | Amazon SageMaker Autopilot による実験のうち、4つのステップを全てを行うか、ステップ 2 の「Candidate Definitions Generated」までに留めるかを選択する
         | ・Yes
         | ・No, run a pilot to create a notebook with candidate definitions
       - Yes
     * -
       - IAM role
-      - Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する
+      - | **IAM ロールの設定**
+        | Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する
       - Default SageMaker Role
     * -
       - Encryption key - Optional
-      - AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
+      - | **S3 バケットの暗号鍵の設定**
+        | AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
       - なし
     * -
       - Virtual private cloud (VPC) - Optional
-      - セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
+      - | **VPC への配置の設定**
+        | セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
       - なし
     * -
       - Max trial runtime in seconds
-      - 試行の完了を待機する実行時間 (秒)
-      - 0
+      - | **試行の実行時間の設定**
+        | 試行 (学習ジョブ) の完了を待機する実行時間 (秒)
+      - | 0
+        | (設定しない)
     * -
       - Max job runtime in seconds
-      - ジョブの完了を待機する実行時間 (秒)
-      - 0
+      - | **ジョブの実行時間の設定**
+        | ジョブ (AutoML ジョブ) の完了を待機する実行時間 (秒)
+      - | 0
+        | (設定しない)
     * -
       - Max candidates
-      - トレーニングジョブの実行が許可される最大回数
-      - 0
+      - | **試行の実行回数の設定**
+        | 試行の実行回数
+        | (複数の試行を実行して機械学習モデルの候補を多数生成する。その中から最終的に1つに絞って推論エンドポイントとしてデプロイする)
+      - | 0
+        | (設定しない)
 
 
 入力が終わったら、「Create Experiment」を選択します。
 
-なお、実験の完了までに2時間程度かかる点に注意してください。
-途中経過を観察する必要はありませんが、放置が許されない場合や余分な課金を防ぐために実験完了後に Amazon SageMaker Notebooks のインスタンスを停止させたい場合もあるかと思いますので、時間に余裕を持って実施してください。
+下記のような画面に遷移すれば成功です。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg
+  :width: 900px
 
 
 ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる
 -------------------------------------------------------------------
-
-
-.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg
-  :width: 900px
 
 Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行します。
 
