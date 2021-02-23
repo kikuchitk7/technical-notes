@@ -471,6 +471,10 @@ Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データか
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg
   :width: 900px
 
+画面に記載があるように、デフォルトでは250回の試行 (250個のジョブ) が実行されます。
+全て完了するまでに2時間程度かかります。
+「stop the experiment」をクリックさせれば、途中で停止させることも可能です。
+
 
 ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる
 -------------------------------------------------------------------
@@ -482,66 +486,53 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 3. Feature Engineering (特徴エンジニアリング)
 4. Model Tuning (モデルチューニング)
 
-
-1. Pre-processing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-2. Candidate Definitions Generated
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| 2 まで完了すると、画面の右上に2つのボタンが登場します。
+| これを選択すると、2つのノートブックを参照することができます。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg
   :width: 900px
 
+学習データの分析結果やそれを踏まえて Amazon SageMaker Autopilot が判断した内容した内容が記録されます。
+このような自動化の仕組みは中身のブラックボックス化が問題もしくは課題となる場合がありますが、判断内容が利用者に公開されて透明性が確保されることは Amazon SageMaker Autopilot の特徴の1つです。
+
+それぞれのノートブックの概要を下記に示します。
 
 .. list-table::
     :header-rows: 1
 
     * - 生成されるノートブック
       - 説明
-    * - | データ探索ノートブック
-        | (Data Exploration Notebook)
+    * - | Data Exploration Notebook
+        | (データ探索ノートブック)
       - | 学習データの分析結果として下記を提示する
         | ・データセットのサンプル
         | ・カラムごとの分析結果
-        | 　・欠損値の割合
-        | 　・値の種類
-        | 　・統計情報 (最大・最小値、平均値、中央値)
-    * - | 候補生成ノートブック
-        | (Candidate Generation Notebook)
+        |   ・欠損値の割合
+        |   ・値の種類
+        |   ・統計情報 (最大・最小値、平均値、中央値)
+    * - | Candidate Generation Notebook
+        | (候補生成ノートブック)
       - | Amazon SageMaker Autopilot が判断した内容が示される。ノートブックをダウンロードして編集や手動実行も可能
         | ・前処理と機械学習アルゴリズムの組み合わせ
         | ・ハイパーパラメータ最適化の手法や探索範囲
         | ・上記の実行方法
 
-
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg
   :width: 900px
-
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg
   :width: 900px
 
-
-3. Feature Engineering
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-
-
-4. Model Tuning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg
-  :width: 900px
-
-
+| このノートブックをダウンロードし、編集して再利用をすることもできます。
+| ステップ 4 の設定で「Do you want to run a complete experiment?」に「Yes」を選択しました。ここで「No, run a pilot to create a notebook with candidate definitions」を選択した場合は、ノートブックの生成後に処理が停止します。Amazon SageMaker Autopilot をデータ分析や採用すべき手法の判断材料を得る手段として利用しても良いでしょう。
 
 実験が完了すると、下記のようにアニメーションが消えて、結果の表示のみとなります。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg
   :width: 900px
+
+デフォルトの精度指標値は F1 値となります。
+F1 値が最大の試行 (機械学習モデル) に「Best」という印がつきます。 
 
 
 ステップ 6 : 最適なモデルをデプロイする

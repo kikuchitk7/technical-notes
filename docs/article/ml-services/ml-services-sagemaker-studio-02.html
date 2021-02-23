@@ -122,13 +122,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sagemaker-autopilot">ステップ 4 : SageMaker Autopilot 実験を作成する</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pre-processing">1. Pre-processing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#candidate-definitions-generated">2. Candidate Definitions Generated</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#feature-engineering">3. Feature Engineering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#model-tuning">4. Model Tuning</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id19">ステップ 6 : 最適なモデルをデプロイする</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id20">注意事項</a></li>
 </ul>
@@ -791,6 +785,9 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" style="width: 900px;" /></a>
 </div>
+<p>画面に記載があるように、デフォルトでは250回の試行 (250個のジョブ) が実行されます。
+全て完了するまでに2時間程度かかります。
+「stop the experiment」をクリックさせれば、途中で停止させることも可能です。</p>
 </div>
 <div class="section" id="id18">
 <h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -801,14 +798,16 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <li><p>Feature Engineering (特徴エンジニアリング)</p></li>
 <li><p>Model Tuning (モデルチューニング)</p></li>
 </ol>
-<div class="section" id="pre-processing">
-<h3>1. Pre-processing<a class="headerlink" href="#pre-processing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">2 まで完了すると、画面の右上に2つのボタンが登場します。</div>
+<div class="line">これを選択すると、2つのノートブックを参照することができます。</div>
 </div>
-<div class="section" id="candidate-definitions-generated">
-<h3>2. Candidate Definitions Generated<a class="headerlink" href="#candidate-definitions-generated" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" style="width: 900px;" /></a>
 </div>
+<p>学習データの分析結果やそれを踏まえて Amazon SageMaker Autopilot が判断した内容した内容が記録されます。
+このような自動化の仕組みは中身のブラックボックス化が問題もしくは課題となる場合がありますが、判断内容が利用者に公開されて透明性が確保されることは Amazon SageMaker Autopilot の特徴の1つです。</p>
+<p>それぞれのノートブックの概要を下記に示します。</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -821,23 +820,25 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="line-block">
-<div class="line">データ探索ノートブック</div>
-<div class="line">(Data Exploration Notebook)</div>
+<div class="line">Data Exploration Notebook</div>
+<div class="line">(データ探索ノートブック)</div>
 </div>
 </td>
 <td><div class="line-block">
 <div class="line">学習データの分析結果として下記を提示する</div>
 <div class="line">・データセットのサンプル</div>
 <div class="line">・カラムごとの分析結果</div>
-<div class="line">　・欠損値の割合</div>
-<div class="line">　・値の種類</div>
-<div class="line">　・統計情報 (最大・最小値、平均値、中央値)</div>
+<div class="line-block">
+<div class="line">・欠損値の割合</div>
+<div class="line">・値の種類</div>
+<div class="line">・統計情報 (最大・最小値、平均値、中央値)</div>
+</div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><div class="line-block">
-<div class="line">候補生成ノートブック</div>
-<div class="line">(Candidate Generation Notebook)</div>
+<div class="line">Candidate Generation Notebook</div>
+<div class="line">(候補生成ノートブック)</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -856,20 +857,16 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" style="width: 900px;" /></a>
 </div>
-</div>
-<div class="section" id="feature-engineering">
-<h3>3. Feature Engineering<a class="headerlink" href="#feature-engineering" title="このヘッドラインへのパーマリンク">¶</a></h3>
-</div>
-<div class="section" id="model-tuning">
-<h3>4. Model Tuning<a class="headerlink" href="#model-tuning" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-model-tuning.jpg" style="width: 900px;" /></a>
+<div class="line-block">
+<div class="line">このノートブックをダウンロードし、編集して再利用をすることもできます。</div>
+<div class="line">ステップ 4 の設定で「Do you want to run a complete experiment?」に「Yes」を選択しました。ここで「No, run a pilot to create a notebook with candidate definitions」を選択した場合は、ノートブックの生成後に処理が停止します。Amazon SageMaker Autopilot をデータ分析や採用すべき手法の判断材料を得る手段として利用しても良いでしょう。</div>
 </div>
 <p>実験が完了すると、下記のようにアニメーションが消えて、結果の表示のみとなります。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" style="width: 900px;" /></a>
 </div>
-</div>
+<p>デフォルトの精度指標値は F1 値となります。
+F1 値が最大の試行 (機械学習モデル) に「Best」という印がつきます。</p>
 </div>
 <div class="section" id="id19">
 <h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
