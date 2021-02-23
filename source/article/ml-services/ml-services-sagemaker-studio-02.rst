@@ -473,7 +473,7 @@ Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データか
 
 画面に記載があるように、デフォルトでは250回の試行 (250個のジョブ) が実行されます。
 全て完了するまでに2時間程度かかります。
-「stop the experiment」をクリックさせれば、途中で停止させることも可能です。
+「stop the experiment」をクリックすれば、途中で停止させることも可能です。
 
 
 ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる
