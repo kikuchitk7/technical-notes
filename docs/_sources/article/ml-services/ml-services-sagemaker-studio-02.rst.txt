@@ -477,10 +477,10 @@ Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データか
 
 Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行します。
 
-1. Pre-processing
-2. Candidate Definitions Generated
-3. Feature Engineering
-4. Model Tuning
+1. Pre-processing (前処理)
+2. Candidate Definitions Generated (候補定義生成)
+3. Feature Engineering (特徴エンジニアリング)
+4. Model Tuning (モデルチューニング)
 
 
 1. Pre-processing
