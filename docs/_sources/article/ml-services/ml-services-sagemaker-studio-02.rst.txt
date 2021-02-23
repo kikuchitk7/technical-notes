@@ -207,8 +207,7 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step2-sagemaker-studio-control-panel-error.jpg
   :width: 900px
 
-しかし、「SageMaker Studio コントロールパネル」の図の赤枠内に示したようにどちらのロールも正常にアタッチされています。
-このチュートリアルではプロジェクトは使わないため問題ありませんので、気にせずに進めてください。
+しかし、「SageMaker Studio コントロールパネル」の図の赤枠内に示したようにどちらのロールも正常にアタッチされていますので、問題なしと考えて進めることにします。
 
 
 ステップ 3 : データセットをダウンロードする
