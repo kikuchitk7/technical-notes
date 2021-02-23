@@ -38,7 +38,7 @@
     
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="その他" href="../../others/others.html" />
+    <link rel="next" title="[第12回] Amazon SageMaker Studio の基本的な使い方 (3)" href="ml-services-sagemaker-studio-04.html" />
     <link rel="prev" title="[第10回] Amazon SageMaker Studio の基本的な使い方 (2)" href="ml-services-sagemaker-studio-02.html" /> 
 </head>
 
@@ -114,10 +114,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sagemaker-autopilot">ステップ 4 : SageMaker Autopilot 実験を作成する</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id10">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">インスタンスの停止方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">著者紹介</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ml-services-sagemaker-studio-04.html">[第12回] Amazon SageMaker Studio の基本的な使い方 (3)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../others/others.html">その他</a></li>
@@ -653,13 +655,35 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 F1 値が最大の試行 (機械学習モデル) に「Best」という印がつきます。</p>
 </div>
 <div class="section" id="id11">
-<h2>まとめ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>インスタンスの停止方法<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ここで作業を中断する場合は、下記の手順でインスタンスの停止もしくは停止を確認してください。
+背後でインスタンスが稼働している場合は、課金対象になります。</p>
+<p>左側のナビゲーションペインで、赤枠内の「■」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-1.jpg" style="width: 900px;" /></a>
+</div>
+<p>「RUNNING INSTANCES」の横の「×」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-2.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-2.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-2.jpg" style="width: 900px;" /></a>
+</div>
+<p>「Shut Down All」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-3.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-3.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-3.jpg" style="width: 300px;" /></a>
+</div>
+<p>「RUNNING INSTANCES」以下に稼働しているコンポーネントがないことを確認します。
+念のため右上のリフレッシュボタンを選択しても何もコンポーネントが現れないことを確認します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-4.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-4.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-stepx-4.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>まとめ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回は Amazon SageMaker Autopilot を使って機械学習モデルの構築を行いました。
 次回は 機械学習モデルを推論エンドポイントとしてデプロイし、精度検証を行いたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id12">
-<h2>著者紹介<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h2>著者紹介<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
@@ -680,7 +704,7 @@ F1 値が最大の試行 (機械学習モデル) に「Best」という印がつ
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../others/others.html" class="btn btn-neutral float-right" title="その他" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ml-services-sagemaker-studio-04.html" class="btn btn-neutral float-right" title="[第12回] Amazon SageMaker Studio の基本的な使い方 (3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ml-services-sagemaker-studio-02.html" class="btn btn-neutral float-left" title="[第10回] Amazon SageMaker Studio の基本的な使い方 (2)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

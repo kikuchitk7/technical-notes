@@ -373,6 +373,34 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 F1 値が最大の試行 (機械学習モデル) に「Best」という印がつきます。 
 
 
+インスタンスの停止方法
+-------------------------------------------------------------------
+
+ここで作業を中断する場合は、下記の手順でインスタンスの停止もしくは停止を確認してください。
+背後でインスタンスが稼働している場合は、課金対象になります。
+
+左側のナビゲーションペインで、赤枠内の「■」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-stepx-1.jpg
+  :width: 900px
+
+「RUNNING INSTANCES」の横の「×」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-stepx-2.jpg
+  :width: 900px
+
+「Shut Down All」を選択します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-stepx-3.jpg
+  :width: 300px
+
+「RUNNING INSTANCES」以下に稼働しているコンポーネントがないことを確認します。
+念のため右上のリフレッシュボタンを選択しても何もコンポーネントが現れないことを確認します。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-stepx-4.jpg
+  :width: 900px
+
+
 まとめ
 -------------------------------------------------------------------
 
