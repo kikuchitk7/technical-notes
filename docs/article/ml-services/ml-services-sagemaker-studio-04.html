@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; technical notes  ドキュメント</title>
+  <title>[第12回] Amazon SageMaker Studio の基本的な使い方 (3) &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -136,7 +136,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>[第12回] Amazon SageMaker Studio の基本的な使い方 (3)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,7 +155,372 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="amazon-sagemaker-studio-3">
+<h1>[第12回] Amazon SageMaker Studio の基本的な使い方 (3)<a class="headerlink" href="#amazon-sagemaker-studio-3" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行い、推論エンドポイントを作成します。
+「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択するか、右クリックで「Deploy model」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" style="width: 900px;" /></a>
+</div>
+<p>ここで、「REALTIME DEPLOYMENT SETTINGS」でデプロイ (推論エンドポイント) の設定を行います。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg" style="width: 900px;" /></a>
+</div>
+<p>ここでも原則としてデフォルト値を設定します。
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>分類</p></th>
+<th class="head"><p>設定値名</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>デフォルト値</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>REALTIME DEPLOYMENT SETTINGS</p></td>
+<td><p>Endpoint name</p></td>
+<td><div class="line-block">
+<div class="line"><strong>推論エンドポイント名の設定</strong></div>
+<div class="line">推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">なし</div>
+<div class="line">(今回は「tutorial-autopilot-best-model」を設定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Instance type</p></td>
+<td><div class="line-block">
+<div class="line"><strong>インスタンスタイプの設定</strong></div>
+<div class="line">推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する</div>
+<div class="line">※この表の下に補足情報を記載するので、そちらも参照されたい</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">ml.m5.xlarge</div>
+<div class="line">(今回は「ml.m5.large」を設定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Instance count</p></td>
+<td><div class="line-block">
+<div class="line"><strong>インスタンス数の設定</strong></div>
+<div class="line">推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する</div>
+</div>
+</td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Data capture</p></td>
+<td><div class="line-block">
+<div class="line"><strong>データの取得</strong></div>
+<div class="line">推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる</div>
+<div class="line">・Save prediction requests</div>
+<div class="line">・Save prediction responce</div>
+</div>
+</td>
+<td><p>未選択</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Inference Responce Content</p></td>
+<td><div class="line-block">
+<div class="line"><strong>推論エンドポイントの応答コンテンツの設定</strong></div>
+<div class="line">推論エンドポイントが入力データごとに返す応答コンテンツを設定する</div>
+<div class="line">・predicted_label：分類されたクラスのラベル</div>
+<div class="line">・probability: 分類されたクラスの確率</div>
+<div class="line">・probabilites: 全てのラベルの確率のリスト</div>
+<div class="line">・labels：全てのラベルのリスト</div>
+</div>
+</td>
+<td><p>predicted_label</p></td>
+</tr>
+<tr class="row-odd"><td><p>ADVANCED SETTINGS - Optional</p></td>
+<td><p>Environment variables - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>環境変数の設定</strong></div>
+<div class="line">推論エンドポイントの Docker コンテナに環境変数を設定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>IAM role</p></td>
+<td><div class="line-block">
+<div class="line"><strong>IAM ロールの設定</strong></div>
+<div class="line">推論エンドポイントに付与する AWS リソースの操作権限を設定した IAM ロールを指定する</div>
+</div>
+</td>
+<td><p>Default SageMaker Role</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Encryption key - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>データの暗号化の設定</strong></div>
+<div class="line">AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Virtual private cloud (VPC) - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>VPC への配置の設定</strong></div>
+<div class="line">セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+</tbody>
+</table>
+<p>設定の完了後に「Deploy model」を選択します。
+推論インスタンスの作成と機械学習モデルのデプロイが行われます。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-creating.jpg" style="width: 900px;" /></a>
+</div>
+<p>上記の画面では進行状況がわかりづらいため、「Experiments and trials」と表示されているプルダウンメニューから、「Endpoint」を選択して移動します。
+「Endpoint status」が「Creating」から「InService」となれば完了です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" style="width: 900px;" /></a>
+</div>
+<div class="section" id="id3">
+<h3>注意事項<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">「Instance type」について補足します。</div>
+<div class="line">デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。</div>
+<div class="line">今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>推論エンドポイントのデプロイまで完了しましたので、最後に実際に推論を実施して精度を検証してみましょう。</p>
+<div class="section" id="id5">
+<h3>実行するコード<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="n">ep_name</span> <span class="o">=</span> <span class="s1">&#39;tutorial-autopilot-best-model&#39;</span>  <span class="c1"># (著者追記) ステップ 6 で設定した「Endpoint name」と一致させること</span>
+<span class="n">sm_rt</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;runtime.sagemaker&#39;</span><span class="p">)</span>
+
+<span class="n">tn</span><span class="o">=</span><span class="n">tp</span><span class="o">=</span><span class="n">fn</span><span class="o">=</span><span class="n">fp</span><span class="o">=</span><span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;bank-additional/bank-additional-full.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2000</span><span class="p">]:</span>   <span class="c1"># Skip header</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>      <span class="c1"># Split CSV line into features</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>         <span class="c1"># Store &#39;yes&#39;/&#39;no&#39; label</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>            <span class="c1"># Remove label</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>       <span class="c1"># Rebuild CSV line without label</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">sm_rt</span><span class="o">.</span><span class="n">invoke_endpoint</span><span class="p">(</span><span class="n">EndpointName</span><span class="o">=</span><span class="n">ep_name</span><span class="p">,</span>
+                                        <span class="n">ContentType</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                                        <span class="n">Accept</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span> <span class="n">Body</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="c1">#print (&quot;label %s response %s&quot; %(label,response))</span>
+
+        <span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+            <span class="c1"># Sample is positive</span>
+            <span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="c1"># True positive</span>
+                <span class="n">tp</span><span class="o">=</span><span class="n">tp</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># False negative</span>
+                <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Sample is negative</span>
+            <span class="k">if</span> <span class="s1">&#39;no&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="c1"># True negative</span>
+                <span class="n">tn</span><span class="o">=</span><span class="n">tn</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># False positive</span>
+                <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+<span class="n">accuracy</span>  <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">recall</span>    <span class="o">=</span> <span class="n">tn</span><span class="o">/</span><span class="p">(</span><span class="n">tn</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">f1</span>        <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">precision</span><span class="o">*</span><span class="n">recall</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">precision</span><span class="o">+</span><span class="n">recall</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2"> </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">推論が100個行われるごとに数字が表示され、「Done」が表示されると完了です。</div>
+<div class="line">4つ数字が表示され、左から「正確度 (accuracy)」、「適合率 (precision)」、「再現率 (recall)」、「F1 値 (F-measure)」を表します。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step7-predict.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step7-predict.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step7-predict.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>コードの解説<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、「bank-additional-full.csv」のヘッダ行を除いた最初の2,000行を精度検証用のテストデータとして利用しています。</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">sm_rt</span><span class="o">.</span><span class="n">invoke_endpoint</span><span class="p">(</span><span class="n">EndpointName</span><span class="o">=</span><span class="n">ep_name</span><span class="p">,</span>
+                                 <span class="n">ContentType</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                                 <span class="n">Accept</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span> <span class="n">Body</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>AWS SDK for Python (Boto3) の SageMakerRuntime クラスの <a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint">invoke_endpoint メソッド</a> を使って、テストデータを1行ずつ推論エンドポイントに送信し、その応答として推論結果を取得しています。</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+    <span class="c1"># Sample is positive</span>
+    <span class="k">if</span> <span class="s1">&#39;yes&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="c1"># True positive</span>
+        <span class="n">tp</span><span class="o">=</span><span class="n">tp</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># False negative</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="o">+</span><span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Sample is negative</span>
+    <span class="k">if</span> <span class="s1">&#39;no&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="c1"># True negative</span>
+        <span class="n">tn</span><span class="o">=</span><span class="n">tn</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># False positive</span>
+        <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>上記のコードでは、推論結果を基にして混同行列を計算しています。
+前回のチュートリアルでは Pandas の crosstab 関数を使っていましたが、今回のチュートリアルでは手動で計算を行っています。</p>
+<p>混同行列については、<a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5115">第8回目の連載</a> で解説しましたが、下記に再掲します。</p>
+<a class="reference internal image-reference" href="../../_images/confusion-matrix.png"><img alt="../../_images/confusion-matrix.png" src="../../_images/confusion-matrix.png" style="width: 450px;" /></a>
+<div class="line-block">
+<div class="line">行方向 (縦軸) が「正解 (観測; Observed)」、列方向 (横軸) が「予測 (Predicted)」を表します。</div>
+<div class="line">正解 (2種類) * 予測 (2種類) で、下記に示す 4 つの指標があります。</div>
+<div class="line">混同行列という名前の通りで混乱しやすいですが、Positive/Negative はあくまで「予測」に対してかかります。</div>
+<div class="line">その予測の正解と不正解により、True/Negative が付いていると考えると理解しやすいと思います。</div>
+</div>
+<ul class="simple">
+<li><p>True Positive (TP): 定期預金を申し込むと予測して、実際に申し込んだ顧客の数</p></li>
+<li><p>False Poritive (FP): 定期預金を申し込むと予測したが、実際には申し込まなかった顧客の数</p></li>
+<li><p>True Negative (TN): 定期預金を申し込まないと予測して実際に申し込まなかった顧客の数</p></li>
+<li><p>False Negative (FN): 定期預金を申し込まないと予測したが、実際には申し込んだ顧客の数</p></li>
+</ul>
+<p>「正確度 (accuracy)」、「適合率 (precision)」、「再現率 (recall)」、「F1 値 (F-measure)」は、機械学習モデルの精度を評価する際によく用いられる指標であり、それぞれ下記を意味します。</p>
+<ul class="simple">
+<li><p>正確度 (accuracy): 予測したもののうち、正しく定期預金を申し込む・申し込まないを予測できた割合 (今回は 0.9895)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\rm{accuracy} = \frac{TP + TN}{TP + FP + TN + FN}\]</div>
+<ul class="simple">
+<li><p>適合率 (precision): 定期預金を申し込むと予測したもののうち、正しく定期預金を申し込むと予測できた割合 (今回は 0.6909)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\rm{precision} = \frac{TP}{TP + FP}\]</div>
+<ul class="simple">
+<li><p>再現率 (recall): 実際に定期預金を申し込んだもののうち、正しく定期預金を申し込むと予測できた割合 (今回は 0.9979)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\rm{recall} = \frac{TP}{TP + FN}\]</div>
+<ul class="simple">
+<li><p>F1 値 (F-measure): 適合率と再現率の調和平均 (今回は 0.8165)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\rm{F-measure} = \frac{2 \cdot \rm{recall} \cdot \rm{precision}}{\rm{recall} + \rm{precision}}\]</div>
+<p>今回の精度検証では、正確度と再現率が高い一方で、適合率が低くなっています。
+適合率の定義は、「定期預金を申し込むと予測したもののうち、正しく定期預金を申し込むと予測できた割合」を表すため、「定期預金を申し込むと予測した誤検出」が多いと言えます。</p>
+<p><a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5115">第8回目の連載</a> で確認したように、このチュートリアルのデータは、「定期預金を申し込んだ顧客」のデータ数が不足している「不均衡データ」でした。
+このデータはオープンデータであるためデータ数を増やすことはできませんが、実際の業務で同様の事象が発生した場合は、定期預金を申し込んだ顧客のデータ数を増やすと指標値が改善する可能性があります。</p>
+</div>
+<div class="section" id="id9">
+<h3>注意事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>精度検証で「bank-additional-full.csv」を利用していますが、厳密に言うと学習に用いたデータを精度検証に用いるのは正しい方法とは言えません。</p>
+<p>今回はチュートリアルに従いましたが、正しく評価するためには、「<a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5101">第6回の連載</a>」で紹介したように NumPy のメソッド、Pandas の sample メソッドを使うなどして、学習に利用しなかったデータをテストデータに採用して精度検証を行うべきでしょう。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記が課金要素となるため、必要に応じて削除を行います。</p>
+<ul class="simple">
+<li><p>推論エンドポイント</p></li>
+<li><p>S3 バケットに格納したデータ</p></li>
+</ul>
+<div class="line-block">
+<div class="line">ノートブックのセルに下記のコードをそれぞれコピー＆ペーストして実行してください。</div>
+<div class="line">なお、「ACCOUNT_NUMBER」はご自身の AWS アカウントの 12 ケタの数字に読み替えてください。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sess</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="n">endpoint_name</span><span class="o">=</span><span class="n">ep_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sh</span>
+<span class="n">aws</span> <span class="n">s3</span> <span class="n">rm</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">ACCOUNT_NUMBER</span><span class="o">/</span><span class="n">sagemaker</span><span class="o">/</span><span class="n">tutorial</span><span class="o">-</span><span class="n">autopilot</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>また、Amazon SageMaker Studio を削除する場合は、下記の手順で削除を行ってください。</p>
+<div class="line-block">
+<div class="line">「SageMaker Studio コントロールパネル」に移動します。</div>
+<div class="line">削除対象の「ユーザー名」を選択します。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step8-control-panel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step8-control-panel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step8-control-panel.jpg" style="width: 900px;" /></a>
+</div>
+<p>下記の図の赤枠内に示す「アプリを削除」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step8-user-detail.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step8-user-detail.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step8-user-detail.jpg" style="width: 900px;" /></a>
+</div>
+<div class="line-block">
+<div class="line">下記の図の赤枠内に示す「はい、アプリを削除します」を選択します。</div>
+<div class="line">テキストボックスに「削除」を記載して、「削除」を選択します。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-app.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-app.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-app.jpg" style="width: 450px;" /></a>
+</div>
+<div class="line-block">
+<div class="line">数分程度待って、アプリの「ステータス」が「Deleted」になったことを確認します。</div>
+<div class="line">その後、「ユーザーを削除」を選択します。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step8-deleted.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step8-deleted.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step8-deleted.jpg" style="width: 900px;" /></a>
+</div>
+<div class="line-block">
+<div class="line">下記の図の赤枠内に示す「はい、ユーザーを削除します」を選択します。</div>
+<div class="line">テキストボックスに「削除」を記載して、「削除」を選択します。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-user.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-user.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step8-delete-user.jpg" style="width: 450px;" /></a>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>まとめ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回は XXX について解説をしました。次回は YYY について扱いたいと思います。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id13">
+<h2>著者紹介<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
 
            </div>
            

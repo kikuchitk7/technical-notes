@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; technical notes  ドキュメント</title>
+  <title>[第11回] Amazon SageMaker Studio の基本的な使い方 (3) &mdash; technical notes  ドキュメント</title>
   
 
   
@@ -136,7 +136,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>[第11回] Amazon SageMaker Studio の基本的な使い方 (3)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,7 +155,430 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="amazon-sagemaker-studio-3">
+<h1>[第11回] Amazon SageMaker Studio の基本的な使い方 (3)<a class="headerlink" href="#amazon-sagemaker-studio-3" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>ステップ 3 : データセットをダウンロードする<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「SageMaker Studio コントロールパネル」で「Studio を開く」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" style="width: 900px;" /></a>
+</div>
+<p>1分程度待つと、下記に示すような画面に遷移します。
+これが Amazon SageMaker Studio の Launcher の画面となります。</p>
+<p>「Select a SageMaker Image」で「Data Science」を選択し、「Notebook」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" style="width: 900px;" /></a>
+</div>
+<p>すると、下記のような JupyterLab の画面に遷移します。
+これが「Amazon SageMaker Notebooks」となります。
+Amazon SageMaker Studio に統合された JupyterLab のノートブック環境です。
+ダークテーマとなっていますが、<a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5101">第6回の連載</a> で紹介した JupyterLab と同等です。</p>
+<p>ノートブックの右上の赤枠が「Unknown」となっている場合は、Amazon SageMaker Notebooks の背後で稼働するインスタンスが停止状態にあるため、これを選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" style="width: 900px;" /></a>
+</div>
+<p>今回のチュートリアルでは小さいインスタンスで十分であるため、汎用 (General purpose) の「ml.t3.medium」を選択して、「Save and continue」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" style="width: 450px;" /></a>
+</div>
+<p>インスタンスの起動に成功すると、「Unknown」で選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
+「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" style="width: 900px;" /></a>
+</div>
+<div class="section" id="id4">
+<h3>実行するコード<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</div>
+<div class="line">ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sh</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">unzip</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">s3</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">autopilot</span><span class="o">/</span><span class="n">direct_marketing</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">unzip</span> <span class="o">-</span><span class="n">o</span> <span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>下記のような出力と、左側に「bank-additional」というフォルダが作成されれば成功です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>コードの解説<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>マジックコマンド (%%sh) を使って OS のコマンドを実行しています。
+ここでは、下記の3つの処理を実行しています。</p>
+<ul class="simple">
+<li><p>ZIP ファイルを解凍するための unzip のパッケージのダウンロード</p></li>
+<li><p>チュートリアルで利用する「ポルトガル銀行のダイレクトマーケティングのデータ」(zip 形式) のダウンロード</p></li>
+<li><p>ダウンロードしたデータの解凍 (unzip)</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>実行するコード<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank-additional/bank-additional-full.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>下記のように表形式でデータが表示されれば成功です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>コードの解説<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.1/reference/api/pandas.read_csv.html">read_csv 関数</a> を使って、ダウンロードした CSV 形式のデータを DataFrame に読み込み、最初の10行を出力しています。</p>
+</div>
+<div class="section" id="id8">
+<h3>実行するコード<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sagemaker</span>
+
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;sagemaker/tutorial-autopilot/input&#39;</span>
+<span class="n">sess</span>   <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">upload_data</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;./bank-additional/bank-additional-full.csv&quot;</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">下記のように S3 バケットの URI が表示されれば成功です。</div>
+<div class="line">「ACCOUNT_NUMBER」はご自身の AWS アカウントの 12 ケタの数字に読み替えてください。</div>
+<div class="line">この URI は、ステップ 4 で利用します。</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">ACCOUNT_NUMBER</span><span class="o">/</span><span class="n">sagemaker</span><span class="o">/</span><span class="n">tutorial</span><span class="o">-</span><span class="n">autopilot</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">-</span><span class="n">full</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>コードの解説<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、Amazon SageMaker Python SDK の <a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/utility/session.html?highlight=session#sagemaker.session.Session.upload_data">upload_data メソッド</a> を利用して、S3 バケットにデータセットをアップロードしています。</p>
+</div>
+</div>
+<div class="section" id="sagemaker-autopilot">
+<h2>ステップ 4 : SageMaker Autopilot 実験を作成する<a class="headerlink" href="#sagemaker-autopilot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ステップ 3 までで環境構築とデータの準備が終わりました。
+ここからは、Amazon SageMaker Autopilot の設定を行っていきます。</p>
+<p>Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データから前処理・学習アルゴリズムの選択・学習・ハイパーパラメータの最適化を自動で行います。
+背後では、 Amazon SageMaker Experiment と連携して実現されています。
+チュートリアルの本文に「Experiment」や「実験」という単語が出てきますが、これに由来すると考えられます。</p>
+<p>なお、実験の完了までに2時間程度かかる点に注意してください。
+途中経過を観察する必要はありませんが、放置が許されない場合もあるかと思いますので、時間に余裕を持って実施してください。</p>
+<p>左側のナビゲーションペインで、下図に示す三角形のアイコンを選択します。
+続けて、「Project」と表示されているプルダウンメニューから、「Experiments and trials」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-select-project.jpg" style="width: 900px;" /></a>
+</div>
+<p>続けて、「Create Experiment」を選択します。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-create-experiment.jpg" style="width: 900px;" /></a>
+</div>
+<p>ここで、「AUTOPILOT EXPERIMENT SETTINGS」で実験の設定を行います。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step4-autopilot-experiment-settings.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step4-autopilot-experiment-settings.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step4-autopilot-experiment-settings.jpg" style="width: 900px;" /></a>
+</div>
+<p>今回は簡単なチュートリアルですので、原則としてデフォルト値を設定します。
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>分類</p></th>
+<th class="head"><p>設定値名</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>デフォルト値</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AUTOPILOT EXPERIMENT SETTINGS</p></td>
+<td><p>Experiment name</p></td>
+<td><div class="line-block">
+<div class="line"><strong>実験の名称の設定</strong></div>
+<div class="line">最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">なし</div>
+<div class="line">(今回は「tutorial-autopilot」を設定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>TAGS - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>実験に付与するタグの設定</strong></div>
+<div class="line">タグをキーバリュー形式で設定する。オプション設定であるため、必要に応じて設定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Project - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>プロジェクトの設定</strong></div>
+<div class="line">既存のプロジェクトを利用する場合に設定する。オプション設定であるため、必要に応じて設定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>CONNECT YOUR DATA</p></td>
+<td><div class="line-block">
+<div class="line"><strong>入力データの設定</strong></div>
+<div class="line">学習データが格納されている S3 バケットとファイル名を指定する。S3 バケットは同一リージョンに存在する必要があり、ファイルは CSV 形式で 500 行以上である必要がある</div>
+<div class="line">・Find S3 bucket: バケット名とファイル名をプルダウンから選択する</div>
+<div class="line">・Enter S3 bucket location: 「s3://」から始まる URI 形式でファイル名を指定する</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Enter S3 bucket location</div>
+<div class="line">(今回は「ステップ 3」で確認した S3 の URI を指定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Is your S3 input a manifest file?</p></td>
+<td><div class="line-block">
+<div class="line"><strong>マニフェストファイルの設定</strong></div>
+<div class="line">S3 バケットに格納したファイルがマニフェストファイルである場合に有効化する。マニフェストファイルは、入力となる学習データとメタデータ (データの格納場所などの属性情報) が含まれる</div>
+</div>
+</td>
+<td><p>無効</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Target</p></td>
+<td><div class="line-block">
+<div class="line"><strong>正解データの列名</strong></div>
+<div class="line">推論の対象となる正解データが格納されている列名</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">なし</div>
+<div class="line">(今回は「y」を設定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Output data location (S3 bucket)</p></td>
+<td><div class="line-block">
+<div class="line"><strong>出力データの格納場所の設定</strong></div>
+<div class="line">機械学習モデルなどの出力ファイルを出力する S3 バケットを指定する。設定値の意味は「CONNECT YOUR DATA」と同じ</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Find S3 bucket</div>
+<div class="line">(今回は「ステップ 3」で確認した S3 バケットを設定)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Select the machine learning problem type</p></td>
+<td><div class="line-block">
+<div class="line"><strong>機械学習の問題の設定</strong></div>
+<div class="line">実験で扱う機械学習の問題を下記の中から設定する</div>
+<div class="line">・Auto: 自動</div>
+<div class="line">・Binary classification: 二値分類</div>
+<div class="line">・Regression: 回帰</div>
+<div class="line">・Multiclass classification: 多値分類</div>
+</div>
+</td>
+<td><p>Auto</p></td>
+</tr>
+<tr class="row-even"><td><p>ADVANCED SETTINGS - Optional</p></td>
+<td><p>Do you want to run a complete experiment?</p></td>
+<td><div class="line-block">
+<div class="line"><strong>実験の実行範囲の設定</strong></div>
+<div class="line">Amazon SageMaker Autopilot による実験のうち、4つのステップを全てを行うか、ステップ 2 の「Candidate Definitions Generated」までに留めるかを選択する</div>
+<div class="line">・Yes</div>
+<div class="line">・No, run a pilot to create a notebook with candidate definitions</div>
+</div>
+</td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>IAM role</p></td>
+<td><div class="line-block">
+<div class="line"><strong>IAM ロールの設定</strong></div>
+<div class="line">Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する</div>
+</div>
+</td>
+<td><p>Default SageMaker Role</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Encryption key - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>データの暗号化の設定</strong></div>
+<div class="line">AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Virtual private cloud (VPC) - Optional</p></td>
+<td><div class="line-block">
+<div class="line"><strong>VPC への配置の設定</strong></div>
+<div class="line">セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</div>
+</div>
+</td>
+<td><p>なし</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Max trial runtime in seconds</p></td>
+<td><div class="line-block">
+<div class="line"><strong>試行の実行時間の設定</strong></div>
+<div class="line">試行 (学習ジョブ) の完了を待機する実行時間 (秒)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">0</div>
+<div class="line">(設定しない)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Max job runtime in seconds</p></td>
+<td><div class="line-block">
+<div class="line"><strong>ジョブの実行時間の設定</strong></div>
+<div class="line">ジョブ (AutoML ジョブ) の完了を待機する実行時間 (秒)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">0</div>
+<div class="line">(設定しない)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Max candidates</p></td>
+<td><div class="line-block">
+<div class="line"><strong>試行の実行回数の設定</strong></div>
+<div class="line">試行の実行回数</div>
+<div class="line">(複数の試行を実行して機械学習モデルの候補を多数生成する。その中から最終的に1つに絞って推論エンドポイントとしてデプロイする)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">0</div>
+<div class="line">(設定しない)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>入力が終わったら、「Create Experiment」を選択します。</p>
+<p>下記のような画面に遷移すれば成功です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" style="width: 900px;" /></a>
+</div>
+<p>画面に記載があるように、デフォルトでは250回の試行 (250個のジョブ) が実行されます。
+全て完了するまでに2時間程度かかります。
+「stop the experiment」をクリックすれば、途中で停止させることも可能です。</p>
+</div>
+<div class="section" id="id10">
+<h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行します。</p>
+<ol class="arabic simple">
+<li><p>Pre-processing (前処理)</p></li>
+<li><p>Candidate Definitions Generated (候補定義生成)</p></li>
+<li><p>Feature Engineering (特徴エンジニアリング)</p></li>
+<li><p>Model Tuning (モデルチューニング)</p></li>
+</ol>
+<div class="line-block">
+<div class="line">2 まで完了すると、画面の右上に2つのボタンが登場します。</div>
+<div class="line">これを選択すると、2つのノートブックを参照することができます。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-candidate-definitions-generated.jpg" style="width: 900px;" /></a>
+</div>
+<p>学習データの分析結果やそれを踏まえて Amazon SageMaker Autopilot が判断した内容した内容が記録されます。
+このような自動化の仕組みは中身のブラックボックス化が問題もしくは課題となる場合がありますが、判断内容が利用者に公開されて透明性が確保されることは Amazon SageMaker Autopilot の特徴の1つです。</p>
+<p>それぞれのノートブックの概要を下記に示します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>生成されるノートブック</p></th>
+<th class="head"><p>説明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Data Exploration Notebook</div>
+<div class="line">(データ探索ノートブック)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">学習データの分析結果として下記を提示する</div>
+<div class="line">・データセットのサンプル</div>
+<div class="line">・カラムごとの分析結果</div>
+<div class="line-block">
+<div class="line">・欠損値の割合</div>
+<div class="line">・値の種類</div>
+<div class="line">・統計情報 (最大・最小値、平均値、中央値)</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Candidate Generation Notebook</div>
+<div class="line">(候補生成ノートブック)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Amazon SageMaker Autopilot が判断した内容が示される。ノートブックをダウンロードして編集や手動実行も可能</div>
+<div class="line">・前処理と機械学習アルゴリズムの組み合わせ</div>
+<div class="line">・ハイパーパラメータ最適化の手法や探索範囲</div>
+<div class="line">・上記の実行方法</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-data-exploration-notebook-1.jpg" style="width: 900px;" /></a>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-candidate-definition-notebook-1.jpg" style="width: 900px;" /></a>
+</div>
+<div class="line-block">
+<div class="line">このノートブックをダウンロードし、編集して再利用をすることもできます。</div>
+<div class="line">ステップ 4 の設定で「Do you want to run a complete experiment?」に「Yes」を選択しました。ここで「No, run a pilot to create a notebook with candidate definitions」を選択した場合は、ノートブックの生成後に処理が停止します。Amazon SageMaker Autopilot をデータ分析や採用すべき手法の判断材料を得る手段として利用しても良いでしょう。</div>
+</div>
+<p>実験が完了すると、下記のようにアニメーションが消えて、結果の表示のみとなります。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-after-completed.jpg" style="width: 900px;" /></a>
+</div>
+<p>デフォルトの精度指標値は F1 値となります。
+F1 値が最大の試行 (機械学習モデル) に「Best」という印がつきます。</p>
+</div>
+<div class="section" id="id11">
+<h2>まとめ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回は XXX について解説をしました。次回は YYY について扱いたいと思います。</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id12">
+<h2>著者紹介<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
+<p>菊地 貴彰 (KIKUCHI Takaaki)</p>
+<p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
+<p>大学・大学院では、機械学習を専攻。
+ベイズ的枠組みを用いて、複数の遺伝子のデータから遺伝子どうしの相互作用ネットワークの推定に関する研究を行った。</p>
+<p>株式会社NTTデータに入社後は、法人や金融のシステム開発のシステム基盤担当としてキャリアを積み、
+現在はデジタル技術や Agile 開発を専門に扱う組織でシステム開発全般を担当する。
+2019, 2020 APN AWS Top Engineers, Japan APN Ambassador 2020 に選出。</p>
+<p>本連載の内容に対するご意見・ご質問は twitter: &#64;kikuchitk7 まで。</p>
+</div>
+</div>
+
 
            </div>
            
