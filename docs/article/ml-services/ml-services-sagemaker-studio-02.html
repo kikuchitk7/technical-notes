@@ -111,20 +111,28 @@
 <li class="toctree-l4"><a class="reference internal" href="#id9">注意事項</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">ステップ 3 : データセットをダウンロードする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">ステップ 3 : データセットをダウンロードする</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">実行するコード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">コードの解説</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">実行するコード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">コードの解説</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">実行するコード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">実行するコード</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#sagemaker-autopilot">ステップ 4 : SageMaker Autopilot 実験を作成する</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-processing">1. Pre-processing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#candidate-definitions-generated">2. Candidate Definitions Generated</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#feature-engineering">3. Feature Engineering</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#model-tuning">4. Model Tuning</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">ステップ 6 : 最適なモデルをデプロイする</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">ステップ 7 : モデルを使用して予測を行う</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">ステップ 8 : クリーンアップ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">ステップ 6 : 最適なモデルをデプロイする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">ステップ 7 : モデルを使用して予測を行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">ステップ 8 : クリーンアップ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -460,37 +468,62 @@
 </div>
 <div class="section" id="id10">
 <h2>ステップ 3 : データセットをダウンロードする<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>「Studio を開く」</p>
+<p>「SageMaker Studio コントロールパネル」で「Studio を開く」を選択します。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg" style="width: 900px;" /></a>
 </div>
-<p>「Select a SageMaker Image」に「Data Science」を選択</p>
-<p>「Notebook」を選択</p>
+<p>1分程度待つと、下記に示すような画面に遷移します。
+これが Amazon SageMaker Studio の Launcher の画面となります。</p>
+<p>「Select a SageMaker Image」で「Data Science」を選択し、「Notebook」を選択します。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg" style="width: 900px;" /></a>
 </div>
-<p>ノートブックの右上の赤枠が「Unknown」の場合は、これを選択</p>
+<p>すると、下記のような JupyterLab の画面に遷移します。
+これが「Amazon SageMaker Notebooks」となります。
+Amazon SageMaker Studio に統合された JupyterLab のノートブック環境です。
+ダークテーマとなっていますが、<a class="reference external" href="https://news.mynavi.jp/itsearch/article/devsoft/5101">第6回の連載</a> で紹介した JupyterLab と同等です。</p>
+<p>ノートブックの右上の赤枠が「Unknown」となっている場合は、Amazon SageMaker Notebooks の背後で稼働するインスタンスが停止状態にあるため、これを選択します。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg" style="width: 900px;" /></a>
 </div>
-<p>今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択</p>
+<p>今回のチュートリアルでは小さいインスタンスで十分であるため、汎用 (General purpose) の「ml.t3.medium」を選択して、「Save and continue」を選択します。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg" style="width: 450px;" /></a>
 </div>
-<p>インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
+<p>インスタンスの起動に成功すると、「Unknown」で選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
 「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg" style="width: 900px;" /></a>
 </div>
-<p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
-ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。</p>
+<div class="section" id="id12">
+<h3>実行するコード<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</div>
+<div class="line">ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sh</span>
 <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">unzip</span>
 <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">s3</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">autopilot</span><span class="o">/</span><span class="n">direct_marketing</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
 <span class="n">unzip</span> <span class="o">-</span><span class="n">o</span> <span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">.</span><span class="n">zip</span>
 </pre></div>
 </div>
-<p>amazon-sagemaker-autopilot-tutorial-step3-download</p>
+<p>下記のような出力と、左側に「bank-additional」というフォルダが作成されれば成功です。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-download.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>コードの解説<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>マジックコマンド (%%sh) を使って OS のコマンドを実行しています。
+ここでは、下記の3つの処理を実行しています。</p>
+<ul class="simple">
+<li><p>ZIP ファイルを解凍するための unzip のパッケージのダウンロード</p></li>
+<li><p>チュートリアルで利用する「ポルトガル銀行のダイレクトマーケティングのデータ」(zip 形式) のダウンロード</p></li>
+<li><p>ダウンロードしたデータの解凍 (unzip)</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3>実行するコード<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./bank-additional/bank-additional-full.csv&#39;</span><span class="p">)</span>
@@ -498,7 +531,16 @@
 </pre></div>
 </div>
 <p>下記のように表形式でデータが表示されれば成功です。</p>
-<p>ここでは、Pandas の read_csv メソッドを使って、ダウンロードした CSV 形式のファイルの最初の10行を出力しています。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>コードの解説<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、Pandas の <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.0.1/reference/api/pandas.read_csv.html">read_csv 関数</a> を使って、ダウンロードした CSV 形式のデータを DataFrame に読み込み、最初の10行を出力しています。</p>
+</div>
+<div class="section" id="id16">
+<h3>実行するコード<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sagemaker</span>
 
@@ -509,11 +551,19 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>下記のように S3 バケットの URI が表示されれば成功です。</p>
+<div class="line-block">
+<div class="line">下記のように S3 バケットの URI が表示されれば成功です。</div>
+<div class="line">「ACCOUNT_NUMBER」はご自身の AWS アカウントの 12 ケタの数字に読み替えてください。</div>
+<div class="line">この URI は、ステップ 4 で利用します。</div>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">sagemaker</span><span class="o">-</span><span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">ACCOUNT_NUMBER</span><span class="o">/</span><span class="n">sagemaker</span><span class="o">/</span><span class="n">tutorial</span><span class="o">-</span><span class="n">autopilot</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="n">bank</span><span class="o">-</span><span class="n">additional</span><span class="o">-</span><span class="n">full</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
-<p>「ACCOUNT_NUMBER」にはご自身の AWS アカウントの 12 ケタの数字が入ります。</p>
+</div>
+<div class="section" id="id17">
+<h3>実行するコード<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、Amazon SageMaker Python SDK の <a class="reference external" href="https://sagemaker.readthedocs.io/en/stable/api/utility/session.html?highlight=session#sagemaker.session.Session.upload_data">upload_data メソッド</a> を利用して、S3 バケットにデータセットをアップロードしています。</p>
+</div>
 </div>
 <div class="section" id="sagemaker-autopilot">
 <h2>ステップ 4 : SageMaker Autopilot 実験を作成する<a class="headerlink" href="#sagemaker-autopilot" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -645,8 +695,8 @@
 <p>なお、実験の完了までに2時間程度かかる点に注意してください。
 途中経過を観察する必要はありませんが、放置が許されない場合や余分な課金を防ぐために実験完了後に Amazon SageMaker Notebooks のインスタンスを停止させたい場合もあるかと思いますので、時間に余裕を持って実施してください。</p>
 </div>
-<div class="section" id="id11">
-<h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h2>ステップ 5 : SageMaker Autopilot 実験のさまざまなステージを調べる<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step5-initial.jpg" style="width: 900px;" /></a>
 </div>
@@ -727,8 +777,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id19">
+<h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行い、推論エンドポイントを作成します。
 「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。</p>
 <div class="figure align-default">
@@ -829,8 +879,8 @@
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" style="width: 900px;" /></a>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">sys</span>
@@ -889,8 +939,8 @@
 著者の環境では下記となりました。
 0.9895、0.6909、0.9979、0.8165</p>
 </div>
-<div class="section" id="id14">
-<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id21">
+<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>下記が課金要素となるため、必要に応じて削除を行います。</p>
 <ul class="simple">
 <li><p>推論エンドポイント</p></li>
@@ -905,13 +955,13 @@
 </div>
 <p>Amazon SageMaker Notebooks の背後で動いているインスタンスの停止もしくは削除も忘れずに実施してください。</p>
 </div>
-<div class="section" id="id15">
-<h2>まとめ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id22">
+<h2>まとめ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回は XXX について解説をしました。次回は YYY について扱いたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id16">
-<h2>著者紹介<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>著者紹介<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>

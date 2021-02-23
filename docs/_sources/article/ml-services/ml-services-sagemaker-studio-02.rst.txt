@@ -214,40 +214,46 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
 ステップ 3 : データセットをダウンロードする
 -------------------------------------------------------------------
 
-「Studio を開く」
+「SageMaker Studio コントロールパネル」で「Studio を開く」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-open-sagemaker-studio.jpg
   :width: 900px
 
+1分程度待つと、下記に示すような画面に遷移します。
+これが Amazon SageMaker Studio の Launcher の画面となります。
 
-「Select a SageMaker Image」に「Data Science」を選択
-
-「Notebook」を選択
+「Select a SageMaker Image」で「Data Science」を選択し、「Notebook」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-top.jpg
   :width: 900px
 
-ノートブックの右上の赤枠が「Unknown」の場合は、これを選択
+すると、下記のような JupyterLab の画面に遷移します。
+これが「Amazon SageMaker Notebooks」となります。
+Amazon SageMaker Studio に統合された JupyterLab のノートブック環境です。
+ダークテーマとなっていますが、`第6回の連載 <https://news.mynavi.jp/itsearch/article/devsoft/5101>`_ で紹介した JupyterLab と同等です。
+
+ノートブックの右上の赤枠が「Unknown」となっている場合は、Amazon SageMaker Notebooks の背後で稼働するインスタンスが停止状態にあるため、これを選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-unknown.jpg
   :width: 900px
 
-
-今回のチュートリアルでは小さいインスタンスで十分であるため、「ml.t3.medium」を選択
+今回のチュートリアルでは小さいインスタンスで十分であるため、汎用 (General purpose) の「ml.t3.medium」を選択して、「Save and continue」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook-kernel.jpg
   :width: 450px
 
-
-インスタンスの起動に成功すると、「Unknown」が選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
+インスタンスの起動に成功すると、「Unknown」で選択したインスタンスタイプの vCPU とメモリサイズが表示が変わります。
 「ml.t3.medium」の場合は、「2 vCPU + 4 GiB」と表示されます。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-notebook.jpg
   :width: 900px
 
 
-ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
-ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。
+実行するコード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
+| ノートブック上部にある「▶︎」か、「Shift キー」＋「Enter キー」で実行できます。
 
 .. code-block:: python
 
@@ -256,10 +262,25 @@ Amazon SageMaker Studio のセットアップ方法について補足します�
     wget https://sagemaker-sample-data-us-west-2.s3-us-west-2.amazonaws.com/autopilot/direct_marketing/bank-additional.zip
     unzip -o bank-additional.zip
 
+下記のような出力と、左側に「bank-additional」というフォルダが作成されれば成功です。
 
-amazon-sagemaker-autopilot-tutorial-step3-download
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-download.jpg
+  :width: 900px
 
 
+コードの解説
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+マジックコマンド (%%sh) を使って OS のコマンドを実行しています。
+ここでは、下記の3つの処理を実行しています。
+
+* ZIP ファイルを解凍するための unzip のパッケージのダウンロード
+* チュートリアルで利用する「ポルトガル銀行のダイレクトマーケティングのデータ」(zip 形式) のダウンロード
+* ダウンロードしたデータの解凍 (unzip)
+
+
+実行するコード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 
@@ -271,12 +292,18 @@ amazon-sagemaker-autopilot-tutorial-step3-download
 
 下記のように表形式でデータが表示されれば成功です。
 
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step3-sagemaker-studio-pandas-read-csv.jpg
+  :width: 900px
 
 
-ここでは、Pandas の read_csv メソッドを使って、ダウンロードした CSV 形式のファイルの最初の10行を出力しています。
+コードの解説
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ここでは、Pandas の `read_csv 関数 <https://pandas.pydata.org/pandas-docs/version/1.0.1/reference/api/pandas.read_csv.html>`_ を使って、ダウンロードした CSV 形式のデータを DataFrame に読み込み、最初の10行を出力しています。
 
 
-
+実行するコード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 
@@ -291,13 +318,19 @@ amazon-sagemaker-autopilot-tutorial-step3-download
     print(uri)
 
 
-下記のように S3 バケットの URI が表示されれば成功です。
+| 下記のように S3 バケットの URI が表示されれば成功です。
+| 「ACCOUNT_NUMBER」はご自身の AWS アカウントの 12 ケタの数字に読み替えてください。
+| この URI は、ステップ 4 で利用します。
 
 .. code-block::
     
     s3://sagemaker-ap-northeast-1-ACCOUNT_NUMBER/sagemaker/tutorial-autopilot/input/bank-additional-full.csv
 
-「ACCOUNT_NUMBER」にはご自身の AWS アカウントの 12 ケタの数字が入ります。
+
+実行するコード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ここでは、Amazon SageMaker Python SDK の `upload_data メソッド <https://sagemaker.readthedocs.io/en/stable/api/utility/session.html?highlight=session#sagemaker.session.Session.upload_data>`_ を利用して、S3 バケットにデータセットをアップロードしています。
 
 
 ステップ 4 : SageMaker Autopilot 実験を作成する
