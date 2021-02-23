@@ -435,13 +435,13 @@ Amazon SageMaker Autopilot では、表形式 (CSV 形式) の学習データか
       - Default SageMaker Role
     * -
       - Encryption key - Optional
-      - | **S3 バケットの暗号鍵の設定**
-        | AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
+      - | **データの暗号化の設定**
+        | AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する
       - なし
     * -
       - Virtual private cloud (VPC) - Optional
       - | **VPC への配置の設定**
-        | セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
+        | セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
       - なし
     * -
       - Max trial runtime in seconds
@@ -548,11 +548,18 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 -------------------------------------------------------------------
 
 実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行い、推論エンドポイントを作成します。
-「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。
+「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択するか、右クリックで「Deploy model」を選択します。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg
   :width: 900px
 
+ここで、「REALTIME DEPLOYMENT SETTINGS」でデプロイ (推論エンドポイント) の設定を行います。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg
+  :width: 900px
+
+ここでも原則としてデフォルト値を設定します。 
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください
 
 .. list-table::
     :header-rows: 1
@@ -563,26 +570,33 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
       - デフォルト値
     * - REALTIME DEPLOYMENT SETTINGS
       - Endpoint name
-      - 推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
-      - なし (今回は「tutorial-autopilot-best-model」と設定)
+      - | **推論エンドポイント名の設定**
+        | 推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある
+      - | なし
+        | (今回は「tutorial-autopilot-best-model」を設定)
     * - 
       - Instance type
-      - | 推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する
+      - | **インスタンスタイプの設定**
+        | 推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する
         | ※この表の下に補足情報を記載するので、そちらも参照されたい
-      - ml.m5.xlarge (今回は「ml.m5.large」と設定)
+      - | ml.m5.xlarge
+        | (今回は「ml.m5.large」を設定)
     * - 
       - Instance count
-      - 推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する
+      - | **インスタンス数の設定**
+        | 推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する
       - 1
     * - 
       - Data capture
-      - | 推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる
+      - | **データの取得**
+        | 推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる
         | ・Save prediction requests
-        | ・Sace prediction responce
+        | ・Save prediction responce
       - 未選択
     * - 
       - Inference Responce Content
-      - | 推論エンドポイントが入力データごとに返す応答コンテンツを設定する
+      - | **推論エンドポイントの応答コンテンツの設定**
+        | 推論エンドポイントが入力データごとに返す応答コンテンツを設定する
         | ・predicted_label：分類されたクラスのラベル
         | ・probability: 分類されたクラスの確率
         | ・probabilites: 全てのラベルの確率のリスト
@@ -590,28 +604,24 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
       - predicted_label
     * - ADVANCED SETTINGS - Optional
       - Environment variables - Optional
-      - 推論エンドポイントの Docker コンテナに環境変数を設定する
+      - | **環境変数の設定**
+        | 推論エンドポイントの Docker コンテナに環境変数を設定する
       - なし
     * - 
       - IAM role
-      - Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する
+      - | **IAM ロールの設定**
+        | 推論エンドポイントに付与する AWS リソースの操作権限を設定した IAM ロールを指定する
       - Default SageMaker Role
     * - 
       - Encryption key - Optional
-      - AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する
+      - | **データの暗号化の設定**
+        | AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する
       - なし
     * - 
       - Virtual private cloud (VPC) - Optional
-      - セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
+      - | **VPC への配置の設定**
+        | セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する
       - なし
-
-
-「Instance type」について補足します。
-デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。
-今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。
-
-.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg
-  :width: 900px
 
 
 設定の完了後に「Deploy model」を選択します。
@@ -625,6 +635,17 @@ Amazon SageMaker Autopilot が下記の4つのタスクを自動で実行しま�
 「Endpoint status」が「Creating」から「InService」となれば完了です。
 
 .. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg
+  :width: 900px
+
+
+注意事項
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| 「Instance type」について補足します。
+| デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。
+| 今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。
+
+.. figure:: ../../../images/blog/10th/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg
   :width: 900px
 
 

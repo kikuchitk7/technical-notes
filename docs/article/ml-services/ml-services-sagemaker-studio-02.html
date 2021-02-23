@@ -128,11 +128,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#model-tuning">4. Model Tuning</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">ステップ 6 : 最適なモデルをデプロイする</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">ステップ 7 : モデルを使用して予測を行う</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">ステップ 8 : クリーンアップ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">まとめ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">著者紹介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">ステップ 6 : 最適なモデルをデプロイする</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">ステップ 7 : モデルを使用して予測を行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">ステップ 8 : クリーンアップ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">まとめ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">著者紹介</a></li>
 </ul>
 </li>
 </ul>
@@ -720,8 +723,8 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <tr class="row-even"><td></td>
 <td><p>Encryption key - Optional</p></td>
 <td><div class="line-block">
-<div class="line"><strong>S3 バケットの暗号鍵の設定</strong></div>
-<div class="line">AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する</div>
+<div class="line"><strong>データの暗号化の設定</strong></div>
+<div class="line">AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する</div>
 </div>
 </td>
 <td><p>なし</p></td>
@@ -730,7 +733,7 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <td><p>Virtual private cloud (VPC) - Optional</p></td>
 <td><div class="line-block">
 <div class="line"><strong>VPC への配置の設定</strong></div>
-<div class="line">セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</div>
+<div class="line">セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</div>
 </div>
 </td>
 <td><p>なし</p></td>
@@ -865,10 +868,16 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <div class="section" id="id19">
 <h2>ステップ 6 : 最適なモデルをデプロイする<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>実験が完了したら、次は推論を行うために機械学習モデルのデプロイを行い、推論エンドポイントを作成します。
-「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択します。</p>
+「Best」の表示がある行を選択した状態で右上の「Deploy model」を選択するか、右クリックで「Deploy model」を選択します。</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model.jpg" style="width: 900px;" /></a>
 </div>
+<p>ここで、「REALTIME DEPLOYMENT SETTINGS」でデプロイ (推論エンドポイント) の設定を行います。</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-settings.jpg" style="width: 900px;" /></a>
+</div>
+<p>ここでも原則としてデフォルト値を設定します。
+各設定値の説明を簡単に記しますので、実際の業務で利用する際は参考にしてください</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 25%" />
@@ -886,29 +895,47 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <tbody>
 <tr class="row-even"><td><p>REALTIME DEPLOYMENT SETTINGS</p></td>
 <td><p>Endpoint name</p></td>
-<td><p>推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある</p></td>
-<td><p>なし (今回は「tutorial-autopilot-best-model」と設定)</p></td>
+<td><div class="line-block">
+<div class="line"><strong>推論エンドポイント名の設定</strong></div>
+<div class="line">推論エンドポイントの名称を設定する。最大 63 文字まで設定可能であり、英数字もしくはハイフン (-) の利用が可能。1つの AWS リージョンのアカウント内で一意である必要がある</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">なし</div>
+<div class="line">(今回は「tutorial-autopilot-best-model」を設定)</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Instance type</p></td>
 <td><div class="line-block">
+<div class="line"><strong>インスタンスタイプの設定</strong></div>
 <div class="line">推論エンドポイントをホストする推論インスタンスのインスタンスタイプを設定する</div>
 <div class="line">※この表の下に補足情報を記載するので、そちらも参照されたい</div>
 </div>
 </td>
-<td><p>ml.m5.xlarge (今回は「ml.m5.large」と設定)</p></td>
+<td><div class="line-block">
+<div class="line">ml.m5.xlarge</div>
+<div class="line">(今回は「ml.m5.large」を設定)</div>
+</div>
+</td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Instance count</p></td>
-<td><p>推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する</p></td>
+<td><div class="line-block">
+<div class="line"><strong>インスタンス数の設定</strong></div>
+<div class="line">推論エンドポイントをホストする推論インスタンスのインスタンス数を設定する</div>
+</div>
+</td>
 <td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Data capture</p></td>
 <td><div class="line-block">
+<div class="line"><strong>データの取得</strong></div>
 <div class="line">推論エンドポイントのリクエストまたはレスポンスを収集して S3 バケットに保存する。有効化する場合は Amazon SageMaker Studio がランダムに取得する割合を設定できる</div>
 <div class="line">・Save prediction requests</div>
-<div class="line">・Sace prediction responce</div>
+<div class="line">・Save prediction responce</div>
 </div>
 </td>
 <td><p>未選択</p></td>
@@ -916,6 +943,7 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <tr class="row-even"><td></td>
 <td><p>Inference Responce Content</p></td>
 <td><div class="line-block">
+<div class="line"><strong>推論エンドポイントの応答コンテンツの設定</strong></div>
 <div class="line">推論エンドポイントが入力データごとに返す応答コンテンツを設定する</div>
 <div class="line">・predicted_label：分類されたクラスのラベル</div>
 <div class="line">・probability: 分類されたクラスの確率</div>
@@ -927,32 +955,42 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 </tr>
 <tr class="row-odd"><td><p>ADVANCED SETTINGS - Optional</p></td>
 <td><p>Environment variables - Optional</p></td>
-<td><p>推論エンドポイントの Docker コンテナに環境変数を設定する</p></td>
+<td><div class="line-block">
+<div class="line"><strong>環境変数の設定</strong></div>
+<div class="line">推論エンドポイントの Docker コンテナに環境変数を設定する</div>
+</div>
+</td>
 <td><p>なし</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>IAM role</p></td>
-<td><p>Amazon SageMaker Autopilot に付与する AWS リソースの操作権限を設定した IAM ロールを指定する</p></td>
+<td><div class="line-block">
+<div class="line"><strong>IAM ロールの設定</strong></div>
+<div class="line">推論エンドポイントに付与する AWS リソースの操作権限を設定した IAM ロールを指定する</div>
+</div>
+</td>
 <td><p>Default SageMaker Role</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Encryption key - Optional</p></td>
-<td><p>AWS Key Management Service (KMS) により S3 バケットを暗号化している場合に暗号鍵を指定する</p></td>
+<td><div class="line-block">
+<div class="line"><strong>データの暗号化の設定</strong></div>
+<div class="line">AWS Key Management Service (KMS) によるデータの暗号化を実施する場合に暗号鍵を指定する</div>
+</div>
+</td>
 <td><p>なし</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Virtual private cloud (VPC) - Optional</p></td>
-<td><p>セキュリティ要件などでノートブックインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</p></td>
+<td><div class="line-block">
+<div class="line"><strong>VPC への配置の設定</strong></div>
+<div class="line">セキュリティ要件などでインスタンスをユーザ管理の VPC 内に配置する必要がある場合に設定する</div>
+</div>
+</td>
 <td><p>なし</p></td>
 </tr>
 </tbody>
 </table>
-<p>「Instance type」について補足します。
-デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。
-今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。</p>
-<div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" style="width: 900px;" /></a>
-</div>
 <p>設定の完了後に「Deploy model」を選択します。
 推論インスタンスの作成と機械学習モデルのデプロイが行われます。</p>
 <div class="figure align-default">
@@ -963,9 +1001,20 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-endpoint-inservice.jpg" style="width: 900px;" /></a>
 </div>
-</div>
 <div class="section" id="id20">
-<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>注意事項<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">「Instance type」について補足します。</div>
+<div class="line">デフォルト値は「ml.m5.xlarge」ですが、下記のようにリソースの構成上限に抵触してデプロイを行うことができません。</div>
+<div class="line">今回は「ml.m5.large」を選択しましたが、実際の業務などで「ml.m5.xlarge」の利用が必要な場合は AWS サポートに上限緩和申請を行ってください。</div>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg"><img alt="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" src="../../_images/amazon-sagemaker-autopilot-tutorial-step6-deploy-model-error.jpg" style="width: 900px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>ステップ 7 : モデルを使用して予測を行う<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ノートブックのセルに下記のコードをコピー＆ペーストして実行してください。
 なお、「ep_name」はステップ 6 で設定した「Endpoint name」と一致させてください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">sys</span>
@@ -1024,8 +1073,8 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 著者の環境では下記となりました。
 0.9895、0.6909、0.9979、0.8165</p>
 </div>
-<div class="section" id="id21">
-<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id22">
+<h2>ステップ 8 : クリーンアップ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>下記が課金要素となるため、必要に応じて削除を行います。</p>
 <ul class="simple">
 <li><p>推論エンドポイント</p></li>
@@ -1040,13 +1089,13 @@ Amazon SageMaker Studio に統合された JupyterLab のノートブック環�
 </div>
 <p>Amazon SageMaker Notebooks の背後で動いているインスタンスの停止もしくは削除も忘れずに実施してください。</p>
 </div>
-<div class="section" id="id22">
-<h2>まとめ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>まとめ<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>今回は XXX について解説をしました。次回は YYY について扱いたいと思います。</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="id23">
-<h2>著者紹介<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id24">
+<h2>著者紹介<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/myphoto2.jpg"><img alt="../../_images/myphoto2.jpg" class="align-right" src="../../_images/myphoto2.jpg" style="width: 157.65px; height: 225.0px;" /></a>
 <p>菊地 貴彰 (KIKUCHI Takaaki)</p>
 <p>株式会社 NTT データ システム技術本部 デジタル技術部 Agile プロフェッショナル担当</p>
